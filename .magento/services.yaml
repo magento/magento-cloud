@@ -1,0 +1,14 @@
+# The services of the project.
+#
+# Each service listed will be deployed to power your project.
+
+mysql:
+    type: mysql:10.0
+    disk: 2048
+
+redis:
+    type: redis:3.0
+
+solr:
+    type: solr:4.10
+    disk: 1024

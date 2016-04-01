@@ -1,0 +1,163 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+
+# The name of this app. Must be unique within a project.
+name: mymagento
+
+# The toolstack used to build the application.
+type: php:5.6
+build:
+    flavor: composer
+
+# Enable extensions required by Magento 2
+runtime:
+    extensions:
+        - redis
+        - xsl
+        - json
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the environment variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "mysql:mysql"
+    solr: "solr:solr"
+    redis: "redis:redis"
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            # The public directory of the app, relative to its root.
+            root: "pub/"
+            # The front-controller script to send non-static requests to.
+            passthru: "/index.php"
+            index:
+                - index.php
+            expires: -1
+            scripts: true
+            allow: false
+            rules:
+                # CSS and Javascript.
+                \.css$:
+                    allow: true
+                \.js$:
+                    allow: true
+                \.map$:
+                    allow: true
+                \.hbs$:
+                    allow: true
+                # image/* types.
+                \.gif$:
+                    allow: true
+                \.jpe?g$:
+                    allow: true
+                \.png$:
+                    allow: true
+                \.tiff?$:
+                    allow: true
+                \.wbmp$:
+                    allow: true
+                \.ico$:
+                    allow: true
+                \.jng$:
+                    allow: true
+                \.bmp$:
+                    allow: true
+                \.svgz?$:
+                    allow: true
+                # audio/* types.
+                \.midi?$:
+                    allow: true
+                \.mpe?ga$:
+                    allow: true
+                \.mp2$:
+                    allow: true
+                \.mp3$:
+                    allow: true
+                \.m4a$:
+                    allow: true
+                \.ra$:
+                    allow: true
+                \.weba$:
+                    allow: true
+                # video/* types.
+                \.3gpp?$:
+                    allow: true
+                \.mp4$:
+                    allow: true
+                \.mpe?g$:
+                    allow: true
+                \.mpe$:
+                    allow: true
+                \.ogv$:
+                    allow: true
+                \.mov$:
+                    allow: true
+                \.webm$:
+                    allow: true
+                \.flv$:
+                    allow: true
+                \.mng$:
+                    allow: true
+                \.asx$:
+                    allow: true
+                \.asf$:
+                    allow: true
+                \.wmv$:
+                    allow: true
+                \.avi$:
+                    allow: true
+                # application/ogg.
+                \.ogx$:
+                    allow: true
+                # application/x-shockwave-flash.
+                \.swf$:
+                    allow: true
+                # application/java-archive.
+                \.jar$:
+                    allow: true
+                # fonts types.
+                \.ttf$:
+                    allow: true
+                \.eot$:
+                    allow: true
+                \.woff$:
+                    allow: true
+                \.otf$:
+                    allow: true
+                # document types
+                \.htm$:
+                    allow: true
+                \.html$:
+                    allow: true
+                # robots.txt.
+                /robots\.txt$:
+                    allow: true
+
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    "var": "shared:files/var"
+    "app/etc": "shared:files/etc"
+    "pub": "shared:files/pub"
+
+# The hooks executed at various points in the lifecycle of the application.
+hooks:
+    # We run build hooks before your application has been packaged.
+    build: |
+        php ./vendor/platformsh-redbull/mc-configuration/magento-build.php
+    # We run deploy hook after your application has been deployed and started.
+    deploy: |
+        php ./vendor/platformsh-redbull/mc-configuration/magento-deploy.php
+
+# Default Magento 2 cron jobs
+crons:
+    cronrun:
+        spec: "*/1 * * * *"
+        cmd: "php bin/magento cron:run"
