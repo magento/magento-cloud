@@ -1,10 +1,12 @@
 # Magento 2.0 Enterprise Edition
 
-## Configuration
+This is a no-thrills example of a minimal repository to deploy a Magento 2 Enterprise Edition instance.
 
-This is an example of a minimal repository to deploy a Magento 2 Enterprise Edition instance.
+This example is based on using the Composer to load up dependencies and get the Magento vendor folders.
 
-This example is based on using the Composer to build the site. You can see there is not much in terms of files committed to this repository.
+## Repository structure
+
+Here are the specific files for this example to work on Platform.sh:
 
 ```
 .magento/
@@ -24,16 +26,18 @@ deploy script during deployment.. and also set up some crons.
 In `.magento/routes.yaml` we just say that we will redirect www to the naked domain, and that the application that
 will be serving HTTP will be the one we called `php`.
 
-In `.magento/services.yaml` we say we want a MySQL instance, a Redis and a Solr.
+In `.magento/services.yaml` we say we want a MySQL instance, a Redis and a Solr. That would cover most basic Magento
+needs, right?
 
 The ``composer.json`` will fetch the Magento 2.0 Enterprise Edition, and some configuration scripts to prepare your application.
 
-## Custom modules & themes
+Make sure you add your Magento credentials to the `auth.json` file based on the `auth.json.sample` example and that those credentials can get you access to Magento Enterprise Edition. You can get those credentials in your [MagentoCommerce account](https://www.magentocommerce.com/magento-connect/customerdata/accessKeys/list/).
 
-Your custom developments should be put into the following folders:
-
-* Modules: `app/code/<Vendor>/`
-* Themes: `app/design/frontend/<Vendor>/`
-* Language packs: `app/i18n/<Vendor>/`
-
-The Magento vendor folder will be merged into `app/code` and `app/design/frontend` over the build process.
+```
+"http-basic": {
+      "repo.magento.com": {
+         "username": "<public-key>",
+         "password": "<private-key>"
+      }
+   }
+```

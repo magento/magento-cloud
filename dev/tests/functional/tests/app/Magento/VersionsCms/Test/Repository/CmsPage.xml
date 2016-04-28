@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Cms\Test\Repository\CmsPage">
+        <dataset name="cms_page_under_version_control">
+            <field name="title" xsi:type="string">CMS Page Test%isolation%</field>
+            <field name="page_layout" xsi:type="string">1 column</field>
+            <field name="identifier" xsi:type="string">cms-page-test%isolation%</field>
+            <field name="store_id" xsi:type="string">All Store Views</field>
+            <field name="is_active" xsi:type="string">Published</field>
+            <field name="under_version_control" xsi:type="string">Yes</field>
+            <field name="content" xsi:type="array">
+                <item name="content" xsi:type="string">Test Content</item>
+            </field>
+            <field name="content_heading" xsi:type="string">CMS Page Test%isolation%</field>
+            <field name="meta_keywords" xsi:type="string">Meta, Keys</field>
+            <field name="meta_description" xsi:type="string">Meta Description</field>
+        </dataset>
+
+        <dataset name="cms_page_not_under_version_control">
+            <field name="title" xsi:type="string">CMS Page Test%isolation%</field>
+            <field name="identifier" xsi:type="string">cms-page-test%isolation%</field>
+            <field name="store_id" xsi:type="string">All Store Views</field>
+            <field name="is_active" xsi:type="string">Published</field>
+            <field name="under_version_control" xsi:type="string">No</field>
+            <field name="content" xsi:type="array">
+                <item name="content" xsi:type="string">Test Content</item>
+            </field>
+            <field name="content_heading" xsi:type="string">CMS Page Test%isolation%</field>
+            <field name="meta_keywords" xsi:type="string">Meta, Keys</field>
+            <field name="meta_description" xsi:type="string">Meta Description</field>
+        </dataset>
+    </repository>
+</config>

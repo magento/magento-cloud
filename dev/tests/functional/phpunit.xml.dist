@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
+         colors="true"
+         bootstrap="bootstrap.php"
+         backupGlobals="false"
+         verbose="true"
+>
+    <testsuites>
+        <testsuite name="All Tests">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <listeners>
+        <listener class="Magento\Mtf\System\Browser\Listener" />
+        <listener class="Magento\Mtf\System\Isolation\Listener">
+            <arguments>
+                <object class="Magento\Mtf\System\Isolation\Driver\Base" />
+            </arguments>
+        </listener>
+        <listener class="Magento\Mtf\System\Event\StateListener" />
+    </listeners>
+
+    <php>
+        <env name="app_frontend_url" value="http://localhost/" />
+        <env name="app_backend_url" value="http://localhost/backend/" />
+        <env name="testsuite_rule" value="basic" />
+        <env name="testsuite_rule_path" value="Magento/Mtf/TestSuite/InjectableTests" />
+        <env name="log_directory" value="var/log" />
+        <env name="events_preset" value="base" />
+        <env name="module_whitelist" value="Magento_Install" />
+        <env name="basedir" value="var/log" />
+        <env name="credentials_file_path" value="./credentials.xml.dist" />
+        <env name="mage_mode" value="developer" />
+    </php>
+
+</phpunit>

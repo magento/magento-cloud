@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VersionsCms\Test\TestCase\CreateCmsPageVersionsEntityForNewCmsPageTest" summary="Create CMS Page Versions for a New CMS Page" ticketId="MAGETWO-26995">
+        <variation name="CreateCmsPageVersionsEntityForNewCmsPageTestVariation1">
+            <data name="cms/data/title" xsi:type="string">NewCmsPage%isolation%</data>
+            <data name="cms/data/identifier" xsi:type="string">-</data>
+            <data name="cms/data/store_id" xsi:type="string">Main Website/Main Website Store/Default Store View</data>
+            <data name="cms/data/is_active" xsi:type="string">Published</data>
+            <data name="cms/data/under_version_control" xsi:type="string">Yes</data>
+            <data name="cms/data/content/content" xsi:type="string">cms_page_text_content%isolation%</data>
+            <data name="results/revision" xsi:type="string">rev #1</data>
+            <data name="results/owner" xsi:type="string">admin</data>
+            <data name="results/access_level" xsi:type="string">Public</data>
+            <constraint name="Magento\Cms\Test\Constraint\AssertCmsPageSuccessSaveMessage" />
+            <constraint name="Magento\Cms\Test\Constraint\AssertCmsPageInGrid" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageCurrentlyPublishedRevision" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionInGrid" />
+        </variation>
+        <variation name="CreateCmsPageVersionsEntityForNewCmsPageTestVariation2">
+            <data name="cms/data/title" xsi:type="string">NewCmsPage%isolation%</data>
+            <data name="cms/data/identifier" xsi:type="string">cms_page_url%isolation%</data>
+            <data name="cms/data/store_id" xsi:type="string">Main Website/Main Website Store/Default Store View</data>
+            <data name="cms/data/is_active" xsi:type="string">Disabled</data>
+            <data name="cms/data/under_version_control" xsi:type="string">Yes</data>
+            <data name="cms/data/content/content" xsi:type="string">cms_page_text_content%isolation%</data>
+            <data name="results/revision" xsi:type="string">rev #1</data>
+            <data name="results/owner" xsi:type="string">admin</data>
+            <data name="results/access_level" xsi:type="string">Public</data>
+            <constraint name="Magento\Cms\Test\Constraint\AssertCmsPageSuccessSaveMessage" />
+            <constraint name="Magento\Cms\Test\Constraint\AssertCmsPageInGrid" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageCurrentlyPublishedRevision" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionInGrid" />
+        </variation>
+    </testCase>
+</config>

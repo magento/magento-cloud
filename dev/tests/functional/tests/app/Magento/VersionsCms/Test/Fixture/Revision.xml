@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/fixture.xsd">
+    <fixture name="revision"
+             module="Magento_VersionsCms"
+             repository_class="Magento\VersionsCms\Test\Repository\Revision"
+             class="Magento\VersionsCms\Test\Fixture\Revision">
+        <field name="revision_id" is_required="1" />
+        <field name="version_id" is_required="" />
+        <field name="page_id" is_required="" />
+        <field name="root_template" is_required="" group="design" />
+        <field name="meta_keywords" is_required="" group="meta-data" />
+        <field name="meta_description" is_required="" group="meta-data" />
+        <field name="content_heading" is_required="" group="content" />
+        <field name="content" is_required="" group="content" />
+        <field name="created_at" is_required="" />
+        <field name="layout_update_xml" is_required="" group="design" />
+        <field name="custom_theme" is_required="" />
+        <field name="custom_root_template" is_required="" />
+        <field name="custom_layout_update_xml" is_required="" />
+        <field name="custom_theme_from" is_required="" />
+        <field name="custom_theme_to" is_required="" />
+        <field name="user_id" is_required="" />
+        <field name="revision_number" is_required="" />
+    </fixture>
+</config>

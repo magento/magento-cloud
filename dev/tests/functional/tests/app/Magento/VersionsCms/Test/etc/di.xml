@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageCurrentlyPublishedRevision">
+    <arguments>
+      <argument name="severity" xsi:type="string">high</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionInGrid">
+    <arguments>
+      <argument name="severity" xsi:type="string">medium</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionSuccessSaveMessage">
+    <arguments>
+      <argument name="severity" xsi:type="string">high</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionSuccessDeleteMessage">
+    <arguments>
+      <argument name="severity" xsi:type="string">medium</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionSuccessMassDeleteMessage">
+    <arguments>
+      <argument name="severity" xsi:type="string">medium</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionErrorDeleteMessage">
+    <arguments>
+      <argument name="severity" xsi:type="string">medium</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionSuccessMassDeleteMessage">
+    <arguments>
+      <argument name="severity" xsi:type="string">medium</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionSuccessSaveMessage">
+    <arguments>
+      <argument name="severity" xsi:type="string">high</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionSuccessPublishMessage">
+    <arguments>
+      <argument name="severity" xsi:type="string">high</argument>
+    </arguments>
+  </type>
+  <type name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionPreview">
+    <arguments>
+      <argument name="severity" xsi:type="string">high</argument>
+    </arguments>
+  </type>
+</config>

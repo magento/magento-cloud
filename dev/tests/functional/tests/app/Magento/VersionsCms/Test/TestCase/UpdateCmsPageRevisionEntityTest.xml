@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VersionsCms\Test\TestCase\UpdateCmsPageRevisionEntityTest" summary="Update CMS Page Revision" ticketId="MAGETWO-27566">
+        <variation name="UpdateCmsPageRevisionEntityTestVariation1">
+            <data name="cms/dataset" xsi:type="string">cms_page_under_version_control</data>
+            <data name="revisionData/from" xsi:type="string">1</data>
+            <data name="revisionData/to" xsi:type="string">1</data>
+            <data name="revision/data/content_heading" xsi:type="string">rev2 heading</data>
+            <data name="revision/data/content" xsi:type="string">Rev2 content</data>
+            <data name="revision/data/root_template" xsi:type="string">3 columns</data>
+            <data name="revision/data/meta_keywords" xsi:type="string">rev2, meta, keywords</data>
+            <data name="revision/data/meta_description" xsi:type="string">rev2 meta description</data>
+            <data name="results/revision_number_from" xsi:type="string">2</data>
+            <data name="results/revision_number_to" xsi:type="string">2</data>
+            <data name="results/revision" xsi:type="string">rev #1</data>
+            <data name="results/author" xsi:type="string">admin</data>
+            <data name="results/owner" xsi:type="string">admin</data>
+            <data name="results/access_level" xsi:type="string">Public</data>
+            <data name="results/quantity" xsi:type="string">2</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionSuccessSaveMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionInGrid" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionPreview" />
+        </variation>
+    </testCase>
+</config>

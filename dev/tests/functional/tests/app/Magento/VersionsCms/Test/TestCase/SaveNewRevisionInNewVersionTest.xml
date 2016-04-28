@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VersionsCms\Test\TestCase\SaveNewRevisionInNewVersionTest" summary="Save New Revision in a New Version " ticketId="MAGETWO-29102">
+        <variation name="SaveNewRevisionInNewVersionTestVariation1">
+            <data name="cms/dataset" xsi:type="string">cms_page_under_version_control</data>
+            <data name="revisionData/from" xsi:type="string">1</data>
+            <data name="revisionData/to" xsi:type="string">1</data>
+            <data name="revision/data/content" xsi:type="string">content_%isolation%</data>
+            <data name="results/label" xsi:type="string">rev_as_version</data>
+            <data name="results/access_level" xsi:type="string">Public</data>
+            <data name="results/quantity" xsi:type="string">1</data>
+            <data name="results/owner" xsi:type="string">admin</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionAsVersionSuccessSaveMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionInGrid" />
+        </variation>
+    </testCase>
+</config>

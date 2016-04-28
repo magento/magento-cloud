@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<tabs>
+    <product-details>
+        <class>\Magento\Catalog\Test\Block\Adminhtml\Product\Edit\Tab\ProductDetails</class>
+        <selector>#product_info_tabs_product-details</selector>
+        <strategy>css selector</strategy>
+        <wrapper>product</wrapper>
+        <fields>
+            <giftcard_type>
+                <input>select</input>
+            </giftcard_type>
+            <giftcard_amounts>
+                <selector>#attribute-giftcard_amounts-container</selector>
+                <class>Magento\GiftCard\Test\Block\Adminhtml\Product\Edit\Tab\ProductDetails\Amount</class>
+            </giftcard_amounts>
+            <allow_open_amount>
+                <selector>#allow_open_amount</selector>
+                <input>checkbox</input>
+            </allow_open_amount>
+        </fields>
+    </product-details>
+    <autosettings>
+        <class>\Magento\Catalog\Test\Block\Adminhtml\Product\Edit\ProductTab</class>
+        <selector>#product_info_tabs_autosettings</selector>
+        <strategy>css selector</strategy>
+        <wrapper>product</wrapper>
+        <fields>
+            <gift_wrapping_price>
+                <selector>#gift_wrapping_price</selector>
+                <strategy>css selector</strategy>
+            </gift_wrapping_price>
+        </fields>
+    </autosettings>
+    <giftcard>
+        <class>\Magento\Backend\Test\Block\Widget\Tab</class>
+        <selector>#product_info_tabs_product-details</selector>
+        <strategy>css selector</strategy>
+        <wrapper>product</wrapper>
+        <fields>
+            <use_config_is_redeemable>
+                <selector>#giftcard_use_config_is_redeemable</selector>
+                <input>checkbox</input>
+            </use_config_is_redeemable>
+            <is_redeemable>
+                <input>select</input>
+            </is_redeemable>
+            <news_from_date>
+                <selector>#news_from_date</selector>
+                <strategy>css selector</strategy>
+            </news_from_date>
+            <news_to_date>
+                <selector>#news_to_date</selector>
+                <strategy>css selector</strategy>
+            </news_to_date>
+            <use_config_lifetime>
+                <selector>#giftcard_use_config_lifetime</selector>
+                <input>checkbox</input>
+            </use_config_lifetime>
+            <use_config_allow_message>
+                <selector>#giftcard_use_config_allow_message</selector>
+                <input>checkbox</input>
+            </use_config_allow_message>
+            <allow_message>
+                <input>select</input>
+            </allow_message>
+            <use_config_email_template>
+                <selector>#giftcard_use_config_email_template</selector>
+                <input>checkbox</input>
+            </use_config_email_template>
+            <email_template>
+                <input>select</input>
+            </email_template>
+        </fields>
+    </giftcard>
+</tabs>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\SalesArchive\Test\TestCase\InvoiceSalesArchiveEntityTest" summary="Invoice Sales Archive" ticketId="MAGETWO-28947">
+        <variation name="InvoiceSalesArchiveEntityTestVariation1">
+            <data name="description" xsi:type="string">Open Archive Order Invoice it</data>
+            <data name="order/dataset" xsi:type="string">default</data>
+            <data name="order/data/entity_id/products" xsi:type="string">catalogProductSimple::product_100_dollar</data>
+            <data name="data/items_data/0/qty" xsi:type="string">2</data>
+            <data name="data/form_data/do_shipment" xsi:type="string">No</data>
+            <data name="data/form_data/comment_text" xsi:type="string">Comments for invoice.</data>
+            <data name="status" xsi:type="string">Processing</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertInvoiceSuccessCreateMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertNoInvoiceButton" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertInvoiceInInvoicesTab" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
+        </variation>
+        <variation name="InvoiceSalesArchiveEntityTestVariation2">
+            <data name="description" xsi:type="string">Open Archive Order Invoice it partially</data>
+            <data name="order/dataset" xsi:type="string">default</data>
+            <data name="order/data/entity_id/products" xsi:type="string">catalogProductSimple::product_100_dollar</data>
+            <data name="data/items_data/0/qty" xsi:type="string">1</data>
+            <data name="data/form_data/do_shipment" xsi:type="string">No</data>
+            <data name="data/form_data/comment_text" xsi:type="string">Comments for invoice.</data>
+            <data name="status" xsi:type="string">Processing</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertInvoiceSuccessCreateMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertInvoiceInInvoicesTab" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
+        </variation>
+    </testCase>
+</config>

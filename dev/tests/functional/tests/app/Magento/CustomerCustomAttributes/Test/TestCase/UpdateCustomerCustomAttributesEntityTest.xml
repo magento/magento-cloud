@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerCustomAttributes\Test\TestCase\UpdateCustomerCustomAttributesEntityTest" summary="Update Customer Custom Attributes" ticketId="MAGETWO-26366">
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation1">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">text_field</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">TextField_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">No</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/input_validation" xsi:type="string">Alphanumeric</data>
+            <data name="customerAttribute/data/min_text_length" xsi:type="string">1</data>
+            <data name="customerAttribute/data/max_text_length" xsi:type="string">30</data>
+            <data name="customerAttribute/data/input_filter" xsi:type="string">Escape HTML Entities</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">10</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInCustomerSegment" />
+        </variation>
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation2">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">text_area</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">TextArea_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/input_filter" xsi:type="string">Strip HTML Tags</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/used_in_forms/option_0" xsi:type="string">Customer Registration</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">20</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInCustomerSegment" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeOnCustomerRegister" />
+        </variation>
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation3">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">multiple_line</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">MultipleLine_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">No</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/input_validation" xsi:type="string">None</data>
+            <data name="customerAttribute/data/input_filter" xsi:type="string">Escape HTML Entities</data>
+            <data name="customerAttribute/data/multiline_count" xsi:type="string">5</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/used_in_forms/option_0" xsi:type="string">Customer Account Edit</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">30</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInCustomerSegment" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeOnCustomerEditPage" />
+        </variation>
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation4">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">date</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">Date_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">No</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/date_range_min/pattern" xsi:type="string">m/d/Y 12:00 a-3 days</data>
+            <data name="customerAttribute/data/date_range_max/pattern" xsi:type="string">m/d/Y</data>
+            <data name="customerAttribute/data/input_validation" xsi:type="string">Date</data>
+            <data name="customerAttribute/data/input_filter" xsi:type="string">Normalize Date</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/used_in_forms/option_0" xsi:type="string">Admin Checkout</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">40</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInCustomerSegment" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeOnCreateOrderBackend" />
+        </variation>
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation5">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">dropdown</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">Dropdown_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/option/dataset" xsi:type="string">default</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">50</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInCustomerSegment" />
+        </variation>
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation6">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">multiple_select</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">MultipleSelect_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/option/dataset" xsi:type="string">default</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">No</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">No</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">60</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+        </variation>
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation7">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">yes_no</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">Yes/No_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">Yes</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">No</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">No</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">70</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+        </variation>
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation8">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">file</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">File_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">No</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">No</data>
+            <data name="customerAttribute/data/max_file_size" xsi:type="string">100000</data>
+            <data name="customerAttribute/data/file_extensions" xsi:type="string">jpg,txt</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">No</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">80</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+        </variation>
+        <variation name="UpdateCustomerCustomAttributesEntityTestVariation9">
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">image</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">Image_CustomerUpd%isolation%</data>
+            <data name="customerAttribute/data/is_required" xsi:type="string">No</data>
+            <data name="customerAttribute/data/is_used_for_customer_segment" xsi:type="string">No</data>
+            <data name="customerAttribute/data/max_file_size" xsi:type="string">50000</data>
+            <data name="customerAttribute/data/max_image_width" xsi:type="string">300</data>
+            <data name="customerAttribute/data/max_image_heght" xsi:type="string">200</data>
+            <data name="customerAttribute/data/is_visible" xsi:type="string">No</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">90</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInGrid" />
+        </variation>
+    </testCase>
+</config>

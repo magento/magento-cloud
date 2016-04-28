@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Banner\Test\TestCase\MassDeleteBannerEntityTest" summary="Mass Delete Banner " ticketId="MAGETWO-26677">
+        <variation name="MassDeleteBannerEntityTestVariation1">
+            <data name="banner/dataset" xsi:type="string">default</data>
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerMassDeleteMessage" />
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerNotInGrid" />
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerNotInCatalogRule" />
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerNotInCartRule" />
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerNotInWidgetOptions" />
+        </variation>
+    </testCase>
+</config>

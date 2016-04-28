@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/fixture.xsd">
+    <fixture name="versionsCmsPage"
+             module="Magento_Versions"
+             repository_class="Magento\Cms\Test\Repository\CmsPage"
+             handler_interface="Magento\VersionsCms\Test\Handler\VersionsCmsPage\VersionsCmsPageInterface"
+             class="Magento\VersionsCms\Test\Fixture\VersionsCmsPage"
+             extends="\Magento\Cms\Test\Fixture\CmsPage"
+            >
+        <field name="under_version_control" is_required="" group="page_information" />
+        <field name="published_revision_id" is_required="" />
+    </fixture>
+</config>

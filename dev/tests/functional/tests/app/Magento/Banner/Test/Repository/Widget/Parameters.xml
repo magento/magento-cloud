@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Widget\Test\Repository\Widget\Parameters">
+        <dataset name="bannerRotator">
+            <field name="display_mode" xsi:type="string">Specified Banners</field>
+            <field name="rotate" xsi:type="string">Display all instead of rotating</field>
+            <field name="entities" xsi:type="array">
+                <item name="0" xsi:type="string">banner::default</item>
+            </field>
+        </dataset>
+
+        <dataset name="bannerRotatorShoppingCartRules">
+            <field name="display_mode" xsi:type="string">Specified Banners</field>
+            <field name="rotate" xsi:type="string">Display all instead of rotating</field>
+            <field name="entities" xsi:type="array">
+                <item name="0" xsi:type="string">banner::banner_rotator_shopping_cart_rules</item>
+            </field>
+        </dataset>
+
+        <dataset name="bannerRotatorCatalogRules">
+            <field name="display_mode" xsi:type="string">Specified Banners</field>
+            <field name="rotate" xsi:type="string">Display all instead of rotating</field>
+            <field name="entities" xsi:type="array">
+                <item name="0" xsi:type="string">banner::banner_rotator_catalog_rules</item>
+            </field>
+        </dataset>
+    </repository>
+</config>

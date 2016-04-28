@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VersionsCms\Test\TestCase\SaveNewVersionOfVersionsCmsEntityTest" summary="Save New Version of Versions Cms" ticketId="MAGETWO-28574">
+        <variation name="SaveNewVersionOfVersionsCmsEntityTestVariation1">
+            <data name="description" xsi:type="string">Save default version as new</data>
+            <data name="cms/dataset" xsi:type="string">cms_page_under_version_control</data>
+            <data name="version/data/label" xsi:type="string">label_upd_%isolation%</data>
+            <data name="version/data/access_level" xsi:type="string">Public</data>
+            <data name="version/data/user_id/dataset" xsi:type="string">-</data>
+            <data name="quantity" xsi:type="string">1</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageNewVersionSuccessSaveMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionInGrid" />
+        </variation>
+        <variation name="SaveNewVersionOfVersionsCmsEntityTestVariation2">
+            <data name="description" xsi:type="string">Change default version owner and access level and save as new</data>
+            <data name="cms/dataset" xsi:type="string">cms_page_under_version_control</data>
+            <data name="version/data/label" xsi:type="string">label_upd_%isolation%</data>
+            <data name="version/data/access_level" xsi:type="string">Protected</data>
+            <data name="version/data/user_id/dataset" xsi:type="string">custom_user</data>
+            <data name="quantity" xsi:type="string">1</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionErrorSaveMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionNotInGrid" />
+        </variation>
+    </testCase>
+</config>

@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\CustomerCustomAttributes\Test\Repository\CustomerCustomAttribute">
+        <dataset name="default">
+            <field name="frontend_label" xsi:type="string">attribute_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">attribute_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Text Field</field>
+            <field name="sort_order" xsi:type="string">10</field>
+        </dataset>
+
+        <dataset name="text_field">
+            <field name="frontend_label" xsi:type="string">TextField_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">textfield_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Text Field</field>
+            <field name="sort_order" xsi:type="string">10</field>
+        </dataset>
+
+        <dataset name="text_area">
+            <field name="frontend_label" xsi:type="string">TextArea_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">textarea_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Text Area</field>
+            <field name="sort_order" xsi:type="string">20</field>
+        </dataset>
+
+        <dataset name="multiple_line">
+            <field name="frontend_label" xsi:type="string">MultipleLine_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">multiple_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Multiple Line</field>
+            <field name="scope_multiline_count" xsi:type="string">2</field>
+            <field name="sort_order" xsi:type="string">30</field>
+        </dataset>
+
+        <dataset name="date">
+            <field name="frontend_label" xsi:type="string">Date_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">date_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Date</field>
+            <field name="sort_order" xsi:type="string">40</field>
+        </dataset>
+
+        <dataset name="dropdown">
+            <field name="frontend_label" xsi:type="string">Dropdown_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">dropdown_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Dropdown</field>
+            <field name="sort_order" xsi:type="string">50</field>
+            <field name="option" xsi:type="array">
+                <item name="value" xsi:type="array">
+                    <item name="option_0" xsi:type="array">
+                        <item name="0" xsi:type="string">option1%isolation%</item>
+                    </item>
+                    <item name="option_1" xsi:type="array">
+                        <item name="0" xsi:type="string">option2%isolation%</item>
+                    </item>
+                </item>
+            </field>
+        </dataset>
+
+        <dataset name="multiple_select">
+            <field name="frontend_label" xsi:type="string">MultipleSelect_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">multi_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Multiple Select</field>
+            <field name="sort_order" xsi:type="string">60</field>
+            <field name="option" xsi:type="array">
+                <item name="value" xsi:type="array">
+                    <item name="option_0" xsi:type="array">
+                        <item name="0" xsi:type="string">option1%isolation%</item>
+                    </item>
+                    <item name="option_1" xsi:type="array">
+                        <item name="0" xsi:type="string">option2%isolation%</item>
+                    </item>
+                </item>
+            </field>
+        </dataset>
+
+        <dataset name="yes_no">
+            <field name="frontend_label" xsi:type="string">YesNo_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">yesno_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Yes/No</field>
+            <field name="sort_order" xsi:type="string">70</field>
+        </dataset>
+
+        <dataset name="file">
+            <field name="frontend_label" xsi:type="string">File_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">file_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">File (attachment)</field>
+            <field name="sort_order" xsi:type="string">80</field>
+        </dataset>
+
+        <dataset name="image">
+            <field name="frontend_label" xsi:type="string">Image_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">image_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Image File</field>
+            <field name="sort_order" xsi:type="string">90</field>
+        </dataset>
+    </repository>
+</config>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VersionsCms\Test\TestCase\MassDeleteCmsPageRevisionEntityTest" summary="Mass Delete Cms Page Revision" ticketId="MAGETWO-27239">
+        <variation name="MassDeleteCmsPageRevisionEntityTestVariation1">
+            <data name="revision/data/content" xsi:type="string">revision_0</data>
+            <data name="initialRevision" xsi:type="string">1</data>
+            <data name="results/author" xsi:type="string">admin</data>
+            <data name="results/revision_number_from" xsi:type="string">2</data>
+            <data name="results/revision_number_to" xsi:type="string">2</data>
+            <data name="results/quantity" xsi:type="string">1</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionSuccessMassDeleteMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionNotInGrid" />
+        </variation>
+        <variation name="MassDeleteCmsPageRevisionEntityTestVariation2">
+            <data name="revision/data/content" xsi:type="string">revision_1</data>
+            <data name="initialRevision" xsi:type="string">1</data>
+            <data name="results/author" xsi:type="string">admin</data>
+            <data name="results/revision_number_from" xsi:type="string">1</data>
+            <data name="results/revision_number_to" xsi:type="string">1</data>
+            <data name="results/quantity" xsi:type="string">1</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionErrorDeleteMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionInGrid" />
+            <constraint name="Magento\Cms\Test\Constraint\AssertCmsPagePreview" />
+        </variation>
+    </testCase>
+</config>

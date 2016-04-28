@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VersionsCms\Test\TestCase\MassDeleteCmsVersionsEntityTest" summary="Mass Delete Cms Page Versions" ticketId="MAGETWO-27096">
+        <variation name="MassDeleteCmsVersionsEntityTestVariation1">
+            <data name="cms/dataset" xsi:type="string">cms_page_under_version_control</data>
+            <data name="version/data/label" xsi:type="string">version0</data>
+            <data name="initialVersionToDelete" xsi:type="string">No</data>
+            <data name="results/owner" xsi:type="string">admin</data>
+            <data name="results/access_level" xsi:type="string">Public</data>
+            <data name="results/quantity" xsi:type="string">1</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionSuccessMassDeleteMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionNotInGrid" />
+        </variation>
+        <variation name="MassDeleteCmsVersionsEntityTestVariation2" firstConstraint="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionErrorDeleteMessage" method="test">
+            <data name="cms/dataset" xsi:type="string">cms_page_under_version_control</data>
+            <data name="version/data/label" xsi:type="string">version1</data>
+            <data name="initialVersionToDelete" xsi:type="string">Yes</data>
+            <data name="results/owner" xsi:type="string">admin</data>
+            <data name="results/access_level" xsi:type="string">Public</data>
+            <data name="results/quantity" xsi:type="string">1</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionErrorDeleteMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionInGrid" />
+        </variation>
+    </testCase>
+</config>

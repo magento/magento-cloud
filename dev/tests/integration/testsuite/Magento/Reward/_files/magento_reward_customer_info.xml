@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <block class="Magento\Reward\Block\Customer\Reward" name="customer.reward" template="customer/reward.phtml" >
+        <block class="Magento\Reward\Block\Customer\Reward\Info" name="customer.reward.info" template="customer/reward/info.phtml" />
+        <block class="Magento\Reward\Block\Customer\Reward\History" name="customer.reward.history" template="customer/reward/history.phtml" />
+        <block class="Magento\Reward\Block\Customer\Reward\Subscription" name="customer.reward.subscription" template="customer/reward/subscription.phtml" />
+    </block>
+</layout>

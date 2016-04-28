@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Sales\Test\TestCase\CreateOrderBackendTest">
+        <variation name="CreateOrderBackendTestVariation10">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="description" xsi:type="string">Create order with virtual product for registered UK customer with gift card account and discount coupon using Free payment method</data>
+            <data name="products" xsi:type="string">catalogProductVirtual::default</data>
+            <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
+            <data name="salesRule" xsi:type="string">active_sales_rule_with_fixed_price_discount_coupon</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="billingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="saveAddress" xsi:type="string">No</data>
+            <data name="setShippingAddress" xsi:type="boolean">false</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">0.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">free</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Cancel, Send Email, Hold, Invoice, Edit</data>
+            <data name="configData" xsi:type="string">cashondelivery_specificcountry_gb</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderSuccessCreateMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGrid" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGridOnFrontend" />
+        </variation>
+        <variation name="CreateOrderBackendTestVariation11">
+            <data name="description" xsi:type="string">Create order with simple and virtual products for registered US customer with gift card account and customer balance using Fixed shipping method and Check/Money Order payment method</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
+            <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="customerBalance" xsi:type="string">customerBalance_5</data>
+            <data name="saveAddress" xsi:type="string">No</data>
+            <data name="billingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">475.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">checkmo</data>
+            <data name="payment/use_customer_balance" xsi:type="string">Yes</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Reorder, Cancel, Send Email, Hold, Invoice, Ship, Edit</data>
+            <data name="configData" xsi:type="string">checkmo</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderSuccessCreateMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGrid" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGridOnFrontend" />
+        </variation>
+        <variation name="CreateOrderBackendTestVariation12">
+            <data name="description" xsi:type="string">Create order with simple product for registered US customer with gift card account using Fixed shipping method and Check/Money Order payment method</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="saveAddress" xsi:type="string">No</data>
+            <data name="billingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">465.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">checkmo</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Reorder, Cancel, Send Email, Hold, Invoice, Ship, Edit</data>
+            <data name="configData" xsi:type="string">checkmo</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderSuccessCreateMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGrid" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGridOnFrontend" />
+        </variation>
+        <variation name="CreateOrderBackendTestVariation13">
+            <data name="description" xsi:type="string">Create order with virtual product for registered UK customer with gift card account using Free payment method</data>
+            <data name="products" xsi:type="string">catalogProductVirtual::default</data>
+            <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="saveAddress" xsi:type="string">No</data>
+            <data name="billingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="setShippingAddress" xsi:type="boolean">false</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">0.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">free</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Cancel, Send Email, Hold, Invoice, Edit</data>
+            <data name="configData" xsi:type="string">banktransfer_specificcountry_gb</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderSuccessCreateMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGrid" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGridOnFrontend" />
+        </variation>
+        <variation name="CreateOrderBackendTestVariation14">
+            <data name="description" xsi:type="string">Create order with simple product for registered US customer with gift card account using Free shipping method and Check/Money Order payment method</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="saveAddress" xsi:type="string">No</data>
+            <data name="billingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="shipping/shipping_service" xsi:type="string">Free Shipping</data>
+            <data name="shipping/shipping_method" xsi:type="string">Free</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">460.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">checkmo</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Cancel, Send Email, Hold, Reorder, Invoice, Edit</data>
+            <data name="configData" xsi:type="string">freeshipping, checkmo</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderSuccessCreateMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGrid" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGridOnFrontend" />
+        </variation>
+        <variation name="CreateOrderBackendTestVariation15">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="description" xsi:type="string">Create order with virtual product for registered UK customer with gift card account and coupon discount using Free payment method</data>
+            <data name="products" xsi:type="string">catalogProductVirtual::default</data>
+            <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
+            <data name="salesRule" xsi:type="string">active_sales_rule_with_fixed_price_discount_coupon</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="saveAddress" xsi:type="string">No</data>
+            <data name="setShippingAddress" xsi:type="boolean">false</data>
+            <data name="billingAddress/dataset" xsi:type="string">UK_address_without_email</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">0.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">free</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Cancel, Send Email, Hold, Invoice, Edit</data>
+            <data name="configData" xsi:type="string">purchaseorder_specificcountry_gb</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderSuccessCreateMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGrid" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGridOnFrontend" />
+        </variation>
+    </testCase>
+</config>

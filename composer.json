@@ -11,17 +11,14 @@
         {
             "type": "composer",
             "url": "https://repo.magento.com/"
-        },
-        {
-            "url": "https://github.com/platformsh-redbull/mc-configuration.git",
-            "type": "git"
         }
     ],
     "require": {
         "magento/product-enterprise-edition": "2.0.4",
         "composer/composer": "@alpha",
-        "platformsh-redbull/mc-configuration": "dev-master",
-        "vrann/magento20-patches": "dev-master"
+        "magento/magento-cloud-configuration": "1.0.2",
+        "colinmollenhour/credis": "1.6",
+        "colinmollenhour/php-redis-session-abstract": "1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",

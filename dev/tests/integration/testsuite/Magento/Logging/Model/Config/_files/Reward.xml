@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging_file.xsd">
+    <groups>
+        <group name="magento_reward_rate">
+            <label translate="true">Reward Points Rates</label>
+            <expected_models>
+                <expected_model class="Magento\Reward\Model\Reward\Rate" />
+            </expected_models>
+            <events>
+                <event controller_action="adminhtml_reward_rate_edit" action_alias="edit" />
+                <event controller_action="adminhtml_reward_rate_save" action_alias="save" />
+                <event controller_action="adminhtml_reward_rate_delete" action_alias="delete" />
+            </events>
+        </group>
+        <group name="customer">
+            <events>
+                <event controller_action="customer_index_save">
+                    <expected_models merge_group="true">
+                        <expected_model class="Magento\Reward\Model\Reward\History">
+                            <skip_fields>
+                                <field name="history_id" />
+                                <field name="action" />
+                                <field name="additional_data" />
+                                <field name="notification_sent" />
+                                <field name="created_at" />
+                                <field name="expired_at" />
+                            </skip_fields>
+                        </expected_model>
+                    </expected_models>
+                </event>
+            </events>
+        </group>
+    </groups>
+</logging>

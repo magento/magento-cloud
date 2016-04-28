@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<tabs>
+    <page_information>
+        <class>\Magento\Backend\Test\Block\Widget\Tab</class>
+        <selector>#page_tabs_main_section</selector>
+        <strategy>css selector</strategy>
+        <fields>
+            <under_version_control>
+                <input>select</input>
+            </under_version_control>
+        </fields>
+    </page_information>
+    <versions>
+        <class>\Magento\VersionsCms\Test\Block\Adminhtml\Page\Edit\Tab\Versions</class>
+        <selector>#page_tabs_versions</selector>
+        <strategy>css selector</strategy>
+    </versions>
+    <revision_content>
+        <class>\Magento\VersionsCms\Test\Block\Adminhtml\Cms\Page\Revision\Edit\Tab\Content</class>
+        <selector>#page_tabs_content_section</selector>
+        <strategy>css selector</strategy>
+    </revision_content>
+</tabs>

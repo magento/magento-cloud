@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0a175afc6198e95174cf63ee865e4519",
-    "content-hash": "6543c6ee87aba801bc999b4a3ccbb3e5",
+    "hash": "9d73f26871e03fa19b1e76d920badd81",
+    "content-hash": "e24734ae5d5239dfe9d85bc307b7420e",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -51,6 +51,83 @@
             ],
             "description": "Braintree PHP Client Library",
             "time": "2015-05-07 16:53:06"
+        },
+        {
+            "name": "colinmollenhour/credis",
+            "version": "1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colinmollenhour/credis.git",
+                "reference": "409edfd0ea81f5cb74afbdb86df54890c207b5e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/409edfd0ea81f5cb74afbdb86df54890c207b5e4",
+                "reference": "409edfd0ea81f5cb74afbdb86df54890c207b5e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Client.php",
+                    "Cluster.php",
+                    "Sentinel.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Mollenhour",
+                    "email": "colin@mollenhour.com"
+                }
+            ],
+            "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
+            "homepage": "https://github.com/colinmollenhour/credis",
+            "time": "2015-11-28 01:20:04"
+        },
+        {
+            "name": "colinmollenhour/php-redis-session-abstract",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colinmollenhour/php-redis-session-abstract.git",
+                "reference": "95330b7f29663dab81f53d1a438e4d927b6c5f66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colinmollenhour/php-redis-session-abstract/zipball/95330b7f29663dab81f53d1a438e4d927b6c5f66",
+                "reference": "95330b7f29663dab81f53d1a438e4d927b6c5f66",
+                "shasum": ""
+            },
+            "require": {
+                "colinmollenhour/credis": "1.6",
+                "magento/zendframework1": "1.12.16",
+                "php": "~5.5.0|~5.6.0|~7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Cm\\RedisSession\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Mollenhour"
+                }
+            ],
+            "description": "A Redis-based session handler with optimistic locking",
+            "homepage": "https://github.com/colinmollenhour/php-redis-session-abstract",
+            "time": "2016-02-03 18:13:49"
         },
         {
             "name": "composer/composer",
@@ -481,17 +558,36 @@
             "description": "Chinese (China) language"
         },
         {
+            "name": "magento/magento-cloud-configuration",
+            "version": "1.0.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-configuration/magento-magento-cloud-configuration-1.0.2.0.zip",
+                "reference": null,
+                "shasum": "ae618f2018027409e17de7c8a259fe4534d1de1d"
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Provides default configuration to build and deploy Magento 2 Enterprise Edition"
+        },
+        {
             "name": "magento/magento-composer-installer",
-            "version": "0.1.6",
+            "version": "0.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magento/magento-composer-installer.git",
-                "reference": "5b5d29ebe060bc6754c2999206923489db8ca641"
+                "reference": "9a415d7617d07f3270d22c374611252369f957e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magento/magento-composer-installer/zipball/5b5d29ebe060bc6754c2999206923489db8ca641",
-                "reference": "5b5d29ebe060bc6754c2999206923489db8ca641",
+                "url": "https://api.github.com/repos/magento/magento-composer-installer/zipball/9a415d7617d07f3270d22c374611252369f957e7",
+                "reference": "9a415d7617d07f3270d22c374611252369f957e7",
                 "shasum": ""
             },
             "require": {
@@ -554,7 +650,7 @@
                 "composer-installer",
                 "magento"
             ],
-            "time": "2016-01-25 22:04:43"
+            "time": "2016-04-06 16:10:50"
         },
         {
             "name": "magento/magento2-base",
@@ -7159,24 +7255,6 @@
             "time": "2015-01-28 21:50:33"
         },
         {
-            "name": "platformsh-redbull/mc-configuration",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/platformsh-redbull/mc-configuration.git",
-                "reference": "df1fe65b30cdd505b1ccfe7c06b23d25a0b61d68"
-            },
-            "require": {
-                "php": ">=5.6.0"
-            },
-            "type": "library",
-            "license": [
-                "MIT"
-            ],
-            "description": "Provides defautl configuration to build and deploy Magento 2 Enterprise Edition",
-            "time": "2016-04-01 16:25:58"
-        },
-        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -7674,28 +7752,6 @@
             ],
             "abandoned": "php-amqplib/php-amqplib",
             "time": "2015-08-11 12:30:09"
-        },
-        {
-            "name": "vrann/magento20-patches",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vrann/magento20-patches.git",
-                "reference": "0a86e5c8d931423895d63b846da887374990a7bf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vrann/magento20-patches/zipball/0a86e5c8d931423895d63b846da887374990a7bf",
-                "reference": "0a86e5c8d931423895d63b846da887374990a7bf",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~5.5.0|~5.6.0"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "N/A",
-            "time": "2016-03-16 18:18:58"
         },
         {
             "name": "zendframework/zend-code",
@@ -9463,20 +9519,20 @@
         },
         {
             "name": "phpmd/phpmd",
-            "version": "2.4.2",
+            "version": "2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "fccbdb6b222f6d7a6d35af1c396ba5435cec76a9"
+                "reference": "2b9c2417a18696dfb578b38c116cd0ddc19b256e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/fccbdb6b222f6d7a6d35af1c396ba5435cec76a9",
-                "reference": "fccbdb6b222f6d7a6d35af1c396ba5435cec76a9",
+                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/2b9c2417a18696dfb578b38c116cd0ddc19b256e",
+                "reference": "2b9c2417a18696dfb578b38c116cd0ddc19b256e",
                 "shasum": ""
             },
             "require": {
-                "pdepend/pdepend": "~2.0",
+                "pdepend/pdepend": "^2.0.4",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -9524,7 +9580,7 @@
                 "phpmd",
                 "pmd"
             ],
-            "time": "2016-03-10 17:17:44"
+            "time": "2016-04-04 11:52:04"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10606,8 +10662,6 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "composer/composer": 15,
-        "platformsh-redbull/mc-configuration": 20,
-        "vrann/magento20-patches": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,

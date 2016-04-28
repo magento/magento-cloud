@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerCustomAttributes\Test\TestCase\ValidationAttributeCodeCustomerCustomAttributesEntityTest" summary="Validation Attribute Code of Customer Custom Attribute" ticketId="MAGETWO-28193">
+        <variation name="ValidationAttributeCodeCustomerCustomAttributesEntityTestVariation1">
+            <data name="description" xsi:type="string">assert that customercustom attribute code is unique</data>
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">text_field</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">TextField_Customer_%isolation%</data>
+            <data name="customerAttribute/data/attribute_code" xsi:type="string">%existed_attribute_code%</data>
+            <data name="customerAttribute/data/frontend_input" xsi:type="string">Text Field</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">10</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeErrorDuplicateMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeNotInGrid" />
+        </variation>
+        <variation name="ValidationAttributeCodeCustomerCustomAttributesEntityTestVariation2">
+            <data name="description" xsi:type="string">assert that customercustom attribute code is unique</data>
+            <data name="initialCustomerAttribute/dataset" xsi:type="string">dropdown</data>
+            <data name="customerAttribute/data/frontend_label" xsi:type="string">Dropdown_Customer_%isolation%</data>
+            <data name="customerAttribute/data/attribute_code" xsi:type="string">%existed_attribute_code%</data>
+            <data name="customerAttribute/data/frontend_input" xsi:type="string">Dropdown</data>
+            <data name="customerAttribute/data/sort_order" xsi:type="string">50</data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeErrorDuplicateMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeNotInGrid" />
+        </variation>
+    </testCase>
+</config>

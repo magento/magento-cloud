@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\User\Test\TestCase\UpdateAdminUserEntityTest">
+        <variation name="UpdateAdminGwsUserEntityTestVariation100" summary="Use ACL Role with Restricted GWS Scopet" ticketId="MAGETWO-12385">
+            <data name="decription" xsi:type="string">MAGETWO-12385: Use ACL Role with Restricted GWS Scope</data>
+            <data name="loginAsDefaultAdmin" xsi:type="string">1</data>
+            <data name="initialUser/dataset" xsi:type="string">custom_admin_with_default_role</data>
+            <data name="user/data/role_id/dataset" xsi:type="string">adminGwsRole::gws_role_sales</data>
+            <data name="user/data/current_password" xsi:type="string">123123q</data>
+            <data name="restrictedAccess" xsi:type="array">
+                <item name="0" xsi:type="string">sales</item>
+            </data>
+            <data name="denyUrl" xsi:type="string">catalog/product</data>
+            <data name="store" xsi:type="string">store/dataset</data>
+            <data name="tag" xsi:type="string">test_type:acceptance_test</data>
+            <constraint name="Magento\User\Test\Constraint\AssertUserSuccessSaveMessage" />
+            <constraint name="Magento\User\Test\Constraint\AssertUserRoleRestrictedAccess" />
+            <constraint name="Magento\AdminGws\Test\Constraint\AssertAdminGwsSalesGrid" />
+        </variation>
+    </testCase>
+</config>

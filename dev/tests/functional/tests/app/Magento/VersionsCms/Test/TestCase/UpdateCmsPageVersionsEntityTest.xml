@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VersionsCms\Test\TestCase\UpdateCmsPageVersionsEntityTest" summary="Update Cms Page Versions" ticketId="MAGETWO-26960">
+        <variation name="UpdateCmsPageVersionsEntityTestVariation1">
+            <data name="cms/dataset" xsi:type="string">cms_page_under_version_control</data>
+            <data name="version/data/label" xsi:type="string">Version_%isolation%</data>
+            <data name="version/data/access_level" xsi:type="string">Private</data>
+            <data name="version/data/user_id/dataset" xsi:type="string">default</data>
+            <data name="quantity" xsi:type="string">1</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionSuccessSaveMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionInGrid" />
+        </variation>
+        <variation name="UpdateCmsPageVersionsEntityTestVariation2">
+            <data name="cms/dataset" xsi:type="string">cms_page_under_version_control</data>
+            <data name="version/data/label" xsi:type="string">Version_%isolation%</data>
+            <data name="version/data/access_level" xsi:type="string">Protected</data>
+            <data name="version/data/user_id/dataset" xsi:type="string">custom admin</data>
+            <data name="quantity" xsi:type="string">1</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionSuccessSaveMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageVersionInGrid" />
+        </variation>
+    </testCase>
+</config>

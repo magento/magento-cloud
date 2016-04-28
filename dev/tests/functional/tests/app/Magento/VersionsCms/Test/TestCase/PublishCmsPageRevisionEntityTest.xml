@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VersionsCms\Test\TestCase\PublishCmsPageRevisionEntityTest" summary="Publish CMS Page Revision" ticketId="MAGETWO-27395">
+        <variation name="PublishCmsPageRevisionEntityTestVariation1">
+            <data name="version" xsi:type="string">title %isolation%</data>
+            <data name="revisionId" xsi:type="string">1</data>
+            <data name="revision/data/content_heading" xsi:type="string">rev2 Heading</data>
+            <data name="revision/data/content" xsi:type="string">rev2 Content</data>
+            <data name="initialRevision" xsi:type="string">2</data>
+            <data name="results/revision" xsi:type="string">rev #2</data>
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageRevisionSuccessPublishMessage" />
+            <constraint name="Magento\VersionsCms\Test\Constraint\AssertCmsPageCurrentlyPublishedRevision" />
+        </variation>
+    </testCase>
+</config>

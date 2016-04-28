@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging_file.xsd">
+    <actions>
+        <action id="apply_coupon">
+            <label translate="true">Apply Coupon</label>
+        </action>
+        <action id="add_to_cart">
+            <label translate="true">Add to Cart</label>
+        </action>
+    </actions>
+    <groups>
+        <group name="enterprise_checkout">
+            <label translate="true">Shopping Cart Management</label>
+            <expected_models>
+                <expected_model class="Enterprise_GiftRegistry_Model_Entity"/>
+                <expected_model class="Enterprise_GiftRegistry_Model_Item"/>
+            </expected_models>
+            <events>
+                <event controller_action="adminhtml_checkout_index" action_alias="view">
+                    <expected_models>
+                        <expected_model class="Magento\Quote\Model\Quote"/>
+                    </expected_models>
+                </event>
+                <event controller_action="adminhtml_checkout_applyCoupon"
+                       action_alias="apply_coupon"
+                       post_dispatch="postDispatchAdminCheckoutApplyCoupon">
+                    <expected_models>
+                        <expected_model class="Magento\Quote\Model\Quote"/>
+                    </expected_models>
+                </event>
+                <event controller_action="adminhtml_checkout_updateItems" action_alias="save">
+                    <expected_models>
+                        <expected_model class="Magento\Quote\Model\Quote\Item"/>
+                    </expected_models>
+                    <skip_on_back>
+                        <controller_action name="adminhtml_cms_page_version_edit"/>
+                    </skip_on_back>
+                </event>
+                <event controller_action="adminhtml_checkout_addToCart"
+                       action_alias="add_to_cart">
+                    <expected_models>
+                        <expected_model class="Magento\Quote\Model\Quote\Item">
+                            <additional_fields>
+                                <field name="item_id"/>
+                                <field name="quote_id"/>
+                            </additional_fields>
+                        </expected_model>
+                    </expected_models>
+                </event>
+                <event controller_action="customer_index_save" action_alias="save">
+                    <expected_models merge_group="true">
+                        <expected_model class="Enterprise_CustomerBalance_Model_Balance"/>
+                    </expected_models>
+                    <skip_on_back>
+                        <controller_action name="adminhtml_customerbalance_form"/>
+                        <controller_action name="customer_index_edit"/>
+                    </skip_on_back>
+                </event>
+                <event controller_action="adminhtml_customersegment_match"
+                       action_alias="refresh_data"
+                       post_dispatch="Enterprise_CustomerSegment_Model_Logging::postDispatchCustomerSegmentMatch"/>
+            </events>
+        </group>
+        <group name="customer">
+            <label translate="true">Customers</label>
+            <expected_models>
+                <expected_model class="Magento\Customer\Model\Customer">
+                    <skip_fields>
+                        <field name="new_password"/>
+                        <field name="password"/>
+                        <field name="password_hash"/>
+                    </skip_fields>
+                </expected_model>
+            </expected_models>
+            <events>
+                <event controller_action="customer_index_edit" action_alias="view"/>
+                <event controller_action="customer_index_save" action_alias="save">
+                    <skip_on_back>
+                        <controller_action name="customer_index_edit"/>
+                    </skip_on_back>
+                </event>
+            </events>
+        </group>
+    </groups>
+</logging>

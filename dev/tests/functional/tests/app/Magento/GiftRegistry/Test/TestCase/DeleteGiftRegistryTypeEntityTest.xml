@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\GiftRegistry\Test\TestCase\DeleteGiftRegistryTypeEntityTest" summary="Delete Gift Registry Type from Backend" ticketId="MAGETWO-27352">
+        <variation name="DeleteGiftRegistryTypeEntityTestVariation1">
+            <data name="giftRegistryType/dataset" xsi:type="string">text</data>
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeSuccessDeleteMessage" />
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeNotInGrid" />
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeNotOnFrontend" />
+        </variation>
+        <variation name="DeleteGiftRegistryTypeEntityTestVariation2">
+            <data name="giftRegistryType/dataset" xsi:type="string">select</data>
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeSuccessDeleteMessage" />
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeNotInGrid" />
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeNotOnFrontend" />
+        </variation>
+        <variation name="DeleteGiftRegistryTypeEntityTestVariation3">
+            <data name="giftRegistryType/dataset" xsi:type="string">date</data>
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeSuccessDeleteMessage" />
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeNotInGrid" />
+            <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeNotOnFrontend" />
+        </variation>
+    </testCase>
+</config>

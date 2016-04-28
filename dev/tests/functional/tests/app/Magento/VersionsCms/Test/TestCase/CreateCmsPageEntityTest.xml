@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Cms\Test\TestCase\CreateCmsPageEntityTest">
+        <variation name="CreateCmsPageEntityTestVariation1">
+            <data name="fixtureType" xsi:type="string">versionsCmsPage</data>
+            <data name="data/under_version_control" xsi:type="string">No</data>
+        </variation>
+        <variation name="CreateCmsPageEntityTestVariation2">
+            <data name="fixtureType" xsi:type="string">versionsCmsPage</data>
+            <data name="data/under_version_control" xsi:type="string">No</data>
+        </variation>
+        <variation name="CreateCmsPageEntityTestVariation3">
+            <data name="fixtureType" xsi:type="string">versionsCmsPage</data>
+            <data name="data/under_version_control" xsi:type="string">No</data>
+        </variation>
+        <variation name="CreateCmsPageEntityTestVariation4">
+            <data name="fixtureType" xsi:type="string">versionsCmsPage</data>
+            <data name="data/under_version_control" xsi:type="string">No</data>
+        </variation>
+    </testCase>
+</config>
