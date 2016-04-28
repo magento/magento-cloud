@@ -39,4 +39,6 @@ Make sure you add your Magento credentials to the `auth.json` file based on the 
 ```
 
 ## Documentation
-For more details, see our [Magento Enterprise Cloud Guide](http://devdocs.magento.com/guides/v2.0/cloud/bk-cloud.html). To get started, start [here](http://devdocs.magento.com/guides/v2.0/cloud/before/before.html).
+For more details, see our [Magento Enterprise Cloud Guide](http://devdocs.magento.com/guides/v2.0/cloud/bk-cloud.html). 
+
+Get started [here](http://devdocs.magento.com/guides/v2.0/cloud/before/before.html).
