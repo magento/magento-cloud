@@ -71,10 +71,10 @@ mounts:
 hooks:
     # We run build hooks before your application has been packaged.
     build: |
-        php ./vendor/magento/magento-cloud-configuration/magento-build.php
+        php ./bin/magento magento-cloud:build
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        php ./vendor/magento/magento-cloud-configuration/magento-deploy.php
+        php ./bin/magento magento-cloud:deploy
 
 # Default Magento 2 cron jobs
 crons:
