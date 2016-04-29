@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9d73f26871e03fa19b1e76d920badd81",
-    "content-hash": "e24734ae5d5239dfe9d85bc307b7420e",
+    "hash": "609050ae53d8584d11215ca0236003dd",
+    "content-hash": "3cee665dd878d15a5070241598af9af4",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -559,17 +559,27 @@
         },
         {
             "name": "magento/magento-cloud-configuration",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-configuration/magento-magento-cloud-configuration-1.0.2.0.zip",
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-configuration/magento-magento-cloud-configuration-1.0.3.0.zip",
                 "reference": null,
-                "shasum": "ae618f2018027409e17de7c8a259fe4534d1de1d"
+                "shasum": "c91305aa2238a54aec554934e598a35b68df1ba5"
             },
             "require": {
                 "php": ">=5.6.0"
             },
             "type": "library",
+            "autoload": {
+                "files": [
+                    "cli_commands.php"
+                ],
+                "psr-4": {
+                    "Magento\\MagentoCloud\\": [
+                        "src/Magento/MagentoCloud"
+                    ]
+                }
+            },
             "license": [
                 "OSL-3.0",
                 "AFL-3.0"
