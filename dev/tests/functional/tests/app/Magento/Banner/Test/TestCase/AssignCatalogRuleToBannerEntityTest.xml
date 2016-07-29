@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Banner\Test\TestCase\AssignCatalogRuleToBannerEntityTest" summary="Apply Catalog Price Rules to Products and Connected with Banner" ticketId="MAGETWO-12389">
+        <variation name="AssignCatalogRuleToBannerEntityTestVariation1">
+            <data name="products" xsi:type="string">catalogProductSimple::product_10_dollar,configurableProduct::two_variations_with_fixed_price</data>
+            <data name="widget" xsi:type="string">banner_rotator</data>
+            <data name="banner/dataset" xsi:type="string">default</data>
+            <data name="customer/dataset" xsi:type="string">customer_US</data>
+            <data name="catalogPriceRule/data/name" xsi:type="string">rule_name%isolation%</data>
+            <data name="catalogPriceRule/data/website_ids" xsi:type="string">Main Website</data>
+            <data name="catalogPriceRule/data/customer_group_ids" xsi:type="string">General</data>
+            <data name="catalogPriceRule/data/conditions" xsi:type="string">[Category|is|%category_1%]</data>
+            <data name="catalogPriceRule/data/simple_action" xsi:type="string">Adjust final price to this percentage</data>
+            <data name="catalogPriceRule/data/discount_amount" xsi:type="number">50</data>
+            <data name="productPrice/0/regular" xsi:type="number">10</data>
+            <data name="productPrice/0/special" xsi:type="number">5</data>
+            <data name="productPrice/0/sub_total" xsi:type="number">5</data>
+            <data name="productPrice/0/discount_amount" xsi:type="number">5</data>
+            <data name="productPrice/1/regular" xsi:type="number">100</data>
+            <data name="productPrice/1/special" xsi:type="number">50</data>
+            <data name="productPrice/1/sub_total" xsi:type="number">50</data>
+            <data name="productPrice/1/discount_amount" xsi:type="number">50</data>
+            <data name="cartPrice/sub_total" xsi:type="number">11</data>
+            <data name="cartPrice/grand_total" xsi:type="number">11</data>
+            <data name="cartPrice/shipping_price" xsi:type="number">10</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="payment/method" xsi:type="string">checkmo</data>
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerSuccessSaveMessage" />
+            <constraint name="Magento\Banner\Test\Constraint\AssertWidgetBannerRotator" />
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerOnCategoryPage" />
+            <constraint name="Magento\CatalogRule\Test\Constraint\AssertCatalogPriceRuleAppliedCatalogPage" />
+            <constraint name="Magento\CatalogRule\Test\Constraint\AssertCatalogPriceRuleAppliedProductPage" />
+            <constraint name="Magento\CatalogRule\Test\Constraint\AssertCatalogPriceRuleAppliedShoppingCart" />
+            <constraint name="Magento\CatalogRule\Test\Constraint\AssertCatalogPriceRuleAppliedOnepageCheckout" />
+        </variation>
+    </testCase>
+</config>

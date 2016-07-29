@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Reward\Test\TestCase\CreateExchangeRateForRewardPointsEntityTest" summary="Create Exchange Rate for Reward Points" ticketId="MAGETWO-24808">
+        <variation name="CreateExchangeRateForRewardPointsEntityTestVariation1">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="config/dataset" xsi:type="string">reward_points_with_registration_reward</data>
+            <data name="configRollback/dataset" xsi:type="string">reward_points_with_registration_reward_rollback</data>
+            <data name="customer/dataset" xsi:type="string">register_customer</data>
+            <data name="registrationReward" xsi:type="string">10</data>
+            <data name="checkoutReward" xsi:type="string">-</data>
+            <data name="rate/data/website_id/dataset" xsi:type="string">All Websites</data>
+            <data name="rate/data/customer_group_id/dataset" xsi:type="string">all_customer_groups</data>
+            <data name="rate/data/direction" xsi:type="string">Points to Currency</data>
+            <data name="rate/data/value" xsi:type="string">10</data>
+            <data name="rate/data/equal_value" xsi:type="string">1</data>
+            <constraint name="Magento\Reward\Test\Constraint\AssertRateSuccessSaveMessage" />
+            <constraint name="Magento\Reward\Test\Constraint\AssertRewardPointsMessageOnCustomerRegistration" />
+            <constraint name="Magento\Reward\Test\Constraint\AssertRewardPointsBalance" />
+        </variation>
+        <variation name="CreateExchangeRateForRewardPointsEntityTestVariation2">
+            <data name="config/dataset" xsi:type="string">reward_purchase</data>
+            <data name="configRollback/dataset" xsi:type="string">reward_purchase_rollback</data>
+            <data name="customer/dataset" xsi:type="string">register_customer</data>
+            <data name="registrationReward" xsi:type="string">-</data>
+            <data name="checkoutReward" xsi:type="string">56</data>
+            <data name="rate/data/website_id/dataset" xsi:type="string">main_website</data>
+            <data name="rate/data/customer_group_id/dataset" xsi:type="string">all_customer_groups</data>
+            <data name="rate/data/direction" xsi:type="string">Currency to Points</data>
+            <data name="rate/data/value" xsi:type="string">10</data>
+            <data name="rate/data/equal_value" xsi:type="string">1</data>
+            <constraint name="Magento\Reward\Test\Constraint\AssertRateSuccessSaveMessage" />
+            <constraint name="Magento\Reward\Test\Constraint\AssertRewardPointsMessageOnShoppingCart" />
+        </variation>
+    </testCase>
+</config>

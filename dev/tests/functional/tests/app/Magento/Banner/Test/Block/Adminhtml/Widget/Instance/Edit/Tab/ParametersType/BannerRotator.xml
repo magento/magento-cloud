@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<mapping strict="0">
+    <fields>
+        <display_mode>
+            <selector>.control [name="parameters[display_mode]"]</selector>
+            <input>select</input>
+        </display_mode>
+        <types>
+            <selector>.control [name="parameters[types][]"]</selector>
+            <input>select</input>
+        </types>
+        <rotate>
+            <selector>.control [name="parameters[rotate]"]</selector>
+            <input>select</input>
+        </rotate>
+    </fields>
+</mapping>

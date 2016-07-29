@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- These are the settings for legacy testing of Magento 2 EE (in addition to Magento 2 CE) -->
+<config>
+    <words>
+        <word>Enterprise_Staging</word>
+    </words>
+    <whitelist>
+        <item>
+            <component type="module" name="Magento_Enterprise" />
+            <path>Setup/InstallData.php</path>
+            <word>Enterprise_Staging</word>
+        </item>
+    </whitelist>
+</config>

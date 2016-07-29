@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <block class="Magento\Rma\Block\Adminhtml\Rma\Create" name="content">
+        <block class="Magento\Rma\Block\Adminhtml\Rma\Create\Form" template="create/form.phtml" name="form">
+            <block class="Magento\Rma\Block\Adminhtml\Rma\Create\Order" template="create/order.phtml" name="rma_create_order">
+                <block class="Magento\Rma\Block\Adminhtml\Rma\Create\Order\Grid" name="grid" />
+            </block>
+        </block>
+    </block>
+</layout>

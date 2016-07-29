@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/TestCase/etc/testcase.xsd">
+    <scenario name="OnePageCheckoutTest">
+        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="estimateShippingAndTax" next="applyGiftCard" />
+        <step name="applyGiftCard" module="Magento_GiftCardAccount" prev="createGiftCardAccount" next="clickProceedToCheckout" />
+    </scenario>
+    
+    <scenario name="PrintOrderFrontendGuestTest">
+        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="addProducts" next="applyGiftCardAccountOnBackend">
+            <item name="giftCardAccount" value="gift_card_account_amount_1" />
+        </step>
+        <step name="applyGiftCardAccountOnBackend" module="Magento_GiftCardAccount" next="fillBillingAddress" />
+    </scenario>
+    
+    <scenario name="PrintGiftCardOrderFrontendGuestTest">
+        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" next="applyGiftCardAccountOnBackend">
+            <item name="giftCardAccount" value="gift_card_account_amount_1" />
+        </step>
+        <step name="applyGiftCardAccountOnBackend" module="Magento_GiftCardAccount" next="fillBillingAddress" />
+    </scenario>
+
+    <scenario name="CreateOrderBackendTest" firstStep="setupConfiguration">
+        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="addProducts" next="applyGiftCardAccountOnBackend" />
+        <step name="applyGiftCardAccountOnBackend" module="Magento_GiftCardAccount" next="fillBillingAddress" />
+    </scenario>
+</config>

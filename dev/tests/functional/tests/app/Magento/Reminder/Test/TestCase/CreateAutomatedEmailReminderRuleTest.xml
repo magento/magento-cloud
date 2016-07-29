@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Reminder\Test\TestCase\CreateAutomatedEmailReminderRuleTest" summary="Create Automated Email Reminder Rule" ticketId="MAGETWO-29790">
+        <variation name="ReminderRule_Create_NoCartRule_MatchCustomers" summary="Create new reminder rule">
+            <data name="reminder/data/name" xsi:type="string">Reminder%isolation%</data>
+            <data name="reminder/data/description" xsi:type="string">Description%isolation%</data>
+            <data name="reminder/data/is_active" xsi:type="string">Active</data>
+            <data name="reminder/data/from_date/pattern" xsi:type="string">m/d/Y -1 days</data>
+            <data name="reminder/data/to_date/pattern" xsi:type="string">m/d/Y +1 days</data>
+            <data name="reminder/data/conditions_serialized" xsi:type="string">{Shopping Cart|for| |ALL:[[Total Amount|subtotal|is|200][Items Quantity|is|2]]}</data>
+            <data name="reminder/data/salesrule_id/dataset" xsi:type="string">-</data>
+            <constraint name="Magento\Reminder\Test\Constraint\AssertReminderSuccessSaveMessage" />
+            <constraint name="Magento\Reminder\Test\Constraint\AssertReminderInGrid" />
+            <constraint name="Magento\Reminder\Test\Constraint\AssertReminderForm" />
+            <constraint name="Magento\Reminder\Test\Constraint\AssertReminderMatchedCustomers" />
+        </variation>
+        <variation name="ReminderRule_Create_PromotingCartRule_MatchCustomers" summary="Create new reminder rule with shopping cart rule">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="reminder/data/name" xsi:type="string">Reminder%isolation%</data>
+            <data name="reminder/data/description" xsi:type="string">Description%isolation%</data>
+            <data name="reminder/data/is_active" xsi:type="string">Active</data>
+            <data name="reminder/data/from_date/pattern" xsi:type="string">m/d/Y -1 days</data>
+            <data name="reminder/data/to_date/pattern" xsi:type="string">m/d/Y +1 days</data>
+            <data name="reminder/data/conditions_serialized" xsi:type="string">{Shopping Cart|for| |ALL:[[Total Amount|subtotal|is|200][Items Quantity|is|2]]}</data>
+            <data name="reminder/data/salesrule_id/dataset" xsi:type="string">active_sales_rule_for_all_groups</data>
+            <constraint name="Magento\Reminder\Test\Constraint\AssertReminderSuccessSaveMessage" />
+            <constraint name="Magento\Reminder\Test\Constraint\AssertReminderInGrid" />
+            <constraint name="Magento\Reminder\Test\Constraint\AssertReminderForm" />
+            <constraint name="Magento\Reminder\Test\Constraint\AssertReminderMatchedCustomers" />
+        </variation>
+    </testCase>
+</config>

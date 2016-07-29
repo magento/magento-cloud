@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\AdvancedCheckout\Test\TestCase\DeleteProductsFromCartOfAdvancedCheckoutEntityTest" summary="Delete Products from Requiring Attention Grid" ticketId="MAGETWO-29906">
+        <variation name="DeleteProductsFromCartOfAdvancedCheckoutEntityTestVariation1">
+            <data name="products" xsi:type="string">catalogProductSimple::offline, catalogProductSimple::simple_with_cart_limits</data>
+            <data name="orderOptions/qty" xsi:type="string">1, 6</data>
+            <data name="orderOptions/sku" xsi:type="string">-, -</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertRequiringAttentionProductSuccessDeleteMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAbsentInRequiringAttention" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductsAbsentInShoppingCart" />
+        </variation>
+        <variation name="DeleteProductsFromCartOfAdvancedCheckoutEntityTestVariation2">
+            <data name="products" xsi:type="string">catalogProductSimple::out_of_stock</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertRequiringAttentionProductSuccessDeleteMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAbsentInRequiringAttention" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductsAbsentInShoppingCart" />
+        </variation>
+        <variation name="DeleteProductsFromCartOfAdvancedCheckoutEntityTestVariation3">
+            <data name="products" xsi:type="string">configurableProduct::default</data>
+            <data name="orderOptions/qty" xsi:type="string">2</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertRequiringAttentionProductSuccessDeleteMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAbsentInRequiringAttention" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductsAbsentInShoppingCart" />
+        </variation>
+        <variation name="DeleteProductsFromCartOfAdvancedCheckoutEntityTestVariation4">
+            <data name="products" xsi:type="string">bundleProduct::bundle_dynamic_product</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertRequiringAttentionProductSuccessDeleteMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAbsentInRequiringAttention" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductsAbsentInShoppingCart" />
+        </variation>
+        <variation name="DeleteProductsFromCartOfAdvancedCheckoutEntityTestVariation5">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="products" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="orderOptions/sku" xsi:type="string">nonExistentSku</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertRequiringAttentionProductSuccessDeleteMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+    </testCase>
+</config>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging.xsd">
+    <action id="apply coupon">
+        <label translate="true">Apply Coupon</label>
+    </action>
+    <action id="add_to_cart">
+        <label translate="true">Add to Cart</label>
+    </action>
+    <log name="enterprise_checkout">
+        <label translate="true">Shopping Cart Management</label>
+        <event controller_action="adminhtml_checkout_index" action_alias="view">
+            <expected_model class="Magento\Quote\Model\Quote"/>
+        </event>
+        <event controller_action="adminhtml_checkout_applyCoupon"
+               action_alias="apply_coupon"
+               post_dispatch="postDispatchAdminCheckoutApplyCoupon">
+            <expected_model class="Magento\Quote\Model\Quote"/>
+        </event>
+        <event controller_action="adminhtml_checkout_updateItems" action_alias="save">
+            <expected_model class="Magento\Quote\Model\Quote\Item"/>
+        </event>
+        <event controller_action="adminhtml_checkout_addToCart"
+               action_alias="add_to_cart">
+            <expected_model class="Magento\Quote\Model\Quote\Item">
+                <additional_field>item_id</additional_field>
+                <additional_field>quote_id</additional_field>
+            </expected_model>
+        </event>
+    </log>
+</logging>

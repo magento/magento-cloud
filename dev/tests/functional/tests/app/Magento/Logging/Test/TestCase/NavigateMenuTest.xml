@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Backend\Test\TestCase\NavigateMenuTest">
+        <variation name="NavigateMenuTest43">
+            <data name="menuItem" xsi:type="string">System > Report</data>
+            <data name="pageTitle" xsi:type="string">Report</data>
+            <constraint name="Magento\Backend\Test\Constraint\AssertBackendPageIsAvailable"/>
+        </variation>
+        <variation name="NavigateMenuTest44">
+            <data name="menuItem" xsi:type="string">System > Archive</data>
+            <data name="pageTitle" xsi:type="string">Admin Actions Archive</data>
+            <constraint name="Magento\Backend\Test\Constraint\AssertBackendPageIsAvailable"/>
+        </variation>
+    </testCase>
+</config>

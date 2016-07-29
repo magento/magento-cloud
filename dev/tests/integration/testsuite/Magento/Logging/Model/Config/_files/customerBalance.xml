@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging_file.xsd">
+    <groups>
+        <group name="magento_customerbalance">
+            <label translate="true">Store Credit</label>
+            <events>
+                <event controller_action="adminhtml_customerbalance_form" action_alias="view">
+                    <expected_models>
+                        <expected_model class="Magento\CustomerBalance\Model\Balance" />
+                    </expected_models>
+                </event>
+            </events>
+        </group>
+        <group name="customer">
+            <events>
+                <event controller_action="customer_index_save" action_alias="save">
+                    <expected_models merge_group="true">
+                        <expected_model class="Magento\CustomerBalance\Model\Balance" />
+                    </expected_models>
+                    <skip_on_back>
+                        <controller_action name="adminhtml_customerbalance_form" />
+                        <controller_action name="customer_index_edit" />
+                    </skip_on_back>
+                </event>
+            </events>
+        </group>
+    </groups>
+</logging>

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<mapping strict="0">
+    <fields>
+        <email>
+            <selector>[name="email"]</selector>
+        </email>
+        <message>
+            <selector>[name="message"]</selector>
+        </message>
+        <store_id>
+            <selector>[name="store_id"]</selector>
+            <input>selectstore</input>
+        </store_id>
+        <group_id>
+            <selector>[name="group_id"]</selector>
+            <input>select</input>
+        </group_id>
+    </fields>
+</mapping>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Checkout\Test\TestCase\OnePageCheckoutTest" summary="OnePageCheckout within Offline Payment Methods" ticketId="MAGETWO-27485">
+        <variation name="OnePageCheckoutRewardTestVariation1" summary="Checkout as a registered US customer using reward points and coupon for all customer groups">
+            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
+            <data name="salesRule" xsi:type="string">active_sales_rule_for_all_groups</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="rewardPoints" xsi:type="string">reward_points_50</data>
+            <data name="rewardRates/rate_0" xsi:type="string">rate_points_to_currency</data>
+            <data name="rewardRates/rate_1" xsi:type="string">rate_currency_to_points</data>
+            <data name="shippingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="checkoutMethod" xsi:type="string">login</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">285.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">cashondelivery</data>
+            <data name="payment/use_reward_points" xsi:type="string">Yes</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Reorder, Cancel, Send Email, Hold, Invoice, Ship, Edit</data>
+            <data name="configData" xsi:type="string">cashondelivery</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertMinicartEmpty" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+        </variation>
+        <variation name="OnePageCheckoutRewardTestVariation2" summary="Checkout as a registered US customer using reward points, gift card coupon for all customer groups">
+            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
+            <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
+            <data name="salesRule" xsi:type="string">active_sales_rule_for_all_groups</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="rewardPoints" xsi:type="string">reward_points_50</data>
+            <data name="rewardRates/rate_0" xsi:type="string">rate_points_to_currency</data>
+            <data name="rewardRates/rate_1" xsi:type="string">rate_currency_to_points</data>
+            <data name="shippingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="checkoutMethod" xsi:type="string">login</data>
+            <data name="shipping/shipping_service" xsi:type="string">Free Shipping</data>
+            <data name="shipping/shipping_method" xsi:type="string">Free</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">180.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">banktransfer</data>
+            <data name="payment/use_reward_points" xsi:type="string">Yes</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Cancel, Send Email, Hold, Reorder, Invoice, Edit</data>
+            <data name="configData" xsi:type="string">freeshipping, banktransfer</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertMinicartEmpty" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+        </variation>
+        <variation name="OnePageCheckoutRewardTestVariation3" summary="Checkout as a registered US customer using sales rule with reward points">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="salesRule" xsi:type="string">sales_rule_with_reward_points</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="rewardRates/rate_0" xsi:type="string">rate_points_to_currency</data>
+            <data name="rewardRates/rate_1" xsi:type="string">rate_currency_to_points</data>
+            <data name="shippingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="checkoutMethod" xsi:type="string">login</data>
+            <data name="shipping/shipping_service" xsi:type="string">Free Shipping</data>
+            <data name="shipping/shipping_method" xsi:type="string">Free</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">280.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">banktransfer</data>
+            <data name="reward/data/store_id" xsi:type="string">Main Website/Main Website Store/Default Store View</data>
+            <data name="reward/data/points_delta" xsi:type="string">+50</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="configData" xsi:type="string">freeshipping, banktransfer</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertMinicartEmpty" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Reward\Test\Constraint\AssertRewardInHistoryGrid" />
+        </variation>
+    </testCase>
+</config>

@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<tabs>
+    <banner_properties>
+        <class>\Magento\Backend\Test\Block\Widget\Tab</class>
+        <selector>#banner_info_tabs_properties_section_content</selector>
+        <strategy>css selector</strategy>
+        <fields>
+            <is_enabled>
+                <input>select</input>
+            </is_enabled>
+            <type>
+                <selector>[data-ui-id="banner-edit-content-form-fieldset-element-select"]</selector>
+                <input>select</input>
+            </type>
+            <use_customer_segment>
+                <input>select</input>
+            </use_customer_segment>
+            <customer_segment>
+                <selector>[name="customer_segment_ids[]"]</selector>
+                <input>multiselect</input>
+            </customer_segment>
+        </fields>
+    </banner_properties>
+    <content>
+        <class>\Magento\Banner\Test\Block\Adminhtml\Banner\Edit\Tab\Content</class>
+        <selector>#banner_info_tabs_content_section</selector>
+        <strategy>css selector</strategy>
+    </content>
+    <related_promotions>
+        <class>Magento\Banner\Test\Block\Adminhtml\Banner\Edit\Tab\RelatedPromotions</class>
+        <selector>#banner_info_tabs_promotions_section</selector>
+        <strategy>css selector</strategy>
+    </related_promotions>
+</tabs>

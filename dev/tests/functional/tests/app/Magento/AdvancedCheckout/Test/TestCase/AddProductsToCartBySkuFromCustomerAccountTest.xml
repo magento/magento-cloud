@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\AdvancedCheckout\Test\TestCase\AddProductsToCartBySkuFromCustomerAccountTest" summary="Add Product by SKU from My Account" ticketId="MAGETWO-28259">
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation1">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="description" xsi:type="string">Two Simple products</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductSimple::default</data>
+            <data name="cartBlock" xsi:type="string">cart, cart</data>
+            <data name="orderOptions/sku" xsi:type="string">-, -</data>
+            <data name="orderOptions/qty" xsi:type="string">1, 1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuSuccessMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductPresentInShoppingCart" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation2">
+            <data name="description" xsi:type="string">Simple product</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="cartBlock" xsi:type="string">cart</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuSuccessMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductPresentInShoppingCart" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation3">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="description" xsi:type="string">Simple Out Of Stock</data>
+            <data name="products" xsi:type="string">catalogProductSimple::out_of_stock</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductIsOutOfStockFailMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation4">
+            <data name="description" xsi:type="string">Simple product with qty &gt; than available</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">26</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertQtyIsNotEnoughFailMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation5">
+            <data name="description" xsi:type="string">Simple offline product</data>
+            <data name="products" xsi:type="string">catalogProductSimple::offline</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertSkuNotFoundFailMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation6">
+            <data name="description" xsi:type="string">Product, for which Visibility is set to Not Visible Individually</data>
+            <data name="products" xsi:type="string">catalogProductSimple::not_visible_individually</data>
+            <data name="cartBlock" xsi:type="string">cart</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuSuccessMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductIsNotEditable" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation7">
+            <data name="description" xsi:type="string">Product, for which Qty is less than minimum allowed in cart</data>
+            <data name="products" xsi:type="string">catalogProductSimple::simple_with_cart_limits</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertMinRequestedQtyFailMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation8">
+            <data name="description" xsi:type="string">Product, for which Qty exceeds maximum allowed in cart</data>
+            <data name="products" xsi:type="string">catalogProductSimple::simple_with_cart_limits</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">6</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertMaxRequestedQtyFailMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation9">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="description" xsi:type="string">Configurable product</data>
+            <data name="products" xsi:type="string">configurableProduct::default</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">2</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertSpecifyProductOptionsLink" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductConfiguringFromRequiringAttention" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation10">
+            <data name="description" xsi:type="string">Bundle dynamic product</data>
+            <data name="products" xsi:type="string">bundleProduct::bundle_dynamic_product</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertSpecifyProductOptionsLink" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation11">
+            <data name="description" xsi:type="string">Bundle fixed product</data>
+            <data name="products" xsi:type="string">bundleProduct::bundle_fixed_product</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertSpecifyProductOptionsLink" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation12">
+            <data name="description" xsi:type="string">Simple product with custom options</data>
+            <data name="products" xsi:type="string">catalogProductSimple::with_one_custom_option</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertSpecifyProductOptionsLink" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation13">
+            <data name="description" xsi:type="string">Simple product with custom options by compound sku</data>
+            <data name="products" xsi:type="string">catalogProductSimple::with_one_custom_option</data>
+            <data name="cartBlock" xsi:type="string">cart</data>
+            <data name="orderOptions/sku" xsi:type="string">simpleWithOptionCompoundSku</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuSuccessMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductPresentInShoppingCart" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation14">
+            <data name="description" xsi:type="string">Simple product with qty increments</data>
+            <data name="products" xsi:type="string">catalogProductSimple::simple_with_qty_increments</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">3</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertQtyIncrementsFailMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation15">
+            <data name="description" xsi:type="string">Configurable product where all sub-items are disabled</data>
+            <data name="products" xsi:type="string">configurableProduct::with_out_of_stock_item</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductIsOutOfStockFailMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation16">
+            <data name="description" xsi:type="string">Simple product with tier price and qty &gt; than available</data>
+            <data name="products" xsi:type="string">catalogProductSimple::simple_with_tier_price_and_qty</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">26</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductTierPriceMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation17">
+            <data name="description" xsi:type="string">Product with displaying prices considering MAP settings</data>
+            <data name="products" xsi:type="string">catalogProductSimple::msrp_before_order_confirmation</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">26</data>
+            <data name="config" xsi:type="string">msrp_before_order_confirmation</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertMsrpNotice" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation18">
+            <data name="description" xsi:type="string">Nonexistent product</data>
+            <data name="products" xsi:type="string">-</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">nonExistentSku</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation19">
+            <data name="description" xsi:type="string">Product with not valid qty</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/sku" xsi:type="string">-</data>
+            <data name="orderOptions/qty" xsi:type="string">abc</data>
+            <data name="config" xsi:type="string">-</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
+        </variation>
+    </testCase>
+</config>

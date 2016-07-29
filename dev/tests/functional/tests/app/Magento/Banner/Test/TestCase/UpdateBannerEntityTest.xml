@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Banner\Test\TestCase\UpdateBannerEntityTest" summary="Update Banner" ticketId="MAGETWO-25639">
+        <variation name="UpdateBannerEntityTestVariation1">
+            <data name="bannerOrigin/dataset" xsi:type="string">default</data>
+            <data name="banner/data/name" xsi:type="string">banner_update_%isolation%</data>
+            <data name="banner/data/is_enabled" xsi:type="string">Inactive</data>
+            <data name="banner/data/use_customer_segment" xsi:type="string">All</data>
+            <data name="banner/data/store_contents_not_use/value_0" xsi:type="string">No</data>
+            <data name="banner/data/store_contents/value_0" xsi:type="string">banner_content_updated_%isolation%</data>
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerSuccessSaveMessage" />
+            <constraint name="Magento\Banner\Test\Constraint\AssertBannerInGrid" />
+        </variation>
+    </testCase>
+</config>

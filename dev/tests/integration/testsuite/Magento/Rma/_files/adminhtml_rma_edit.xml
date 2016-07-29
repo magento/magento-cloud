@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <block class="Magento\Rma\Block\Adminhtml\Rma\Create" name="content">
+            <block class="Magento\Rma\Block\Adminhtml\Rma\Edit" name="magento_rma_edit" />
+            <block class="Magento\Backend\Block\Template" template="Magento_Rma::edit/details.phtml" />
+            <block class="Magento\Backend\Block\Template" template="Magento_Rma::edit/reason.phtml" />
+        </block>
+        <container name="left" as="left" label="Left Column">
+            <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tabs" name="magento_rma_edit_tabs">
+                <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General" template="edit/general.phtml" name="magento_rma_edit_tab_general">
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Details" template="edit/general/details.phtml" name="request_details" />
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Shippingmethod" template="edit/shippingmethod.phtml" name="shipping_method">
+                        <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Shipping\Tracking" name="magento_rma_shipment_tracking" template="edit/shipping/tracking.phtml" />
+                    </block>
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\ShippingAddress" template="edit/general/shippingaddress.phtml" name="shipping_address" />
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Returnaddress" template="edit/general/returnadress.phtml" name="return_address" />
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\History" template="edit/general/history.phtml" name="comments_history" />
+                </block>
+                <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\Items" template="edit/items.phtml" name="magento_rma_edit_tab_items">
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\Items\Grid" name="items_grid" />
+                </block>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general_section</argument>
+                    <argument name="block" xsi:type="string">magento_rma_edit_tab_general</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general_section</argument>
+                    <argument name="block" xsi:type="string">magento_rma_edit_tab_items</argument>
+                </action>
+            </block>
+        </container>
+        <container name="before_body_end" as="before_body_end" label="Before Body End">
+            <block class="Magento\Backend\Block\Template" template="Magento_Rma::edit/mask.phtml" />
+            <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Js" template="edit/js.phtml" name="magento_rma_js_create" />
+        </container>
+    </body>
+</page>
