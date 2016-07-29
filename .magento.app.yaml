@@ -74,10 +74,10 @@ hooks:
         php ./bin/magento magento-cloud:build
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        php ./bin/magento magento-cloud:deploy
+        redis-cli -h redis.internal flushall && rm -rf /app/var/cache/* && php ./bin/magento magento-cloud:deploy
 
 # Default Magento 2 cron jobs
 crons:
     cronrun:
-        spec: "*/1 * * * *"
-        cmd: "php bin/magento cron:run"
+        spec: "*/5 * * * *"
+        cmd: "php bin/magento cron:run && php bin/magento cron:run"
