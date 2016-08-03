@@ -74,7 +74,8 @@ hooks:
         php ./bin/magento magento-cloud:build
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        redis-cli -h redis.internal flushall && rm -rf /app/var/cache/* && php ./bin/magento magento-cloud:deploy
+        php ./vendor/magento/magento-cloud-configuration/pre-deploy.php
+        php ./bin/magento magento-cloud:deploy
 
 # Default Magento 2 cron jobs
 crons:
