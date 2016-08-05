@@ -27,8 +27,8 @@ To create a new `auth.json` in the event you don't have one:
         }
 3.  Save your changes to `auth.json` and exit the text editor.
 
-## Required changes to your project configuration
-This release requires you to make some manual changes to the following files, which are both located in your project root directory:
+## Required changes for release 101.0.2
+The 101.0.2 release on August 5, 2016 requires you to make some manual changes to the following files, which are both located in your project root directory:
 
 *   `.magento.app.yaml`, the main project configuration file.
 *   `composer.json`, which specifies project dependencies.
@@ -104,18 +104,11 @@ magento-vars.php
 php.ini
 ```
 
-
-
-
 `.magento/routes.yaml` redirects `www` to the naked domain, and that the application that will be serving HTTP is named `php`.
 
 `.magento/services.yaml` sets up a MySQL instance, plus Redis and Solr. 
 
 ``composer.json`` fetches the Magento Enterprise Edition and some configuration scripts to prepare your application.
-
-
-
-
 
 ## Documentation
 For more details, see our [Magento Enterprise Cloud Guide](http://devdocs.magento.com/guides/v2.1/cloud/bk-cloud.html). 
