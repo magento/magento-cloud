@@ -54,7 +54,7 @@ crons:
 ```
 
 ### `composer.json`
-Open `composer.json` format and update the `"files"` directive in the `autoload` section as follows:
+Open `composer.json` and update the `"files"` directive in the `autoload` section as follows:
 
 ```
 "autoload": {
@@ -70,6 +70,24 @@ Open `composer.json` format and update the `"files"` directive in the `autoload`
             "app/etc/NonComposerComponentRegistration.php"
         ]
     }
+```
+
+Update the `require` section as follows to:
+
+*   Replace `"magento/product-enterprise-edition": "<current version>",` with `"magento/magento-cloud-metapackage": "<upgrade version>",`
+*   Remove `"magento/magento-cloud-configuration": "1.0.*",`
+
+(In some cases, your `composer.json` might already be correct.)
+
+```
+ },
+    "require": {
+        "magento/magento-cloud-metapackage": "2.1.0",
+        "composer/composer": "@alpha",
+        "colinmollenhour/credis": "1.6",
+        "colinmollenhour/php-redis-session-abstract": "1.1",
+        "fastly/magento2": "^1.0"
+    },
 ```
 
 ## Repository structure
