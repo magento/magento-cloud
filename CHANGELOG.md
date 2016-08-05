@@ -2,6 +2,13 @@
 =============
 To get detailed information about changes in Magento 2.1.0, please visit [Magento Community Edition (CE) Release Notes](http://devdocs.magento.com/guides/v2.1/release-notes/ReleaseNotes2.1.0CE.html "Magento Community Edition (CE) Release Notes")
 
+* Cloud specific changes: 
+    * Fixed an issue where upgrade from 2.0.x. doesn't work without clearing cache
+    * Fixed an issue where a newly created branch would redirect to master environment if setup:upgrade failed
+    * Fixed an issue where NonComposerComponentRegistration prevents installation of custom modules
+    * Fixed an issue where session and application cache were using same redis database
+    * Fixed an issue where https was not configured properly by default
+
 2.0.0
 =============
 * Fixed bugs:
