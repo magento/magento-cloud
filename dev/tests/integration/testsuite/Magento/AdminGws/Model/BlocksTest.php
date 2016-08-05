@@ -7,6 +7,8 @@ namespace Magento\AdminGws\Model;
 
 /**
  * @magentoAppArea adminhtml
+ * @magentoDbIsolation enabled
+ * @magentoAppIsolation enabled
  */
 class BlocksTest extends \Magento\TestFramework\TestCase\AbstractController
 {
@@ -50,8 +52,8 @@ class BlocksTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $this->dispatch('backend/catalog/category/edit/id/3');
         $this->assertRegExp(
-            '/title\="New Permission"\s+type\="button"\s+' .
-            'class="action-\w*\s+scalable\s+delete action-delete(\s+disabled){2,}"/',
+            '/title=\\\"New Permission\\\"\s*type=\\\"button\\\"\s*' .
+            'class=\\\".*disabled.*\\\"\s*disabled=\\\"disabled\\\"/',
             $this->getResponse()->getBody()
         );
     }

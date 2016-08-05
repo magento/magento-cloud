@@ -50,11 +50,13 @@ class IndexerBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testReindexById()
     {
-        $this->product->load(1)->setData('test_attribute', 'test_attribute_value')->save();
+        $product = $this->product->loadByAttribute('sku', 'simple');
+        $product->load($product->getId());
+        $product->setData('test_attribute', 'test_attribute_value')->save();
 
-        $this->indexerBuilder->reindexById(1);
+        $this->indexerBuilder->reindexById($product->getId());
 
-        $this->assertEquals(9.8, $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, 1));
+        $this->assertEquals(9.8, $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, $product->getId()));
     }
 
     /**
@@ -76,7 +78,7 @@ class IndexerBuilderTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $this->assertEquals(9.8, $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, 1));
+        $this->assertEquals(9.8, $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, $this->product->getId()));
         $this->assertEquals(
             9.8,
             $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, $this->productSecond->getId())
@@ -97,17 +99,20 @@ class IndexerBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->indexerBuilder->reindexFull();
 
-        $this->assertEquals(9.8, $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, 1));
-        $this->assertEquals(
-            9.8,
-            $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, $this->productSecond->getId())
-        );
+        $rulePrice = $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, $this->product->getId());
+        $this->assertEquals(9.8, $rulePrice);
+        $rulePrice = $this->resourceRule->getRulePrice(new \DateTime(), 1, 1, $this->productSecond->getId());
+        $this->assertEquals(9.8, $rulePrice);
         $this->assertFalse($this->resourceRule->getRulePrice(new \DateTime(), 1, 1, $this->productThird->getId()));
     }
 
     protected function prepareProducts()
     {
-        $this->product->load(1)->setData('test_attribute', 'test_attribute_value')->save();
+        $product = $this->product->loadByAttribute('sku', 'simple');
+        $product->load($product->getId());
+        $this->product = $product;
+
+        $this->product->setStoreId(0)->setData('test_attribute', 'test_attribute_value')->save();
         $this->productSecond = clone $this->product;
         $this->productSecond->setId(null)->setUrlKey('product-second')->save();
         $this->productThird = clone $this->product;

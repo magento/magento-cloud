@@ -46,7 +46,7 @@ class SalesOrder extends BackendPage
      *
      * @var string
      */
-    protected $orderActionsBlock = '.page-actions';
+    protected $orderActionsBlock = '.page-actions:not([data-mage-init])';
 
     /**
      * Grid page actions block.

@@ -42,27 +42,6 @@ class AdminhtmlBlockHtmlTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($optionsBlock->getCanReadPrice());
     }
 
-    public function testAdminhtmlBlockHtmlBeforeBundleOpt()
-    {
-        $parentBlock = $this->_layout->createBlock(
-            'Magento\Backend\Block\Template',
-            'adminhtml.catalog.product.edit.tab.bundle.option'
-        );
-        $selectionBlock = $this->_layout->addBlock(
-            'Magento\Backend\Block\Template',
-            'selection_template',
-            'adminhtml.catalog.product.edit.tab.bundle.option'
-        );
-
-        $this->_initSession();
-        $this->_runAdminhtmlBlockHtmlBefore($parentBlock);
-
-        $this->assertFalse($parentBlock->getCanReadPrice());
-        $this->assertFalse($selectionBlock->getCanReadPrice());
-        $this->assertFalse($parentBlock->getCanEditPrice());
-        $this->assertFalse($selectionBlock->getCanEditPrice());
-    }
-
     /**
      * Prepare event and run \Magento\PricePermissions\Observer\AdminhtmlBlockHtmlBeforeObserver::execute and
      * \Magento\PricePermissions\Observer\AdminControllerPredispatchObserver::execute

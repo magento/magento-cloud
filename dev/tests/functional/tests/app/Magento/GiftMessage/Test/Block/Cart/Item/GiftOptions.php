@@ -14,6 +14,7 @@ use Magento\Mtf\Client\BrowserInterface;
 use Magento\Mtf\Client\Element\SimpleElement;
 use Magento\Mtf\Client\Locator;
 use Magento\Mtf\Fixture\FixtureFactory;
+use Magento\Mtf\Util\ModuleResolver\SequenceSorterInterface;
 
 /**
  * Add gift options on checkout cart item level
@@ -60,6 +61,7 @@ class GiftOptions extends Form
      * @param BlockFactory $blockFactory
      * @param Mapper $mapper
      * @param BrowserInterface $browser
+     * @param SequenceSorterInterface $sequenceSorter
      * @param FixtureFactory $fixtureFactory
      * @param array $config [optional]
      */
@@ -68,11 +70,12 @@ class GiftOptions extends Form
         BlockFactory $blockFactory,
         Mapper $mapper,
         BrowserInterface $browser,
+        SequenceSorterInterface $sequenceSorter,
         FixtureFactory $fixtureFactory,
         array $config = []
     ) {
+        parent::__construct($element, $blockFactory, $mapper, $browser, $sequenceSorter, $config);
         $this->fixtureFactory = $fixtureFactory;
-        parent::__construct($element, $blockFactory, $mapper, $browser, $config);
     }
 
     /**
@@ -87,7 +90,7 @@ class GiftOptions extends Form
         /** @var \Magento\GiftMessage\Test\Block\Cart\GiftOptions\GiftMessageForm $giftMessageForm */
         if ($giftMessage->getAllowGiftOptionsForItems() === 'Yes') {
             foreach ($products as $product) {
-                if ($product->getProductHasWeight() == 'Yes') {
+                if ($product->getProductHasWeight() == 'This item has weight') {
                     $this->_rootElement->find(
                         sprintf($this->allowGiftOptions, $product->getName()),
                         Locator::SELECTOR_XPATH

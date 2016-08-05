@@ -10,6 +10,8 @@ use Magento\Backend\Test\Block\Widget\Tab;
 
 class NameTab extends Tab
 {
+    const NAME_TAB = 'name_tab';
+
     protected $dataGrid = '#catalog_category_add_product_name_tab_content';
 
     /**

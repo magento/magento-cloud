@@ -32,10 +32,10 @@ class AssertBannerNotInCatalogRule extends AbstractConstraint
     ) {
         $catalogRuleIndex->open();
         $catalogRuleIndex->getGridPageActions()->addNew();
-        $ruleNew->getEditForm()->openTab('related_banners');
+        $ruleNew->getEditForm()->openSection('related_banners');
         $filter = ['banner_name' => $banner->getName()];
         \PHPUnit_Framework_Assert::assertFalse(
-            $ruleNew->getEditForm()->getTab('related_banners')->getBannersGrid()->isRowVisible($filter),
+            $ruleNew->getEditForm()->getSection('related_banners')->getBannersGrid()->isRowVisible($filter),
             'Banner is present in Catalog Price Rule grid.'
         );
     }

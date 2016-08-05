@@ -21,6 +21,7 @@ return [
             'Magento\Setup\Controller\Environment',
             'Magento\Setup\Controller\DependencyCheck',
             'Magento\Setup\Controller\DatabaseCheck',
+            'Magento\Setup\Controller\ValidateAdminCredentials',
             'Magento\Setup\Controller\AddDatabase',
             'Magento\Setup\Controller\WebConfiguration',
             'Magento\Setup\Controller\CustomizeYourStore',
@@ -38,6 +39,7 @@ return [
             'Magento\Setup\Controller\Marketplace',
             'Magento\Setup\Controller\SystemConfig',
             'Magento\Setup\Controller\InstallExtensionGrid',
+            'Magento\Setup\Controller\MarketplaceCredentials',
             'Magento\Setup\Controller\Session'
         ],
         'instance' => [

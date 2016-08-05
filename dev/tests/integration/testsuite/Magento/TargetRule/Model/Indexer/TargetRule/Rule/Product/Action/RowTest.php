@@ -63,6 +63,11 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
      */
     public function testReindexRowByCategories()
     {
+        /**
+         * @var \Magento\Catalog\Model\resourceModel\Product $productRepository
+         */
+        $productRepository = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
+            ->create('Magento\Catalog\Model\resourceModel\Product');
         $this->_processor->getIndexer()->setScheduled(false);
         $this->assertFalse($this->_processor->getIndexer()->isScheduled());
 
@@ -98,7 +103,8 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
             'rule_id = ?', $rule->getId()
         );
 
-        $this->assertEquals([3, 4], $rule->getResource()->getConnection()->fetchCol($testSelect));
+        $productIds = [$productRepository->getIdBySku('simple-3'), $productRepository->getIdBySku('simple-4')];
+        $this->assertEquals($productIds, $rule->getResource()->getConnection()->fetchCol($testSelect));
 
         $data = [
             'name' => 'related',
@@ -132,6 +138,7 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
             'rule_id = ?', $rule->getId()
         );
 
-        $this->assertEquals([2], $rule->getResource()->getConnection()->fetchCol($testSelect));
+        $productId = $productRepository->getIdBySku('12345');
+        $this->assertEquals([$productId], $rule->getResource()->getConnection()->fetchCol($testSelect));
     }
 }

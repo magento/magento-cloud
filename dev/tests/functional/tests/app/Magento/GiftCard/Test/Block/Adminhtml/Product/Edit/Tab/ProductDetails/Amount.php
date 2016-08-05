@@ -16,49 +16,49 @@ use Magento\Mtf\Client\Element\SimpleElement;
 class Amount extends SimpleElement
 {
     /**
-     * Mapping for field of single amount
+     * Mapping for field of single amount.
      *
      * @var array
      */
-    protected $rowFields = ['price'];
+    protected $rowFields = ['value'];
 
     /**
-     * Selector for single amount
+     * Selector for single amount.
      *
      * @var string
      */
-    protected $amount = './/tbody/tr[not(contains(@class,"ignore-validate"))]';
+    protected $amount = './/table[contains(@data-role,"grid")]//tbody/tr';
 
     /**
-     * Selector for single amount by number
+     * Selector for single amount by number.
      *
      * @var string
      */
-    protected $amountByNumber = './/tbody/tr[not(contains(@class,"ignore-validate"))][%d]';
+    protected $amountByNumber = './/table[contains(@data-role,"grid")]//tbody/tr[%d]';
 
     /**
-     * Selector for field of amount
+     * Selector for field of amount.
      *
      * @var string
      */
     protected $amountDetail = '[name^="product[giftcard_amounts]"][name$="[%s]"]';
 
     /**
-     * Selector for "Add Amount" button
+     * Selector for "Add Amount" button.
      *
      * @var string
      */
-    protected $addAmount = '.action-add';
+    protected $addAmount = 'button[data-action="add_new_row"]';
 
     /**
-     * Selector delete button of amount
+     * Selector for amount delete button.
      *
      * @var string
      */
-    protected $amountDelete = 'button.action-delete';
+    protected $amountDelete = 'button[data-action="remove_row"]';
 
     /**
-     * Set value
+     * Set value.
      *
      * @param array $values
      * @return void
@@ -69,11 +69,11 @@ class Amount extends SimpleElement
         $this->clearAmount();
         foreach ((array)$values as $number => $amountData) {
             /* Throw exception if isn't exist previous amount. */
-            if (1 < $number && !$this->isAmountVisible($number - 1)) {
+            if (1 < $number && !$this->isAmountVisible($number)) {
                 throw new \Exception("Invalid argument: can't fill amount #{$number}");
             }
 
-            $amount = $this->find(sprintf($this->amountByNumber, $number), Locator::SELECTOR_XPATH);
+            $amount = $this->find(sprintf($this->amountByNumber, $number + 1), Locator::SELECTOR_XPATH);
             if (!$amount->isVisible()) {
                 $this->find($this->addAmount)->click();
             }
@@ -86,7 +86,7 @@ class Amount extends SimpleElement
     }
 
     /**
-     * Get value
+     * Get value.
      *
      * @return array
      */
@@ -107,7 +107,7 @@ class Amount extends SimpleElement
     }
 
     /**
-     * Check visible amount by number
+     * Check visible amount by number.
      *
      * @param int $number
      * @return bool
@@ -118,7 +118,7 @@ class Amount extends SimpleElement
     }
 
     /**
-     * Clear amount rows
+     * Clear amount rows.
      *
      * @return void
      */

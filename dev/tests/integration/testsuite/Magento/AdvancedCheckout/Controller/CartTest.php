@@ -15,6 +15,20 @@ namespace Magento\AdvancedCheckout\Controller;
 class CartTest extends \Magento\TestFramework\TestCase\AbstractController
 {
     /**
+     * @var \Magento\Catalog\Api\ProductRepositoryInterface
+     */
+    protected $productRepository;
+
+    /**
+     * Bootstrap application before any test
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->productRepository = $this->_objectManager->create('Magento\Catalog\Api\ProductRepositoryInterface');
+    }
+
+    /**
      * Test for \Magento\AdvancedCheckout\Controller\Cart::configureAction() with gift card product
      *
      * @magentoDataFixture Magento/AdvancedCheckout/_files/quote_with_gift_card_product.php
@@ -26,8 +40,10 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
         $session = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
             'Magento\Checkout\Model\Session'
         );
+        /** @var $product \Magento\Catalog\Model\Product */
+        $product = $this->productRepository->get('gift-card');
 
-        $quoteItem = $this->_getQuoteItemIdByProductId($session->getQuote(), 1);
+        $quoteItem = $this->_getQuoteItemIdByProductId($session->getQuote(), $product->getId());
 
         $this->dispatch(
             'checkout/cart/configure/id/' . $quoteItem->getId() . '/product_id/' . $quoteItem->getProduct()->getId()
@@ -58,7 +74,9 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testConfigureFailedActionWithSimpleProduct()
     {
-        $this->dispatch('checkout/cart/configureFailed/id/1');
+        /** @var $product \Magento\Catalog\Model\Product */
+        $product = $this->productRepository->get('simple');
+        $this->dispatch('checkout/cart/configureFailed/id/' . $product->getId());
         $response = $this->getResponse();
 
         $this->assertSessionMessages($this->isEmpty(), \Magento\Framework\Message\MessageInterface::TYPE_ERROR);
@@ -78,7 +96,9 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testConfigureFailedActionWithBundleProduct()
     {
-        $this->dispatch('checkout/cart/configureFailed/id/3');
+        /** @var $product \Magento\Catalog\Model\Product */
+        $product = $this->productRepository->get('bundle-product');
+        $this->dispatch('checkout/cart/configureFailed/id/' . $product->getId());
         $response = $this->getResponse();
 
         $this->assertSessionMessages($this->isEmpty(), \Magento\Framework\Message\MessageInterface::TYPE_ERROR);
@@ -98,7 +118,9 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testConfigureFailedActionWithDownloadableProduct()
     {
-        $this->dispatch('checkout/cart/configureFailed/id/1');
+        /** @var $product \Magento\Catalog\Model\Product */
+        $product = $this->productRepository->get('downloadable-product');
+        $this->dispatch('checkout/cart/configureFailed/id/' . $product->getId());
         $response = $this->getResponse();
 
         $this->assertSessionMessages($this->isEmpty(), \Magento\Framework\Message\MessageInterface::TYPE_ERROR);
@@ -125,7 +147,9 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testConfigureFailedActionWithGiftCardProduct()
     {
-        $this->dispatch('checkout/cart/configureFailed/id/1');
+        /** @var $product \Magento\Catalog\Model\Product */
+        $product = $this->productRepository->get('gift-card');
+        $this->dispatch('checkout/cart/configureFailed/id/' . $product->getId());
         $response = $this->getResponse();
 
         $this->assertSessionMessages($this->isEmpty(), \Magento\Framework\Message\MessageInterface::TYPE_ERROR);

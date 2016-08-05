@@ -9,13 +9,12 @@ namespace Magento\GiftCard\Test\Constraint;
 use Magento\Catalog\Test\Constraint\AssertProductPage;
 
 /**
- * Class AssertGiftCardProductPage
  * Assert that displayed product data on product page(front-end) equals passed from fixture.
  */
 class AssertGiftCardProductPage extends AssertProductPage
 {
     /**
-     * Verify displayed product price on product page(front-end) equals passed from fixture
+     * Verify displayed product price on product page(front-end) equals passed from fixture.
      *
      * @return string|null
      */
@@ -27,7 +26,7 @@ class AssertGiftCardProductPage extends AssertProductPage
 
         if (isset($productData['giftcard_amounts']) && 1 == count($productData['giftcard_amounts'])) {
             $amount = reset($productData['giftcard_amounts']);
-            $price = $amount['price'];
+            $price = $amount['value'];
         }
 
         if ($price == $priceOnPage) {

@@ -58,5 +58,16 @@
             <field name="apply_to" xsi:type="string">Registered Customers</field>
             <field name="conditions_serialized" xsi:type="string">[Default Shipping Address|exists]</field>
         </dataset>
+
+        <dataset name="active_customer_segment_for_sales_rule">
+            <field name="name" xsi:type="string">Segment isoneof isnotoneof %isolation%</field>
+            <field name="description" xsi:type="string">Customer Segment to test salesrule conditions  %isolation%</field>
+            <field name="website_ids" xsi:type="array">
+                <item name="0" xsi:type="string">Main Website</item>
+            </field>
+            <field name="is_active" xsi:type="string">Active</field>
+            <field name="apply_to" xsi:type="string">Registered Customers</field>
+            <field name="conditions_serialized" xsi:type="string">[Default Shipping Address|exists]</field>
+        </dataset>
     </repository>
 </config>

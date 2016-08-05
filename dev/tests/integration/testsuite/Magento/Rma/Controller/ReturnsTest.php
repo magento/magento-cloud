@@ -5,6 +5,9 @@
  */
 namespace Magento\Rma\Controller;
 
+/**
+ * @magentoDbIsolation enabled
+ */
 class ReturnsTest extends \Magento\TestFramework\TestCase\AbstractController
 {
     /**

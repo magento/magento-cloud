@@ -8,6 +8,20 @@ namespace Magento\TargetRule\Controller\Catalog;
 class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
 {
     /**
+     * @var \Magento\Catalog\Model\ResourceModel\Product
+     */
+    protected $productResource;
+
+    /**
+     * Bootstrap application before any test
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->productResource = $this->_objectManager->create('Magento\Catalog\Model\ResourceModel\Product');
+    }
+
+    /**
      * Covers Magento/TargetRule/view/frontend/catalog/product/list/related.html
      * Checks if related products are displayed
      *
@@ -16,7 +30,8 @@ class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testProductViewActionRelated()
     {
-        $this->dispatch('catalog/product/view/id/1');
+        $productId = $this->productResource->getIdBySku('simple_product_1');
+        $this->dispatch('catalog/product/view/id/' . $productId);
         $content = $this->getResponse()->getBody();
         $this->assertContains('<div class="block related"', $content);
         $this->assertContains('Simple Product 2 Name', $content);
@@ -31,7 +46,8 @@ class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testProductViewActionUpsell()
     {
-        $this->dispatch('catalog/product/view/id/1');
+        $productId = $this->productResource->getIdBySku('simple_product_1');
+        $this->dispatch('catalog/product/view/id/' . $productId);
         $content = $this->getResponse()->getBody();
         $this->assertContains('<div class="block upsell"', $content);
         $this->assertContains('Simple Product 2 Name', $content);

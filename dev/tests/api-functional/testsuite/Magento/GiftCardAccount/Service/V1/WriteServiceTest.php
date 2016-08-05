@@ -34,7 +34,7 @@ class WriteServiceTest extends WebapiAbstract
         $quote->load('test_order_1', 'reserved_order_id');
         $quoteId = $quote->getId();
         $requestData = [
-            'quoteId' => $quoteId,
+            'cartId' => $quoteId,
             'giftCardCode' => 'giftcardaccount_fixture',
         ];
         $serviceInfo = [

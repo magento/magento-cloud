@@ -12,7 +12,7 @@
 return [
     'Zend_Db_Select' => [
         'exclude' => [
-            '/app/code/Magento/ResourceConnections/DB/Adapter/Pdo/MysqlProxy.php',
+            ['type' => 'module', 'name' => 'Magento_ResourceConnections', 'path' => 'DB/Adapter/Pdo/MysqlProxy.php'],
         ]
     ]
 ];

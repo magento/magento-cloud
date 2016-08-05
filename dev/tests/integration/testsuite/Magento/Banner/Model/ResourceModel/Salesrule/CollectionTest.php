@@ -6,8 +6,8 @@
 namespace Magento\Banner\Model\ResourceModel\Salesrule;
 
 /**
- * @magentoDataFixture Magento/Banner/_files/banner_enabled_40_to_50_percent_off.php
  * @magentoDataFixture Magento/Banner/_files/banner_disabled_40_percent_off.php
+ * @magentoDataFixture Magento/Banner/_files/banner_enabled_40_to_50_percent_off.php
  */
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,9 +40,13 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testAddRuleIdsFilter()
     {
+        $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
+        $registry = $objectManager->get('Magento\Framework\Registry');
+
         /** @var \Magento\SalesRule\Model\Rule $rule */
-        $rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\SalesRule\Model\Rule');
-        $rule->load('40% Off on Large Orders', 'name');
+        $rule = $objectManager->create('Magento\SalesRule\Model\Rule');
+        $ruleId = $registry->registry('Magento/SalesRule/_files/cart_rule_40_percent_off');
+        $rule->load($ruleId);
 
         $this->_collection->addRuleIdsFilter([$rule->getId()]);
 

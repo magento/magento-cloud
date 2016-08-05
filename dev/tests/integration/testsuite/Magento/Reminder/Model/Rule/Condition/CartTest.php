@@ -42,11 +42,29 @@ class CartTest extends \PHPUnit_Framework_TestCase
      */
     public function daysDiffConditionDataProvider()
     {
+        $firstClause = 'AND ((TO_DAYS(\'2013-12-24 00:00:00\')';
+
         return [
-            ['>=', '1', 'AND ((TO_DAYS(\'2013-12-24 00:00:00\') - TO_DAYS(quote.updated_at)) >= 1)'],
-            ['>', '1', 'AND ((TO_DAYS(\'2013-12-24 00:00:00\') - TO_DAYS(quote.updated_at)) > 1)'],
-            ['>=', '0', 'AND ((TO_DAYS(\'2013-12-24 00:00:00\') - TO_DAYS(quote.updated_at)) >= 0)'],
-            ['>', '0', 'AND ((TO_DAYS(\'2013-12-24 00:00:00\') - TO_DAYS(quote.updated_at)) > 0)']
+            [
+                '>=',
+                '1',
+                $firstClause. ' - TO_DAYS(IF(quote.updated_at = 0, quote.created_at, quote.updated_at))) >= 1)'
+            ],
+            [
+                '>',
+                '1',
+                $firstClause. ' - TO_DAYS(IF(quote.updated_at = 0, quote.created_at, quote.updated_at))) > 1)'
+            ],
+            [
+                '>=',
+                '0',
+                $firstClause. ' - TO_DAYS(IF(quote.updated_at = 0, quote.created_at, quote.updated_at))) >= 0)'
+            ],
+            [
+                '>',
+                '0',
+                $firstClause. ' - TO_DAYS(IF(quote.updated_at = 0, quote.created_at, quote.updated_at))) > 0)'
+            ]
         ];
     }
 

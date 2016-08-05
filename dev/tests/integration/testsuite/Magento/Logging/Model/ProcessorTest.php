@@ -80,7 +80,15 @@ class ProcessorTest extends \Magento\TestFramework\TestCase\AbstractController
             ],
             ['backend/admin/user/delete/user_id/2', 'delete'],
             ['backend/admin/user_role/editrole/rid/2', 'view'],
-            ['backend/admin/user_role/saverole', 'save', ['rolename' => 'newrole2', 'gws_is_all' => '1']],
+            [
+                'backend/admin/user_role/saverole',
+                'save',
+                [
+                    'rolename' => 'newrole2',
+                    'gws_is_all' => '1',
+                    'current_password' => \Magento\TestFramework\Bootstrap::ADMIN_PASSWORD
+                ]
+            ],
             ['backend/admin/user_role/delete/rid/2', 'delete'],
             ['backend/tax/tax/ajaxDelete', 'delete', ['class_id' => 2, 'isAjax' => true]],
             [

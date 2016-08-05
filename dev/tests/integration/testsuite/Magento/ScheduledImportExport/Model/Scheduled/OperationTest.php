@@ -10,15 +10,15 @@ class OperationTest extends \PHPUnit_Framework_TestCase
     /**
      * @var \Magento\ScheduledImportExport\Model\Scheduled\Operation
      */
-    protected $_model;
+    protected $model;
 
     /**
      * Set up before test
      */
     protected function setUp()
     {
-        $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\ScheduledImportExport\Model\Scheduled\Operation'
+        $this->model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\ScheduledImportExport\Model\Scheduled\Operation::class
         );
     }
 
@@ -40,11 +40,11 @@ class OperationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetInstance($operationType)
     {
-        $this->_model->setOperationType($operationType);
+        $this->model->setOperationType($operationType);
         $string = new \Magento\Framework\Stdlib\StringUtils();
         $this->assertInstanceOf(
             'Magento\ScheduledImportExport\Model\\' . $string->upperCaseWords($operationType),
-            $this->_model->getInstance()
+            $this->model->getInstance()
         );
     }
 
@@ -55,7 +55,25 @@ class OperationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetHistoryFilePathException()
     {
-        $this->_model->getHistoryFilePath();
+        $this->model->getHistoryFilePath();
+    }
+
+    /**
+     * @magentoDataFixture Magento/ScheduledImportExport/_files/operation.php
+     */
+    public function testSave()
+    {
+        /** @var \Magento\Framework\App\CacheInterface $cacheManager */
+        $cacheManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\Framework\App\CacheInterface::class
+        );
+        $cacheManager->save('test_data', 'test_data_id', ['crontab']);
+        $this->assertEquals('test_data', $cacheManager->load('test_data_id'));
+        $this->model->load('export', 'operation_type');
+        $this->model->setStartTime('06:00:00');
+        $this->model->save();
+        $result = $cacheManager->load('test_data_id');
+        $this->assertEmpty($result);
     }
 
     /**
@@ -64,9 +82,9 @@ class OperationTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunAction()
     {
-        $this->_model->load('export', 'operation_type');
+        $this->model->load('export', 'operation_type');
 
-        $fileInfo = $this->_model->getFileInfo();
+        $fileInfo = $this->model->getFileInfo();
 
         // Create export directory if not exist
         /** @var \Magento\Framework\Filesystem\Directory\Write $varDir */
@@ -81,14 +99,14 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $cwd = getcwd();
         chdir($varDir->getAbsolutePath());
 
-        $this->_model->run();
+        $this->model->run();
 
         $scheduledExport = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
             'Magento\ScheduledImportExport\Model\Export'
         );
-        $scheduledExport->setEntity($this->_model->getEntityType());
-        $scheduledExport->setOperationType($this->_model->getOperationType());
-        $scheduledExport->setRunDate($this->_model->getLastRunDate());
+        $scheduledExport->setEntity($this->model->getEntityType());
+        $scheduledExport->setOperationType($this->model->getOperationType());
+        $scheduledExport->setRunDate($this->model->getLastRunDate());
 
         $filePath = $varDir->getAbsolutePath(
             $fileInfo['file_path']

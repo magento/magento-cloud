@@ -14,7 +14,6 @@ $model = $objectManager->create('Magento\Search\Model\Query');
 $model->setData(
     [
         'query_text' => 'Calculator',
-        'synonym_for' => 'Curculator',
         'is_active' => true,
         'store_id' => $storeManager->getStore()->getId(),
     ]

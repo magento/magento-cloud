@@ -15,6 +15,13 @@ use Magento\Mtf\Client\Element\SimpleElement;
 class ProductGrid extends Grid
 {
     /**
+     * An element locator which allows to select SKU in grid.
+     *
+     * @var string
+     */
+    protected $sku = '.col-sku';
+
+    /**
      * An element locator which allows to select entities in grid.
      *
      * @var string
@@ -38,6 +45,29 @@ class ProductGrid extends Grid
     }
 
     /**
+     * @param int $index
+     * @return string
+     */
+    public function getSkuByIndex($index)
+    {
+        $src = $this->getItemByIndex($index);
+        return $src->find($this->sku)->getText();
+    }
+
+    /**
+     * Drag and drop grid item from initial to target position
+     *
+     * @param int $initial
+     * @param int $target
+     * @return void
+     */
+    public function dragAndDrop($initial, $target)
+    {
+        $this->_rootElement->find($this->actionNextPage)->hover();
+        $this->getItemByIndex($initial)->dragAndDrop($this->getItemByIndex($target));
+    }
+
+    /**
      * @param \Magento\Mtf\Fixture\FixtureInterface $fixture
      * @return SimpleElement
      */
@@ -48,11 +78,13 @@ class ProductGrid extends Grid
 
     /**
      * @param SimpleElement $row
+     * @return $this
      */
     public function deleteProduct($row)
     {
         $row->find($this->unassignButton)->click();
         $this->waitLoader();
+        return $this;
     }
 
     /**

@@ -36,7 +36,6 @@ class CreateCustomerBalanceEntityTest extends Injectable
     /* tags */
     const MVP = 'no';
     const DOMAIN = 'CS';
-    const STABLE = 'no';
     /* end tags */
 
     /**

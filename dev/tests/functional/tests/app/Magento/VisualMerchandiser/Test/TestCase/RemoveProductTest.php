@@ -32,7 +32,7 @@ class RemoveProductTest extends Injectable
     protected $catalogCategoryEdit;
 
     /**
-     * Inject pages
+     * Inject pages.
      *
      * @param CatalogCategoryIndex $catalogCategoryIndex
      * @param CatalogCategoryMerchandiser $catalogCategoryEdit
@@ -47,67 +47,40 @@ class RemoveProductTest extends Injectable
     }
 
     /**
-     * Delete a product from view
+     * Delete a product from view.
      *
      * @param Category $category
      * @param string $tab
+     * @param bool $saveCategory
      * @return array
      */
-    public function test(Category $category, $tab)
+    public function test(Category $category, $tab, $saveCategory)
     {
         $category->persist();
 
         $this->catalogCategoryIndex->open();
         $this->catalogCategoryIndex->getTreeCategories()->selectCategory($category);
-
-        $this->catalogCategoryEdit->getEditForm()->openTab('category_products');
+        $this->catalogCategoryEdit->getEditForm()->openSection('category_products');
         $merchandiser = $this->catalogCategoryEdit->getMerchandiserApp();
-
         /* @var Grid|Tile $gridViewTab */
-        $gridViewTab = $merchandiser
-            ->openTab($tab)
-            ->getTab($tab);
-
-        $grid = $gridViewTab->getProductGrid();
+        $gridViewTab = $merchandiser->openTab($tab)->getTab($tab);
+        $productGrid = $gridViewTab->getProductGrid();
 
         $products = $category->getDataFieldConfig('category_products')['source']->getProducts();
-
         /* @var FixtureInterface $productFixture */
         foreach ($products as $productFixture) {
-            $product = $grid->getProduct($productFixture);
-            $grid->deleteProduct($product);
+            $product = $productGrid->getProduct($productFixture);
+            $productGrid->deleteProduct($product);
         }
 
-        // Check that all products were removed from both views
-        $this->assertProductDeletedFromAllViews($merchandiser, $products);
-
-        // Save category
-        $this->catalogCategoryEdit->getFormPageActions()->save();
-        $this->catalogCategoryEdit->getEditForm()->openTab('category_products');
+        if ($saveCategory) {
+            $this->catalogCategoryEdit->getFormPageActions()->save();
+            $this->catalogCategoryEdit->getEditForm()->openSection('category_products');
+        }
 
         return [
             'merchandiser' => $merchandiser,
             'tab' => $tab
         ];
-    }
-
-    protected function assertProductDeletedFromAllViews(
-        \Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\Tab\Merchandiser $merchandiser,
-        array $products
-    ) {
-        foreach (['mode_grid', 'mode_tile'] as $viewMode) {
-            // Removed from UI
-            $tab = $merchandiser->openTab($viewMode)->getTab($viewMode);
-            $grid = $tab->getProductGrid();
-
-            /* @var FixtureInterface $productFixture */
-            foreach ($products as $productFixture) {
-                \PHPUnit_Framework_Assert::assertEquals(
-                    $grid->isProductVisible($productFixture),
-                    false,
-                    "Product was not deleted from view " . get_class($tab)
-                );
-            }
-        }
     }
 }

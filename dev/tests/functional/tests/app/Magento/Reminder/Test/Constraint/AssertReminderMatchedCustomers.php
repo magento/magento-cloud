@@ -21,6 +21,8 @@ use Magento\Mtf\ObjectManager;
 
 /**
  * Open created reminder and assert customer in Matched Customers grid.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AssertReminderMatchedCustomers extends AbstractConstraint
 {
@@ -157,6 +159,7 @@ class AssertReminderMatchedCustomers extends AbstractConstraint
         $this->catalogProductView->getViewBlock()->fillOptions($this->product);
         $this->catalogProductView->getViewBlock()->setQty($productQty);
         $this->catalogProductView->getViewBlock()->clickAddToCart();
+        $this->catalogProductView->getMessagesBlock()->waitSuccessMessage();
     }
 
     /**

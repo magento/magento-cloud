@@ -16,7 +16,6 @@ class SearchTest extends \Magento\TestFramework\TestCase\AbstractBackendControll
      */
     public function testRelatedGridAction()
     {
-        $this->markTestSkipped('Solr module disabled');
         $filter = base64_encode('search_query=lap');
         $this->getRequest()->setParam('filter', $filter);
 

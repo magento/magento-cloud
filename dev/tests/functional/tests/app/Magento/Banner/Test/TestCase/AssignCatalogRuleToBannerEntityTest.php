@@ -121,6 +121,8 @@ class AssignCatalogRuleToBannerEntityTest extends Injectable
         $products,
         $widget
     ) {
+        $this->markTestSkipped('MAGETWO-50315');
+
         $customer->persist();
         $category->persist();
         $banner->persist();

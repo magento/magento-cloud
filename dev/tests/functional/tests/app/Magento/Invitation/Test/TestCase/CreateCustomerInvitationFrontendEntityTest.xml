@@ -17,6 +17,7 @@
             <constraint name="Magento\Invitation\Test\Constraint\AssertInvitationInGrid" />
         </variation>
         <variation name="CreateCustomerInvitationFrontendEntityTestVariation2">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="customer/dataset" xsi:type="string">default</data>
             <data name="invitation/data/email" xsi:type="string">test@example.com, test@example.com</data>
             <data name="invitation/data/message" xsi:type="string">-</data>

@@ -722,5 +722,49 @@ return [
     [
         'getAdapter',
         'Magento\VisualMerchandiser\Model\Category\Builder',
-    ]
+    ],
+    ['postDispatchCmsRevisionPublish', 'Magento\VersionsCms\Model\Logging'],
+    ['postDispatchCmsRevisionPreview', 'Magento\VersionsCms\Model\Logging'],
+    ['configure', 'Magento\Framework\MessageQueue\BatchConsumer'],
+    [
+        'getExchangeByTopic',
+        'Magento\Framework\MessageQueue\Config\Data',
+        '\Magento\Framework\MessageQueue\ConfigInterface::getExchangeByTopic'
+    ],
+    [
+        'getQueuesByTopic',
+        'Magento\Framework\MessageQueue\Config\Data',
+        '\Magento\Framework\MessageQueue\ConfigInterface::getQueuesByTopic'
+    ],
+    [
+        'getConnectionByTopic',
+        'Magento\Framework\MessageQueue\Config\Data',
+        '\Magento\Framework\MessageQueue\ConfigInterface::getConnectionByTopic'
+    ],
+    [
+        'getConnectionByConsumer',
+        'Magento\Framework\MessageQueue\Config\Data',
+        '\Magento\Framework\MessageQueue\ConfigInterface::getConnectionByConsumer'
+    ],
+    [
+        'getMessageSchemaType',
+        'Magento\Framework\MessageQueue\Config\Data',
+        '\Magento\Framework\MessageQueue\ConfigInterface::getMessageSchemaType'
+    ],
+    [
+        'getCallback',
+        'Magento\Framework\MessageQueue\ConsumerConfiguration'
+    ],
+    [
+        'getCallback',
+        'Magento\Framework\MessageQueue\ConsumerConfigurationInterface'
+    ],
+    [
+        'configure',
+        'Magento\Framework\MessageQueue\ConsumerInterface'
+    ],
+    [
+        'widgetCatalogEventCategoryEditButtons',
+        'Magento\AdminGws\Model\Blocks'
+    ],
 ];

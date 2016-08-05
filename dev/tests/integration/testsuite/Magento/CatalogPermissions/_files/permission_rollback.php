@@ -12,9 +12,10 @@ $registry->register('isSecureArea', true);
 
 /** @var $product \Magento\Catalog\Model\Product */
 $product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
-$product->load(5);
+$product->load(155);
 if ($product->getId()) {
     $product->delete();
 }
+
 $registry->unregister('isSecureArea');
 $registry->register('isSecureArea', false);

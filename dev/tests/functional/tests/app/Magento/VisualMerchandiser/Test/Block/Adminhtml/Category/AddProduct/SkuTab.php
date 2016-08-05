@@ -10,5 +10,5 @@ use Magento\Backend\Test\Block\Widget\Tab;
 
 class SkuTab extends Tab
 {
-
+    const SKU_TAB = 'sku_tab';
 }

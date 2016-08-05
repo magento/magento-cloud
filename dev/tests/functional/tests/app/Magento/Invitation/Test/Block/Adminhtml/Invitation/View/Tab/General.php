@@ -21,7 +21,7 @@ class General extends Tab
      * @param SimpleElement|null $element
      * @return array
      */
-    public function getDataFormTab($fields = null, SimpleElement $element = null)
+    public function getFieldsData($fields = null, SimpleElement $element = null)
     {
         $data = $this->dataMapping($fields);
         $dataFields = [];

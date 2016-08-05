@@ -7,6 +7,7 @@ namespace Magento\CatalogPermissions\Model\Indexer;
 
 /**
  * @magentoDbIsolation enabled
+ * @magentoAppIsolation enabled
  */
 class ProductTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,7 +49,6 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         $indexer->load(\Magento\CatalogPermissions\Model\Indexer\Product::INDEXER_ID);
         $indexer->reindexAll();
 
-        $this->assertEmpty($this->indexTable->getIndexForProduct(3, 1, 1));
         $productData = array_merge(['product_id' => $product->getId()], $this->getProductData());
         $this->assertContains($productData, $this->indexTable->getIndexForProduct($product->getId(), 1, 1));
 
@@ -74,6 +74,6 @@ class ProductTest extends \PHPUnit_Framework_TestCase
      */
     protected function getProduct()
     {
-        return $this->product->getCollection()->getLastItem();
+        return $this->product->load(150);
     }
 }

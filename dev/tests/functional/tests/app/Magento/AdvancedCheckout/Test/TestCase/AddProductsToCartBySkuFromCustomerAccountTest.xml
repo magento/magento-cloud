@@ -8,6 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\AdvancedCheckout\Test\TestCase\AddProductsToCartBySkuFromCustomerAccountTest" summary="Add Product by SKU from My Account" ticketId="MAGETWO-28259">
         <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation1">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="description" xsi:type="string">Two Simple products</data>
             <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductSimple::default</data>
             <data name="cartBlock" xsi:type="string">cart, cart</data>
@@ -28,6 +29,7 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertProductPresentInShoppingCart" />
         </variation>
         <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation3">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="description" xsi:type="string">Simple Out Of Stock</data>
             <data name="products" xsi:type="string">catalogProductSimple::out_of_stock</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>
@@ -93,6 +95,7 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
         </variation>
         <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation9">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="description" xsi:type="string">Configurable product</data>
             <data name="products" xsi:type="string">configurableProduct::default</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>

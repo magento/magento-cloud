@@ -4,6 +4,7 @@
  * See COPYING.txt for license details.
  */
 
+
 /** @var \Magento\Framework\Registry $registry */
 $registry = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get('Magento\Framework\Registry');
 
@@ -12,7 +13,7 @@ $registry->register('isSecureArea', true);
 
 /** @var $product \Magento\Catalog\Model\Product */
 $product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
-$product->load($product->getIdBySku('12345'));
+$product->load(150);
 if ($product->getId()) {
     $product->delete();
 }

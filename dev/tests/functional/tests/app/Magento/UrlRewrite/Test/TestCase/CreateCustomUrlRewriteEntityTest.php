@@ -13,27 +13,27 @@ use Magento\Mtf\TestCase\Injectable;
 
 /**
  * Preconditions:
- * 1. Create CMS Page
- * 2. Create subcategory
- * 3. Create simple product
+ * 1. Create CMS Page.
+ * 2. Create subcategory.
+ * 3. Create simple product.
  *
  * Steps:
- * 1. Login to backend as Admin
- * 2. Go to the Marketing-> SEO & Search->URL Rewrites
- * 3. Click "Add Url Rewrite" button
- * 4. Select "Custom" in Create URL Rewrite dropdown
- * 5. Fill data according to data set
- * 6. Save Rewrite
- * 7. Perform all assertions
+ * 1. Login to backend as Admin.
+ * 2. Go to the Marketing > SEO & Search > URL Rewrites.
+ * 3. Click "Add Url Rewrite" button.
+ * 4. Select "Custom" in Create URL Rewrite dropdown.
+ * 5. Fill data according to data set.
+ * 6. Save Rewrite.
+ * 7. Perform all assertions.
  *
- * @group URL_Rewrites_(PS)
+ * @group URL_Rewrites_(MX)
  * @ZephyrId MAGETWO-25474
  */
 class CreateCustomUrlRewriteEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'PS';
+    const DOMAIN = 'MX';
     /* end tags */
 
     /**

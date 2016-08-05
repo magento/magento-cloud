@@ -20,19 +20,29 @@ class AssertProductTierPriceMessage extends AbstractConstraint
      *
      * @param CheckoutCart $checkoutCart
      * @param array $requiredAttentionProducts
+     * @param array $orderOptions
      * @return void
      */
-    public function processAssert(CheckoutCart $checkoutCart, array $requiredAttentionProducts)
+    public function processAssert(CheckoutCart $checkoutCart, array $requiredAttentionProducts, array $orderOptions)
     {
         foreach ($requiredAttentionProducts as $product) {
             $messages = $checkoutCart->getAdvancedCheckoutCart()->getTierPriceMessages($product);
             $tierPrices = $product->getTierPrice();
-            $productPrice = $product->getPrice();
+            $applicableTierPrices = [];
+            $productPrices = [];
+            foreach ($tierPrices as $tierPrice) {
+                if ($tierPrice['price_qty'] > $orderOptions['qty']) {
+                    $applicableTierPrices[] = $tierPrice;
+                } else {
+                    $productPrices[] = $tierPrice['price'];
+                }
+            }
+            $productPrice = max($productPrices);
             \PHPUnit_Framework_Assert::assertTrue(
-                count($messages) === count($tierPrices),
+                count($messages) === count($applicableTierPrices),
                 'Wrong qty messages is displayed.'
             );
-            foreach ($tierPrices as $key => $tierPrice) {
+            foreach ($applicableTierPrices as $key => $tierPrice) {
                 $price = (bool)strpos($messages[$key], (string)$tierPrice['price']);
                 $priceQty = (bool)strpos($messages[$key], (string)$tierPrice['price_qty']);
                 $savePercent = (bool)strpos($messages[$key], $this->getSavePercent($productPrice, $tierPrice));

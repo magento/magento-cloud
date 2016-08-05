@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Framework\MessageQueue\PublisherInterface" type="Magento\Framework\MessageQueue\PublisherPool" />
+    <type name="Magento\Framework\Code\Generator">
+        <arguments>
+            <argument name="generatedEntities" xsi:type="array">
+                <item name="remote" xsi:type="string">\Magento\Framework\MessageQueue\Code\Generator\RemoteServiceGenerator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Communication\Config\CompositeReader">
+        <arguments>
+            <argument name="readers" xsi:type="array">
+                <item name="remoteServiceReader" xsi:type="array">
+                    <item name="reader" xsi:type="object">Magento\Framework\MessageQueue\Code\Generator\Config\RemoteServiceReader\Communication</item>
+                    <item name="sortOrder" xsi:type="string">5</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\MessageQueue\Config\CompositeReader">
+        <arguments>
+            <argument name="readers" xsi:type="array">
+                <item name="remoteServiceReader" xsi:type="array">
+                    <item name="reader" xsi:type="object">Magento\Framework\MessageQueue\Code\Generator\Config\RemoteServiceReader\MessageQueue</item>
+                    <item name="sortOrder" xsi:type="string">5</item>
+                </item>
+                <item name="xmlReader" xsi:type="array">
+                    <item name="reader" xsi:type="object">Magento\Framework\MessageQueue\Config\Reader\Xml</item>
+                    <item name="sortOrder" xsi:type="string">10</item>
+                </item>
+                <item name="envReader" xsi:type="array">
+                    <item name="reader" xsi:type="object">Magento\Framework\MessageQueue\Config\Reader\Env</item>
+                    <item name="sortOrder" xsi:type="string">20</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\MessageQueue\Config\Reader\Xml\CompositeConverter">
+        <arguments>
+            <argument name="converters" xsi:type="array">
+                <item name="deprecatedFormat" xsi:type="array">
+                    <item name="converter" xsi:type="object">Magento\Framework\MessageQueue\Config\Reader\Xml\Converter\DeprecatedFormat</item>
+                    <item name="sortOrder" xsi:type="string">5</item>
+                </item>
+                <item name="topicConfig" xsi:type="array">
+                    <item name="converter" xsi:type="object">Magento\Framework\MessageQueue\Config\Reader\Xml\Converter\TopicConfig</item>
+                    <item name="sortOrder" xsi:type="string">20</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

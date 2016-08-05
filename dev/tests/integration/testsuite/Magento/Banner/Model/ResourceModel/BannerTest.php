@@ -83,14 +83,14 @@ class BannerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @magentoDataFixture Magento/Banner/_files/banner_enabled_40_to_50_percent_off.php
      * @magentoDataFixture Magento/Banner/_files/banner_disabled_40_percent_off.php
+     * @magentoDataFixture Magento/Banner/_files/banner_enabled_40_to_50_percent_off.php
      */
     public function testGetSalesRuleRelatedBannerIds()
     {
-        /** @var \Magento\SalesRule\Model\Rule $rule */
-        $rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\SalesRule\Model\Rule');
-        $rule->load('40% Off on Large Orders', 'name');
+        $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
+        $registry = $objectManager->get('Magento\Framework\Registry');
+        $ruleId = $registry->registry('Magento/SalesRule/_files/cart_rule_40_percent_off');
 
         /** @var \Magento\Banner\Model\Banner $banner */
         $banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Banner\Model\Banner');
@@ -98,7 +98,7 @@ class BannerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             [$banner->getId()],
-            $this->_resourceModel->getSalesRuleRelatedBannerIds([$rule->getId()])
+            $this->_resourceModel->getSalesRuleRelatedBannerIds([$ruleId])
         );
     }
 

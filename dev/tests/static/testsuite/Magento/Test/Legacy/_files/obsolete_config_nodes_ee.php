@@ -20,4 +20,5 @@ return [
     '/config/global/skip_process_modules_updates' => 'Was replaced using di',
     '/config/global/magento_solr/supported_languages' => 'This configuration moved to Di configuration for \Magento\Solr\Helper\Data class',
     '/config/system/page_cache' => 'Module is eliminated. Use PageCache module instead',
+    '/config/system/cms/content/versioning' => 'Functionality is eliminated',
 ];

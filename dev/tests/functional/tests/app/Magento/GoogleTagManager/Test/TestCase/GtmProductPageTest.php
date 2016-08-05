@@ -29,7 +29,6 @@ class GtmProductPageTest extends Injectable
 {
     /* tags */
     const DOMAIN = 'MX';
-    const TEST_TYPE = 'acceptance_test';
     /* end tags */
 
     /**

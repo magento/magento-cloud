@@ -7,6 +7,7 @@
 namespace Magento\CustomerSegment\Test\Block\Adminhtml\Customersegment\Grid;
 
 use Magento\Backend\Test\Block\Widget\Grid;
+use Magento\Mtf\Client\Locator;
 
 /**
  * Class Chooser
@@ -22,6 +23,13 @@ class Chooser extends Grid
     protected $selectItem = 'tbody tr .checkbox';
 
     /**
+     * 'Select All' link
+     *
+     * @var string
+     */
+    protected $selectAll = '//table[@id="customersegment_grid_chooser_customersegmentGrid_table"]/thead/tr/th[1]/input';
+
+    /**
      * Chooser grid mapping
      *
      * @var array
@@ -31,4 +39,22 @@ class Chooser extends Grid
             'selector' => 'input[name="grid_segment_name"]',
         ],
     ];
+
+    /**
+     * Search for items and select all
+     *
+     * @param array $filter
+     * @throws \Exception
+     * @return void
+     */
+    public function searchAndSelect(array $filter)
+    {
+        $this->search($filter);
+        $selectAll = $this->_rootElement->find($this->selectAll, Locator::SELECTOR_XPATH, 'checkbox');
+        if ($selectAll->isVisible()) {
+            $selectAll->click();
+        } else {
+            throw new \Exception('Searched item was not found.');
+        }
+    }
 }

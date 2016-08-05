@@ -47,7 +47,7 @@ class Attribute extends Tab
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function fillFormTab(array $fields, SimpleElement $element = null)
+    public function setFieldsData(array $fields, SimpleElement $element = null)
     {
         $attributeKey = 1;
         foreach ($fields['attributes']['value'] as $attributeField) {
@@ -104,7 +104,7 @@ class Attribute extends Tab
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function getDataFormTab($fields = null, SimpleElement $element = null)
+    public function getFieldsData($fields = null, SimpleElement $element = null)
     {
         $fields = reset($fields);
         $formData = [];

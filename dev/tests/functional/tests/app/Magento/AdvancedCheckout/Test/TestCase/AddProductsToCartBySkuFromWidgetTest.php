@@ -8,7 +8,7 @@ namespace Magento\AdvancedCheckout\Test\TestCase;
 
 use Magento\AdvancedCheckout\Test\Fixture\AdvancedCheckoutWidget;
 use Magento\AdvancedCheckout\Test\Page\CustomerOrderSku;
-use Magento\Backend\Test\Page\Adminhtml\AdminCache;
+use Magento\PageCache\Test\Page\Adminhtml\AdminCache;
 use Magento\Checkout\Test\Page\CheckoutCart;
 use Magento\Cms\Test\Page\CmsIndex;
 use Magento\Customer\Test\Fixture\Customer;
@@ -40,6 +40,7 @@ class AddProductsToCartBySkuFromWidgetTest extends AbstractAdvancedCheckoutEntit
     /* tags */
     const MVP = 'no';
     const DOMAIN = 'CS';
+    const TEST_TYPE = 'extended_acceptance_test';
     /* end tags */
 
     /**

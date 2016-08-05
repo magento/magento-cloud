@@ -25,6 +25,7 @@ class MysqlProxy extends ResourceConnectionsMysqlProxy implements TestFramework\
                 $this->string,
                 $this->dateTime,
                 $this->logger,
+                $this->selectFactory,
                 $this->masterConfig
             );
         }

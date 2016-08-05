@@ -33,6 +33,7 @@ class CreateCatalogEventEntityFromCategoryPageTest extends Injectable
     /* tags */
     const MVP = 'no';
     const DOMAIN = 'MX';
+    const TEST_TYPE = 'extended_acceptance_test';
     /* end tags */
 
     /**

@@ -17,7 +17,7 @@ class PublisherConsumerTest extends \PHPUnit_Framework_TestCase
     const MAX_NUMBER_OF_TRIALS = 3;
 
     /**
-     * @var PublisherInterface
+     * @var \Magento\Framework\MessageQueue\PublisherInterface
      */
     protected $publisher;
 
@@ -30,17 +30,25 @@ class PublisherConsumerTest extends \PHPUnit_Framework_TestCase
     {
         $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
-        $objectManagerConfiguration = [
-            'Magento\Framework\MessageQueue\Config\Reader' => [
-                'arguments' => [
-                    'fileResolver' => ['instance' => 'Magento\MysqlMq\Config\Reader\FileResolver'],
-                ],
-            ],
-        ];
-        $this->objectManager->configure($objectManagerConfiguration);
-        /** @var \Magento\Framework\MessageQueue\Config\Data $queueConfig */
-        $queueConfig = $this->objectManager->get('Magento\Framework\MessageQueue\Config\Data');
-        $queueConfig->reset();
+        $configPath = __DIR__ . '/../etc/queue.xml';
+        $fileResolverMock = $this->getMock('Magento\Framework\Config\FileResolverInterface');
+        $fileResolverMock->expects($this->any())
+            ->method('get')
+            ->willReturn([$configPath => file_get_contents(($configPath))]);
+
+        /** @var \Magento\Framework\MessageQueue\Config\Reader\Xml $xmlReader */
+        $xmlReader = $this->objectManager->create(
+            '\Magento\Framework\MessageQueue\Config\Reader\Xml',
+            ['fileResolver' => $fileResolverMock]
+        );
+
+        $newData = $xmlReader->read();
+
+        /** @var \Magento\Framework\MessageQueue\Config\Data $configData */
+        $configData = $this->objectManager->get('Magento\Framework\MessageQueue\Config\Data');
+        $configData->reset();
+        $configData->merge($newData);
+
         $this->publisher = $this->objectManager->create('Magento\Framework\MessageQueue\PublisherInterface');
     }
 
@@ -54,7 +62,7 @@ class PublisherConsumerTest extends \PHPUnit_Framework_TestCase
         $this->consumeMessages('demoConsumerQueueOneWithException', PHP_INT_MAX);
 
         $objectManagerConfiguration = [
-            'Magento\Framework\MessageQueue\Config\Reader' => [
+            'Magento\Framework\MessageQueue\Config\Reader\Xml' => [
                 'arguments' => [
                     'fileResolver' => ['instance' => 'Magento\Framework\Config\FileResolverInterface'],
                 ],
@@ -155,7 +163,6 @@ class PublisherConsumerTest extends \PHPUnit_Framework_TestCase
         $requiredStringParam = 'Required value';
         $optionalIntParam = 44;
         $this->publisher->publish('test.schema.defined.by.method', [$object, $requiredStringParam, $optionalIntParam]);
-
         $outputPattern = "/Processed '{$object->getEntityId()}'; "
             . "Required param '{$requiredStringParam}'; Optional param '{$optionalIntParam}'/";
         $this->consumeMessages('delayedOperationConsumer', PHP_INT_MAX, 1, $outputPattern);

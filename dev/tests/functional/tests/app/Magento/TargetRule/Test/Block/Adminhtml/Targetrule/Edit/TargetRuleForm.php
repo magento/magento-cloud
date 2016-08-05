@@ -26,7 +26,7 @@ class TargetRuleForm extends FormTabs
      */
     public function fill(FixtureInterface $fixture, SimpleElement $element = null, array $replace = null)
     {
-        $tabs = $this->getFieldsByTabs($fixture);
+        $tabs = $this->getFixtureFieldsByContainers($fixture);
         if ($replace) {
             $tabs = $this->prepareData($tabs, $replace);
         }

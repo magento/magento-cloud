@@ -27,7 +27,7 @@ class Options extends Tab
      *
      * @var string
      */
-    protected $targetElement = '//*[@class="ui-sortable"]/tr[%d]';
+    protected $targetElement = '//*[contains(@class,"ui-sortable")]/tr[%d]';
 
     /**
      * Options value locator.
@@ -59,7 +59,7 @@ class Options extends Tab
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function fillFormTab(array $fields, SimpleElement $element = null)
+    public function setFieldsData(array $fields, SimpleElement $element = null)
     {
         $fixtureOptions = isset($fields['option']['value']) ? $fields['option']['value'] : [];
         foreach ($fixtureOptions as $key => $option) {

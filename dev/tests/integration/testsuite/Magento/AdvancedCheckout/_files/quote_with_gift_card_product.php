@@ -6,9 +6,11 @@
 
 require __DIR__ . '/../../../Magento/GiftCard/_files/gift_card.php';
 
+/** @var \Magento\Catalog\Api\ProductRepositoryInterface $productRepository */
+$productRepository = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
+    ->create('Magento\Catalog\Api\ProductRepositoryInterface');
 /** @var $product \Magento\Catalog\Model\Product */
-$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
-$product->load(1);
+$product = $productRepository->get('gift-card');
 
 $requestInfo = new \Magento\Framework\DataObject(
     [

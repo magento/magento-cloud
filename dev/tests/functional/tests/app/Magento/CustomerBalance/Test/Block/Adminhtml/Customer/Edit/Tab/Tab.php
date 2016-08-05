@@ -20,7 +20,7 @@ class Tab extends AbstractTab
      *
      * @var string
      */
-    protected $activeTab = './/div[@data-bind="visible: active" and not(contains(@style,"display: none"))]';
+    protected $activeTab = './/div[contains(@data-bind,"visible: active") and not(contains(@style,"display: none"))]';
 
     /**
      * Store credit balance XPath.
@@ -34,7 +34,7 @@ class Tab extends AbstractTab
      *
      * @var string
      */
-    protected $fieldSetStoreCredit = '#_customerbalancestorecreidt_fieldset';
+    protected $fieldSetStoreCredit = '#_customerbalancestorecredit_fieldset';
 
     /**
      * Fill data to fields on tab.
@@ -43,7 +43,7 @@ class Tab extends AbstractTab
      * @param SimpleElement|null $element
      * @return $this
      */
-    public function fillFormTab(array $fields, SimpleElement $element = null)
+    public function setFieldsData(array $fields, SimpleElement $element = null)
     {
         $this->waitForElementVisible($this->fieldSetStoreCredit);
         $data = $this->dataMapping($fields);

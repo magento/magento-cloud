@@ -34,7 +34,7 @@
         <field name="giftcard_amounts" is_required="0" group="product-details" />
         <field name="giftcard_type" is_required="1" group="product-details" />
         <field name="gift_wrapping_available" is_required="0" />
-        <field name="gift_wrapping_price" is_required="0" group="autosettings" />
+        <field name="gift_wrapping_price" is_required="0" group="gift-options" />
         <field name="is_redeemable" is_required="0" group="giftcard" />
         <field name="lifetime" is_required="0" group="giftcard" />
         <field name="open_amount_max" is_required="0" group="product-details" />
@@ -50,18 +50,18 @@
         <field name="price" source="Magento\Catalog\Test\Fixture\Product\Price" repository="Magento\GiftCard\Test\Repository\GiftCardProduct\Price" />
         <field name="checkout_data" group="null" repository="Magento\GiftCard\Test\Repository\GiftCardProduct\CheckoutData" />
         <field name="quantity_and_stock_status" is_required="0" group="product-details" />
-        <field name="visibility" is_required="0" group="autosettings" />
+        <field name="visibility" is_required="0" group="product-details" />
         <field name="special_price" is_required="0" group="advanced-pricing" />
-        <field name="description" is_required="0" group="product-details" />
-        <field name="short_description" is_required="0" group="autosettings" />
+        <field name="description" is_required="0" group="content" />
+        <field name="short_description" is_required="0" group="content" />
         <field name="category_ids" is_required="0" group="product-details" source="Magento\Catalog\Test\Fixture\Product\CategoryIds" />
         <field name="custom_options" is_required="0" group="customer-options" source="Magento\Catalog\Test\Fixture\Product\CustomOptions" repository="Magento\Catalog\Test\Repository\Product\CustomOptions" />
         <field name="status" is_required="0" group="product-details" />
         <field name="website_ids" group="websites" />
         <field name="id" />
         <field name="attribute_set_id" group="product-details" source="Magento\Catalog\Test\Fixture\Product\AttributeSetId" />
-        <field name="cross_sell_products" group="crosssells" source="Magento\Catalog\Test\Fixture\Product\RelatedProducts" />
-        <field name="up_sell_products" group="upsells" source="Magento\Catalog\Test\Fixture\Product\RelatedProducts" />
-        <field name="related_products" group="related-products" source="Magento\Catalog\Test\Fixture\Product\RelatedProducts" />
+        <field name="cross_sell_products" group="related" source="Magento\Catalog\Test\Fixture\Product\RelatedProducts" />
+        <field name="up_sell_products" group="related" source="Magento\Catalog\Test\Fixture\Product\RelatedProducts" />
+        <field name="related_products" group="related" source="Magento\Catalog\Test\Fixture\Product\RelatedProducts" />
     </fixture>
 </config>

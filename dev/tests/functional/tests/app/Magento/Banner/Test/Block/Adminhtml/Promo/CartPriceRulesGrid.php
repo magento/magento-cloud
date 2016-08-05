@@ -6,7 +6,7 @@
 
 namespace Magento\Banner\Test\Block\Adminhtml\Promo;
 
-use Magento\Backend\Test\Block\Widget\Grid;
+use Magento\Banner\Test\Block\Adminhtml\Grid;
 
 /**
  * Class CartPriceRulesGrid

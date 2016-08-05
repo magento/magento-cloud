@@ -58,9 +58,9 @@ class LiveCodeTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        $reportDir = Files::init()->getPathToSource() . '/dev/tests/static/report';
+        $reportDir = BP . '/dev/tests/static/report';
         if (!is_dir($reportDir)) {
-            mkdir($reportDir, 0770);
+            mkdir($reportDir);
         }
         self::$_reportFile = $reportDir . '/js_report.txt';
         @unlink(self::$_reportFile);

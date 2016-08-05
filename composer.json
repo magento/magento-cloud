@@ -2,7 +2,7 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.0.4",
+    "version": "2.1.0",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
@@ -14,9 +14,8 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.0.4",
+        "magento/magento-cloud-metapackage": "2.1.0",
         "composer/composer": "@alpha",
-        "magento/magento-cloud-configuration": "1.0.*",
         "colinmollenhour/credis": "1.6",
         "colinmollenhour/php-redis-session-abstract": "1.1"
     },
@@ -42,7 +41,7 @@
             "": "app/code/"
         },
         "files": [
-            "app/NonComposerComponentRegistration.php"
+            "app/etc/NonComposerComponentRegistration.php"
         ]
     },
     "autoload-dev": {

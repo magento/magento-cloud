@@ -20,7 +20,7 @@ class DataGrid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
     /**
      * @var string
      */
-    protected $assignSelector = '.data-grid-onoff-cell .switcher-label';
+    protected $assignSelector = '.data-grid-onoff-cell input';
 
     /**
      * @var string
@@ -47,6 +47,12 @@ class DataGrid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
         $submit->click();
 
         $this->waitLoader(); // Wait for search
+        $this->browser->waitUntil(
+            function () {
+                $element = $this->_rootElement->find($this->keywordSearchSubmit);
+                return $element->isVisible() == true ? true : null;
+            }
+        );
         $this->waitLoader(); // Wait for grid update
     }
 
@@ -57,14 +63,13 @@ class DataGrid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
     public function searchByNameAndSelect(array $filter)
     {
         $this->searchByKeyword($filter['name']);
-
         $rowItem = $this->getRow($filter);
-
-        if ($rowItem->isVisible()) {
-            $this->clickAssign($rowItem);
-        } else {
-            throw new \Exception('Searched item was not found \''.$filter['name'].'\'.');
-        }
+        $this->browser->waitUntil(
+            function () use ($rowItem) {
+                return $rowItem->isVisible() == true ? true : null;
+            }
+        );
+        $this->clickAssign($rowItem);
     }
 
     /**

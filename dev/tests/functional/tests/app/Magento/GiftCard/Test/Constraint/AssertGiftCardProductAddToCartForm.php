@@ -12,7 +12,7 @@ use Magento\Mtf\Client\BrowserInterface;
 use Magento\Mtf\Constraint\AbstractAssertForm;
 
 /**
- * Class AssertGiftCardProductAddToCartForm
+ * Assert that amount, name, email, message data on front-end equals passed from fixture.
  *
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
@@ -46,7 +46,7 @@ class AssertGiftCardProductAddToCartForm extends AbstractAssertForm
         $amountFixture = [];
 
         foreach ($giftcardAmounts as $amount) {
-            $amountFixture[] = $amount['price'];
+            $amountFixture[] = $amount['value'];
         }
 
         if (!empty($amountFixture)

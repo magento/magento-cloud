@@ -15,7 +15,6 @@ class DragDropTest extends Injectable
 {
     /* tags */
     const DOMAIN = 'MX';
-    const TEST_TYPE = 'acceptance_test';
     /* end tags */
 
     /**
@@ -56,6 +55,6 @@ class DragDropTest extends Injectable
         $this->catalogCategoryIndex->open();
         $this->catalogCategoryIndex->getTreeCategories()->selectCategory($category);
 
-        $this->merchandiser->getEditForm()->openTab('category_products');
+        $this->merchandiser->getEditForm()->openSection('category_products');
     }
 }

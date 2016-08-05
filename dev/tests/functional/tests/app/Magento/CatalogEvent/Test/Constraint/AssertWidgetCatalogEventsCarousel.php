@@ -6,7 +6,7 @@
 
 namespace Magento\CatalogEvent\Test\Constraint;
 
-use Magento\Backend\Test\Page\Adminhtml\AdminCache;
+use Magento\PageCache\Test\Page\Adminhtml\AdminCache;
 use Magento\Catalog\Test\Page\Category\CatalogCategoryView;
 use Magento\CatalogEvent\Test\Fixture\CatalogEventEntity;
 use Magento\Cms\Test\Page\CmsIndex;

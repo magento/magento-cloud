@@ -69,7 +69,7 @@ class Items extends \Magento\Rma\Test\Block\Adminhtml\Rma\Edit\Tab\Items
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function fillFormTab(array $fields, SimpleElement $element = null)
+    public function setFieldsData(array $fields, SimpleElement $element = null)
     {
         $items = isset($fields['items']['value']) ? $fields['items']['value'] : [];
 

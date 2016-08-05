@@ -6,13 +6,12 @@
 
 namespace Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\Tab\Merchandiser;
 
-use Magento\Backend\Test\Block\Widget\Tab;
-use Magento\VisualMerchandiser\Test\Block\Adminhtml\Widget\Grid\TileGrid;
+use Magento\Ui\Test\Block\Adminhtml\Section;
 
 /**
  * VisualMerchandiser tile view
  */
-class Tile extends Tab
+class Tile extends Section
 {
     /**
      * @var string
@@ -22,7 +21,7 @@ class Tile extends Tab
     /**
      * Returns role grid.
      *
-     * @return TileGrid
+     * @return \Magento\VisualMerchandiser\Test\Block\Adminhtml\Widget\Grid\TileGrid
      */
     public function getProductGrid()
     {

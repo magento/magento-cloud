@@ -222,7 +222,7 @@ class GiftCard extends Form
             $checkoutGiftCardOptions = $checkoutData['options']['giftcard_options'];
             // Replace option key to value
             $amountOptionKey = str_replace('option_key_', '', $checkoutGiftCardOptions['giftcard_amount']);
-            $checkoutGiftCardOptions['giftcard_amount'] = $giftcardAmounts[$amountOptionKey]['price'];
+            $checkoutGiftCardOptions['giftcard_amount'] = $giftcardAmounts[$amountOptionKey]['value'];
             $mapping = $this->dataMapping($checkoutGiftCardOptions);
             $this->_fill($mapping, $element);
         }

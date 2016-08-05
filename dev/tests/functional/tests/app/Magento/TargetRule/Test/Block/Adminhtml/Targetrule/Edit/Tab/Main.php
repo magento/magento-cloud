@@ -20,7 +20,7 @@ class Main extends \Magento\Backend\Test\Block\Widget\Tab
      * @param SimpleElement|null $element
      * @return array
      */
-    public function getDataFormTab($fields = null, SimpleElement $element = null)
+    public function getFieldsData($fields = null, SimpleElement $element = null)
     {
         $data = $this->dataMapping($fields);
         $customerSegmentValue = $this->_getData([$data['use_customer_segment']])[0];

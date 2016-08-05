@@ -40,7 +40,8 @@ class CustomerSegmentForm extends FormTabs
      */
     public function getNumberOfCustomersOnTabs()
     {
-        $customerLink = $this->_rootElement->find($this->tabs['matched_customers']['selector'], Locator::SELECTOR_CSS)
+        $customerLink = $this->_rootElement
+            ->find($this->getTabs()['matched_customers']['selector'], Locator::SELECTOR_CSS)
             ->getText();
         preg_match('`\((\d*?)\)`', $customerLink, $customersCount);
         return (int) $customersCount[1];
@@ -66,7 +67,7 @@ class CustomerSegmentForm extends FormTabs
      */
     public function fill(FixtureInterface $fixture, SimpleElement $element = null, array $replace = null)
     {
-        $tabs = $this->getFieldsByTabs($fixture);
+        $tabs = $this->getFixtureFieldsByContainers($fixture);
         if ($replace) {
             $tabs = $this->prepareData($tabs, $replace);
         }

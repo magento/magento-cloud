@@ -9,6 +9,7 @@
     <repository class="Magento\AdminGws\Test\Repository\AdminGwsRole">
         <dataset name="gws_role_sales">
             <field name="rolename" xsi:type="string">RoleName%isolation%</field>
+            <field name="current_password" xsi:type="string">%current_password%</field>
             <field name="gws_is_all" xsi:type="string">Custom</field>
             <field name="gws_store_groups" xsi:type="array">
                 <item name="dataset" xsi:type="string">default</item>

@@ -58,14 +58,11 @@ class SystemPackage
         $result = [];
         $systemPackages = [];
         $systemPackages = $this->getInstalledSystemPackages($systemPackages);
-        if (empty($systemPackages)) {
-            throw new \RuntimeException('System packages not found');
-        }
         foreach ($systemPackages as $systemPackage) {
             $versions = [];
             $systemPackageInfo = $this->infoCommand->run($systemPackage);
             if (!$systemPackageInfo) {
-                throw new \RuntimeException('System package not found');
+                throw new \RuntimeException("We cannot retrieve information on $systemPackage.");
             }
 
             $versions = $this->getSystemPackageVersions($systemPackageInfo, $versions);
@@ -90,6 +87,8 @@ class SystemPackage
         if (!in_array('magento/product-enterprise-edition', $systemPackages)) {
             $result = array_merge($this->getAllowedEnterpriseVersions($currentCE), $result);
         }
+        
+        $result = $this->formatPackages($result);
 
         return $result;
     }
@@ -150,6 +149,7 @@ class SystemPackage
     /**
      * @param array $systemPackages
      * @return array
+     * @throws \RuntimeException
      */
     public function getInstalledSystemPackages($systemPackages)
     {
@@ -169,6 +169,14 @@ class SystemPackage
                 }
             }
         }
+        if (empty($systemPackages)) {
+            throw new \RuntimeException(
+                'We\'re sorry, no components are available because you cloned the Magento 2 GitHub repository. ' .
+                'You must manually update components as discussed in the ' .
+                '<a href="http://devdocs.magento.com/guides/v2.0/install-gde/install/cli/dev_options.html">' .
+                'Installation Guide</a>.'
+            );
+        }
         return $systemPackages;
     }
 
@@ -186,6 +194,44 @@ class SystemPackage
         });
 
         return $enterpriseVersions;
+    }
+
+    /**
+     * Re-formats packages array to merge packages, sort versions and add technical data
+     *
+     * @param array $packages
+     * @return array
+     */
+    private function formatPackages($packages)
+    {
+        $versions = [];
+
+        foreach ($packages as $package) {
+            foreach ($package['versions'] as $version) {
+                $version['package'] = $package['package'];
+
+                if (preg_match('/^[0-9].[0-9].[0-9]$/', $version['id']) || strpos($version['name'], 'current')) {
+                    $version['stable'] = true;
+                } else {
+                    $version['name'] = $version['name'] . ' (unstable version)';
+                    $version['stable'] = false;
+                }
+
+                $versions[] = $version;
+            }
+        }
+
+        usort($versions, function ($versionOne, $versionTwo) {
+            if (version_compare($versionOne['id'], $versionTwo['id'], '==')) {
+                if ($versionOne['package'] === 'magento/product-community-edition') {
+                    return 1;
+                }
+                return 0;
+            }
+            return (version_compare($versionOne['id'], $versionTwo['id'], '<')) ? 1 : -1;
+        });
+
+        return $versions;
     }
 
     /**

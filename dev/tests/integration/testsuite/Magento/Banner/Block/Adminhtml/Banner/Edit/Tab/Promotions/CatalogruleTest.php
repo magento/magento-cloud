@@ -20,11 +20,13 @@ class CatalogruleTest extends \PHPUnit_Framework_TestCase
             'Magento\Banner\Block\Adminhtml\Banner\Edit\Tab\Promotions\Catalogrule'
         );
 
-        /** @var \Magento\CatalogRule\Model\Rule $catalogRule */
-        $catalogRule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CatalogRule\Model\Rule'
+        /** @var \Magento\CatalogRule\Model\ResourceModel\Rule\Collection $catalogRuleCollection */
+        $catalogRuleCollection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            '\Magento\CatalogRule\Model\ResourceModel\Rule\Collection'
         );
-        $catalogRule->load('Test Catalog Rule', 'name');
+
+        /** @var \Magento\CatalogRule\Model\Rule $catalogRule */
+        $catalogRule = $catalogRuleCollection->load()->getItemByColumnValue('name', 'Test Catalog Rule');
 
         $this->assertSame([$catalogRule->getId()], $block->getCollection()->getAllIds());
     }

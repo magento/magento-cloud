@@ -59,6 +59,7 @@ class CustomerEmulatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @magentoDataFixture Magento/Customer/_files/customer.php
+     * @magentoDataFixture Magento/Customer/_files/customer_address.php
      * @magentoConfigFixture current_store persistent/options/customer 1
      * @magentoConfigFixture current_store persistent/options/enabled 1
      * @magentoConfigFixture current_store persistent/options/wishlist 1

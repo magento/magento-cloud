@@ -7,7 +7,7 @@
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\TargetRule\Test\TestCase\UpdateTargetRuleEntityTest" summary="Update Target Rule" ticketId="MAGETWO-24807">
-        <variation name="UpdateTargetRuleEntityTestVariation1">
+        <variation name="TargetRule_Update_1">
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_related_products</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
@@ -27,7 +27,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentRelatedProducts" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductCrossSells" />
         </variation>
-        <variation name="UpdateTargetRuleEntityTestVariation2">
+        <variation name="TargetRule_Update_2">
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_up_sells</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
@@ -47,7 +47,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentUpSells" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductRelatedProducts" />
         </variation>
-        <variation name="UpdateTargetRuleEntityTestVariation3">
+        <variation name="TargetRule_Update_3">
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_cross_sells</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
@@ -56,7 +56,7 @@
             <data name="targetRule/data/is_active" xsi:type="string">Active</data>
             <data name="targetRule/data/apply_to" xsi:type="string">Related Products</data>
             <data name="targetRule/data/from_date/pattern" xsi:type="string">m/d/Y -5 days</data>
-            <data name="targetRule/data/to_date/pattern" xsi:type="string">m/d/Y -1 days</data>
+            <data name="targetRule/data/to_date/pattern" xsi:type="string">m/d/Y -2 days</data>
             <data name="targetRule/data/use_customer_segment" xsi:type="string">All</data>
             <data name="targetRule/data/customer_segment_ids" xsi:type="string">-</data>
             <data name="targetRule/data/conditions_serialized" xsi:type="string">[Category|is|%category_1%]</data>
@@ -67,7 +67,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentRelatedProducts" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentCrossSells" />
         </variation>
-        <variation name="UpdateTargetRuleEntityTestVariation4">
+        <variation name="TargetRule_Update_4">
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_cross_sells</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>

@@ -14,7 +14,6 @@ $model = $objectManager->create('Magento\Search\Model\Query');
 $model->setData(
     [
         'query_text' => 'Laptop',
-        'synonym_for' => 'Notebook',
         'is_active' => true,
         'store_id' => $storeManager->getStore()->getId(),
     ]

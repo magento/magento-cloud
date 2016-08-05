@@ -49,33 +49,19 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
         $this->_processor->getIndexer()->setScheduled(false);
         $this->assertFalse($this->_processor->getIndexer()->isScheduled());
 
-        $this->_product->setId(
-            4
-        )->setTypeId(
-            \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE
-        )->setAttributeSetId(
-            4
-        )->setWebsiteIds(
-            [1]
-        )->setSku(
-            'simple_product_4'
-        )->setName(
-            'Simple Product 4 Name'
-        )->setDescription(
-            'Simple Product 4 Full Description'
-        )->setShortDescription(
-            'Simple Product 4 Short Description'
-        )->setPrice(
-            1000
-        )->setTaxClassId(
-            2
-        )->setStockData(
-            ['use_config_manage_stock' => 1, 'qty' => 24, 'is_in_stock' => 1]
-        )->setVisibility(
-            \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH
-        )->setStatus(
-            \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED
-        )->save();
+        $this->_product->setTypeId(\Magento\Catalog\Model\Product\Type::TYPE_SIMPLE)
+            ->setAttributeSetId(4)
+            ->setWebsiteIds([1])
+            ->setSku('simple_product_4')
+            ->setName('Simple Product 4 Name')
+            ->setDescription('Simple Product 4 Full Description')
+            ->setShortDescription('Simple Product 4 Short Description')
+            ->setPrice(1000)
+            ->setTaxClassId(2)
+            ->setStockData(['use_config_manage_stock' => 1, 'qty' => 24, 'is_in_stock' => 1])
+            ->setVisibility(\Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH)
+            ->setStatus(\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
+            ->save();
 
         $this->_rule->load(1);
         $this->assertEquals(3, count($this->_rule->getMatchingProductIds()));

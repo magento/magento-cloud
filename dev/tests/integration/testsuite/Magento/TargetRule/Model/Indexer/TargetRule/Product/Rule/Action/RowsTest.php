@@ -49,35 +49,30 @@ class RowsTest extends \Magento\TestFramework\Indexer\TestCase
         $this->_processor->getIndexer()->setScheduled(false);
         $this->assertFalse($this->_processor->getIndexer()->isScheduled());
 
-        $this->_product->setId(
-            3
-        )->setTypeId(
-            \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE
-        )->setAttributeSetId(
-            4
-        )->setWebsiteIds(
-            [1]
-        )->setSku(
-            'simple_product_3'
-        )->setName(
-            'Simple Product 3 Name'
-        )->setDescription(
-            'Simple Product 3 Full Description'
-        )->setShortDescription(
-            'Simple Product 3 Short Description'
-        )->setPrice(
-            987.65
-        )->setTaxClassId(
-            2
-        )->setStockData(
-            ['use_config_manage_stock' => 1, 'qty' => 24, 'is_in_stock' => 1]
-        )->setVisibility(
-            \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH
-        )->setStatus(
-            \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED
-        )->save();
+        $this->_product->setTypeId(\Magento\Catalog\Model\Product\Type::TYPE_SIMPLE)
+            ->setAttributeSetId(4)
+            ->setWebsiteIds([1])
+            ->setSku('simple_product_3')
+            ->setName('Simple Product 3 Name')
+            ->setDescription('Simple Product 3 Full Description')
+            ->setShortDescription('Simple Product 3 Short Description')
+            ->setPrice(987.65)
+            ->setTaxClassId(2)
+            ->setStockData(['use_config_manage_stock' => 1, 'qty' => 24, 'is_in_stock' => 1])
+            ->setVisibility(\Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH)
+            ->setStatus(\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
+            ->save();
 
-        $this->_processor->reindexList([2, 3]);
+        /**
+         * @var \Magento\Catalog\Model\ResourceModel\Product $productRepository
+         */
+        $productRepository = $this->_product->getResource();
+        $this->_processor->reindexList(
+            [
+                $productRepository->getIdBySku('simple_product_2'),
+                $productRepository->getIdBySku('simple_product_3')
+            ]
+        );
 
         $this->_rule->load(1);
         $this->assertEquals(3, count($this->_rule->getMatchingProductIds()));

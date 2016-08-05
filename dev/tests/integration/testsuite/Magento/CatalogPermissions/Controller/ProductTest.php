@@ -22,19 +22,22 @@ class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testViewActionWithoutPriceAndCart()
     {
-        $this->dispatch('catalog/product/view/id/1');
-        /** @var $objectManager \Magento\TestFramework\ObjectManager */
-        $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
+        /** @var \Magento\Catalog\Model\ResourceModel\Product $resource */
+        $resource = $this->_objectManager->get('Magento\Catalog\Model\ResourceModel\Product');
+        $productId = $resource->getConnection()->fetchOne(
+            $resource->getConnection()->select()
+            ->from(['p' => $resource->getTable('catalog_product_entity')], ['entity_id'])
+            ->where('sku = ?', 'simple_product_1')
+        );
+        $this->dispatch('catalog/product/view/id/' . $productId);
 
         /** @var $currentProduct \Magento\Catalog\Model\Product */
-        $currentProduct = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+        $currentProduct = $this->_objectManager->get('Magento\Framework\Registry')->registry('current_product');
         $this->assertInstanceOf('Magento\Catalog\Model\Product', $currentProduct);
-        $this->assertEquals(1, $currentProduct->getId());
+        $this->assertEquals($productId, $currentProduct->getId());
 
-        $lastViewedProductId = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Catalog\Model\Session'
-        )->getLastViewedProductId();
-        $this->assertEquals(1, $lastViewedProductId);
+        $lastViewedProductId = $this->_objectManager->get('Magento\Catalog\Model\Session')->getLastViewedProductId();
+        $this->assertEquals($productId, $lastViewedProductId);
 
         $responseBody = $this->getResponse()->getBody();
         /* Product info */

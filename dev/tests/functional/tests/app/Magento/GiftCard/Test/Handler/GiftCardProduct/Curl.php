@@ -7,20 +7,17 @@
 namespace Magento\GiftCard\Test\Handler\GiftCardProduct;
 
 use Magento\Catalog\Test\Handler\CatalogProductSimple\Curl as ProductCurl;
+use Magento\GiftCard\Test\Fixture\GiftCardProduct;
 use Magento\Mtf\Fixture\FixtureInterface;
 use Magento\Mtf\Config\DataInterface;
 use Magento\Mtf\System\Event\EventManagerInterface;
-use Zend\EventManager\EventManager;
 
 /**
- * Class Curl
- * Create new gift card product via curl
+ * Create new gift card product via curl.
  */
 class Curl extends ProductCurl implements GiftCardProductInterface
 {
     /**
-     * Constructor
-     *
      * @param DataInterface $configuration
      * @param EventManagerInterface $eventManager
      */
@@ -72,19 +69,20 @@ class Curl extends ProductCurl implements GiftCardProductInterface
     }
 
     /**
-     * Prepare POST data for creating product request
+     * Prepare POST data for creating product request.
      *
      * @param FixtureInterface $fixture
-     * @param string|null $prefix [optional]
      * @return array
      */
-    protected function prepareData(FixtureInterface $fixture, $prefix = null)
+    public function prepareData(FixtureInterface $fixture)
     {
-        $data = parent::prepareData($fixture, $prefix);
-        if (isset($data[$prefix]['giftcard_amounts'])) {
-            foreach ($data[$prefix]['giftcard_amounts'] as $key => $amounts) {
+        /** @var GiftCardProduct $fixture */
+        $data = parent::prepareData($fixture);
+
+        if (isset($data['product']['giftcard_amounts'])) {
+            foreach ($data['product']['giftcard_amounts'] as $key => $amounts) {
                 if (!isset($amounts['website_id'])) {
-                    $data[$prefix]['giftcard_amounts'][$key]['website_id'] = 0;
+                    $data['product']['giftcard_amounts'][$key]['website_id'] = 0;
                 }
             }
         }

@@ -5,11 +5,33 @@
  */
 
 $installer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Setup\CategorySetup');
+$objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
+$productRepository = $objectManager->create(
+    'Magento\Catalog\Api\ProductRepositoryInterface'
+);
+
+$categoryLinkRepository = $objectManager->create(
+    'Magento\Catalog\Api\CategoryLinkRepositoryInterface',
+    [
+        'productRepository' => $productRepository
+    ]
+);
+
+/** @var Magento\Catalog\Api\CategoryLinkManagementInterface $linkManagement */
+$categoryLinkManagement = $objectManager->create(
+    'Magento\Catalog\Api\CategoryLinkManagementInterface',
+    [
+        'productRepository' => $productRepository,
+        'categoryLinkRepository' => $categoryLinkRepository
+    ]
+);
 /** @var $product \Magento\Catalog\Model\Product */
 $product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
 $product->setTypeId(
     \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE
+)->setId(
+    150
 )->setAttributeSetId(
     $installer->getAttributeSetId('catalog_product', 'Default')
 )->setStoreId(
@@ -26,10 +48,12 @@ $product->setTypeId(
     56
 )->setStockData(
     ['use_config_manage_stock' => 0]
-)->setCategoryIds(
-    [6]
 )->setVisibility(
     \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH
 )->setStatus(
     \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED
 )->save();
+$categoryLinkManagement->assignProductToCategories(
+    $product->getSku(),
+    [6]
+);

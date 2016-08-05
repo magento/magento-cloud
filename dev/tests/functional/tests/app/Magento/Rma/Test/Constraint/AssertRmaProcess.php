@@ -38,7 +38,7 @@ class AssertRmaProcess extends AbstractAssertRmaOnBackend
             $data['product'] = $orderItems[$key]->getName();
             $process[$key] = $data;
         }
-        $rmaView->getRmaForm()->getTab('items')->fillFormTab(['items' => ['value' => $process]]);
+        $rmaView->getRmaForm()->getTab('items')->setFieldsData(['items' => ['value' => $process]]);
         $rmaView->getPageActions()->saveAndContinue();
 
         $pageMessage = $rmaIndex->getMessagesBlock()->getSuccessMessage();
@@ -51,7 +51,7 @@ class AssertRmaProcess extends AbstractAssertRmaOnBackend
         );
 
         $rmaView->getRmaForm()->openTab('items');
-        $pageItems = $rmaView->getRmaForm()->getTab('items')->getDataFormTab()['items'];
+        $pageItems = $rmaView->getRmaForm()->getTab('items')->getFieldsData()['items'];
         $this->verifyItems($process, $pageItems);
     }
 

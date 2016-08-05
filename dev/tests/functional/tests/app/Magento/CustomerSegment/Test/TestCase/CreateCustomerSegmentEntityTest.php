@@ -37,7 +37,7 @@ class CreateCustomerSegmentEntityTest extends Injectable
     /* tags */
     const MVP = 'no';
     const DOMAIN = 'CS';
-    const TEST_TYPE = 'acceptance_test';
+    const TEST_TYPE = 'acceptance_test, extended_acceptance_test';
     /* end tags */
 
     /**
@@ -77,15 +77,16 @@ class CreateCustomerSegmentEntityTest extends Injectable
      * @param CustomerSegment $customerSegment
      * @param CustomerSegment $customerSegmentConditions
      * @param bool $isAddCustomerBalance
+     * @param CustomerSegment|null $customerSegment2
      */
     public function test(
         FixtureFactory $fixtureFactory,
         Customer $customer,
         CustomerSegment $customerSegment,
         CustomerSegment $customerSegmentConditions,
-        $isAddCustomerBalance = false
+        $isAddCustomerBalance = false,
+        CustomerSegment $customerSegment2 = null
     ) {
-        //Preconditions
         $customer->persist();
         if ($isAddCustomerBalance) {
             $customerBalance = $fixtureFactory->createByCode(
@@ -94,7 +95,9 @@ class CreateCustomerSegmentEntityTest extends Injectable
             );
             $customerBalance->persist();
         }
-
+        if ($customerSegment2) {
+            $customerSegment2->persist();
+        }
         //Prepare data
         $address = $customer->getDataFieldConfig('address')['source']->getAddresses()[0];
         $replace = [

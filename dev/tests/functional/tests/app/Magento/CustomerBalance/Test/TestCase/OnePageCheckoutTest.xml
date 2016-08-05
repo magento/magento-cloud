@@ -24,6 +24,7 @@
             <data name="orderButtonsAvailable" xsi:type="string">Back, Reorder, Cancel, Send Email, Hold, Invoice, Ship, Edit</data>
             <data name="configData" xsi:type="string">banktransfer</data>
             <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertMinicartEmpty" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
@@ -47,6 +48,7 @@
             <data name="orderButtonsAvailable" xsi:type="string">Back, Cancel, Send Email, Hold, Reorder, Invoice, Edit</data>
             <data name="configData" xsi:type="string">purchaseorder</data>
             <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertMinicartEmpty" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />

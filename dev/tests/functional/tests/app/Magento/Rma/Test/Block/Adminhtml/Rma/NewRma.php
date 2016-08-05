@@ -28,7 +28,7 @@ class NewRma extends FormTabs
      */
     public function fill(FixtureInterface $fixture, SimpleElement $element = null)
     {
-        $tabs = $this->getFieldsByTabs($fixture);
+        $tabs = $this->getFixtureFieldsByContainers($fixture);
         if (isset($tabs['items']['items']['value'])) {
             $orderItems = $this->getOrderItems($fixture);
             $tabs['items']['items']['value'] = $this->prepareItems($orderItems, $tabs['items']['items']['value']);

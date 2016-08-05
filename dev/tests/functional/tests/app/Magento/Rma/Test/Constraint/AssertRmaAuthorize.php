@@ -38,7 +38,7 @@ class AssertRmaAuthorize extends AbstractAssertRmaOnBackend
             $data['product'] = $orderItems[$key]->getName();
             $authorize[$key] = $data;
         }
-        $rmaView->getRmaForm()->getTab('items')->fillFormTab(['items' => ['value' => $authorize]]);
+        $rmaView->getRmaForm()->getTab('items')->setFieldsData(['items' => ['value' => $authorize]]);
         $rmaView->getPageActions()->saveAndContinue();
 
         $pageMessage = $rmaIndex->getMessagesBlock()->getSuccessMessage();
@@ -51,7 +51,7 @@ class AssertRmaAuthorize extends AbstractAssertRmaOnBackend
         );
 
         $rmaView->getRmaForm()->openTab('items');
-        $pageItems = $rmaView->getRmaForm()->getTab('items')->getDataFormTab()['items'];
+        $pageItems = $rmaView->getRmaForm()->getTab('items')->getFieldsData()['items'];
         $this->verifyItems($authorize, $pageItems);
     }
 

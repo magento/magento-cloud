@@ -36,6 +36,7 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
         </variation>
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation4">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="description" xsi:type="string">Product, for which Qty exceeds maximum allowed in cart</data>
             <data name="products" xsi:type="string">catalogProductSimple::simple_with_cart_limits</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>

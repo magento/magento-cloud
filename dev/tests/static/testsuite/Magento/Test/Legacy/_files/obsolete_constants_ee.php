@@ -162,5 +162,9 @@ return [
         'XML_PATH_REBUILD_ON_PRODUCT_SAVE',
         'Magento\VisualMerchandiser\Observer\CatalogProductSaveAfter',
         'Magento\VisualMerchandiser\Model\Category\Builder::XML_PATH_REBUILD_ON_PRODUCT_SAVE'
+    ],
+    [
+        'CALLBACK',
+        'Magento\Framework\MessageQueue\ConsumerConfiguration'
     ]
 ];

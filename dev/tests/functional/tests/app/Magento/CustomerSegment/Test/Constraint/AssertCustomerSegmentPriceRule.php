@@ -93,7 +93,7 @@ class AssertCustomerSegmentPriceRule extends AbstractConstraint
 
         // Assert steps
         $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         )->run();
         $checkoutCart->open();
@@ -102,12 +102,15 @@ class AssertCustomerSegmentPriceRule extends AbstractConstraint
         $this->catalogProductView->getViewBlock()->clickAddToCart();
         $this->catalogProductView->getMessagesBlock()->waitSuccessMessage();
         $checkoutCart->open();
+        $checkoutCart->getCartBlock()->waitCartContainerLoading();
+        $checkoutCart->getShippingBlock()->waitForCommonShippingPriceBlock();
+        $checkoutCart->getShippingBlock()->waitForUpdatedShippingMethods();
         $checkoutCart->getTotalsBlock()->waitForUpdatedTotals();
 
         \PHPUnit_Framework_Assert::assertEquals(
             $prices['grandTotal'],
             $checkoutCart->getTotalsBlock()->getGrandTotal(),
-            'Grand total in shopping cart is not corresponded to Catalog Price Rule configuration.'
+            'Grand total in shopping cart is not corresponded to Cart Price Rule configuration.'
         );
     }
 

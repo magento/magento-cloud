@@ -6,7 +6,7 @@
 
 namespace Magento\Banner\Test\Block\Adminhtml\Banner;
 
-use Magento\Backend\Test\Block\Widget\Grid as AbstractGrid;
+use Magento\Banner\Test\Block\Adminhtml\Grid as AbstractGrid;
 
 /**
  * Class Grid

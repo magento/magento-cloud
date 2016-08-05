@@ -10,6 +10,8 @@ use Magento\Mtf\Constraint\AbstractConstraint;
 use Magento\Catalog\Test\Fixture\Category;
 use Magento\Mtf\Fixture\FixtureInterface;
 use Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\Tab\Merchandiser;
+use Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\Tab\Merchandiser\Grid;
+use Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\Tab\Merchandiser\Tile;
 use Magento\VisualMerchandiser\Test\Block\Adminhtml\Widget\Grid\ProductGrid;
 use Magento\VisualMerchandiser\Test\Block\Adminhtml\Widget\Grid\TileGrid;
 
@@ -21,7 +23,7 @@ class AssertProductsNotInCategory extends AbstractConstraint
     protected $products;
 
     /**
-     * Assert
+     * Assert that the product is not in the category.
      *
      * @param Category $category
      * @param Merchandiser $merchandiser
@@ -33,17 +35,20 @@ class AssertProductsNotInCategory extends AbstractConstraint
     ) {
         $this->products = $category->getDataFieldConfig('category_products')['source']->getProducts();
 
-        $tab = $merchandiser->openTab('mode_grid')->getTab('mode_grid');
-        $this->processViewAssert($tab);
+        $merchandiser->openTab('mode_grid');
+        $this->processViewAssert($merchandiser->getTab('mode_grid'));
 
-        $tab = $merchandiser->openTab('mode_tile')->getTab('mode_tile');
-        $this->processViewAssert($tab);
+        $merchandiser->openTab('mode_tile');
+        $this->processViewAssert($merchandiser->getTab('mode_tile'));
     }
 
     /**
-     * @param \Magento\Backend\Test\Block\Widget\Tab $view
+     * Assert for the given view.
+     *
+     * @param Grid|Tile $view
+     * @return void
      */
-    protected function processViewAssert(\Magento\Backend\Test\Block\Widget\Tab $view)
+    protected function processViewAssert($view)
     {
         /* @var ProductGrid|TileGrid $grid */
         $grid = $view->getProductGrid();

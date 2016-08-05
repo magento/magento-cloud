@@ -26,6 +26,7 @@
             <constraint name="Magento\Rma\Test\Constraint\AssertRmaOnFrontendForCustomer" />
         </variation>
         <variation name="CreateRmaEntityOnBackendTestVariation2">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="configData" xsi:type="string">rma_enable_on_frontend</data>
             <data name="rma/data/order_id/dataset" xsi:type="string">default</data>
             <data name="rma/data/order_id/data/customer_id/dataset" xsi:type="string">default</data>

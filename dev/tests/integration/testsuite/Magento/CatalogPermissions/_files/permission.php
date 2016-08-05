@@ -4,7 +4,30 @@
  * See COPYING.txt for license details.
  */
 
+\Magento\TestFramework\Helper\Bootstrap::getInstance()->reinitialize();
 /** @var $permission \Magento\CatalogPermissions\Model\Permission */
+$objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
+
+$productRepository = $objectManager->create(
+    'Magento\Catalog\Api\ProductRepositoryInterface'
+);
+
+$categoryLinkRepository = $objectManager->create(
+    'Magento\Catalog\Api\CategoryLinkRepositoryInterface',
+    [
+        'productRepository' => $productRepository
+    ]
+);
+
+/** @var Magento\Catalog\Api\CategoryLinkManagementInterface $linkManagement */
+$categoryLinkManagement = $objectManager->create(
+    'Magento\Catalog\Api\CategoryLinkManagementInterface',
+    [
+        'productRepository' => $productRepository,
+        'categoryLinkRepository' => $categoryLinkRepository
+    ]
+);
+
 $permission = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
     'Magento\CatalogPermissions\Model\Permission'
 );
@@ -53,7 +76,7 @@ $product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('
 $product->setTypeId(
     \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE
 )->setId(
-    5
+    155
 )->setAttributeSetId(
     $installer->getAttributeSetId('catalog_product', 'Default')
 )->setStoreId(
@@ -63,7 +86,7 @@ $product->setTypeId(
 )->setName(
     'Simple Product Two Permission Test'
 )->setSku(
-    '12345'
+    '12345-1'
 )->setPrice(
     45.67
 )->setWeight(
@@ -77,3 +100,7 @@ $product->setTypeId(
 )->setStatus(
     \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED
 )->save();
+$categoryLinkManagement->assignProductToCategories(
+    $product->getSku(),
+    [6]
+);

@@ -85,11 +85,14 @@ class ProductRepositoryInterfaceTest extends WebapiAbstract
             $this->_webApiCall($serviceInfo, ['sku' => $sku]) : $this->_webApiCall($serviceInfo);
     }
 
-
+    /**
+     *
+     */
     public function testGiftCard()
     {
         // Create a gift card product with default info
         $giftCardAmountData = [
+            "attribute_id" => 1,
             "website_id" => "0",
             "value" => 100.12,
             "website_value" => 100.12
@@ -103,8 +106,10 @@ class ProductRepositoryInterfaceTest extends WebapiAbstract
             ProductInterface::PRICE => 100.12,
             ProductInterface::STATUS => 1,
             ProductInterface::ATTRIBUTE_SET_ID => 4,
+            ProductInterface::EXTENSION_ATTRIBUTES_KEY => [
+                'giftcard_amounts' => [$giftCardAmountData]
+            ],
             'custom_attributes' => [
-                ['attribute_code' => 'giftcard_amounts', 'value' => [$giftCardAmountData]],
                 ['attribute_code' => 'description', 'value' => 'Description'],
                 ['attribute_code' => 'giftcard_type', 'value' => 0],
             ]
@@ -114,18 +119,14 @@ class ProductRepositoryInterfaceTest extends WebapiAbstract
         $response = $this->getProduct($productData[ProductInterface::SKU]);
         $this->assertArrayHasKey('custom_attributes', $response);
         $customAttributes = $response['custom_attributes'];
-        $this->assertNotNull($customAttributes, "CREATE: expected to have custom attributes");
-        $hasAmounts = false;
-        foreach ($customAttributes as $customAttribute) {
-            if ($customAttribute['attribute_code'] == 'giftcard_amounts') {
-                $hasAmounts = true;
-                $this->assertEquals($giftCardAmountData, $customAttribute['value'][0]);
-            }
-        }
-        $this->assertNotFalse($hasAmounts);
+        $this->stepCustomAttributeChecks(
+            $customAttributes,
+            $giftCardAmountData
+        );
 
         // Update a gift card product
         $giftCardAmountData = [
+            "attribute_id" => 1,
             "website_id" => "0",
             "value" => 374.89,
             "website_value" => 374.89
@@ -139,8 +140,10 @@ class ProductRepositoryInterfaceTest extends WebapiAbstract
             ProductInterface::PRICE => 374.89,
             ProductInterface::STATUS => 1,
             ProductInterface::ATTRIBUTE_SET_ID => 4,
+            ProductInterface::EXTENSION_ATTRIBUTES_KEY => [
+                'giftcard_amounts' => [$giftCardAmountData]
+            ],
             'custom_attributes' => [
-                ['attribute_code' => 'giftcard_amounts', 'value' => [$giftCardAmountData]],
                 ['attribute_code' => 'description', 'value' => 'Description'],
                 ['attribute_code' => 'giftcard_type', 'value' => 0],
             ]
@@ -150,18 +153,45 @@ class ProductRepositoryInterfaceTest extends WebapiAbstract
         $response = $this->getProduct($productData[ProductInterface::SKU]);
         $this->assertArrayHasKey('custom_attributes', $response);
         $customAttributes = $response['custom_attributes'];
-        $this->assertNotNull($customAttributes, "CREATE: expected to have custom attributes");
-        $hasAmounts = false;
-        foreach ($customAttributes as $customAttribute) {
-            if ($customAttribute['attribute_code'] == 'giftcard_amounts') {
-                $hasAmounts = true;
-                $this->assertEquals($giftCardAmountData, $customAttribute['value'][0]);
-            }
-        }
-        $this->assertNotFalse($hasAmounts);
+        $this->stepCustomAttributeChecks(
+            $customAttributes,
+            $giftCardAmountData
+        );
 
         // Delete a gift card product
         $response = $this->deleteProduct($productData[ProductInterface::SKU]);
         $this->assertTrue($response);
+    }
+
+    /**
+     * @param mixed $customAttributes
+     * @param mixed $giftCardAmountData
+     * @return void
+     */
+    protected function stepCustomAttributeChecks($customAttributes, $giftCardAmountData)
+    {
+        $this->assertNotNull(
+            $customAttributes,
+            "CREATE: expected to have custom attributes"
+        );
+        $hasAmounts = false;
+        foreach ($customAttributes as $customAttribute) {
+            if ($customAttribute['attribute_code'] == 'giftcard_amounts') {
+                $hasAmounts = true;
+                $this->assertEquals(
+                    $giftCardAmountData['website_id'],
+                    $customAttribute['value'][0]['website_id']
+                );
+                $this->assertEquals(
+                    $giftCardAmountData['value'],
+                    $customAttribute['value'][0]['value']
+                );
+                $this->assertEquals(
+                    $giftCardAmountData['website_value'],
+                    $customAttribute['value'][0]['website_value']
+                );
+            }
+        }
+        $this->assertNotFalse($hasAmounts);
     }
 }

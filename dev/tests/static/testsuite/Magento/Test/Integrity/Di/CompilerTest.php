@@ -9,12 +9,16 @@ namespace Magento\Test\Integrity\Di;
 
 use Magento\Framework\Api\Code\Generator\Mapper;
 use Magento\Framework\Api\Code\Generator\SearchResults;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Component\ComponentRegistrar;
+use Magento\Framework\Interception\Code\InterfaceValidator;
 use Magento\Framework\ObjectManager\Code\Generator\Converter;
 use Magento\Framework\ObjectManager\Code\Generator\Factory;
 use Magento\Framework\ObjectManager\Code\Generator\Repository;
 use Magento\Framework\Api\Code\Generator\ExtensionAttributesInterfaceGenerator;
 use Magento\Framework\Api\Code\Generator\ExtensionAttributesGenerator;
 use Magento\Framework\App\Utility\Files;
+use Magento\TestFramework\Integrity\PluginValidator;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -42,11 +46,6 @@ class CompilerTest extends \PHPUnit_Framework_TestCase
     protected $_compilationDir;
 
     /**
-     * @var string
-     */
-    protected $_tmpDir;
-
-    /**
      * @var \Magento\Framework\ObjectManager\Config\Mapper\Dom()
      */
     protected $_mapper;
@@ -59,28 +58,21 @@ class CompilerTest extends \PHPUnit_Framework_TestCase
     /**
      * Class arguments reader
      *
-     * @var \Magento\Framework\Interception\Code\InterfaceValidator
+     * @var PluginValidator
      */
     protected $pluginValidator;
 
     protected function setUp()
     {
         $this->_shell = new \Magento\Framework\Shell(new \Magento\Framework\Shell\CommandRenderer());
-        $basePath = Files::init()->getPathToSource();
+        $basePath = BP;
         $basePath = str_replace('\\', '/', $basePath);
 
+        $directoryList = new DirectoryList($basePath);
+        $this->_generationDir = $directoryList->getPath(DirectoryList::GENERATION);
+        $this->_compilationDir = $directoryList->getPath(DirectoryList::DI);
 
-        $this->_tmpDir = realpath(__DIR__) . '/tmp';
-        $this->_generationDir = $this->_tmpDir . '/generation';
-        if (!file_exists($this->_generationDir)) {
-            mkdir($this->_generationDir, 0770, true);
-        }
-        $this->_compilationDir = $this->_tmpDir . '/di';
-        if (!file_exists($this->_compilationDir)) {
-            mkdir($this->_compilationDir, 0770, true);
-        }
-
-        $this->_command = 'php ' . $basePath . '/bin/magento setup:di:compile-multi-tenant --generation=%s --di=%s';
+        $this->_command = 'php ' . $basePath . '/bin/magento setup:di:compile';
 
         $booleanUtils = new \Magento\Framework\Stdlib\BooleanUtils();
         $constInterpreter = new \Magento\Framework\Data\Argument\Interpreter\Constant();
@@ -113,15 +105,7 @@ class CompilerTest extends \PHPUnit_Framework_TestCase
         $this->_validator->add(new \Magento\Framework\Code\Validator\TypeDuplication());
         $this->_validator->add(new \Magento\Framework\Code\Validator\ArgumentSequence());
         $this->_validator->add(new \Magento\Framework\Code\Validator\ConstructorArgumentTypes());
-        $this->pluginValidator = new \Magento\Framework\Interception\Code\InterfaceValidator();
-    }
-
-    protected function tearDown()
-    {
-        $filesystem = new \Magento\Framework\Filesystem\Driver\File();
-        if ($filesystem->isExists($this->_tmpDir)) {
-            $filesystem->deleteDirectory($this->_tmpDir);
-        }
+        $this->pluginValidator = new PluginValidator(new InterfaceValidator());
     }
 
     /**
@@ -195,25 +179,27 @@ class CompilerTest extends \PHPUnit_Framework_TestCase
      */
     protected function _phpClassesDataProvider()
     {
-        $basePath = Files::init()->getPathToSource();
-
-        $libPath = 'lib\\internal';
-        $appPath = 'app\\code';
-        $generationPathPath = str_replace('/', '\\', str_replace($basePath . '/', '', $this->_generationDir));
+        $generationPath = str_replace('/', '\\', $this->_generationDir);
 
         $files = Files::init()->getPhpFiles(Files::INCLUDE_APP_CODE | Files::INCLUDE_LIBS);
 
-        $patterns = [
-            '/' . preg_quote($libPath) . '/',
-            '/' . preg_quote($appPath) . '/',
-            '/' . preg_quote($generationPathPath) . '/',
-        ];
-        $replacements = ['', '', ''];
+        $patterns = ['/' . preg_quote($generationPath) . '/',];
+        $replacements = [''];
+
+        $componentRegistrar = new ComponentRegistrar();
+        foreach ($componentRegistrar->getPaths(ComponentRegistrar::MODULE) as $moduleName => $modulePath) {
+            $patterns[] = '/' . preg_quote(str_replace('/', '\\', $modulePath)) . '/';
+            $replacements[] = '\\' . str_replace('_', '\\', $moduleName);
+        }
+
+        foreach ($componentRegistrar->getPaths(ComponentRegistrar::LIBRARY) as $libPath) {
+            $patterns[] = '/' . preg_quote(str_replace('/', '\\', $libPath)) . '/';
+            $replacements[] = '\\Magento\\Framework';
+        }
 
         /** Convert file names into class name format */
         $classes = [];
         foreach ($files as $file) {
-            $file = str_replace($basePath . '/', '', $file);
             $file = str_replace('/', '\\', $file);
             $filePath = preg_replace($patterns, $replacements, $file);
             $className = substr($filePath, 0, -4);
@@ -258,10 +244,7 @@ class CompilerTest extends \PHPUnit_Framework_TestCase
         $parent = $class->getParentClass();
         $file = false;
         if ($parent) {
-            $basePath = Files::init()->getPathToSource();
             $file = str_replace('\\', DIRECTORY_SEPARATOR, $parent->getFileName());
-            $basePath = str_replace('\\', DIRECTORY_SEPARATOR, $basePath);
-            $file = str_replace($basePath . DIRECTORY_SEPARATOR, '', $file);
         }
         /** Prevent analysis of non Magento classes  */
         if ($parent && in_array($file, $allowedFiles)) {
@@ -412,8 +395,9 @@ class CompilerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCompiler()
     {
+        $this->markTestSkipped('MAGETWO-52570');
         try {
-            $this->_shell->execute($this->_command, [$this->_generationDir, $this->_compilationDir]);
+            $this->_shell->execute($this->_command);
         } catch (\Magento\Framework\Exception\LocalizedException $exception) {
             $this->fail($exception->getPrevious()->getMessage());
         }

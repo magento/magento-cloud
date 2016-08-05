@@ -36,7 +36,7 @@ class Items extends \Magento\Backend\Test\Block\Widget\Tab
      * @param SimpleElement|null $element
      * @return $this
      */
-    public function fillFormTab(array $fields, SimpleElement $element = null)
+    public function setFieldsData(array $fields, SimpleElement $element = null)
     {
         $items = isset($fields['items']['value']) ? $fields['items']['value'] : [];
         $context = $element ? $element : $this->_rootElement;
@@ -57,7 +57,7 @@ class Items extends \Magento\Backend\Test\Block\Widget\Tab
      * @param SimpleElement|null $element
      * @return array
      */
-    public function getDataFormTab($fields = null, SimpleElement $element = null)
+    public function getFieldsData($fields = null, SimpleElement $element = null)
     {
         if (null === $fields || isset($fields['items'])) {
             $context = $element ? $element : $this->_rootElement;
