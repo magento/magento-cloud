@@ -36,11 +36,11 @@ This release requires you to make some manual changes to the following files, wh
 Changes are discussed in the sections that follow.
 
 ### `.magento.app.yaml`
-Open `.magento.app.yaml` in a text editor and update the `deploy` and `crons` sections as follows:
+Open `.magento.app.yaml` in a text editor and update the `build` section (which is nested in the `deploy` section) and `crons` sections as follows:
 
-#### deploy section
+#### build section
 ```
-deploy: |
+build: |
     php ./vendor/magento/magento-cloud-configuration/pre-deploy.php
     php ./bin/magento magento-cloud:deploy
 ```
@@ -54,7 +54,7 @@ crons:
 ```
 
 ### `composer.json`
-Open `composer.json` format and update the `autoload` section as follows:
+Open `composer.json` format and update the `"files"` directive in the `autoload` section as follows:
 
 ```
 "autoload": {
