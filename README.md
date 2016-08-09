@@ -38,9 +38,9 @@ Changes are discussed in the sections that follow.
 ### `.magento.app.yaml`
 Open `.magento.app.yaml` in a text editor and update the `build` section (which is nested in the `deploy` section) and `crons` sections as follows:
 
-#### build section
+#### deploy section
 ```
-build: |
+deploy: |
     php ./vendor/magento/magento-cloud-configuration/pre-deploy.php
     php ./bin/magento magento-cloud:deploy
 ```
@@ -72,6 +72,10 @@ Open `composer.json` and update the `"files"` directive in the `autoload` sectio
     }
 ```
 
+Move `app/NonComposerComponentRegistration.php` to `app/etc/NonComposerComponentRegistration.php`.
+Make sure the relative paths that point to locations in the app and lib directories reflect the 
+new location of the file. For an example that can be copied, see the [copy in this project](app/etc/NonComposerComponentRegistration.php).
+
 Update the `require` section as follows to:
 
 *   Replace `"magento/product-enterprise-edition": "<current version>",` with `"magento/magento-cloud-metapackage": "<upgrade version>",`
@@ -89,6 +93,9 @@ Update the `require` section as follows to:
         "fastly/magento2": "^1.0"
     },
 ```
+
+Run `composer update`, and make sure the updated composer.lock and other changed files are
+checked in to git.
 
 ## Repository structure
 Here are the specific files for this example to work on Magento Enterprise Cloud Edition:
