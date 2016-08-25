@@ -12,6 +12,7 @@ use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\DeploymentConfig;
 use Magento\Framework\Config\ConfigOptionsListConstants;
 use Magento\Framework\App\DeploymentConfig\Reader;
+use Magento\Framework\Filesystem\Glob;
 
 /**
  * Encapsulates application installation, initialization and uninstall
@@ -491,9 +492,9 @@ class Application
      */
     private function copyAppConfigFiles()
     {
-        $globalConfigFiles = glob(
+        $globalConfigFiles = Glob::glob(
             $this->_globalConfigDir . '/{di.xml,vendor_path.php}',
-            GLOB_BRACE
+            Glob::GLOB_BRACE
         );
         foreach ($globalConfigFiles as $file) {
             $targetFile = $this->_configDir . str_replace($this->_globalConfigDir, '', $file);
@@ -573,7 +574,7 @@ class Application
     {
         if (!file_exists($dir)) {
             $old = umask(0);
-            mkdir($dir, DriverInterface::WRITEABLE_DIRECTORY_MODE);
+            mkdir($dir);
             umask($old);
         } elseif (!is_dir($dir)) {
             throw new \Magento\Framework\Exception\LocalizedException(__("'%1' is not a directory.", $dir));

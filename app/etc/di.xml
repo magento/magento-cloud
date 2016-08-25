@@ -33,6 +33,7 @@
     <preference for="Magento\Framework\Api\Search\SearchCriteriaInterface" type="Magento\Framework\Api\Search\SearchCriteria"/>
     <preference for="Magento\Framework\Api\Search\DocumentInterface" type="Magento\Framework\Api\Search\Document" />
     <preference for="Magento\Framework\Api\Search\AggregationInterface" type="Magento\Framework\Search\Response\Aggregation" />
+    <preference for="Magento\Framework\App\RequestSafetyInterface" type="Magento\Framework\App\Request\Http" />
     <type name="Magento\Store\Model\Store">
         <arguments>
             <argument name="currencyInstalled" xsi:type="string">system/currency/installed</argument>
@@ -141,6 +142,8 @@
     <preference for="Magento\Framework\Stdlib\DateTime\DateTimeFormatterInterface" type="Magento\Framework\Stdlib\DateTime\DateTimeFormatter"/>
     <preference for="Magento\Framework\Api\Search\SearchInterface" type="Magento\Framework\Search\Search"/>
     <preference for="Magento\Framework\View\Design\FileResolution\Fallback\ResolverInterface" type="Magento\Framework\View\Design\FileResolution\Fallback\Resolver\Simple" />
+    <preference for="Cm\RedisSession\Handler\ConfigInterface" type="Magento\Framework\Session\SaveHandler\Redis\Config"/>
+    <preference for="Cm\RedisSession\Handler\LoggerInterface" type="Magento\Framework\Session\SaveHandler\Redis\Logger"/>
     <type name="Magento\Framework\Model\ResourceModel\Db\TransactionManager" shared="false" />
     <type name="Magento\Framework\Logger\Handler\Base">
         <arguments>
@@ -186,7 +189,14 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="db" xsi:type="string">Magento\Framework\Session\SaveHandler\DbTable</item>
+                <item name="redis" xsi:type="string">Magento\Framework\Session\SaveHandler\Redis</item>
             </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Session\SaveHandler\Redis">
+        <arguments>
+            <argument name="config" xsi:type="object">Cm\RedisSession\Handler\ConfigInterface</argument>
+            <argument name="logger" xsi:type="object">Cm\RedisSession\Handler\LoggerInterface</argument>
         </arguments>
     </type>
     <virtualType name="interceptionConfigScope" type="Magento\Framework\Config\Scope">
@@ -1070,6 +1080,17 @@
             <argument name="converter" xsi:type="object">Magento\Framework\Config\Converter</argument>
             <argument name="schemaLocator" xsi:type="object">Magento\Framework\Config\SchemaLocator</argument>
             <argument name="fileResolver" xsi:type="object">Magento\Framework\Config\FileResolver</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\DataObject\IdentityInterface">
+        <plugin name="clean_cache" type="Magento\Framework\App\Cache\FlushCacheByTags" />
+    </type>
+    <type name="Magento\Framework\App\Cache\FlushCacheByTags">
+        <arguments>
+            <argument name="cacheList" xsi:type="array">
+                <item name="block_html" xsi:type="const">Magento\Framework\App\Cache\Type\Block::TYPE_IDENTIFIER</item>
+                <item name="collections" xsi:type="const">Magento\Framework\App\Cache\Type\Collection::TYPE_IDENTIFIER</item>
+            </argument>
         </arguments>
     </type>
 </config>
