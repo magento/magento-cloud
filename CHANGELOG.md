@@ -4,6 +4,15 @@ This changelog lists changes specifically related to Magento Enterprise Cloud Ed
 
 To get detailed information about changes in the Magento 2.1.0 product, see the [Magento Enterprise Edition (EE) Release Notes](http://devdocs.magento.com/guides/v2.1/release-notes/ReleaseNotes2.1.0EE.html).
 
+## 101.0.4
+*   Implemented more verbose output
+*   Implemented performance improvements to static content deployment
+*   Implemented ability to optionally place patch files in the `m2-hotfixes` directory
+*   Fixed an issue where importing products with images failed
+
+## 101.0.3
+*   Fixed an issue where plugins intermittently failed during setup-related commands
+
 ## 101.0.2
 *	Implemented a pre-deploy hook to clear the cache and other tasks
 *	Fixed an issue where upgrade from 2.0.x doesn't work without clearing the cache
