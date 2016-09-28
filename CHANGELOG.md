@@ -4,6 +4,9 @@ This changelog lists changes specifically related to Magento Enterprise Cloud Ed
 
 To get detailed information about changes in the Magento 2.1.0 product, see the [Magento Enterprise Edition (EE) Release Notes](http://devdocs.magento.com/guides/v2.1/release-notes/ReleaseNotes2.1.0EE.html).
 
+## 101.0.5
+* Fixed an issue where 500 errors occurred intermittently during checkout
+
 ## 101.0.4
 *   Implemented more verbose output
 *   Implemented performance improvements to static content deployment
