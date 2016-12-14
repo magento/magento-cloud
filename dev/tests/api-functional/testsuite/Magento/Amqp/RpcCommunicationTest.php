@@ -14,6 +14,8 @@ class RpcCommunicationTest extends WebapiAbstract
     const OPERATION_SYNC_RPC = 'syncRpc';
     const CONSUMER_NAME = 'synchronousRpcTestConsumer';
 
+    const RPC_CALLS_COUNT = 2;
+
     protected function setUp()
     {
         /** @var \Magento\Framework\OsInfo $osInfo */
@@ -50,8 +52,11 @@ class RpcCommunicationTest extends WebapiAbstract
             ]
         ];
         $input = 'Input value';
-        $response = $this->_webApiCall($serviceInfo, ['simpleDataItem' => $input]);
-        $this->assertEquals($input . ' processed by RPC handler', $response);
+
+        for ($i = 0; $i < self::RPC_CALLS_COUNT; $i++) {
+            $response = $this->_webApiCall($serviceInfo, ['simpleDataItem' => $input]);
+            $this->assertEquals($input . ' processed by RPC handler', $response);
+        }
     }
 
     /**
@@ -91,6 +96,7 @@ class RpcCommunicationTest extends WebapiAbstract
     protected function getConsumerStartCommand()
     {
         $magentoCli = BP . '/bin/magento';
-        return "php {$magentoCli} queue:consumers:start -vvv " . self::CONSUMER_NAME;
+        return "php {$magentoCli} queue:consumers:start -vvv " . self::CONSUMER_NAME
+            . ' --max-messages=' . self::RPC_CALLS_COUNT;
     }
 }

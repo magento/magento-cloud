@@ -141,6 +141,7 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
         $secondUpdateCategoryName,
         $secondUpdateName
     ) {
+        $this->markTestSkipped('MAGETWO-54657');
         /** @var $storeManager \Magento\Store\Model\StoreManagerInterface */
         $storeManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
             'Magento\Store\Model\StoreManagerInterface'
