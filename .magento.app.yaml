@@ -55,6 +55,9 @@ web:
             allow: true
             scripts: false
             passthru: "/front-static.php"
+            rules:
+                ^/static/version\d+/(?<resource>.*)$:
+                    passthru: "/static/$resource"
 
 
 # The size of the persistent disk of the application (in MB).
