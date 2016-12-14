@@ -34,7 +34,7 @@ class DropTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->getRequest()->setPostValue('page_id', $page->getId());
 
         $this->dispatch(\Magento\VersionsCms\Model\Page\Revision::PREVIEW_URI);
-        $this->assertContains('static/frontend/Magento/luma', $this->getResponse()->getBody());
+        $this->assertContains('/frontend/Magento/luma', $this->getResponse()->getBody());
         $this->assertContains($page->getContent(), $this->getResponse()->getBody());
     }
 }

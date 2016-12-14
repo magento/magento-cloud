@@ -27,7 +27,7 @@ class Options extends Tab
      *
      * @var string
      */
-    protected $targetElement = '//*[@class="ui-sortable"]/tr[%d]';
+    protected $targetElement = '//*[contains(@class,"ui-sortable")]/tr[%d]';
 
     /**
      * Options value locator.

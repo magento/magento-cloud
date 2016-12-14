@@ -14,13 +14,14 @@
  */
 namespace Magento\CatalogImportExport\Model\Import;
 
+use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\App\Bootstrap;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\ImportExport\Model\Import;
 
 /**
  * Class ProductTest
- *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  * @magentoDataFixtureBeforeTransaction Magento/Catalog/_files/enable_reindex_schedule.php
  */
 class ProductTest extends \PHPUnit_Framework_TestCase
@@ -361,8 +362,12 @@ class ProductTest extends \PHPUnit_Framework_TestCase
             );
             $productAfterImport->load($productBeforeImport->getId());
             $this->assertEquals(
-                @strtotime($row['news_from_date']),
-                @strtotime($productAfterImport->getNewsFromDate())
+                @strtotime(date('m/d/Y', @strtotime($row['news_from_date']))),
+ 		        @strtotime($productAfterImport->getNewsFromDate())
+            );
+            $this->assertEquals(
+                @strtotime($row['news_to_date']),
+                @strtotime($productAfterImport->getNewsToDate())
             );
             unset($productAfterImport);
         }
@@ -945,5 +950,114 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         )->validateData();
 
         $this->assertTrue($errors->getErrorsCount() == 0);
+    }
+
+    /**
+     * @magentoDataFixture Magento/Store/_files/website.php
+     * @magentoDataFixture Magento/Store/_files/core_fixturestore.php
+     * @magentoDbIsolation enabled
+     * @magentoAppIsolation enabled
+     */
+    public function testProductWithMultipleStoresInDifferentBunches()
+    {
+        $products = [
+            'simple1',
+            'simple2',
+            'simple3'
+        ];
+
+        $importExportData = $this->getMockBuilder(\Magento\ImportExport\Helper\Data::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $importExportData->expects($this->atLeastOnce())
+            ->method('getBunchSize')
+            ->willReturn(1);
+        $this->_model = $this->objectManager->create(
+            \Magento\CatalogImportExport\Model\Import\Product::class,
+            ['importExportData' => $importExportData]
+        );
+
+        $filesystem = $this->objectManager->create(\Magento\Framework\Filesystem::class);
+        $directory = $filesystem->getDirectoryWrite(DirectoryList::ROOT);
+        $source = $this->objectManager->create(
+            \Magento\ImportExport\Model\Import\Source\Csv::class,
+            [
+                'file' => __DIR__ . '/_files/products_to_import_with_multiple_store.csv',
+                'directory' => $directory
+            ]
+        );
+        $errors = $this->_model->setParameters(
+            ['behavior' => \Magento\ImportExport\Model\Import::BEHAVIOR_APPEND, 'entity' => 'catalog_product']
+        )->setSource(
+            $source
+        )->validateData();
+
+        $this->assertTrue($errors->getErrorsCount() == 0);
+
+        $this->_model->importData();
+        $productCollection = $this->objectManager
+            ->create(\Magento\Catalog\Model\ResourceModel\Product\Collection::class);
+        $this->assertCount(3, $productCollection->getItems());
+        $actualProductSkus = array_map(
+            function(ProductInterface $item) {
+                return $item->getSku();
+            },
+            $productCollection->getItems()
+        );
+        $this->assertEquals(
+            $products,
+            array_values($actualProductSkus)
+        );
+    }
+
+    /**
+     * @magentoDataFixture Magento/Catalog/_files/multiselect_attribute_with_incorrect_values.php
+     * @magentoDataFixture Magento/Catalog/_files/product_text_attribute.php
+     * @magentoAppIsolation enabled
+     * @magentoDbIsolation enabled
+     */
+    public function testProductWithWrappedAdditionalAttributes()
+    {
+        $filesystem = $this->objectManager->create(\Magento\Framework\Filesystem::class);
+        $directory = $filesystem->getDirectoryWrite(DirectoryList::ROOT);
+        $source = $this->objectManager->create(
+            \Magento\ImportExport\Model\Import\Source\Csv::class,
+            [
+                'file' => __DIR__ . '/_files/products_to_import_with_additional_attributes.csv',
+                'directory' => $directory
+            ]
+        );
+        $errors = $this->_model->setParameters(
+            [
+                'behavior' => \Magento\ImportExport\Model\Import::BEHAVIOR_APPEND,
+                'entity' => 'catalog_product',
+                \Magento\ImportExport\Model\Import::FIELDS_ENCLOSURE => 1
+            ]
+        )->setSource(
+            $source
+        )->validateData();
+
+        $this->assertTrue($errors->getErrorsCount() == 0);
+
+        $this->_model->importData();
+
+        /** @var \Magento\Catalog\Api\ProductRepositoryInterface $productRepository */
+        $productRepository = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\Catalog\Api\ProductRepositoryInterface::class
+        );
+
+        /** @var \Magento\Eav\Api\AttributeOptionManagementInterface $multiselectOptions */
+        $multiselectOptions = $this->objectManager->get(\Magento\Eav\Api\AttributeOptionManagementInterface::class)
+            ->getItems(\Magento\Catalog\Model\Product::ENTITY, 'multiselect_attribute');
+
+        $product1 = $productRepository->get('simple1');
+        $this->assertEquals('\'", =|', $product1->getData('text_attribute'));
+        $this->assertEquals(implode(',', [$multiselectOptions[3]->getValue(), $multiselectOptions[2]->getValue()]),
+            $product1->getData('multiselect_attribute'));
+
+        $product2 = $productRepository->get('simple2');
+        $this->assertEquals('', $product2->getData('text_attribute'));
+        $this->assertEquals(implode(',', [$multiselectOptions[1]->getValue(), $multiselectOptions[2]->getValue()]),
+            $product2->getData('multiselect_attribute'));
     }
 }
