@@ -20,7 +20,7 @@ class DataGrid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
     /**
      * @var string
      */
-    protected $assignSelector = '.data-grid-onoff-cell input';
+    protected $assignSelector = '.data-grid-onoff-cell label';
 
     /**
      * @var string
