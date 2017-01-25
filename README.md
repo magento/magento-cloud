@@ -1,4 +1,4 @@
-# Magento 2.0.9 Enterprise Cloud Edition
+# Magento 2.0.12 Enterprise Cloud Edition
 
 This sample repository helps you deploy a Magento 2.0.9 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Enterprise Cloud Edition to use the example in this repository.
 
@@ -83,7 +83,7 @@ Exmaple:
 ```
  ...
     "require": {
-        "magento/magento-cloud-metapackage": "2.0.9",
+        "magento/magento-cloud-metapackage": "2.0.12",
     },
  ...
 ```
@@ -114,4 +114,4 @@ php.ini
 ## Documentation
 For more details, see our [Magento Enterprise Cloud Guide](http://devdocs.magento.com/guides/v2.1/cloud/bk-cloud.html). 
 
-Get started [here](http://devdocs.magento.com/guides/v2.1/cloud/before/before.html).
+Get started [here](http://devdocs.magento.com/guides/v2.0/cloud/before/before.html).
