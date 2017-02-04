@@ -12,6 +12,7 @@ use Magento\ImportExport\Model\Import;
 
 /**
  * @magentoAppArea adminhtml
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class ConfigurableTest extends \PHPUnit_Framework_TestCase
 {
@@ -50,6 +51,7 @@ class ConfigurableTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
+        \Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType::$commonAttributesCache = [];
         $this->model = $this->objectManager->create(\Magento\CatalogImportExport\Model\Import\Product::class);
         /** @var \Magento\Framework\EntityManager\MetadataPool $metadataPool */
         $metadataPool = $this->objectManager->get(\Magento\Framework\EntityManager\MetadataPool::class);
