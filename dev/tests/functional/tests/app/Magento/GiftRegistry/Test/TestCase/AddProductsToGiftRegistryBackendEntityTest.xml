@@ -8,7 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\GiftRegistry\Test\TestCase\AddProductsToGiftRegistryBackendEntityTest" summary="Update Gift Registry from Customer Account (Backend)" ticketId="MAGETWO-28215">
         <variation name="AddProductsToGiftRegistryBackendEntityTestVariation1" summary="Add new products to gift registry">
-            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, to_maintain:yes</data>
             <data name="giftRegistry/dataset" xsi:type="string">birthday</data>
             <data name="product" xsi:type="string">catalogProductSimple::product_100_dollar</data>
             <data name="qty" xsi:type="string">2</data>
