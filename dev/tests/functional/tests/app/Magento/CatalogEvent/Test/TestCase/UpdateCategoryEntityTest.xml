@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Catalog\Test\TestCase\Category\UpdateCategoryEntityTest" summary="Update Category" ticketId="MAGETWO-23290">
+        <variation name="UpdateCategoryEntityTestVariation5" ticketId="MAGETWO-63259">
+            <data name="configData" xsi:type="string">category_flat</data>
+            <data name="category/data/display_mode" xsi:type="string">Static block only</data>
+            <data name="category/data/landing_page/dataset" xsi:type="string">category_events_lister</data>
+            <constraint name="Magento\Catalog\Test\Constraint\AssertCategorySaveMessage" />
+            <constraint name="Magento\Catalog\Test\Constraint\AssertCategoryPage" />
+        </variation>
+    </testCase>
+</config>
