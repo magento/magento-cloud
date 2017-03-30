@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -28,6 +28,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductCrossSells" />
         </variation>
         <variation name="TargetRule_Update_2">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_up_sells</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
@@ -68,6 +69,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentCrossSells" />
         </variation>
         <variation name="TargetRule_Update_4">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_cross_sells</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -25,6 +25,7 @@
             <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeInCustomerSegment" />
         </variation>
         <variation name="CreateCustomerCustomAttributesEntityTestVariation2">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="customerAttribute/data/frontend_label" xsi:type="string">TextArea_Customer_%isolation%</data>
             <data name="customerAttribute/data/attribute_code" xsi:type="string">text_area_%isolation%</data>
             <data name="customerAttribute/data/frontend_input" xsi:type="string">Text Area</data>

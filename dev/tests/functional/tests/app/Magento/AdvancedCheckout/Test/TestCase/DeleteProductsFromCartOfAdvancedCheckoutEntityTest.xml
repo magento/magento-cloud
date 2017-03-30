@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -40,7 +40,7 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertProductsAbsentInShoppingCart" />
         </variation>
         <variation name="DeleteProductsFromCartOfAdvancedCheckoutEntityTestVariation5">
-            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, to_maintain:yes</data>
             <data name="products" xsi:type="string">-</data>
             <data name="orderOptions/qty" xsi:type="string">1</data>
             <data name="orderOptions/sku" xsi:type="string">nonExistentSku</data>

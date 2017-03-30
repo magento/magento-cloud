@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -21,6 +21,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertCategoryPage" />
         </variation>
         <variation name="UpdateCategoryEntityTestVariation2_SortProductsBy_DefaultProductSorting_AddProduct">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="category/data/parent_id/dataset" xsi:type="string">default_category</data>
             <data name="category/data/available_product_listing_config" xsi:type="string">Yes</data>
             <data name="category/data/default_product_listing_config" xsi:type="string">No</data>

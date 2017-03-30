@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\TargetRule\Test\TestCase\DeleteTargetRuleEntityTest" summary="Delete Target Rule" ticketId="MAGETWO-24856">
         <variation name="TargetRule_Delete_RelatedProducts">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="targetRule/dataset" xsi:type="string">target_rule_related_products_with_placeholders</data>
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleSuccessDeleteMessage" next="Magento\TargetRule\Test\Constraint\AssertTargetRuleIsNotPresentedInGrid" />
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleIsNotPresentedInGrid" next="Magento\Catalog\Test\Constraint\AssertProductAbsentRelatedProducts" prev="Magento\TargetRule\Test\Constraint\AssertTargetRuleSuccessDeleteMessage" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentRelatedProducts" prev="Magento\TargetRule\Test\Constraint\AssertTargetRuleIsNotPresentedInGrid" />
         </variation>
         <variation name="TargetRule_Delete_UpSells">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="targetRule/dataset" xsi:type="string">target_rule_up_sells_with_placeholders</data>
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleSuccessDeleteMessage" next="Magento\TargetRule\Test\Constraint\AssertTargetRuleIsNotPresentedInGrid" />
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleIsNotPresentedInGrid" next="Magento\Catalog\Test\Constraint\AssertProductAbsentUpSells" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentUpSells" />
         </variation>
         <variation name="TargetRule_Delete_CrossSells">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="targetRule/dataset" xsi:type="string">target_rule_cross_sells_with_placeholders</data>
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleSuccessDeleteMessage" next="Magento\TargetRule\Test\Constraint\AssertTargetRuleIsNotPresentedInGrid" />
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleIsNotPresentedInGrid" next="Magento\Catalog\Test\Constraint\AssertProductAbsentCrossSells" />

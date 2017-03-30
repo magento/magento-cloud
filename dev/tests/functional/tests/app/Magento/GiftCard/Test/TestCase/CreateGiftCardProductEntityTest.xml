@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\GiftCard\Test\TestCase\CreateGiftCardProductEntityTest" summary="Create Gift Card Product" ticketId="MAGETWO-24997">
         <variation name="CreateGiftCardProductEntityTestVariation1">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">Create gift cart of virtual type</data>
             <data name="product/data/category_ids/dataset" xsi:type="string">default_subcategory</data>
             <data name="product/data/url_key" xsi:type="string">giftcardproduct-%isolation%</data>
@@ -34,6 +35,7 @@
             <constraint name="Magento\GiftCard\Test\Constraint\AssertGiftCardProductAddToCartForm" />
         </variation>
         <variation name="CreateGiftCardProductEntityTestVariation2">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">Create gift cart of physical type with custom life time</data>
             <data name="product/data/category_ids/dataset" xsi:type="string">default_subcategory</data>
             <data name="product/data/url_key" xsi:type="string">giftcardproduct-%isolation%</data>
@@ -87,6 +89,7 @@
             <constraint name="Magento\GiftCard\Test\Constraint\AssertGiftCardProductAddToCartForm" />
         </variation>
         <variation name="CreateGiftCardProductEntityTestVariation4">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">Create gift cart of combined type with custom options</data>
             <data name="product/data/url_key" xsi:type="string">giftcardproduct-%isolation%</data>
             <data name="product/data/status" xsi:type="string">Yes</data>
@@ -110,6 +113,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductCustomOptionsOnProductPage" />
         </variation>
         <variation name="CreateGiftCardProductEntityTestVariation5">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">Create gift cart out of stock of virtual type</data>
             <data name="product/data/category_ids/dataset" xsi:type="string">default_subcategory</data>
             <data name="product/data/url_key" xsi:type="string">giftcardproduct-%isolation%</data>
@@ -130,6 +134,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductOutOfStock" />
         </variation>
         <variation name="CreateGiftCardProductEntityTestVariation6">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">Create gift cart of physical type</data>
             <data name="product/data/category_ids/dataset" xsi:type="string">default_subcategory</data>
             <data name="product/data/url_key" xsi:type="string">giftcardproduct-%isolation%</data>
@@ -150,6 +155,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductIsNotDisplayingOnFrontend" />
         </variation>
         <variation name="CreateGiftCardProductEntityTestVariation7">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">Create gift cart out of stock of virtual type without website</data>
             <data name="product/data/category_ids/dataset" xsi:type="string">default_subcategory</data>
             <data name="product/data/url_key" xsi:type="string">giftcardproduct-%isolation%</data>

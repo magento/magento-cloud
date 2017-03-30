@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\GiftRegistry\Test\TestCase\UpdateGiftRegistryItemsFrontendEntityTest" summary="Manage/Update GiftRegistry Items on the Frontend" ticketId="MAGETWO-28196">
         <variation name="UpdateGiftRegistryItemsFrontendEntityTestVariation1">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">update note and qty</data>
             <data name="giftRegistry/dataset" xsi:type="string">birthday</data>
             <data name="updateOptions/note" xsi:type="string">Note text</data>
@@ -17,6 +18,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryItemsForm" />
         </variation>
         <variation name="UpdateGiftRegistryItemsFrontendEntityTestVariation2">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">delete product from gift registry</data>
             <data name="giftRegistry/dataset" xsi:type="string">baby_registry</data>
             <data name="updateOptions/note" xsi:type="string">-</data>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -14,6 +14,7 @@
             <constraint name="Magento\MultipleWishlist\Test\Constraint\AssertMultipleWishlistAbsentInMyAccount" />
         </variation>
         <variation name="DeleteMultipleWishlistEntityTestVariation2">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="multipleWishlist/dataset" xsi:type="string">wishlist_public_without_customer</data>
             <data name="isCreateMultipleWishlist" xsi:type="string">Yes</data>
             <constraint name="Magento\MultipleWishlist\Test\Constraint\AssertMultipleWishlistSuccessDeleteMessage" />
