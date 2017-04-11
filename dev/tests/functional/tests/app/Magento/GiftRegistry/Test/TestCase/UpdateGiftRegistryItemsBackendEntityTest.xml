@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\GiftRegistry\Test\TestCase\UpdateGiftRegistryItemsBackendEntityTest" summary="Update Items of GiftRegistryEntity from Backend Customer Account" ticketId="MAGETWO-28331">
         <variation name="UpdateGiftRegistryItemsBackendEntityTestVariation1">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">update product in giftRegistry Items grid</data>
             <data name="giftRegistry/dataset" xsi:type="string">birthday</data>
             <data name="products" xsi:type="string">catalogProductSimple::default</data>
@@ -17,6 +18,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryManageItemsTab" />
         </variation>
         <variation name="UpdateGiftRegistryItemsBackendEntityTestVariation2">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">update product in giftRegistry Items grid</data>
             <data name="giftRegistry/dataset" xsi:type="string">wedding</data>
             <data name="products" xsi:type="string">configurableProduct::default</data>
@@ -26,6 +28,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryManageItemsTab" />
         </variation>
         <variation name="UpdateGiftRegistryItemsBackendEntityTestVariation3">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">update few products in giftRegistry Items grid</data>
             <data name="giftRegistry/dataset" xsi:type="string">baby_registry</data>
             <data name="products" xsi:type="string">configurableProduct::default,catalogProductSimple::default</data>

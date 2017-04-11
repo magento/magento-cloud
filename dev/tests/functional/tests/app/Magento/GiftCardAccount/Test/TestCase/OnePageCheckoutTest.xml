@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Checkout\Test\TestCase\OnePageCheckoutTest" summary="OnePageCheckout within Offline Payment Methods" ticketId="MAGETWO-27485">
         <variation name="OnePageCheckoutGiftCardAccountTestVariation1" summary="Checkout as UK guest with virtual product using gift card and coupon for not logged in customers. Grand Total = $0.00">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="products" xsi:type="string">catalogProductVirtual::default</data>
             <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
             <data name="salesRule" xsi:type="string">active_sales_rule_with_percent_price_discount_coupon</data>
@@ -27,6 +28,7 @@
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
         </variation>
         <variation name="OnePageCheckoutGiftCardAccountTestVariation2" summary="Checkout as a registered US customer using store credit and gift card">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
             <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
             <data name="customer/dataset" xsi:type="string">default</data>
@@ -50,6 +52,7 @@
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
         </variation>
         <variation name="OnePageCheckoutGiftCardAccountTestVariation3" summary="US customer during checkout using gift card and coupon for all customer groups">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="products" xsi:type="string">catalogProductSimple::default</data>
             <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
             <data name="salesRule" xsi:type="string">active_sales_rule_for_all_groups</data>
@@ -111,7 +114,7 @@
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
         </variation>
         <variation name="OnePageCheckoutGiftCardAccountTestVariation6" summary="Checkout as UK guest with virtual product using coupon for not logged in customers and gift card">
-            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, to_maintain:yes</data>
             <data name="products" xsi:type="string">catalogProductVirtual::default</data>
             <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
             <data name="salesRule" xsi:type="string">active_sales_rule_with_percent_price_discount_coupon</data>

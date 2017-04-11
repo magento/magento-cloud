@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -162,6 +162,7 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
         </variation>
         <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation15">
+            <data name="issue" xsi:type="string">MAGETWO-59225: Exception on page with configurable product that has disabled all  child products</data>
             <data name="description" xsi:type="string">Configurable product where all sub-items are disabled</data>
             <data name="products" xsi:type="string">configurableProduct::with_out_of_stock_item</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>
@@ -173,6 +174,7 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
         </variation>
         <variation name="AddProductsToCartBySkuFromCustomerAccountTestVariation16">
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">Simple product with tier price and qty &gt; than available</data>
             <data name="products" xsi:type="string">catalogProductSimple::simple_with_tier_price_and_qty</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>

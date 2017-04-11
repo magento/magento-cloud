@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -23,6 +23,7 @@
             <constraint name="Magento\CatalogRule\Test\Constraint\AssertCatalogPriceRuleAppliedShoppingCart" />
         </variation>
         <variation name="ApplySeveralCatalogRules_WithStopFurtherRules">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="catalogRulesOriginal/priority_0" xsi:type="string">catalog_price_rule_priority_0</data>
             <data name="catalogRulesOriginal/priority_1" xsi:type="string">catalog_price_rule_priority_1_stop_further_rules</data>
             <data name="catalogRulesOriginal/priority_2" xsi:type="string">catalog_price_rule_priority_2</data>

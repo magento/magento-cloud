@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -32,6 +32,7 @@
             <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountNotRedeemableOnFrontend" />
         </variation>
         <variation name="UpdateGiftCardAccountEntityTestVariation3">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="giftCardAccountOrigin/dataset" xsi:type="string">gift_card_account</data>
             <data name="giftCardAccount/data/status" xsi:type="string">Yes</data>
             <data name="giftCardAccount/data/is_redeemable" xsi:type="string">Yes</data>

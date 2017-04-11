@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -21,7 +21,7 @@
             <data name="payment/method" xsi:type="string">paypal_direct</data>
             <data name="creditCard/dataset" xsi:type="string">visa_direct</data>
             <data name="configData" xsi:type="string">paypal_direct</data>
-            <data name="tag" xsi:type="string">test_type:3rd_party_test_deprecated</data>
+            <data name="tag" xsi:type="string">test_type:3rd_party_test_deprecated, to_maintain:yes</data>
             <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
             <constraint name="Magento\Checkout\Test\Constraint\AssertMinicartEmpty" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />

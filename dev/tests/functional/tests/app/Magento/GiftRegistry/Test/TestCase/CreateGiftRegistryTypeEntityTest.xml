@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -28,6 +28,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="CreateGiftRegistryTypeEntityTestVariation3">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="giftRegistryType/data/code" xsi:type="string">code_%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">gift_registry_date_label%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>
@@ -48,6 +49,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="CreateGiftRegistryTypeEntityTestVariation5">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="giftRegistryType/data/code" xsi:type="string">code_%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">gift_registry_eventdate_label%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>

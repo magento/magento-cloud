@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -21,7 +21,7 @@
             <constraint name="Magento\Reminder\Test\Constraint\AssertReminderMatchedCustomers" />
         </variation>
         <variation name="ReminderRule_Create_PromotingCartRule_MatchCustomers" summary="Create new reminder rule with shopping cart rule">
-            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, stable:no</data>
             <data name="reminder/data/name" xsi:type="string">Reminder%isolation%</data>
             <data name="reminder/data/description" xsi:type="string">Description%isolation%</data>
             <data name="reminder/data/is_active" xsi:type="string">Active</data>
