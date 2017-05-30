@@ -25,7 +25,6 @@ runtime:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
     database: "mysql:mysql"
-    solr: "solr:solr"
     redis: "redis:redis"
 
 # The configuration of app when it is exposed to the web.
@@ -62,7 +61,7 @@ web:
 
 
 # The size of the persistent disk of the application (in MB).
-disk: 2048
+disk: 10240 
 
 # The mounts that will be performed when the package is deployed.
 mounts:
