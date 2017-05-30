@@ -1,11 +1,12 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\MultipleWishlist\Test\Block\Adminhtml\Sales\Order\Create\Sidebar\Wishlist;
 
+use Magento\Bundle\Test\Fixture\BundleProduct;
 use Magento\GroupedProduct\Test\Fixture\GroupedProduct;
 use Magento\Sales\Test\Block\Adminhtml\Order\Create\CustomerActivities\Sidebar;
 use Magento\Mtf\Client\Locator;
@@ -42,7 +43,10 @@ class Items extends Sidebar
      */
     public function selectItemToAddToOrder(InjectableFixture $product, $qty)
     {
-        if ($product instanceof GroupedProduct) {
+        if (
+            ($product instanceof GroupedProduct)
+            || ($product instanceof BundleProduct)
+        ) {
             $this->_rootElement->find(
                 sprintf($this->addToOrderGrouped, $product->getName()),
                 Locator::SELECTOR_XPATH

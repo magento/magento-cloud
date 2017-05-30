@@ -1,11 +1,12 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\MultipleWishlist\Test\TestCase;
 
+use Magento\Bundle\Test\Fixture\BundleProduct;
 use Magento\Customer\Test\Page\Adminhtml\CustomerIndex;
 use Magento\Customer\Test\Page\Adminhtml\CustomerIndexEdit;
 use Magento\GroupedProduct\Test\Fixture\GroupedProduct;
@@ -81,7 +82,7 @@ class MoveProductFromCustomerActivityToOrderTest extends Injectable
 
         // TODO: Move set up configuration to "__prepare" method after fix bug MAGETWO-29331
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default']
         )->run();
     }
@@ -101,20 +102,20 @@ class MoveProductFromCustomerActivityToOrderTest extends Injectable
         $multipleWishlist->persist();
         $customer = $multipleWishlist->getDataFieldConfig('customer_id')['source']->getCustomer();
         $createProductsStep = $this->objectManager->create(
-            'Magento\Catalog\Test\TestStep\CreateProductsStep',
+            \Magento\Catalog\Test\TestStep\CreateProductsStep::class,
             ['products' => $products]
         );
         $product = $createProductsStep->run()['products'][0];
 
         // Steps
         $loginCustomer = $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         );
         $loginCustomer->run();
 
         $addProductToMultiplewishlist = $this->objectManager->create(
-            'Magento\MultipleWishlist\Test\TestStep\AddProductToMultipleWishlistStep',
+            \Magento\MultipleWishlist\Test\TestStep\AddProductToMultipleWishlistStep::class,
             ['product' => $product, 'duplicate' => $duplicate, 'multipleWishlist' => $multipleWishlist]
         );
         $addProductToMultiplewishlist->run();
@@ -126,7 +127,10 @@ class MoveProductFromCustomerActivityToOrderTest extends Injectable
         $this->orderCreateIndex->getMultipleWishlistBlock()->selectWishlist($multipleWishlist->getName());
         $wishlistItemsBlock = $this->orderCreateIndex->getMultipleWishlistBlock()->getWishlistItemsBlock();
         $wishlistItemsBlock->selectItemToAddToOrder($product, $qtyToMove);
-        if (!$product instanceof GroupedProduct) {
+        if (!(
+            ($product instanceof GroupedProduct)
+            || ($product instanceof BundleProduct))
+        ) {
             $this->orderCreateIndex->getCustomerActivitiesBlock()->updateChanges();
         } else {
             $this->orderCreateIndex->getConfigureProductBlock()->clickOk();
@@ -144,7 +148,7 @@ class MoveProductFromCustomerActivityToOrderTest extends Injectable
     {
         // TODO: Move set default configuration to "tearDownAfterClass" method after fix bug MAGETWO-29331
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default', 'rollback' => true]
         )->run();
     }

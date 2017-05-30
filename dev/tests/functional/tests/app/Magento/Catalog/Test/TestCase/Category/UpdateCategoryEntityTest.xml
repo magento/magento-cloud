@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -47,6 +47,7 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertCategoryForm" />
         </variation>
         <variation name="UpdateCategoryEntityTestVariation4" summary="Update Category with custom Store View.">
+            <data name="category/data/use_default_name" xsi:type="string">No</data>
             <data name="category/data/store_id/dataset" xsi:type="string">custom</data>
             <data name="category/data/name" xsi:type="string">Category %isolation%</data>
             <constraint name="Magento\Catalog\Test\Constraint\AssertCategorySaveMessage" />

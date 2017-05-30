@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -38,6 +38,11 @@ class CategoryProducts extends DataSource
                 if (!$product->getId()) {
                     $product->persist();
                 }
+                $this->data[] = $product->getName();
+                $this->products[] = $product;
+            }
+        } else if (isset($data['products']) && is_array($data['products'])) {
+            foreach ($data['products'] as $product) {
                 $this->data[] = $product->getName();
                 $this->products[] = $product;
             }

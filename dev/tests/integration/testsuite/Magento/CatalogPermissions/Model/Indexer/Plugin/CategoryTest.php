@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogPermissions\Model\Indexer\Plugin;
@@ -65,6 +65,7 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
             'grant_checkout_items' => \Magento\CatalogPermissions\Model\Permission::PERMISSION_DENY,
         ];
         $this->category->setData('permissions', [1 => $permissionsDataDenyNotLoggedIn]);
+        $this->category->setName('test');
         $this->category->save();
         $categoryId = $this->category->getId();
         $this->assertContains(

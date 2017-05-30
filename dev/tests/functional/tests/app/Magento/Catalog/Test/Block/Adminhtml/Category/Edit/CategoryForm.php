@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -58,5 +58,20 @@ class CategoryForm extends FormTabs
         }
 
         return $this->fillTabs($tabs, $element);
+    }
+
+    /**
+     * Return category Id.
+     *
+     * @return string
+     */
+    public function getCategoryId()
+    {
+        $categoryId = '';
+        if (preg_match('/\/id\/(?<id>\d+)(?:\/)?/', $this->browser->getUrl(), $matches)) {
+            $categoryId = $matches['id'];
+        }
+
+        return $categoryId;
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -49,6 +49,21 @@
             </conditions_serialized>
         </fields>
     </conditions>
+    <coupons>
+        <class>Magento\SalesRule\Test\Block\Adminhtml\Promo\Quote\Edit\Tab\Coupons</class>
+        <selector>#promo_catalog_edit_tabs_coupons_section</selector>
+        <strategy>css selector</strategy>
+        <fields>
+            <qty />
+            <length />
+            <format>
+                <input>select</input>
+            </format>
+            <prefix />
+            <suffix />
+            <dash />
+        </fields>
+    </coupons>
     <actions>
         <class>\Magento\Backend\Test\Block\Widget\Tab</class>
         <selector>#promo_catalog_edit_tabs_actions_section</selector>

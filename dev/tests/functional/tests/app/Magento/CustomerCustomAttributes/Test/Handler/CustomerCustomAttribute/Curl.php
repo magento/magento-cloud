@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -41,6 +41,16 @@ class Curl extends AbstractCurl implements CustomerCustomAttributeInterface
             'File (attachment)' => 'file',
             'Image File' => 'image',
         ],
+        'is_required' => [
+            'Yes' => 1
+        ],
+        'is_visible' => [
+            'Yes' => 1
+        ],
+        'used_in_forms' => [
+            'Customer Address Registration' => 'customer_register_address',
+            'Customer Account Address' => 'customer_address_edit'
+        ]
     ];
 
     /**
@@ -80,6 +90,14 @@ class Curl extends AbstractCurl implements CustomerCustomAttributeInterface
             $frontendLabels[] = $data['manage_title'];
         }
         $data['frontend_label'] = $frontendLabels;
+        if (isset($data['used_in_forms'])) {
+            foreach ($this->mappingData['used_in_forms'] as $key => $item) {
+                $index = array_search($key, $data['used_in_forms']);
+                if ($index !== false) {
+                    $data['used_in_forms'][$index] = $item;
+                }
+            }
+        }
 
         return $data;
     }

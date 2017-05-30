@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\User\Test\TestCase\UpdateAdminUserEntityTest">
         <variation name="UpdateAdminGwsUserEntityTestVariation100" summary="Use ACL Role with Restricted GWS Scopet" ticketId="MAGETWO-12385">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="decription" xsi:type="string">MAGETWO-12385: Use ACL Role with Restricted GWS Scope</data>
             <data name="loginAsDefaultAdmin" xsi:type="string">1</data>
             <data name="initialUser/dataset" xsi:type="string">custom_admin_with_default_role</data>

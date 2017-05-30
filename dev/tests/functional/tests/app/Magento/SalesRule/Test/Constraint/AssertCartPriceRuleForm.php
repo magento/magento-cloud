@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -73,6 +73,10 @@ class AssertCartPriceRuleForm extends AbstractConstraint
     {
         $errorMessage = [];
 
+        //unset coupon_code, if coupon_type is auto, because coupon_code will be not present in form in that case.
+        if (isset($fixtureData['coupon_type']) && $fixtureData['coupon_type'] == 'Auto') {
+            unset($fixtureData['coupon_code']);
+        }
         foreach ($fixtureData as $key => $value) {
             if (is_array($value)) {
                 $diff = array_diff($value, $formData[$key]);

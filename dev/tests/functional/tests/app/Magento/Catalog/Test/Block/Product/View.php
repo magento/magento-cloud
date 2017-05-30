@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -434,6 +434,16 @@ class View extends AbstractConfigureBlock
      */
     public function isGalleryVisible()
     {
-        return $this->_rootElement->find($this->mediaGallery)->isVisible();
+        return $this->getGalleryElement()->isVisible();
+    }
+
+    /**
+     * Get gallery element on product page.
+     *
+     * @return \Magento\Mtf\Client\ElementInterface
+     */
+    public function getGalleryElement()
+    {
+        return $this->_rootElement->find($this->mediaGallery);
     }
 }
