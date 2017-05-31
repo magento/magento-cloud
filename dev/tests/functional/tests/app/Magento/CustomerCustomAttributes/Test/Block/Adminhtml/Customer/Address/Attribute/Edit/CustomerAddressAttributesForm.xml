@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<tabs>
+    <properties>
+        <class>\Magento\Backend\Test\Block\Widget\Tab</class>
+        <selector>#magento_customercustomattributes_address_attribute_edit_tabs_general</selector>
+        <strategy>css selector</strategy>
+        <fields>
+            <frontend_label>
+                <selector>[name^='frontend_label']</selector>
+            </frontend_label>
+            <attribute_code />
+            <frontend_input>
+                <input>select</input>
+            </frontend_input>
+            <scope_is_required>
+                <input>select</input>
+            </scope_is_required>
+            <is_required>
+                <input>select</input>
+            </is_required>
+            <is_used_for_customer_segment>
+                <input>select</input>
+            </is_used_for_customer_segment>
+            <default_value_text />
+            <input_validation>
+                <input>select</input>
+            </input_validation>
+            <input_filter>
+                <input>select</input>
+            </input_filter>
+            <scope_is_visible>
+                <input>select</input>
+            </scope_is_visible>
+            <is_visible>
+                <input>select</input>
+            </is_visible>
+            <used_in_forms>
+                <selector>[name="used_in_forms[]"]</selector>
+                <input>multiselectgrouplist</input>
+            </used_in_forms>
+            <sort_order />
+        </fields>
+    </properties>
+</tabs>

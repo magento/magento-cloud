@@ -14,4 +14,11 @@
         </entities>
         <collection>Magento\Customer\Model\ResourceModel\Attribute\Collection</collection>
     </customerCustomAttribute>
+    <customerAddressAttribute module="Magento_CustomerCustomAttributes">
+        <type>composite</type>
+        <entities>
+            <eav_attribute>eav_attribute</eav_attribute>
+            <customer_eav_attribute>customer_eav_attribute</customer_eav_attribute>
+        </entities>
+    </customerAddressAttribute>
 </fixture>

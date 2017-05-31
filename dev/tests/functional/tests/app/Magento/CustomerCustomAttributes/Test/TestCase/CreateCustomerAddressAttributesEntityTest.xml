@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerCustomAttributes\Test\TestCase\CreateCustomerAddressAttributesEntityTest"
+              summary="Create Customer Address Attributes"
+              ticketId="MAGETWO-67456">
+        <variation name="CreateCustomerAddressAttributesEntityTestVariation1"
+                   summary="Create Customer Address Attribute visible on frontend"
+                   ticketId="MAGETWO-67453">
+            <data name="customerAddressAttribute/data/frontend_label" xsi:type="string">TextField_Customer_%isolation%</data>
+            <data name="customerAddressAttribute/data/attribute_code" xsi:type="string">text_field_%isolation%</data>
+            <data name="customerAddressAttribute/data/frontend_input" xsi:type="string">Text Field</data>
+            <data name="customerAddressAttribute/data/is_required" xsi:type="string">No</data>
+            <data name="customerAddressAttribute/data/is_visible" xsi:type="string">Yes</data>
+            <data name="customerAddressAttribute/data/sort_order" xsi:type="string">60</data>
+            <data name="customerAddressAttribute/data/used_in_forms/option_0" xsi:type="string">Customer Address Registration</data>
+            <data name="customerAddressAttribute/data/used_in_forms/option_1" xsi:type="string">Customer Account Address</data>
+            <data name="customer/dataset" xsi:type="string">johndoe_with_addresses</data>
+            <data name="address/dataset" xsi:type="string">US_address_2_without_email</data>
+            <data name="products" xsi:type="array">
+                <item name="0" xsi:type="string">catalogProductSimple::default</item>
+            </data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerAddressAttributeSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerAddressAttributeInGrid" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerAddressAttributeVisibleOnCheckout" />
+        </variation>
+    </testCase>
+</config>
