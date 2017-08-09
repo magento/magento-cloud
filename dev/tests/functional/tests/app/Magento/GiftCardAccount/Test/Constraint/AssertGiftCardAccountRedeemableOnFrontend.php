@@ -55,6 +55,7 @@ class AssertGiftCardAccountRedeemableOnFrontend extends AbstractAssertGiftCardAc
             $customerAccountIndex->getStoreCreditBlock()->isBalanceChangeVisible($giftCardAccount->getBalance()),
             'Store credit is not change.'
         );
+        $this->logout();
     }
 
     /**

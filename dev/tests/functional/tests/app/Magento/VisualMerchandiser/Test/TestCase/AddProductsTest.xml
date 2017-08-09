@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\VisualMerchandiser\Test\TestCase\AddProductsTest" summary="Match products by rule on Category" ticketId="MAGETWO-69734">
+        <variation name="AddProductsTestVariation1" summary="Match products by rule with AND condition on Category Rule" ticketId="MAGETWO-61648">
+            <data name="attribute" xsi:type="string">attribute_type_dropdown, attribute_type_dropdown</data>
+            <data name="attributeSet/dataset" xsi:type="string">default</data>
+            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="category/dataset" xsi:type="string">default</data>
+            <data name="addCategory" xsi:type="string">addSubcategory</data>
+            <data name="productAttributesValue/0" xsi:type="string">black</data>
+            <data name="productAttributesValue/1" xsi:type="string">black</data>
+            <data name="ruleConditions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="operator" xsi:type="string">Equal</item>
+                    <item name="value" xsi:type="string">black</item>
+                    <item name="logic" xsi:type="string">AND</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="operator" xsi:type="string">Equal</item>
+                    <item name="value" xsi:type="string">black</item>
+                </item>
+            </data>
+            <data name="store/dataset" xsi:type="string">default</data>
+            <data name="currentStore" xsi:type="null"/>
+            <constraint name="Magento\VisualMerchandiser\Test\Constraint\AssertCategoryRuleSuccessApplyMessage" />
+            <constraint name="Magento\VisualMerchandiser\Test\Constraint\AssertProductsInCategory" />
+            <constraint name="Magento\VisualMerchandiser\Test\Constraint\AssertCategoryRuleAttributesUseAdminValue" />
+            <constraint name="Magento\Catalog\Test\Constraint\AssertCategoryForAssignedProducts" />
+        </variation>
+    </testCase>
+</config>

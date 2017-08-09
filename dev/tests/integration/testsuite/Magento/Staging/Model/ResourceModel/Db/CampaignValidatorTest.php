@@ -6,6 +6,7 @@
 namespace Magento\Staging\Model\ResourceModel\Db;
 
 use Magento\TestFramework\Helper\Bootstrap;
+use Magento\Staging\Api\UpdateRepositoryInterface;
 
 class CampaignValidatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,10 +15,17 @@ class CampaignValidatorTest extends \PHPUnit_Framework_TestCase
      */
     private $model;
 
+    /**
+     * @var UpdateRepositoryInterface
+     */
+    private $updateRepository;
+
     protected function setUp()
     {
         $this->model = Bootstrap::getObjectManager()
             ->create(CampaignValidator::class);
+        $this->updateRepository = Bootstrap::getObjectManager()
+            ->create(UpdateRepositoryInterface::class);
     }
 
     /**
@@ -39,12 +47,25 @@ class CampaignValidatorTest extends \PHPUnit_Framework_TestCase
             $expectedValue,
             $method->invoke(
                 $this->model,
-                'Magento\CatalogRule\Api\Data\RuleInterface',
+                \Magento\CatalogRule\Api\Data\RuleInterface::class,
                 1,
                 $createdIn,
                 $updatedIn
             )
         );
+    }
+
+    /**
+     * @magentoDbIsolation enabled
+     * @magentoDataFixture Magento/Staging/_files/staging_entity_two_campaigns.php
+     * @magentoDataFixture Magento/Staging/_files/staging_update_two_campaigns.php
+     *
+     */
+    public function testCanBeUpdated()
+    {
+        $update = $this->updateRepository->get(2);
+        $this->assertFalse($this->model->canBeUpdated($update, 150));
+        $this->assertTrue($this->model->canBeUpdated($update, 90));
     }
 
     /**

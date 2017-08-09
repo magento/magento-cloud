@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\GiftWrapping\Test\TestCase\CheckoutWithGiftWrappingTest" summary="Add Gift Wrapping to Shopping Cart" ticketId="MAGETWO-69276">
+        <variation name="CheckoutWithGiftWrappingTestVariation1" summary="Add Gift Wrapping to Shopping Cart with Two Available Shipping Methods" ticketId="MAGETWO-69283">
+            <data name="configData" xsi:type="string">freeshipping, flatrate</data>
+            <data name="giftWrapping/dataset" xsi:type="string">enabled</data>
+            <data name="giftWrappingTotal" xsi:type="string">10</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="shippingAddress/dataset" xsi:type="string">default</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingForItemsInCart" />
+            <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingForItemsOnFrontendCheckout" />
+        </variation>
+    </testCase>
+</config>

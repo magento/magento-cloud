@@ -67,6 +67,9 @@ class Amount extends SimpleElement
     public function setValue($values)
     {
         $this->clearAmount();
+        if (is_string($values) && $values == 'none') {
+            return;
+        }
         foreach ((array)$values as $number => $amountData) {
             /* Throw exception if isn't exist previous amount. */
             if (1 < $number && !$this->isAmountVisible($number)) {

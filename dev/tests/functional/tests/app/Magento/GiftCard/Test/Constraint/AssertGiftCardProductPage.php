@@ -25,8 +25,10 @@ class AssertGiftCardProductPage extends AssertProductPage
         $price = null;
 
         if (isset($productData['giftcard_amounts']) && 1 == count($productData['giftcard_amounts'])) {
-            $amount = reset($productData['giftcard_amounts']);
-            $price = $amount['value'];
+            if ($productData['giftcard_amounts'] !== 'none') {
+                $amount = reset($productData['giftcard_amounts']);
+                $price = $amount['value'];
+            }
         }
 
         if ($price == $priceOnPage) {

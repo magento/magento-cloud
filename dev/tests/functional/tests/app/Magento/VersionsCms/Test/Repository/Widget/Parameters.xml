@@ -15,5 +15,13 @@
                 <item name="0" xsi:type="string">cmsHierarchy::default</item>
             </field>
         </dataset>
+        <dataset name="hierarchyCmsNodeLink">
+            <field name="anchor_text" xsi:type="string">CustomText_%isolation%</field>
+            <field name="title" xsi:type="string">CustomTitle_%isolation%</field>
+            <field name="node" xsi:type="string">%node_name%</field>
+            <field name="entities" xsi:type="array">
+                <item name="0" xsi:type="string">cmsHierarchy::with_cms_node</item>
+            </field>
+        </dataset>
     </repository>
 </config>

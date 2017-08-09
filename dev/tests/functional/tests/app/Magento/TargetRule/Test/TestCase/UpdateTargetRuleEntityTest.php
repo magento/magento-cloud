@@ -47,6 +47,7 @@ class UpdateTargetRuleEntityTest extends AbstractTargetRuleEntityTest
         CatalogProductSimple $promotedProduct,
         TargetRule $initialTargetRule,
         TargetRule $targetRule,
+        $conditionEntity = null,
         CustomerSegment $customerSegment = null
     ) {
         // Preconditions:
@@ -56,7 +57,7 @@ class UpdateTargetRuleEntityTest extends AbstractTargetRuleEntityTest
         if ($customerSegment && $customerSegment->hasData()) {
             $customerSegment->persist();
         }
-        $replace = $this->getReplaceData($product, $promotedProduct, $customerSegment);
+        $replace = $this->getReplaceData($product, $promotedProduct, $conditionEntity, $customerSegment);
 
         // Steps
         $filter = ['name' => $initialTargetRule->getName()];

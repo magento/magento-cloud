@@ -53,6 +53,7 @@ class AssertGiftCardAccountStatusInShoppingCart extends AbstractAssertGiftCardAc
             $result['pageData'],
             'Wrong success message is displayed.'
         );
+        $this->logout();
     }
 
     /**

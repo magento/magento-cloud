@@ -57,5 +57,22 @@
             <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountIsNotUsableInCartOnFrontend" />
             <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountNotRedeemableOnFrontend" />
         </variation>
+        <variation name="CreateGiftCardAccountEntityTest_ExceedBalanceAmount" ticketId="MAGETWO-69350">
+            <data name="giftCardAccount/data/status" xsi:type="string">Yes</data>
+            <data name="giftCardAccount/data/is_redeemable" xsi:type="string">Yes</data>
+            <data name="giftCardAccount/data/website_id/dataset" xsi:type="string">main_website</data>
+            <data name="giftCardAccount/data/balance" xsi:type="string">20.00</data>
+            <data name="giftCardAccount/data/date_expires" xsi:type="string">-</data>
+            <data name="shippingAddress/dataset" xsi:type="string">US_address_1</data>
+            <data name="shippingAddressRegistered/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="payment/method" xsi:type="string">checkmo</data>
+            <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountSaveMessage" />
+            <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountInGrid" />
+            <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountForm" />
+            <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountUsageExceedingBalanceAmount" />
+            <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountBalance" />
+        </variation>
     </testCase>
 </config>

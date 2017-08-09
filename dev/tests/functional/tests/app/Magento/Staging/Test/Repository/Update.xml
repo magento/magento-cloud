@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Staging\Test\Repository\Update">
+        <dataset name="update_with_date_plus_2_minutes">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +2 minutes</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+        </dataset>
+        <dataset name="temporary_update_with_date_plus_2_minutes">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +2 minutes</item>
+            </field>
+            <field name="end_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +4 minutes</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+        </dataset>
+    </repository>
+</config>

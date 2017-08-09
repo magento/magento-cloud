@@ -43,7 +43,13 @@ abstract class AbstractAssertGiftCardAccountOnFrontend extends AbstractConstrain
     protected $customerAccountLogout;
 
     /**
-     * @constructor
+     * Customer login step.
+     *
+     * @var \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep
+     */
+    private $loginCustomerStep;
+
+    /**
      * @param ObjectManager $objectManager
      * @param EventManagerInterface $eventManager
      * @param CustomerAccountLogin $customerAccountLogin
@@ -71,10 +77,24 @@ abstract class AbstractAssertGiftCardAccountOnFrontend extends AbstractConstrain
      */
     protected function login(Customer $customer)
     {
-        $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+        $this->loginCustomerStep = $this->objectManager->create(
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
-        )->run();
+        );
+        $this->loginCustomerStep->run();
+    }
+
+    /**
+     * Log out on the frontend.
+     *
+     * @return void
+     */
+    protected function logout()
+    {
+        if ($this->loginCustomerStep !== null) {
+            $this->loginCustomerStep->cleanup();
+            $this->loginCustomerStep = null;
+        }
     }
 
     /**

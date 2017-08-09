@@ -1,6 +1,6 @@
-# Magento 2.1.7 Enterprise Cloud Edition
+# Magento 2.1.8 Magento Commerce (Cloud)
 
-This sample repository helps you deploy a Magento 2.1.7 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Enterprise Cloud Edition to use the example in this repository.
+This sample repository helps you deploy a Magento 2.1.8 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Magento Commerce (Cloud) to use the example in this repository.
 
 This example is based on using the Composer to load dependencies and get the Magento vendor folders.
 
@@ -86,7 +86,7 @@ Update the `require` section as follows to:
 ```
  },
     "require": {
-        "magento/magento-cloud-metapackage": "2.1.7",
+        "magento/magento-cloud-metapackage": "2.1.8",
         "composer/composer": "@alpha",
         "colinmollenhour/credis": "1.6",
         "colinmollenhour/php-redis-session-abstract": "1.1",
@@ -98,7 +98,7 @@ Run `composer update`, and make sure the updated composer.lock and other changed
 checked in to git.
 
 ## Repository structure
-Here are the specific files for this example to work on Magento Enterprise Cloud Edition:
+Here are the specific files for this example to work on Magento Magento Commerce (Cloud):
 
 ```
 .magento/

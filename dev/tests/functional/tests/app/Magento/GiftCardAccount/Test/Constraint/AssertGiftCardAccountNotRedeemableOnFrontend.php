@@ -40,6 +40,8 @@ class AssertGiftCardAccountNotRedeemableOnFrontend extends AbstractAssertGiftCar
             $customerAccountIndex->getMessages()->assertErrorMessage(),
             'Gift card is redeemable on frontend'
         );
+
+        $this->logout();
     }
 
     /**
