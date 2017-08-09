@@ -6,9 +6,11 @@
 
 namespace Magento\TargetRule\Test\TestCase;
 
+use Magento\Catalog\Test\Fixture\CatalogProductAttribute;
 use Magento\Catalog\Test\Fixture\CatalogProductSimple;
 use Magento\CustomerSegment\Test\Fixture\CustomerSegment;
 use Magento\TargetRule\Test\Fixture\TargetRule;
+use Magento\TargetRule\Test\TestStep\UpdateAttributeStep;
 
 /**
  * Preconditions:
@@ -24,7 +26,7 @@ use Magento\TargetRule\Test\Fixture\TargetRule;
  * 6. Perform all assertions.
  *
  * @group Target_Rules_(MX)
- * @ZephyrId MAGETWO-24686
+ * @ZephyrId MAGETWO-69548
  */
 class CreateTargetRuleEntityTest extends AbstractTargetRuleEntityTest
 {
@@ -38,26 +40,52 @@ class CreateTargetRuleEntityTest extends AbstractTargetRuleEntityTest
      * Run create TargetRule entity test.
      *
      * @param CatalogProductSimple $product
-     * @param CatalogProductSimple $promotedProduct
      * @param TargetRule $targetRule
-     * @param CustomerSegment|null $customerSegment
+     * @param CatalogProductSimple $promotedProduct
+     * @param CustomerSegment $customerSegment
+     * @param string $conditionEntity
      * @return array
      */
     public function testCreateTargetRuleEntity(
         CatalogProductSimple $product,
-        CatalogProductSimple $promotedProduct,
         TargetRule $targetRule,
+        CatalogProductSimple $promotedProduct = null,
+        $conditionEntity = 'category',
         CustomerSegment $customerSegment = null
     ) {
         // Preconditions:
         $product->persist();
+        if ($promotedProduct === null) {
+            $promotedProduct = $this->fixtureFactory->createByCode(
+                'catalogProductSimple',
+                [
+                    'dataset' => 'default',
+                    'data' => [
+                        'attribute_set_id' => [
+                            'attribute_set' => $product->getDataFieldConfig('attribute_set_id')['source']
+                                ->getAttributeSet()
+                        ],
+                    ],
+                ]
+            );
+        }
         $promotedProduct->persist();
         if ($customerSegment->hasData()) {
             $customerSegment->persist();
         }
-        $replace = $this->getReplaceData($product, $promotedProduct, $customerSegment);
+        $replace = $this->getReplaceData($product, $promotedProduct, $conditionEntity, $customerSegment);
 
         // Steps
+        if ($conditionEntity == 'sku') {
+            $this->updateAttributeStep = $this->stepFactory->create(
+                UpdateAttributeStep::class,
+                [
+                    'attributeCode' => 'sku',
+                    'updateAttributeData' => ['is_used_for_promo_rules' => 'Yes'],
+                ]
+            );
+            $this->updateAttributeStep->run();
+        }
         $this->targetRuleIndex->open();
         $this->targetRuleIndex->getGridPageActions()->addNew();
         $this->targetRuleNew->getTargetRuleForm()->fill($targetRule, null, $replace);

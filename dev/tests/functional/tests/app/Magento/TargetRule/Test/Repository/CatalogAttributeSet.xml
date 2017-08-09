@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Catalog\Test\Repository\CatalogAttributeSet">
+        <dataset name="custom_attribute_set_with_gender">
+            <field name="attribute_set_name" xsi:type="string">Custom_attribute_set_with_gender_%isolation%</field>
+            <field name="skeleton_set" xsi:type="array">
+                <item name="dataset" xsi:type="string">default</item>
+            </field>
+            <field name="assigned_attributes" xsi:type="array">
+                <item name="dataset" xsi:type="string">gender_for_target_rule</item>
+            </field>
+        </dataset>
+    </repository>
+</config>

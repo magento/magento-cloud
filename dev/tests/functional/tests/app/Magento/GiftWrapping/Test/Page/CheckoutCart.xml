@@ -9,5 +9,7 @@
     <page name="CheckoutCart" mca="checkout/cart/index" module="Magento_Checkout">
         <block name="giftOptionsItemBlock" class="Magento\GiftWrapping\Test\Block\Cart\Item\GiftOptions" locator=".gift-options-cart-item" strategy="css selector"/>
         <block name="giftOptionsOrderBlock" class="Magento\GiftWrapping\Test\Block\Cart\GiftOptions" locator=".cart-gift-item" strategy="css selector"/>
-  </page>
+        <block name="giftWrappingTotalsBlock" class="Magento\GiftWrapping\Test\Block\Cart\Totals" locator="#cart-totals" strategy="css selector" />
+        <block name="giftWrappingCartBlock" class="Magento\GiftWrapping\Test\Block\Cart" locator="//div[contains(@class, 'column main')]" strategy="xpath" />
+    </page>
 </config>

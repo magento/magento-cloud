@@ -18,10 +18,10 @@
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">10</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">In Stock</data>
             <data name="product/data/giftcard_type" xsi:type="string">Virtual</data>
-            <data name="product/data/giftcard_amounts/1/value" xsi:type="string">10</data>
+            <data name="product/data/giftcard_amounts/0/value" xsi:type="string">10</data>
             <data name="product/data/allow_open_amount" xsi:type="string">No</data>
             <data name="product/data/use_config_lifetime" xsi:type="string">Yes</data>
-            <data name="product/data/website_ids" xsi:type="string">Main Website</data>
+            <data name="product/data/website_ids/0/dataset" xsi:type="string">default</data>
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">10</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">In Stock</data>
             <data name="isRequired" xsi:type="string">Yes</data>
@@ -45,12 +45,12 @@
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">10</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">In Stock</data>
             <data name="product/data/giftcard_type" xsi:type="string">Physical</data>
-            <data name="product/data/giftcard_amounts/1/value" xsi:type="string">20</data>
-            <data name="product/data/giftcard_amounts/2/value" xsi:type="string">30</data>
+            <data name="product/data/giftcard_amounts/0/value" xsi:type="string">20</data>
+            <data name="product/data/giftcard_amounts/1/value" xsi:type="string">30</data>
             <data name="product/data/allow_open_amount" xsi:type="string">No</data>
             <data name="product/data/use_config_lifetime" xsi:type="string">No</data>
             <data name="product/data/lifetime" xsi:type="string">365</data>
-            <data name="product/data/website_ids" xsi:type="string">Main Website</data>
+            <data name="product/data/website_ids/0/dataset" xsi:type="string">default</data>
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">10</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">In Stock</data>
             <data name="isRequired" xsi:type="string">No</data>
@@ -77,7 +77,7 @@
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">10</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">In Stock</data>
             <data name="product/data/use_config_lifetime" xsi:type="string">Yes</data>
-            <data name="product/data/website_ids" xsi:type="string">Main Website</data>
+            <data name="product/data/website_ids/0/dataset" xsi:type="string">default</data>
             <data name="isRequired" xsi:type="string">No</data>
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductSaveMessage" />
             <constraint name="Magento\GiftCard\Test\Constraint\AssertGiftCardInGrid" />
@@ -96,12 +96,12 @@
             <data name="product/data/name" xsi:type="string">GiftCardProduct %isolation%</data>
             <data name="product/data/sku" xsi:type="string">giftcard_sku_%isolation%</data>
             <data name="product/data/giftcard_type" xsi:type="string">Combined</data>
-            <data name="product/data/giftcard_amounts/1/value" xsi:type="string">10</data>
+            <data name="product/data/giftcard_amounts/0/value" xsi:type="string">10</data>
             <data name="product/data/allow_open_amount" xsi:type="string">No</data>
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">10</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">In Stock</data>
             <data name="product/data/use_config_lifetime" xsi:type="string">Yes</data>
-            <data name="product/data/website_ids" xsi:type="string">Main Website</data>
+            <data name="product/data/website_ids/0/dataset" xsi:type="string">default</data>
             <data name="product/data/custom_options/dataset" xsi:type="string">all_types</data>
             <data name="isRequired" xsi:type="string">No</data>
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductSaveMessage" />
@@ -121,12 +121,12 @@
             <data name="product/data/name" xsi:type="string">GiftCardProduct %isolation%</data>
             <data name="product/data/sku" xsi:type="string">giftcard_sku_%isolation%</data>
             <data name="product/data/giftcard_type" xsi:type="string">Virtual</data>
-            <data name="product/data/giftcard_amounts/1/value" xsi:type="string">10</data>
+            <data name="product/data/giftcard_amounts/0/value" xsi:type="string">10</data>
             <data name="product/data/allow_open_amount" xsi:type="string">No</data>
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">0</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">Out of Stock</data>
             <data name="product/data/use_config_lifetime" xsi:type="string">Yes</data>
-            <data name="product/data/website_ids" xsi:type="string">Main Website</data>
+            <data name="product/data/website_ids/0/dataset" xsi:type="string">default</data>
             <data name="isRequired" xsi:type="string">No</data>
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductSaveMessage" />
             <constraint name="Magento\GiftCard\Test\Constraint\AssertGiftCardInGrid" />
@@ -142,12 +142,12 @@
             <data name="product/data/name" xsi:type="string">GiftCardProduct %isolation%</data>
             <data name="product/data/sku" xsi:type="string">giftcard_sku_%isolation%</data>
             <data name="product/data/giftcard_type" xsi:type="string">Physical</data>
-            <data name="product/data/giftcard_amounts/1/value" xsi:type="string">10</data>
+            <data name="product/data/giftcard_amounts/0/value" xsi:type="string">10</data>
             <data name="product/data/allow_open_amount" xsi:type="string">No</data>
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">10</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">In Stock</data>
             <data name="product/data/use_config_lifetime" xsi:type="string">Yes</data>
-            <data name="product/data/website_ids" xsi:type="string">Main Website</data>
+            <data name="product/data/website_ids/0/dataset" xsi:type="string">default</data>
             <data name="isRequired" xsi:type="string">No</data>
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductSaveMessage" />
             <constraint name="Magento\GiftCard\Test\Constraint\AssertGiftCardInGrid" />
@@ -163,7 +163,7 @@
             <data name="product/data/name" xsi:type="string">GiftCardProduct %isolation%</data>
             <data name="product/data/sku" xsi:type="string">giftcard_sku_%isolation%</data>
             <data name="product/data/giftcard_type" xsi:type="string">Virtual</data>
-            <data name="product/data/giftcard_amounts/1/value" xsi:type="string">10</data>
+            <data name="product/data/giftcard_amounts/0/value" xsi:type="string">10</data>
             <data name="product/data/allow_open_amount" xsi:type="string">No</data>
             <data name="product/data/quantity_and_stock_status/qty" xsi:type="string">10</data>
             <data name="product/data/quantity_and_stock_status/is_in_stock" xsi:type="string">Out of Stock</data>

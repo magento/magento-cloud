@@ -21,8 +21,6 @@
             <constraint name="Magento\Sales\Test\Constraint\AssertOrdersInOrdersGrid" />
         </variation>
         <variation name="MassActionArchiveOrderEntityTestVariation2">
-            <data name="tag" xsi:type="string">stable:no</data>
-            <data name="issue" xsi:type="string">MAGETWO-66711: Magento\SalesArchive\Test\TestCase\MassActionArchiveOrderEntityTest::test with data set "MassActionArchiveOrderEntityTestVariation2"</data>
             <data name="description" xsi:type="string">Try to cancel orders in status Complete, Closed</data>
             <data name="steps" xsi:type="string">invoice, shipment; invoice, shipment</data>
             <data name="orderStatuses" xsi:type="array">

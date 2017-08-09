@@ -7,6 +7,7 @@
 namespace Magento\GiftCardAccount\Test\TestCase;
 
 use Magento\GiftCardAccount\Test\Fixture\GiftCardAccount;
+use Magento\GiftCardAccount\Test\Fixture\GiftCardAccount\WebsiteId;
 use Magento\GiftCardAccount\Test\Page\Adminhtml\Index;
 use Magento\GiftCardAccount\Test\Page\Adminhtml\NewIndex;
 use Magento\Mtf\Fixture\FixtureFactory;
@@ -33,55 +34,65 @@ class CreateGiftCardAccountEntityTest extends Injectable
     /* end tags */
 
     /**
-     * Page of gift card account
+     * Page of gift card account.
      *
      * @var Index
      */
     protected $giftCardAccountIndex;
 
     /**
-     * Page of create gift card account
+     * Page of create gift card account.
      *
      * @var NewIndex
      */
     protected $newIndex;
 
     /**
-     * Prepare data
+     * Fixture factory.
+     *
+     * @var FixtureFactory
+     */
+    private $fixtureFactory;
+
+    /**
+     * Prepare data.
      *
      * @param FixtureFactory $fixtureFactory
      * @return array
      */
     public function __prepare(FixtureFactory $fixtureFactory)
     {
-        $product = $fixtureFactory->createByCode(
+        $this->fixtureFactory = $fixtureFactory;
+
+        $product = $this->fixtureFactory->createByCode(
             'catalogProductSimple',
             ['dataset' => 'product_100_dollar']
         );
         $product->persist();
-        $customer = $fixtureFactory->createByCode('customer', ['dataset' => 'default']);
-        $customer->persist();
-        return [
-            'product' => $product,
-            'customer' => $customer
-        ];
+
+        return ['product' => $product];
     }
 
     /**
-     * Inject gift card account page
+     * Inject gift card account page.
      *
      * @param Index $index
      * @param NewIndex $newIndex
-     * @return void
+     * @return array
      */
     public function __inject(Index $index, NewIndex $newIndex)
     {
         $this->giftCardAccountIndex = $index;
         $this->newIndex = $newIndex;
+
+        $customer = $this->fixtureFactory->createByCode('customer', ['dataset' => 'default']);
+        $customer->persist();
+
+        return ['customer' => $customer];
     }
 
     /**
-     * Create gift card account entity
+     * Create gift card account entity.
      *
      * @param GiftCardAccount $giftCardAccount
      * @return array
@@ -95,8 +106,42 @@ class CreateGiftCardAccountEntityTest extends Injectable
         $this->newIndex->getPageMainForm()->fill($giftCardAccount);
         $this->newIndex->getPageMainActions()->save();
 
-        $code = $this->giftCardAccountIndex->getGiftCardAccount()
-            ->getCode(['balance' => $giftCardAccount->getBalance()], false);
-        return ['code' => $code];
+        return $this->prepareGiftCardAccount($giftCardAccount);
+    }
+
+    /**
+     * Prepare gift card.
+     *
+     * @param GiftCardAccount $giftCardAccountOrig
+     * @return GiftCardAccount
+     */
+    private function prepareGiftCardAccount(GiftCardAccount $giftCardAccountOrig)
+    {
+        $row = $this->giftCardAccountIndex->getGiftCardAccount()->getNewestRowData(
+            ['giftcardaccount_id', 'code']
+        );
+
+        $website = null;
+        $websiteSource = $giftCardAccountOrig->getDataFieldConfig('website_id')['source'];
+
+        if (is_a($websiteSource, WebsiteId::class) && $websiteSource->getWebsite()) {
+            $website = $websiteSource->getWebsite();
+        }
+
+        $data = array_merge(
+            $giftCardAccountOrig->getData(),
+            [
+                'code' => $row['code'],
+                'id' => $row['giftcardaccount_id'],
+                'website_id' => ['source' => $website]
+            ]
+        );
+
+        $giftCardAccount = $this->fixtureFactory->create(GiftCardAccount::class, ['data' => $data]);
+
+        return [
+            'code' => $row['code'],
+            'giftCardAccount' => $giftCardAccount
+        ];
     }
 }

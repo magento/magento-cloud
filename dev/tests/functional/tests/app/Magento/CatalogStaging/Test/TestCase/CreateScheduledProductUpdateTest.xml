@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\CreateScheduledProductUpdateTest" summary="Create scheduled update" ticketId="MAGETWO-69538">
+        <variation name="CreateScheduledProductUpdateTestVariation1" summary="Create permanent product update and verify it in grid after activation" ticketId="MAGETWO-64910">
+            <data name="tag" xsi:type="string">severity:S2</data>
+            <data name="product/dataset" xsi:type="string">product_with_store_code</data>
+            <data name="update/dataset" xsi:type="string">temporary_update_with_date_plus_2_minutes</data>
+            <data name="update/data/start_time/apply_timezone" xsi:type="boolean">true</data>
+            <data name="update/data/end_time/apply_timezone" xsi:type="boolean">true</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertUpdateVisibleAfterSave" />
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertUpdateVisibleAfterActivation" />
+        </variation>
+        <variation name="CreateScheduledProductUpdateTestVariation2" summary="Create temporary product update and verify it in grid after activation" ticketId="MAGETWO-64910">
+            <data name="tag" xsi:type="string">severity:S2</data>
+            <data name="product/dataset" xsi:type="string">product_with_store_code</data>
+            <data name="update/dataset" xsi:type="string">update_with_date_plus_2_minutes</data>
+            <data name="update/data/start_time/apply_timezone" xsi:type="boolean">true</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertUpdateVisibleAfterSave" />
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertUpdateNotVisibleAfterActivation" />
+        </variation>
+    </testCase>
+</config>

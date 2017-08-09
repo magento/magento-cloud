@@ -84,4 +84,25 @@ class Grid extends \Magento\Backend\Test\Block\Widget\Grid
             throw new \Exception('Searched item was not found.');
         }
     }
+
+    /**
+     * Return newest row data.
+     *
+     * @param array $columns
+     * @return array
+     */
+    public function getNewestRowData(array $columns)
+    {
+        $this->sortGridByField($this->sortLinkName);
+        $row = $this->_rootElement->find($this->rowItem);
+        $rowData = [];
+
+        if ($row->isVisible()) {
+            foreach ($columns as $columnName) {
+                $rowData[$columnName] = trim($row->find('.col-' . $columnName)->getText());
+            }
+        }
+
+        return $rowData;
+    }
 }

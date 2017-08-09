@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/TestCase/etc/testcase.xsd">
+    <scenario name="AddProductsTest" firstStep="createProductAttributes">
+        <step name="createProductAttributes" module="Magento_Catalog" next="addAttributeToAttributeSet"/>
+        <step name="addAttributeToAttributeSet" module="Magento_Catalog" next="makeAttributesVisibleForCategoryRules"/>
+        <step name="makeAttributesVisibleForCategoryRules" module="Magento_VisualMerchandiser" next="createProducts"/>
+        <step name="createProducts" module="Magento_Catalog" next="fillCustomAttributesOnProductPage"/>
+        <step name="fillCustomAttributesOnProductPage" module="Magento_Catalog" next="createCategory"/>
+        <step name="createCategory" module="Magento_Catalog" next="assignProductsToCategory"/>
+        <step name="assignProductsToCategory" module="Magento_VisualMerchandiser"/>
+    </scenario>
+</config>

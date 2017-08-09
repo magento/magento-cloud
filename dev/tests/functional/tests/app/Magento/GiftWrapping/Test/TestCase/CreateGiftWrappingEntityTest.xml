@@ -25,5 +25,15 @@
             <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingInGrid" />
             <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingForm" />
         </variation>
+        <variation name="CreateGiftWrappingEntityTestVariation3" ticketId="MAGETWO-67799">
+            <data name="giftWrapping/data/design" xsi:type="string">GiftWrapping%isolation%</data>
+            <data name="giftWrapping/data/website_ids/dataset" xsi:type="string">main_website</data>
+            <data name="giftWrapping/data/status" xsi:type="string">Enabled</data>
+            <data name="giftWrapping/data/base_price" xsi:type="string">10</data>
+            <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingSuccessSaveMessage" />
+            <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingInGrid" />
+            <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingForm" />
+            <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingTotalsVisibilityOnBackendOrderCreatePage" />
+        </variation>
     </testCase>
 </config>

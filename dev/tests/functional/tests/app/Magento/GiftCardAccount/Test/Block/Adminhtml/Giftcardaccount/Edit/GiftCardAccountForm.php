@@ -9,10 +9,22 @@ namespace Magento\GiftCardAccount\Test\Block\Adminhtml\Giftcardaccount\Edit;
 use Magento\Backend\Test\Block\Widget\FormTabs;
 
 /**
- * Class GiftCardAccountForm
- * Gift card account edit page block
+ * Gift card account edit page block.
  */
 class GiftCardAccountForm extends FormTabs
 {
-    //
+    /**
+     * Return gift card account Id.
+     *
+     * @return string
+     */
+    public function getGiftCardAccountId()
+    {
+        $id = '';
+        if (preg_match('/\/id\/(?<id>\d+)(?:\/)?/', $this->browser->getUrl(), $matches)) {
+            $id = $matches['id'];
+        }
+
+        return $id;
+    }
 }

@@ -10,8 +10,8 @@
         <variation name="TargetRule_Create_RelatedProducts">
             <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
-            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
             <data name="customerSegment/dataset" xsi:type="string">-</data>
+            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
             <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
             <data name="targetRule/data/is_active" xsi:type="string">Active</data>
             <data name="targetRule/data/apply_to" xsi:type="string">Related Products</data>
@@ -29,8 +29,8 @@
         <variation name="TargetRule_Create_UpSells">
             <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
-            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
             <data name="customerSegment/dataset" xsi:type="string">-</data>
+            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
             <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
             <data name="targetRule/data/is_active" xsi:type="string">Active</data>
             <data name="targetRule/data/apply_to" xsi:type="string">Up-sells</data>
@@ -45,10 +45,29 @@
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleForm" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductUpSells" />
         </variation>
+        <variation name="TargetRule_Create_UpSells_With_Custom_Attribute" ticketId="MAGETWO-63330">
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="product/dataset" xsi:type="string">product_with_custom_gender_attribute</data>
+            <data name="customerSegment/dataset" xsi:type="string">-</data>
+            <data name="conditionEntity" xsi:type="string">attribute</data>
+            <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
+            <data name="targetRule/data/is_active" xsi:type="string">Active</data>
+            <data name="targetRule/data/apply_to" xsi:type="string">Up-sells</data>
+            <data name="targetRule/data/from_date/pattern" xsi:type="string">01/14/2014</data>
+            <data name="targetRule/data/to_date/pattern" xsi:type="string">08/15/2024</data>
+            <data name="targetRule/data/use_customer_segment" xsi:type="string">-</data>
+            <data name="targetRule/data/customer_segment_ids" xsi:type="string">-</data>
+            <data name="targetRule/data/conditions_serialized" xsi:type="string">[%attribute_name%|contains|%attribute_value%]</data>
+            <data name="targetRule/data/actions_serialized" xsi:type="string">[%attribute_name%]</data>
+            <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleSuccessSaveMessage" />
+            <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleInGrid" />
+            <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleForm" />
+            <constraint name="Magento\Catalog\Test\Constraint\AssertProductUpSells" />
+        </variation>
         <variation name="TargetRule_Create_CrossSells">
             <data name="product/dataset" xsi:type="string">product_with_category</data>
-            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
             <data name="customerSegment/dataset" xsi:type="string">-</data>
+            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
             <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
             <data name="targetRule/data/is_active" xsi:type="string">Active</data>
             <data name="targetRule/data/apply_to" xsi:type="string">Cross-sells</data>
@@ -66,8 +85,8 @@
         <variation name="TargetRule_Create_CrossSells_ForCustomerSegment">
             <data name="tag" xsi:type="string">test_type:extended_acceptance_test, to_maintain:yes</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
-            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
             <data name="customerSegment/dataset" xsi:type="string">active_customer_segment</data>
+            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
             <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
             <data name="targetRule/data/is_active" xsi:type="string">Active</data>
             <data name="targetRule/data/apply_to" xsi:type="string">Cross-sells</data>
@@ -81,6 +100,21 @@
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleInGrid" />
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleForm" />
             <constraint name="Magento\TargetRule\Test\Constraint\AssertProductCrossSellsForCustomerSegment" />
+        </variation>
+        <variation name="TargetRule_Create_RelatedProducts_With_SKU_Conditions" ticketId="MAGETWO-63937">
+            <data name="product/dataset" xsi:type="string">product_with_category</data>
+            <data name="customerSegment/dataset" xsi:type="string">-</data>
+            <data name="conditionEntity" xsi:type="string">sku</data>
+            <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
+            <data name="targetRule/data/is_active" xsi:type="string">Active</data>
+            <data name="targetRule/data/apply_to" xsi:type="string">Related Products</data>
+            <data name="targetRule/data/from_date/pattern" xsi:type="string">01/14/2014</data>
+            <data name="targetRule/data/to_date/pattern" xsi:type="string">08/15/2024</data>
+            <data name="targetRule/data/conditions_serialized" xsi:type="string">[SKU|contains|%sku%]</data>
+            <data name="targetRule/data/actions_serialized" xsi:type="string">[SKU|is|Constant Value|%promoted_sku%]</data>
+            <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleSuccessSaveMessage" />
+            <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleInGrid" />
+            <constraint name="Magento\Catalog\Test\Constraint\AssertProductRelatedProducts" />
         </variation>
     </testCase>
 </config>
