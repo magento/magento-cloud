@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogEvent\Controller\Adminhtml\Catalog;
@@ -26,7 +26,7 @@ class EventTest extends \Magento\TestFramework\TestCase\AbstractBackendControlle
     {
         /** @var $event \Magento\CatalogEvent\Model\Event */
         $event = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CatalogEvent\Model\Event'
+            \Magento\CatalogEvent\Model\Event::class
         );
         $event->load(\Magento\CatalogEvent\Model\Event::DISPLAY_CATEGORY_PAGE, 'display_state');
         $this->dispatch('backend/admin/catalog_event/edit/id/' . $event->getId());

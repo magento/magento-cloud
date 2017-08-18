@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reward\Model\ResourceModel\Reward\History;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Reward\Model\ResourceModel\Reward\History\Collection
@@ -15,7 +15,9 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $this->_collection = $objectManager->create('Magento\Reward\Model\ResourceModel\Reward\History\Collection');
+        $this->_collection = $objectManager->create(
+            \Magento\Reward\Model\ResourceModel\Reward\History\Collection::class
+        );
     }
 
     /**

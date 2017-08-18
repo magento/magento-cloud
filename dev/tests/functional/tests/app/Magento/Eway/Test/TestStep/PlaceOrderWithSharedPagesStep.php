@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Eway\Test\TestStep;
@@ -21,7 +21,7 @@ class PlaceOrderWithSharedPagesStep implements TestStepInterface
      *
      * @var CheckoutOnepage
      */
-    private $ewayCheckoutOnepage;
+    private $checkoutOnepage;
 
     /**
      * Fixture factory.
@@ -52,20 +52,20 @@ class PlaceOrderWithSharedPagesStep implements TestStepInterface
     private $checkoutOnepageSuccess;
 
     /**
-     * @param EwayCheckoutOnepage $ewayCheckoutOnepage
+     * @param CheckoutOnepage $checkoutOnepage
      * @param CheckoutOnepageSuccess $checkoutOnepageSuccess
      * @param FixtureFactory $fixtureFactory
      * @param CreditCard $creditCard
      * @param array $products
      */
     public function __construct(
-        CheckoutOnepage $ewayCheckoutOnepage,
+        CheckoutOnepage $checkoutOnepage,
         CheckoutOnepageSuccess $checkoutOnepageSuccess,
         FixtureFactory $fixtureFactory,
         CreditCard $creditCard,
         array $products = []
     ) {
-        $this->ewayCheckoutOnepage = $ewayCheckoutOnepage;
+        $this->checkoutOnepage = $checkoutOnepage;
         $this->checkoutOnepageSuccess = $checkoutOnepageSuccess;
         $this->fixtureFactory = $fixtureFactory;
         $this->creditCard = $creditCard;
@@ -79,8 +79,8 @@ class PlaceOrderWithSharedPagesStep implements TestStepInterface
      */
     public function run()
     {
-        $this->ewayCheckoutOnepage->getEwayPaymentBlock()->placeOrder();
-        $this->ewayCheckoutOnepage->getEwaySharedPagesForm()->fill($this->creditCard);
+        $this->checkoutOnepage->getPaymentBlock()->placeOrder();
+        $this->checkoutOnepage->getEwaySharedPagesForm()->fill($this->creditCard);
         $orderId = $this->checkoutOnepageSuccess->getSuccessBlock()->getGuestOrderId();
         $order = $this->fixtureFactory->createByCode(
             'orderInjectable',

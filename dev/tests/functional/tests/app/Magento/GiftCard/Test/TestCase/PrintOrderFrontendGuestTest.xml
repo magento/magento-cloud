@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Sales\Test\TestCase\PrintOrderFrontendGuestTest" summary="Print Order from Guest on Frontend with gift card">
+        <variation name="PrintGiftCardOrderFrontendGuestTestVariation">
+            <data name="customer" xsi:type="array">
+                <item name="dataset" xsi:type="string">johndoe_with_addresses</item>
+            </data>
+            <data name="billingAddress" xsi:type="array">
+                <item name="dataset" xsi:type="string">US_address_1_without_email</item>
+            </data>
+            <data name="payment" xsi:type="array">
+                <item name="method" xsi:type="string">checkmo</item>
+            </data>
+            <data name="setShippingAddress" xsi:type="boolean">false</data>
+            <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_1</data>
+            <data name="products/0" xsi:type="string">giftCardProduct::default</data>
+            <data name="prices/subtotal" xsi:type="string">150.00</data>
+            <data name="prices/giftCard" xsi:type="string">-1</data>
+            <data name="paymentMethod" xsi:type="string">Check / Money order</data>
+            <constraint name="Magento\Sales\Test\Constraint\AssertSalesPrintOrderBillingAddress" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertSalesPrintOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertSalesPrintOrderPaymentMethod" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertSalesPrintOrderProducts" />
+            <constraint name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountOnPrintOrder" />
+        </variation>
+    </testCase>
+</config>

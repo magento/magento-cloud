@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Banner\Test\Repository\Banner">
+
+        <dataset name="banner_customer_segment_visitors">
+            <field name="name" xsi:type="string">banner_%isolation%</field>
+            <field name="is_enabled" xsi:type="string">Active</field>
+            <field name="use_customer_segment" xsi:type="string">Specified</field>
+            <field name="store_contents_not_use" xsi:type="array">
+                <item name="value_1" xsi:type="string">Yes</item>
+            </field>
+            <field name="store_contents" xsi:type="array">
+                <item name="value_0" xsi:type="string">banner_content_%isolation%</item>
+            </field>
+            <field name="customer_segment_ids" xsi:type="array">
+                <item name="dataset" xsi:type="string">active_customer_segment_visitors</item>
+            </field>
+        </dataset>
+
+        <dataset name="banner_customer_segment_registered">
+            <field name="name" xsi:type="string">banner_%isolation%</field>
+            <field name="is_enabled" xsi:type="string">Active</field>
+            <field name="use_customer_segment" xsi:type="string">Specified</field>
+            <field name="store_contents_not_use" xsi:type="array">
+                <item name="value_1" xsi:type="string">Yes</item>
+            </field>
+            <field name="store_contents" xsi:type="array">
+                <item name="value_0" xsi:type="string">banner_content_%isolation%</item>
+            </field>
+            <field name="customer_segment_ids" xsi:type="array">
+                <item name="dataset" xsi:type="string">active_customer_segment_registered</item>
+            </field>
+        </dataset>
+    </repository>
+</config>

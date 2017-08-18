@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -97,8 +97,13 @@ class AbstractRmaEntityTest extends Injectable
         $data = $order->getData();
         $data['store_id'] = ['data' => $store->getData()];
         $data['entity_id'] = ['value' => $order->getEntityId()];
-        $data['customer_id'] = ['customer' => $order->getDataFieldConfig('customer_id')['source']->getCustomer()];
-
+        if ($order->getData('customer_id')) {
+            $data['customer_id'] = ['customer' => $order->getDataFieldConfig('customer_id')['source']->getCustomer()];
+        } else {
+            $data['billing_address_id'] = [
+                'value' => $order->getDataFieldConfig('billing_address_id')['source']->getData()
+            ];
+        }
         return $data;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\AdminGws\Model;
@@ -16,17 +16,17 @@ class BlocksTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         parent::setUp();
         /** @var $auth \Magento\Backend\Model\Auth */
-        $this->_objectManager->get('Magento\Backend\Model\UrlInterface')->turnOffSecretKey();
-        $auth = $this->_objectManager->get('Magento\Backend\Model\Auth');
+        $this->_objectManager->get(\Magento\Backend\Model\UrlInterface::class)->turnOffSecretKey();
+        $auth = $this->_objectManager->get(\Magento\Backend\Model\Auth::class);
         $auth->login('admingws_user', 'admingws_password1');
     }
 
     protected function tearDown()
     {
         /** @var $auth \Magento\Backend\Model\Auth */
-        $auth = $this->_objectManager->get('Magento\Backend\Model\Auth');
+        $auth = $this->_objectManager->get(\Magento\Backend\Model\Auth::class);
         $auth->logout();
-        $this->_objectManager->get('Magento\Backend\Model\UrlInterface')->turnOnSecretKey();
+        $this->_objectManager->get(\Magento\Backend\Model\UrlInterface::class)->turnOnSecretKey();
         parent::tearDown();
     }
 
@@ -66,9 +66,9 @@ class BlocksTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->dispatch('backend/admin/user_role/editrole');
 
         $this->assertInstanceOf(
-            'Magento\AdminGws\Block\Adminhtml\Permissions\Tab\Rolesedit\Gws',
+            \Magento\AdminGws\Block\Adminhtml\Permissions\Tab\Rolesedit\Gws::class,
             \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-                'Magento\Framework\View\LayoutInterface'
+                \Magento\Framework\View\LayoutInterface::class
             )->getBlock(
                 'adminhtml.user.role.edit.gws'
             ),
@@ -76,11 +76,14 @@ class BlocksTest extends \Magento\TestFramework\TestCase\AbstractController
         );
 
         $body = $this->getResponse()->getBody();
-        $this->assertSelectEquals(
-            'div.entry-edit.form-inline fieldset.fieldset legend.legend span',
-            'Role Scopes',
+        $this->assertEquals(
             1,
-            $body
+            \Magento\TestFramework\Helper\Xpath::getElementsCountForXpath(
+                '//div[contains(@class, "entry-edit") and contains(@class, "form-inline")]'
+                . '/fieldset[contains(@class, "fieldset")]/legend[contains(@class, "legend")]'
+                . '/span[text() = "Role Scopes"]',
+                $body
+            )
         );
     }
 
@@ -92,9 +95,9 @@ class BlocksTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->dispatch('backend/admin/user_role/editrolegrid');
 
         $this->assertInstanceOf(
-            'Magento\AdminGws\Block\Adminhtml\Permissions\Grid\Role',
+            \Magento\AdminGws\Block\Adminhtml\Permissions\Grid\Role::class,
             \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-                'Magento\Framework\View\LayoutInterface'
+                \Magento\Framework\View\LayoutInterface::class
             )->getBlock(
                 'adminhtml.user.role.grid'
             ),

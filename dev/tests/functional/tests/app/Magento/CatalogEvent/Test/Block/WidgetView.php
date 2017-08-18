@@ -1,24 +1,36 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\CatalogEvent\Test\Block;
 
-use Magento\Widget\Test\Fixture\Widget;
+use Magento\Mtf\Client\Locator;
 
 /**
- * Widget catalog event block on the frontend
+ * The block of "Catalog Events Carousel" Widget on Storefront.
  */
 class WidgetView extends \Magento\Widget\Test\Block\WidgetView
 {
     /**
-     * Widgets selectors
+     * Selector for: link to interested Sale Event inside the Widget.
      *
-     * @var array
+     * @var string
      */
-    protected $widgetSelectors = [
-        'catalogEventsCarousel' => '(.//*/a/span[contains(.,"%s")])[last()]',
-    ];
+    protected $interestedEventInsideLister = '//a[contains(.,"%s")]';
+
+    /**
+     * Customer opens interested Sale Event by Category name.
+     *
+     * @param string $categoryName
+     * @return void
+     */
+    public function openInterestedEvent($categoryName)
+    {
+        $this->_rootElement->find(
+            sprintf($this->interestedEventInsideLister, $categoryName),
+            Locator::SELECTOR_XPATH
+        )->click();
+    }
 }

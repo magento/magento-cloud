@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerCustomAttributes\Model\Sales\Order;
@@ -8,7 +8,7 @@ namespace Magento\CustomerCustomAttributes\Model\Sales\Order;
 /**
  * @magentoDataFixture Magento/CustomerCustomAttributes/_files/order_address_with_attribute.php
  */
-class AddressTest extends \PHPUnit_Framework_TestCase
+class AddressTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CustomerCustomAttributes\Model\Sales\Order\Address
@@ -18,14 +18,14 @@ class AddressTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerCustomAttributes\Model\Sales\Order\Address'
+            \Magento\CustomerCustomAttributes\Model\Sales\Order\Address::class
         );
     }
 
     public function testAttachDataToEntities()
     {
         $address = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Sales\Model\Order\Address'
+            \Magento\Sales\Model\Order\Address::class
         );
         $address->load('admin@example.com', 'email');
 

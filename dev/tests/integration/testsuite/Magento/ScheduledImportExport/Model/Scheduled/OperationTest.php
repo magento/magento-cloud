@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ScheduledImportExport\Model\Scheduled;
 
-class OperationTest extends \PHPUnit_Framework_TestCase
+class OperationTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\ScheduledImportExport\Model\Scheduled\Operation
@@ -89,7 +89,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         // Create export directory if not exist
         /** @var \Magento\Framework\Filesystem\Directory\Write $varDir */
         $varDir = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\Filesystem'
+            \Magento\Framework\Filesystem::class
         )->getDirectoryWrite(
             'base'
         );
@@ -102,7 +102,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->model->run();
 
         $scheduledExport = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\ScheduledImportExport\Model\Export'
+            \Magento\ScheduledImportExport\Model\Export::class
         );
         $scheduledExport->setEntity($this->model->getEntityType());
         $scheduledExport->setOperationType($this->model->getOperationType());

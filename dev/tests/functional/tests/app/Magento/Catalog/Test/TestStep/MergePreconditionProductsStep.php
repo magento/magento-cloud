@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -45,6 +45,7 @@ class MergePreconditionProductsStep implements TestStepInterface
     public function run()
     {
         $products = array_merge($this->preconditionProducts, $this->products);
+
         return ['products' => $products];
     }
 }

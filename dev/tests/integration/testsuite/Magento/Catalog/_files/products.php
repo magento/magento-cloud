@@ -1,13 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
-use Magento\TestFramework\Helper\Bootstrap;
-
 /** @var $product \Magento\Catalog\Model\Product */
-$product = Bootstrap::getObjectManager()
+$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
     ->create(\Magento\Catalog\Model\Product::class);
 $product
     ->setTypeId('simple')
@@ -22,15 +20,19 @@ $product
     ->setMetaDescription('meta description')
     ->setVisibility(\Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH)
     ->setStatus(\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
-    ->setStockData(['use_config_manage_stock' => 0])
+    ->setStockData(['use_config_manage_stock' => 1, 'qty' => 22, 'is_in_stock' => 1])
+    ->setQty(22)
     ->save();
 
-$customDesignProduct = Bootstrap::getObjectManager()
+$customDesignProduct = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
     ->create(\Magento\Catalog\Model\Product::class, ['data' => $product->getData()]);
 
 $customDesignProduct->setUrlKey('custom-design-simple-product')
     ->setId(2)
     ->setRowId(2)
+    ->setName('Custom Design Simple Product')
     ->setSku('custom-design-simple-product')
     ->setCustomDesign('Magento/blank')
+    ->setStockData(['use_config_manage_stock' => 1, 'qty' => 24, 'is_in_stock' => 1])
+    ->setQty(24)
     ->save();

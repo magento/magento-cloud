@@ -1,18 +1,18 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 /** @var \Magento\Framework\Indexer\IndexerRegistry $indexerRegistry */
 $indexerRegistry = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    '\Magento\Framework\Indexer\IndexerRegistry'
+    \Magento\Framework\Indexer\IndexerRegistry::class
 );
 $indexer =  $indexerRegistry->get('catalogsearch_fulltext');
 $indexer->reindexAll();
 
 /** @var $product \Magento\Catalog\Model\Product */
-$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
+$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Catalog\Model\Product::class);
 $product->setTypeId(
     \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE
 )->setId(

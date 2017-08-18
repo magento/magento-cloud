@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -16,16 +16,12 @@ use Magento\Mtf\Fixture\FixtureInterface;
  */
 class ListProduct extends Block
 {
-    // @codingStandardsIgnoreStart
-
     /**
      * Locator for product item block.
      *
      * @var string
      */
     protected $productItem = './/*[contains(@class,"product-item-link") and normalize-space(text())="%s"]/ancestor::li';
-
-    // @codingStandardsIgnoreEnd
 
     /**
      * Locator for product item link.
@@ -75,14 +71,27 @@ class ListProduct extends Block
     }
 
     /**
+     * Get products count on page
+     *
+     * @return int
+     */
+    public function getProductsCount()
+    {
+        return count($this->_rootElement->getElements($this->productItemLink));
+    }
+
+    /**
      * Get all terms used in sort.
      *
      * @return array
      */
     public function getSortByValues()
     {
-        $sortValues = $this->_rootElement->find($this->sorter)->getText();
-        
-        return array_filter(array_map("trim", explode("\n", $sortValues)));
+        $values = explode("\n", $this->_rootElement->find($this->sorter)->getText());
+        $result = [];
+        foreach ($values as $value) {
+            $result[] = trim($value);
+        }
+        return $result;
     }
 }

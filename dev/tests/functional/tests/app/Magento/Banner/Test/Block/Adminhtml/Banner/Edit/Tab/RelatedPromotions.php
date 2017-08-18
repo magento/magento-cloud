@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Banner\Test\Block\Adminhtml\Banner\Edit\Tab;
@@ -38,7 +38,7 @@ class RelatedPromotions extends Tab
     public function getCartPriceRulesGrid()
     {
         return $this->blockFactory->create(
-            'Magento\Banner\Test\Block\Adminhtml\Promo\CartPriceRulesGrid',
+            \Magento\Banner\Test\Block\Adminhtml\Promo\CartPriceRulesGrid::class,
             [
                 'element' => $this->_rootElement->find($this->salesRuleGrid)
             ]
@@ -53,7 +53,7 @@ class RelatedPromotions extends Tab
     public function getCatalogPriceRulesGrid()
     {
         return $this->blockFactory->create(
-            'Magento\Banner\Test\Block\Adminhtml\Promo\CatalogPriceRulesGrid',
+            \Magento\Banner\Test\Block\Adminhtml\Promo\CatalogPriceRulesGrid::class,
             [
                 'element' => $this->_rootElement->find($this->catalogRuleGrid)
             ]

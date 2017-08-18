@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogSearch\Model\Layer\Filter;
@@ -12,7 +12,7 @@ namespace Magento\CatalogSearch\Model\Layer\Filter;
  * @magentoDbIsolation enabled
  * @magentoAppIsolation enabled
  */
-class PriceTest extends \PHPUnit_Framework_TestCase
+class PriceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CatalogSearch\Model\Layer\Filter\Price
@@ -22,14 +22,14 @@ class PriceTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $category = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Catalog\Model\Category'
+            \Magento\Catalog\Model\Category::class
         );
         $category->load(4);
         $layer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->get('Magento\Catalog\Model\Layer\Category');
+            ->get(\Magento\Catalog\Model\Layer\Category::class);
         $layer->setCurrentCategory($category);
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->create('Magento\CatalogSearch\Model\Layer\Filter\Price', ['layer' => $layer]);
+            ->create(\Magento\CatalogSearch\Model\Layer\Filter\Price::class, ['layer' => $layer]);
     }
 
     public function testApplyNothing()
@@ -38,7 +38,7 @@ class PriceTest extends \PHPUnit_Framework_TestCase
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         /** @var $request \Magento\TestFramework\Request */
-        $request = $objectManager->get('Magento\TestFramework\Request');
+        $request = $objectManager->get(\Magento\TestFramework\Request::class);
         $this->_model->apply($request);
 
         $this->assertEmpty($this->_model->getData('price_range'));
@@ -50,7 +50,7 @@ class PriceTest extends \PHPUnit_Framework_TestCase
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         /** @var $request \Magento\TestFramework\Request */
-        $request = $objectManager->get('Magento\TestFramework\Request');
+        $request = $objectManager->get(\Magento\TestFramework\Request::class);
         $request->setParam('price', 'non-numeric');
         $this->_model->apply($request);
 
@@ -65,7 +65,7 @@ class PriceTest extends \PHPUnit_Framework_TestCase
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         /** @var $request \Magento\TestFramework\Request */
-        $request = $objectManager->get('Magento\TestFramework\Request');
+        $request = $objectManager->get(\Magento\TestFramework\Request::class);
         $request->setParam('price', '10-20');
         $this->_model->apply($request);
     }

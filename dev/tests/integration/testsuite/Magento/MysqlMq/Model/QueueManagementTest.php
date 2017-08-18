@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\MysqlMq\Model;
@@ -10,7 +10,7 @@ use Magento\MysqlMq\Model\QueueManagement;
 /**
  * Test for Queue Management class.
  */
-class QueueManagementTest extends \PHPUnit_Framework_TestCase
+class QueueManagementTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var QueueManagement
@@ -25,7 +25,7 @@ class QueueManagementTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $this->queueManagement = $this->objectManager->create('Magento\MysqlMq\Model\QueueManagement');
+        $this->queueManagement = $this->objectManager->create(\Magento\MysqlMq\Model\QueueManagement::class);
     }
 
     /**

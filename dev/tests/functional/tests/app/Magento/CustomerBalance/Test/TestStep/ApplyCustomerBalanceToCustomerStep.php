@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -11,11 +11,17 @@ use Magento\Mtf\Fixture\FixtureFactory;
 use Magento\Mtf\TestStep\TestStepInterface;
 
 /**
- * Class ApplyCustomerBalanceToCustomerStep
- * Apply customer balance to customer
+ * Apply customer balance to customer.
  */
 class ApplyCustomerBalanceToCustomerStep implements TestStepInterface
 {
+    /**
+     * Fixture factory.
+     *
+     * @var FixtureFactory
+     */
+    protected $fixtureFactory;
+
     /**
      * Customer fixture.
      *
@@ -45,21 +51,24 @@ class ApplyCustomerBalanceToCustomerStep implements TestStepInterface
     /**
      * Apply customer balance to customer.
      *
-     * @return void
+     * @return array|null
      */
     public function run()
     {
-        if ($this->customerBalance !== null) {
-            $customerBalance = $this->fixtureFactory->createByCode(
-                'customerBalance',
-                [
-                    'dataset' => $this->customerBalance,
-                    'data' => [
-                        'customer_id' => ['customer' => $this->customer],
-                    ]
-                ]
-            );
-            $customerBalance->persist();
+        if ($this->customerBalance === null) {
+            return null;
         }
+        $customerBalance = $this->fixtureFactory->createByCode(
+            'customerBalance',
+            [
+                'dataset' => $this->customerBalance,
+                'data' => [
+                    'customer_id' => ['customer' => $this->customer],
+                ]
+            ]
+        );
+        $customerBalance->persist();
+
+        return ['customerBalance' => $customerBalance];
     }
 }

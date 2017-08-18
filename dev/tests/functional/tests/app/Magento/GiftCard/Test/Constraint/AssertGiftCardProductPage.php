@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -21,20 +21,21 @@ class AssertGiftCardProductPage extends AssertProductPage
     protected function verifyPrice()
     {
         $productData = $this->product->getData();
-        $priceOnPage = $this->productView->getPriceBlock()->getPrice();
-        $price = null;
-
-        if (isset($productData['giftcard_amounts']) && 1 == count($productData['giftcard_amounts'])) {
-            if ($productData['giftcard_amounts'] !== 'none') {
-                $amount = reset($productData['giftcard_amounts']);
-                $price = $amount['value'];
-            }
+        $priceBlock = $this->productView->getPriceBlock();
+        if (!$priceBlock->isVisible()) {
+            return "Price block for '{$this->product->getName()}' product' is not visible.";
         }
+        $actualPrice = $priceBlock->getPrice();
 
-        if ($price == $priceOnPage) {
+        $expectedPrice = null;
+        if (isset($productData['giftcard_amounts']) && 1 == count($productData['giftcard_amounts'])) {
+            $amount = reset($productData['giftcard_amounts']);
+            $expectedPrice = $amount['value'];
+        }
+        if ($expectedPrice == $actualPrice) {
             return null;
         }
         return "Displayed product price on product page(front-end) not equals passed from fixture. "
-        . "Actual: {$priceOnPage}, expected: {$price}.";
+        . "Actual: {$actualPrice}, expected: {$expectedPrice}.";
     }
 }

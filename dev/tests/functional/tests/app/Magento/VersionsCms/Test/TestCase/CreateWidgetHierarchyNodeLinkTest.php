@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -19,14 +19,14 @@ use Magento\Widget\Test\TestCase\AbstractCreateWidgetEntityTest;
  * 6. Fill widget data according dataset.
  * 7. Perform all assertions.
  *
- * @group Widget_(PS)
+ * @group Widget
  * @ZephyrId MAGETWO-27916
  */
 class CreateWidgetHierarchyNodeLinkTest extends AbstractCreateWidgetEntityTest
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'PS';
+    const SEVERITY = 'S1';
     /* end tags */
 
     /**

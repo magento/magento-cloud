@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -80,7 +80,7 @@ class SalesruleId extends \Magento\Mtf\Client\Element\SimpleElement
     protected function getSalesRuleGrid()
     {
         return ObjectManager::getInstance()->create(
-            '\Magento\SalesRule\Test\Block\Adminhtml\Promo\Grid',
+            \Magento\SalesRule\Test\Block\Adminhtml\Promo\Grid::class,
             ['element' => $this->find($this->popupSelectRuleGrid, Locator::SELECTOR_XPATH)]
         );
     }

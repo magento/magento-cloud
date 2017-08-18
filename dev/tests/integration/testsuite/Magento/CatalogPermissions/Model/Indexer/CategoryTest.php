@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogPermissions\Model\Indexer;
@@ -9,10 +9,10 @@ use Magento\TestFramework\Helper\Bootstrap;
 use Magento\CatalogPermissions\Model\Permission;
 
 /**
- * @magentoDbIsolation enabled
+ * @magentoDbIsolation disabled
  * @magentoAppIsolation enabled
  */
-class CategoryTest extends \PHPUnit_Framework_TestCase
+class CategoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Permissions index resource
@@ -44,9 +44,9 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->objectManager = Bootstrap::getObjectManager();
         $this->permissionIndex = $this->objectManager->create(
-            'Magento\CatalogPermissions\Model\ResourceModel\Permission\Index'
+            \Magento\CatalogPermissions\Model\ResourceModel\Permission\Index::class
         );
-        $this->category = $this->objectManager->create('Magento\Catalog\Model\Category');
+        $this->category = $this->objectManager->create(\Magento\Catalog\Model\Category::class);
     }
 
     /**
@@ -61,7 +61,7 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
     public function testReindexAll()
     {
         /** @var  $indexer \Magento\Framework\Indexer\IndexerInterface */
-        $indexer = $this->objectManager->create('Magento\Indexer\Model\Indexer');
+        $indexer = $this->objectManager->create(\Magento\Indexer\Model\Indexer::class);
         $indexer->load(\Magento\CatalogPermissions\Model\Indexer\Category::INDEXER_ID);
         $indexer->reindexAll();
 
@@ -81,18 +81,18 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
     public function testReindexRow()
     {
         /** @var  $indexer \Magento\Framework\Indexer\IndexerInterface */
-        $indexer = $this->objectManager->create('Magento\Indexer\Model\Indexer');
+        $indexer = $this->objectManager->create(\Magento\Indexer\Model\Indexer::class);
         $indexer->load(\Magento\CatalogPermissions\Model\Indexer\Category::INDEXER_ID);
         $indexer->reindexAll();
 
         $this->assertNotEmpty($this->permissionIndex->getIndexForCategory(4));
 
         $permissionId =
-            $this->objectManager->create('Magento\CatalogPermissions\Model\ResourceModel\Permission\Collection')
+            $this->objectManager->create(\Magento\CatalogPermissions\Model\ResourceModel\Permission\Collection::class)
             ->getAllIds()[0];
 
         /** @var Permission $permission */
-        $permission = $this->objectManager->create('Magento\CatalogPermissions\Model\Permission');
+        $permission = $this->objectManager->create(\Magento\CatalogPermissions\Model\Permission::class);
         $permission->load($permissionId);
         $permission->delete();
 
@@ -144,6 +144,55 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test correct permissions inheritance. Parent category has permission for some customer group.
+     * Permissions for child category are set for all customer groups.
+     * We check if child category has correct permissions after reindex.
+     *
+     * @magentoConfigFixture current_store catalog/magento_catalogpermissions/enabled 1
+     * @magentoConfigFixture current_store catalog/magento_catalogpermissions/grant_catalog_category_view 1
+     * @magentoDataFixture Magento/Catalog/_files/categories_no_products.php
+     * @return void
+     */
+    public function testPermissionsInheritanceForAllCustomerGroups()
+    {
+        $parentCategoryId = 3;
+        $childCategoryId = 4;
+        $notLoggedInCustomerGroupId = 0;
+
+        /** @var $permission Permission */
+        $permission = $this->objectManager->create(\Magento\CatalogPermissions\Model\Permission::class);
+        $websiteId = $this->objectManager->get(
+            \Magento\Store\Model\StoreManagerInterface::class
+        )->getWebsite()->getId();
+        $permission->setWebsiteId($websiteId)
+            ->setCategoryId($parentCategoryId)
+            ->setCustomerGroupId($notLoggedInCustomerGroupId)
+            ->setGrantCatalogCategoryView(Permission::PERMISSION_ALLOW)
+            ->save();
+        $permission->setWebsiteId($websiteId)
+            ->setCategoryId($childCategoryId)
+            ->setCustomerGroupId(null)
+            ->setGrantCatalogCategoryView(Permission::PERMISSION_DENY)
+            ->save();
+
+        /** @var  $indexer \Magento\Framework\Indexer\IndexerInterface */
+        $indexer = $this->objectManager->create(\Magento\Indexer\Model\Indexer::class);
+        $indexer->load(\Magento\CatalogPermissions\Model\Indexer\Category::INDEXER_ID);
+        $indexer->reindexAll();
+
+        $indexedPermission = $this->permissionIndex->getIndexForCategory(
+            $childCategoryId,
+            $notLoggedInCustomerGroupId,
+            $websiteId
+        );
+
+        $this->assertEquals(
+            Permission::PERMISSION_DENY,
+            $indexedPermission[$childCategoryId]['grant_catalog_category_view']
+        );
+    }
+
+    /**
      * Test overriding parent category permissions in child category
      *
      * @magentoConfigFixture current_store catalog/magento_catalogpermissions/enabled 1
@@ -157,8 +206,10 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
     public function testOverrideParentCategoryPermissions()
     {
         /** @var $permission Permission */
-        $permission = $this->objectManager->create('Magento\CatalogPermissions\Model\Permission');
-        $websiteId = $this->objectManager->get('Magento\Store\Model\StoreManagerInterface')->getWebsite()->getId();
+        $permission = $this->objectManager->create(\Magento\CatalogPermissions\Model\Permission::class);
+        $websiteId = $this->objectManager->get(
+            \Magento\Store\Model\StoreManagerInterface::class
+        )->getWebsite()->getId();
         $permission->setWebsiteId($websiteId)
             ->setCategoryId(6)
             ->setCustomerGroupId(null)
@@ -180,7 +231,7 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
             ->save();
 
         /** @var $permission Permission */
-        $permission = $this->objectManager->create('Magento\CatalogPermissions\Model\Permission');
+        $permission = $this->objectManager->create(\Magento\CatalogPermissions\Model\Permission::class);
         $permission->setWebsiteId($websiteId)
             ->setCategoryId(13)
             ->setCustomerGroupId(1)
@@ -190,7 +241,7 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
             ->save();
 
         /** @var  $indexer \Magento\Framework\Indexer\IndexerInterface */
-        $indexer = $this->objectManager->create('Magento\Indexer\Model\Indexer');
+        $indexer = $this->objectManager->create(\Magento\Indexer\Model\Indexer::class);
         $indexer->load(\Magento\CatalogPermissions\Model\Indexer\Category::INDEXER_ID);
         $indexer->reindexAll();
         foreach ($this->getExpectedCategoryPermissionsOverridingMap() as $categoryId => $permissions) {

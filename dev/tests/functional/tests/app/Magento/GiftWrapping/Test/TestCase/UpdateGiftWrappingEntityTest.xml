@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\GiftWrapping\Test\TestCase\UpdateGiftWrappingEntityTest" summary="Edit Gift Wrapping" ticketId="MAGETWO-25200">
         <variation name="UpdateGiftWrappingEntityTestVariation1">
+            <data name="tag" xsi:type="string">severity:S3</data>
             <data name="initialGiftWrapping/dataset" xsi:type="string">enabled</data>
             <data name="giftWrapping/data/design" xsi:type="string">GiftWrapping%isolation%</data>
             <data name="giftWrapping/data/website_ids/website_0" xsi:type="string">Main Website</data>
@@ -18,6 +19,8 @@
             <constraint name="Magento\GiftWrapping\Test\Constraint\AssertGiftWrappingForm" />
         </variation>
         <variation name="UpdateGiftWrappingEntityTestVariation2">
+            <data name="issue" xsi:type="string">MAGETWO-64893: Invalid search filtering by price in the Gift Wrapping grid</data>
+            <data name="tag" xsi:type="string">severity:S3</data>
             <data name="initialGiftWrapping/dataset" xsi:type="string">disabled</data>
             <data name="giftWrapping/data/design" xsi:type="string">Gift Wrapping%isolation%</data>
             <data name="giftWrapping/data/website_ids/website_0" xsi:type="string">Main Website</data>

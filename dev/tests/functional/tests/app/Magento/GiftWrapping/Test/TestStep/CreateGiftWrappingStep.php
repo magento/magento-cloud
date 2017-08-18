@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,7 +10,7 @@ use Magento\GiftWrapping\Test\Fixture\GiftWrapping;
 use Magento\Mtf\TestStep\TestStepInterface;
 
 /**
- * Creates Gift Wrapping using handler.
+ * Create Gift Wrapping using handler.
  */
 class CreateGiftWrappingStep implements TestStepInterface
 {
@@ -22,6 +22,7 @@ class CreateGiftWrappingStep implements TestStepInterface
     private $giftWrapping;
 
     /**
+     * @constructor
      * @param GiftWrapping $giftWrapping
      */
     public function __construct(GiftWrapping $giftWrapping)
@@ -30,7 +31,7 @@ class CreateGiftWrappingStep implements TestStepInterface
     }
 
     /**
-     * Creates Gift Wrapping.
+     * Create Gift Wrapping.
      *
      * @return array
      */

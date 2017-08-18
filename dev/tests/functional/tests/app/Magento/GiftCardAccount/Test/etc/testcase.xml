@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -10,22 +10,23 @@
         <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="estimateShippingAndTax" next="applyGiftCard" />
         <step name="applyGiftCard" module="Magento_GiftCardAccount" prev="createGiftCardAccount" next="clickProceedToCheckout" />
     </scenario>
-    
-    <scenario name="PrintOrderFrontendGuestTest">
-        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="addProducts" next="applyGiftCardAccountOnBackend">
-            <item name="giftCardAccount" value="gift_card_account_amount_1" />
-        </step>
-        <step name="applyGiftCardAccountOnBackend" module="Magento_GiftCardAccount" next="fillBillingAddress" />
+
+    <scenario name="OnePageCheckoutOfflinePaymentMethodsTest">
+        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="estimateShippingAndTax" next="applyGiftCard" />
+        <step name="applyGiftCard" module="Magento_GiftCardAccount" prev="createGiftCardAccount" next="clickProceedToCheckout" />
     </scenario>
-    
-    <scenario name="PrintGiftCardOrderFrontendGuestTest">
-        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" next="applyGiftCardAccountOnBackend">
-            <item name="giftCardAccount" value="gift_card_account_amount_1" />
-        </step>
+
+    <scenario name="PrintOrderFrontendGuestTest">
+        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="addProducts" next="applyGiftCardAccountOnBackend" />
         <step name="applyGiftCardAccountOnBackend" module="Magento_GiftCardAccount" next="fillBillingAddress" />
     </scenario>
 
     <scenario name="CreateOrderBackendTest" firstStep="setupConfiguration">
+        <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="addProducts" next="applyGiftCardAccountOnBackend" />
+        <step name="applyGiftCardAccountOnBackend" module="Magento_GiftCardAccount" next="fillBillingAddress" />
+    </scenario>
+
+    <scenario name="CreateOrderBackendPartOneTest" firstStep="setupConfiguration">
         <step name="createGiftCardAccount" module="Magento_GiftCardAccount" prev="addProducts" next="applyGiftCardAccountOnBackend" />
         <step name="applyGiftCardAccountOnBackend" module="Magento_GiftCardAccount" next="fillBillingAddress" />
     </scenario>

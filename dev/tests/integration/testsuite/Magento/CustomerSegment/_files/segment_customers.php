@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,7 +8,7 @@ require __DIR__ . '/../../../Magento/Customer/_files/three_customers.php';
 
 /** @var $segmentFactory \Magento\CustomerSegment\Model\SegmentFactory */
 $segmentFactory = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CustomerSegment\Model\SegmentFactory'
+    \Magento\CustomerSegment\Model\SegmentFactory::class
 );
 
 // Create Segments
@@ -37,13 +37,13 @@ for ($i = 0; $i < 3; $i++) {
 
     $conditions = [
         1 => [
-            'type' => 'Magento\\CustomerSegment\\Model\\Segment\\Condition\\Combine\\Root',
+            'type' => \Magento\CustomerSegment\Model\Segment\Condition\Combine\Root::class,
             'aggregator' => 'any',
             'value' => '1',
             'new_child' => '',
         ],
         '1--1' => [
-            'type' => 'Magento\\CustomerSegment\\Model\\Segment\\Condition\\Customer\\Attributes',
+            'type' => \Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes::class,
             'attribute' => 'email',
             'operator' => '==',
             'value' => $value,

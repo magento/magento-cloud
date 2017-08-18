@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\WebsiteRestriction\Controller;
@@ -16,12 +16,12 @@ class IndexTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testStubAction()
     {
-        $page = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Cms\Model\Page');
+        $page = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Cms\Model\Page::class);
         $page->load('page100', 'identifier');
         // fixture
 
         $websiteId = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Store\Model\StoreManagerInterface'
+            \Magento\Store\Model\StoreManagerInterface::class
         )->getWebsite(
             'base'
         )->getId();
@@ -31,7 +31,7 @@ class IndexTest extends \Magento\TestFramework\TestCase\AbstractController
          * therefore cleanup is performed by cache ID
          */
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\App\CacheInterface'
+            \Magento\Framework\App\CacheInterface::class
         )->remove(
             "RESTRICTION_LANGING_PAGE_{$websiteId}"
         );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 /** Create category  */
@@ -10,7 +10,9 @@ require dirname(dirname(__DIR__)) . '/Store/_files/second_store.php';
 /** Create product with mulselect attribute */
 require dirname(dirname(__DIR__)) . '/Catalog/_files/products_with_multiselect_attribute.php';
 
-$productModel = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
+$productModel = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Catalog\Model\Product::class
+);
 
 $productModel->setTypeId(
     \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Cybersource\Test\Repository\SandboxCustomer">
+        <dataset name="sandbox_default">
+            <field name="merchant_id" xsi:type="string">CYBERSOURCE_MERCHANT_ID</field>
+            <field name="username" xsi:type="string">CYBERSOURCE_USERNAME</field>
+            <field name="password" xsi:type="string">CYBERSOURCE_PASSWORD</field>
+        </dataset>
+    </repository>
+</config>

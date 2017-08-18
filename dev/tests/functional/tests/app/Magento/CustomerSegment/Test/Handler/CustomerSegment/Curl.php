@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,20 +25,20 @@ class Curl extends Conditions implements CustomerSegmentInterface
      */
     protected $mapTypeParams = [
         'Conditions combination' => [
-            'type' => 'Magento\CustomerSegment\Model\Segment\Condition\Combine\Root',
+            'type' => \Magento\CustomerSegment\Model\Segment\Condition\Combine\Root::class,
             'aggregator' => 'all',
             'value' => 1,
         ],
         'Default Billing Address' => [
-            'type' => 'Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes',
+            'type' => \Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes::class,
             'attribute' => 'default_billing',
         ],
         'Default Shipping Address' => [
-            'type' => 'Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes',
+            'type' => \Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes::class,
             'attribute' => 'default_shipping',
         ],
         'Group' => [
-            'type' => 'Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes',
+            'type' => \Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes::class,
             'attribute' => 'group_id',
         ],
     ];

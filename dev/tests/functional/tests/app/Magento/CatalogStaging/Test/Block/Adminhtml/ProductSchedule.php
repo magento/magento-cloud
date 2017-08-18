@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -126,7 +126,6 @@ class ProductSchedule extends Block
         foreach ($startDateElements as $element) {
             $startDate[] = $element->getText();
         }
-        
         return $startDate;
     }
 
@@ -144,7 +143,6 @@ class ProductSchedule extends Block
         foreach ($endDateElements as $element) {
             $endDate[] = $element->getText();
         }
-
         return $endDate;
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -12,12 +12,12 @@ use Magento\Mtf\Util\Command\Cli\Cron;
 use Magento\Mtf\Constraint\AbstractConstraint;
 
 /**
- * Assert that permanent product update is not visible after activation.
+ * Assert that permanent product update is not visible after activation
  */
 class AssertUpdateNotVisibleAfterActivation extends AbstractConstraint
 {
     /**
-     * Assert that permanent product update is not visible after activation.
+     * Assert that permanent product update is not visible after activation
      *
      * @param array $updates
      * @param Cron $cron
@@ -31,32 +31,23 @@ class AssertUpdateNotVisibleAfterActivation extends AbstractConstraint
         CatalogProductEdit $catalogProductEdit,
         CatalogProductSimple $product
     ) {
-        //Each time, the $cron->run() is called, it executes cron:run and sleeps for 60 secs.
-        // Run cron thrice to force the update.
-        /** @var  \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone */
-        $timezone = \Magento\Framework\App\ObjectManager::getInstance()->create(
-            \Magento\Framework\Stdlib\DateTime\TimezoneInterface::class
-        );
-        $startTime = $timezone->date()->format('Y-m-d H:i:s');
-
+        //Each time, the $cron->run() is called, it executes cron:run and sleeps for 60 secs
+        // Run cron thrice to force the update
         $cron->run();
         $cron->run();
 
-        //Both the crons above were run at 60 seconds interval.
+        //Both the crons above were run at 60 seconds interval
         //Therefore, the last cron was run 60 seconds ago when the product staging update
         //was not yet active. Need to execute this third time,
-        //so that cron is executed once the staging update time is reached.
+        //so that cron is executed once the staging update time is reached
         $cron->run();
 
         $catalogProductEdit->open(['id' => $product->getId()]);
 
-        $endTime = $timezone->date()->format('Y-m-d H:i:s');
-
         foreach ($updates as $update) {
             \PHPUnit_Framework_Assert::assertFalse(
                 $catalogProductEdit->getProductScheduleBlock()->updateCampaignExists($update->getName()),
-                $update->getName() . ' should not be visible. Magento start time: ' . $startTime .
-                '. Magento end time: ' . $endTime
+                $update->getName() . ' should not be visible.'
             );
         }
     }

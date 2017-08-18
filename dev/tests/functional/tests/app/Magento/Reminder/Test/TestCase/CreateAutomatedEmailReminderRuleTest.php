@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -26,14 +26,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Save Reminder
  * 6. Perform all assertions
  *
- * @group Email_Reminder_(MX)
+ * @group Email_Reminder
  * @ZephyrId MAGETWO-29790
  */
 class CreateAutomatedEmailReminderRuleTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'MX';
     const TEST_TYPE = 'extended_acceptance_test';
     /* end tags */
 

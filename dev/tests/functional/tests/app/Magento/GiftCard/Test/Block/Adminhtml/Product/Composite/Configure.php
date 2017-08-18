@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -40,7 +40,7 @@ class Configure extends \Magento\Catalog\Test\Block\Adminhtml\Product\Composite\
         if (isset($checkoutData['giftcard_options'])) {
             $productOptions = array_merge($productOptions, $checkoutData['giftcard_options']);
             $keyAmount = str_replace('option_key_', '', $productOptions['giftcard_amount']);
-            $productOptions['giftcard_amount'] = $giftCardAmounts[$keyAmount]['price'];
+            $productOptions['giftcard_amount'] = $giftCardAmounts[$keyAmount]['value'];
         }
 
         return $this->dataMapping($productOptions);

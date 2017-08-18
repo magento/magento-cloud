@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerCustomAttributes\Test\TestCase\CheckCustomerAddressAttributesDisabledFieldsTest" summary="Check disabled fields for system customer address attributes" ticketId="MAGETWO-61062">
+        <variation name="CheckCustomerAddressAttributesDisabledFieldsTestVariation1">
+            <data name="addressAttributes" xsi:type="array">
+                <item name="prefix" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">false</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="middlename" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">false</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="lastname" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="suffix" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">false</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="company" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="street" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="city" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="country_id" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="region" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="postcode" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="telephone" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="fax" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">false</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+                <item name="vat_id" xsi:type="array">
+                    <item name="is_visible" xsi:type="boolean">true</item>
+                    <item name="sort_order" xsi:type="boolean">true</item>
+                    <item name="used_in_forms" xsi:type="boolean">true</item>
+                </item>
+            </data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerAddressAttributesDisabled" />
+        </variation>
+    </testCase>
+</config>

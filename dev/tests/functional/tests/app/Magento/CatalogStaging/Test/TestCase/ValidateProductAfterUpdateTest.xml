@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\ValidateProductAfterUpdateTest" summary="Validate product after update">
+        <variation name="ValidateProductAfterUpdateTestVariation1" summary="Create product update and validate update in custom website" ticketId="MAGETWO-49851">
+            <data name="update/dataset" xsi:type="string">permanent_update_with_simple_product_with_2_website</data>
+            <data name="productUpdate/data/price/value" xsi:type="number">11.00</data>
+            <data name="productUpdate/data/name" xsi:type="string">Product_%isolation%</data>
+            <data name="productUpdateForCustomWebsite/data/use_default_price" xsi:type="string">No</data>
+            <data name="productUpdateForCustomWebsite/data/price/value" xsi:type="number">15.00</data>
+            <data name="configData" xsi:type="string">price_scope_website</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductCorrectAfterUpdate" />
+        </variation>
+        <variation name="ValidateProductAfterUpdateTestVariation2" summary="Create product update and validate update in default website" ticketId="MAGETWO-49851">
+            <data name="update/dataset" xsi:type="string">permanent_update_plus_2_minutes_with_simple_product</data>
+            <data name="productUpdate/data/price/value" xsi:type="number">35.00</data>
+            <data name="productUpdate/data/name" xsi:type="string">Product_%isolation%</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductCorrectAfterUpdate" />
+        </variation>
+    </testCase>
+</config>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -44,7 +44,7 @@ class CartItems extends Grid
         if ($selectItem->isVisible()) {
             $selectItem->click();
         } else {
-            throw new \Exception('Searched item was not found.');
+            throw new \Exception("Searched item was not found by filter\n" . print_r($filter, true));
         }
     }
 }

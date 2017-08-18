@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Logging\Model\Config;
 
 use Magento\TestFramework\Helper\Bootstrap;
 
-class ReaderTest extends \PHPUnit_Framework_TestCase
+class ReaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Reader
@@ -21,10 +21,10 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->fileResolver = $this->getMockForAbstractClass('Magento\Framework\Config\FileResolverInterface');
+        $this->fileResolver = $this->getMockForAbstractClass(\Magento\Framework\Config\FileResolverInterface::class);
         $objectManager = Bootstrap::getObjectManager();
         $this->model = $objectManager->create(
-            'Magento\Logging\Model\Config\Reader',
+            \Magento\Logging\Model\Config\Reader::class,
             ['fileResolver' => $this->fileResolver]
         );
     }

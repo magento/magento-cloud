@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Banner\Test\TestCase\CreateBannerEntityTest" summary="Create Banner" ticketId="MAGETWO-25272">
         <variation name="CreateBannerEntityTestVariation1">
+            <data name="tag" xsi:type="string">severity:S1</data>
             <data name="banner/data/name" xsi:type="string">banner_%isolation%</data>
             <data name="banner/data/is_enabled" xsi:type="string">Active</data>
             <data name="banner/data/type" xsi:type="string">Any Banner Type</data>
@@ -22,6 +23,7 @@
             <constraint name="Magento\Banner\Test\Constraint\AssertBannerInGrid" />
         </variation>
         <variation name="CreateBannerEntityTestVariation2">
+            <data name="tag" xsi:type="string">severity:S3</data>
             <data name="banner/data/name" xsi:type="string">banner_%isolation%</data>
             <data name="banner/data/is_enabled" xsi:type="string">Inactive</data>
             <data name="banner/data/type" xsi:type="string">Specified Banner Types</data>
@@ -36,6 +38,7 @@
             <constraint name="Magento\Banner\Test\Constraint\AssertBannerInGrid" />
         </variation>
         <variation name="CreateBannerEntityTestVariation3" summary="Create banner with inserting widget in its contents.">
+            <data name="tag" xsi:type="string">severity:S1</data>
             <data name="banner/data/name" xsi:type="string">banner_%isolation%</data>
             <data name="banner/data/is_enabled" xsi:type="string">Active</data>
             <data name="banner/data/type" xsi:type="string">Any Banner Type</data>

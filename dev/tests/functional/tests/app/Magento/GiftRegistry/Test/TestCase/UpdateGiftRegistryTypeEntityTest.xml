@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\GiftRegistry\Test\TestCase\UpdateGiftRegistryTypeEntityTest" summary="Update Gift Registry Type" ticketId="MAGETWO-27333">
         <variation name="UpdateGiftRegistryTypeEntityTestVariation1">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistryType/data/code" xsi:type="string">new%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">text_label_updated%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>
@@ -18,6 +19,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="UpdateGiftRegistryTypeEntityTestVariation2">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistryType/data/code" xsi:type="string">new%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">select_label_updated%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>
@@ -28,6 +30,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="UpdateGiftRegistryTypeEntityTestVariation3">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistryType/data/code" xsi:type="string">new%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">date_label_updated%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>
@@ -38,6 +41,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="UpdateGiftRegistryTypeEntityTestVariation4">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistryType/data/code" xsi:type="string">new%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">country_label_updated%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>
@@ -48,6 +52,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="UpdateGiftRegistryTypeEntityTestVariation5">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistryType/data/code" xsi:type="string">new%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">eventdate_label_updated%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>
@@ -58,6 +63,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="UpdateGiftRegistryTypeEntityTestVariation6">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistryType/data/code" xsi:type="string">new%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">eventcountry_label_updated%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>
@@ -68,6 +74,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="UpdateGiftRegistryTypeEntityTestVariation7">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistryType/data/code" xsi:type="string">new%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">eventlocation_label_updated%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>
@@ -78,6 +85,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryTypeOnFrontend" />
         </variation>
         <variation name="UpdateGiftRegistryTypeEntityTestVariation8">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistryType/data/code" xsi:type="string">new%isolation%</data>
             <data name="giftRegistryType/data/label" xsi:type="string">role_label_updated%isolation%</data>
             <data name="giftRegistryType/data/is_listed" xsi:type="string">Yes</data>

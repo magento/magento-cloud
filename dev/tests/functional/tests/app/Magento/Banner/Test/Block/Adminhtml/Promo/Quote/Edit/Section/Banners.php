@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -29,7 +29,7 @@ class Banners extends Section
     public function getBannersGrid()
     {
         return $this->blockFactory->create(
-            'Magento\Banner\Test\Block\Adminhtml\Promo\Quote\Edit\Section\BannersGrid',
+            \Magento\Banner\Test\Block\Adminhtml\Promo\Quote\Edit\Section\BannersGrid::class,
             ['element' => $this->_rootElement->find($this->bannersGrid)]
         );
     }

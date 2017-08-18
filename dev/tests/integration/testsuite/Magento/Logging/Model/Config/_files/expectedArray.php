@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -21,28 +21,28 @@ return [
                     'group_name' => 'enterprise_checkout',
                     'action' => 'view',
                     'controller_action' => 'adminhtml_checkout_index',
-                    'expected_models' => ['Magento\Quote\Model\Quote' => []],
+                    'expected_models' => [\Magento\Quote\Model\Quote::class => []],
                 ],
                 'adminhtml_checkout_applyCoupon' => [
                     'group_name' => 'enterprise_checkout',
                     'action' => 'apply_coupon',
                     'controller_action' => 'adminhtml_checkout_applyCoupon',
                     'post_dispatch' => 'postDispatchAdminCheckoutApplyCoupon',
-                    'expected_models' => ['Magento\Quote\Model\Quote' => []],
+                    'expected_models' => [\Magento\Quote\Model\Quote::class => []],
                 ],
                 'adminhtml_checkout_updateItems' => [
                     'group_name' => 'enterprise_checkout',
                     'action' => 'save',
                     'controller_action' => 'adminhtml_checkout_updateItems',
                     'skip_on_back' => [0 => 'adminhtml_cms_page_version_edit'],
-                    'expected_models' => ['Magento\Quote\Model\Quote\Item' => []],
+                    'expected_models' => [\Magento\Quote\Model\Quote\Item::class => []],
                 ],
                 'adminhtml_checkout_addToCart' => [
                     'group_name' => 'enterprise_checkout',
                     'action' => 'add_to_cart',
                     'controller_action' => 'adminhtml_checkout_addToCart',
                     'expected_models' => [
-                        'Magento\Quote\Model\Quote\Item' => ['additional_data' => ['item_id', 'quote_id']],
+                        \Magento\Quote\Model\Quote\Item::class => ['additional_data' => ['item_id', 'quote_id']],
                     ],
                 ],
                 'customer_index_save' => [
@@ -65,8 +65,7 @@ return [
         ],
         'customer' => [
             'label' => 'Customers',
-            'expected_models' => [
-                'Magento\Customer\Model\Customer' => [
+            'expected_models' => [\Magento\Customer\Model\Customer::class => [
                     'skip_data' => ['new_password', 'password', 'password_hash'],
                 ],
             ],

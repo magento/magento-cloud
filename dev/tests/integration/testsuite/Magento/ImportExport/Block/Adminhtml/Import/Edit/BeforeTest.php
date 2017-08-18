@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,7 +9,7 @@
  */
 namespace Magento\ImportExport\Block\Adminhtml\Import\Edit;
 
-class BeforeTest extends \PHPUnit_Framework_TestCase
+class BeforeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test model
@@ -54,12 +54,9 @@ class BeforeTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $importModel = $this->getMock(
-            'Magento\ImportExport\Model\Import',
-            ['getEntityBehaviors', 'getUniqueEntityBehaviors'],
-            [],
-            '',
-            false
+        $importModel = $this->createPartialMock(
+            \Magento\ImportExport\Model\Import::class,
+            ['getEntityBehaviors', 'getUniqueEntityBehaviors']
         );
         $importModel->expects(
             $this->any()
@@ -78,7 +75,7 @@ class BeforeTest extends \PHPUnit_Framework_TestCase
 
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $this->_model = $objectManager->create(
-            'Magento\ImportExport\Block\Adminhtml\Import\Edit\Before',
+            \Magento\ImportExport\Block\Adminhtml\Import\Edit\Before::class,
             [
                 'importModel' => $importModel,
             ]

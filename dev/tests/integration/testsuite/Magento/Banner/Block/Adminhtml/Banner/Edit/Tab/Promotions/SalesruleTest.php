@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Banner\Block\Adminhtml\Banner\Edit\Tab\Promotions;
@@ -9,7 +9,7 @@ namespace Magento\Banner\Block\Adminhtml\Banner\Edit\Tab\Promotions;
  * @magentoDataFixture Magento/SalesRule/_files/cart_rule_40_percent_off.php
  * @magentoDataFixture Magento/SalesRule/_files/cart_rule_50_percent_off.php
  */
-class SalesruleTest extends \PHPUnit_Framework_TestCase
+class SalesruleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Banner\Block\Adminhtml\Banner\Edit\Tab\Promotions\Salesrule
@@ -19,9 +19,9 @@ class SalesruleTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_block = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         )->createBlock(
-            'Magento\Banner\Block\Adminhtml\Banner\Edit\Tab\Promotions\Salesrule'
+            \Magento\Banner\Block\Adminhtml\Banner\Edit\Tab\Promotions\Salesrule::class
         );
     }
 
@@ -33,14 +33,14 @@ class SalesruleTest extends \PHPUnit_Framework_TestCase
     public function testGetCollection()
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $registry = $objectManager->get('Magento\Framework\Registry');
+        $registry = $objectManager->get(\Magento\Framework\Registry::class);
         /** @var \Magento\SalesRule\Model\Rule $ruleOne */
-        $ruleOne = $objectManager->create('Magento\SalesRule\Model\Rule');
+        $ruleOne = $objectManager->create(\Magento\SalesRule\Model\Rule::class);
         $ruleOneId = $registry->registry('Magento/SalesRule/_files/cart_rule_40_percent_off');
         $ruleOne->load($ruleOneId);
 
         /** @var \Magento\SalesRule\Model\Rule $ruleTwo */
-        $ruleTwo = $objectManager->create('Magento\SalesRule\Model\Rule');
+        $ruleTwo = $objectManager->create(\Magento\SalesRule\Model\Rule::class);
         $ruleTwoId = $registry->registry('Magento/SalesRule/_files/cart_rule_50_percent_off');
         $ruleTwo->load($ruleTwoId);
 

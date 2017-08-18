@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerBalance\Model\Adminhtml\Balance;
@@ -10,7 +10,7 @@ namespace Magento\CustomerBalance\Model\Adminhtml\Balance;
  * @magentoAppArea adminhtml
  * @magentoDataFixture Magento/CustomerBalance/_files/history.php
  */
-class HistoryTest extends \PHPUnit_Framework_TestCase
+class HistoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CustomerBalance\Model\Balance
@@ -25,27 +25,27 @@ class HistoryTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Backend\Model\Auth\Session'
+            \Magento\Backend\Model\Auth\Session::class
         )->setUser(
             new \Magento\Framework\DataObject(['id' => 1, 'username' => 'Admin user'])
         );
         $websiteId = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Store\Model\StoreManagerInterface'
+            \Magento\Store\Model\StoreManagerInterface::class
         )->getStore()->getWebsiteId();
         $customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Customer\Model\Customer'
+            \Magento\Customer\Model\Customer::class
         )->setWebsiteId(
             $websiteId
         )->loadByEmail(
             'customer@example.com'
         );
         $this->_balance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerBalance\Model\Balance'
+            \Magento\CustomerBalance\Model\Balance::class
         )->setCustomer(
             $customer
         )->loadByCustomer();
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerBalance\Model\Balance\History'
+            \Magento\CustomerBalance\Model\Balance\History::class
         )->setCustomerId(
             $customer->getId()
         )->setWebsiteId(

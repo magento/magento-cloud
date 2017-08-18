@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 /** @var $model \Magento\GiftCardAccount\Model\Giftcardaccount */
 $model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\GiftCardAccount\Model\Giftcardaccount'
+    \Magento\GiftCardAccount\Model\Giftcardaccount::class
 );
 $model->setCode(
     'giftcardaccount_fixture'
@@ -16,7 +16,7 @@ $model->setCode(
     \Magento\GiftCardAccount\Model\Giftcardaccount::STATE_AVAILABLE
 )->setWebsiteId(
     \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-        'Magento\Store\Model\StoreManagerInterface'
+        \Magento\Store\Model\StoreManagerInterface::class
     )->getWebsite()->getId()
 )->setIsRedeemable(
     \Magento\GiftCardAccount\Model\Giftcardaccount::REDEEMABLE

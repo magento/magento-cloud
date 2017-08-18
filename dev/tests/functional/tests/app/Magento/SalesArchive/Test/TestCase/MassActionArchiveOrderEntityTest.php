@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,14 +28,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 3. Click 'Submit' button
  * 4. Perform all assertions
  *
- * @group Sales_Archive_(CS)
+ * @group Sales_Archive
  * @ZephyrId MAGETWO-28873
  */
 class MassActionArchiveOrderEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -69,7 +68,7 @@ class MassActionArchiveOrderEntityTest extends Injectable
     {
         $this->fixtureFactory = $fixtureFactory;
         $processStep = $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'checkmo, flatrate, salesarchive_all_statuses']
         );
         $processStep->run();
@@ -124,13 +123,19 @@ class MassActionArchiveOrderEntityTest extends Injectable
      */
     protected function processSteps(OrderInjectable $order, $steps)
     {
+        $products = $order->getEntityId()['products'];
+        $cart['data']['items'] = ['products' => $products];
+        $cart = $this->fixtureFactory->createByCode('cart', $cart);
         $steps = array_diff(explode(',', $steps), ['-']);
         foreach ($steps as $step) {
             $action = str_replace(' ', '', ucwords($step));
             $methodAction = $action === 'Hold' ? 'On' : 'Create';
             $methodAction .= $action . 'Step';
             $path = 'Magento\Sales\Test\TestStep';
-            $processStep = $this->objectManager->create($path . '\\' . $methodAction, ['order' => $order]);
+            $processStep = $this->objectManager->create(
+                $path . '\\' . $methodAction,
+                ['order' => $order, 'cart' => $cart]
+            );
             $processStep->run();
         }
     }

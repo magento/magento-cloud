@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -27,15 +27,15 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Save Reward Exchange Rate.
  * 6. Perform appropriate assertions.
  *
- * @group Reward_Points_(CS)
+ * @group Reward_Points
  * @ZephyrId MAGETWO-24808
  */
 class CreateExchangeRateForRewardPointsEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
     const TEST_TYPE = 'extended_acceptance_test';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**
@@ -68,7 +68,7 @@ class CreateExchangeRateForRewardPointsEntityTest extends Injectable
     public function __prepare(CatalogProductSimple $product)
     {
         $product->persist();
-        $this->objectManager->create('Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep')->run();
+        $this->objectManager->create(\Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep::class)->run();
 
         return ['product' => $product];
     }
@@ -117,8 +117,8 @@ class CreateExchangeRateForRewardPointsEntityTest extends Injectable
      */
     public function tearDown()
     {
-        $this->objectManager->create('Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep')->run();
-        $this->objectManager->create('Magento\Reward\Test\TestStep\DeleteAllRewardRatesStep')->run();
+        $this->objectManager->create(\Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep::class)->run();
+        $this->objectManager->create(\Magento\Reward\Test\TestStep\DeleteAllRewardRatesStep::class)->run();
         $this->configRollback->persist();
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerCustomAttributes\Test\TestCase\CreateCustomAddressAttributeTest" summary="Create Customer Address Attribute Entity">
+        <variation name="CreateCustomAddressAttributeTestVariation1" summary="Create Customer Address Attribute Entity" ticketId="MAGETWO-60974">
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="address/data/firstname" xsi:type="string">John</data>
+            <data name="address/data/lastname" xsi:type="string">Doe</data>
+            <data name="address/data/company" xsi:type="string">Magento %isolation%</data>
+            <data name="address/data/street" xsi:type="string">6161 West Centinela Avenue</data>
+            <data name="address/data/city" xsi:type="string">Culver City</data>
+            <data name="address/data/country_id" xsi:type="string">United States</data>
+            <data name="address/data/region_id" xsi:type="string">California</data>
+            <data name="address/data/telephone" xsi:type="string">555-55-555-55</data>
+            <data name="address/data/postcode" xsi:type="string">90230</data>
+            <data name="address/data/custom_attribute/dataset" xsi:type="string">text_field_require</data>
+            <data name="address/data/custom_attribute/value" xsi:type="string">text_field_value_%isolation%</data>
+            <data name="products" xsi:type="array">
+                <item name="0" xsi:type="string">catalogProductSimple::default</item>
+            </data>
+            <constraint name="Magento\Customer\Test\Constraint\AssertCustomerAddressSuccessSaveMessage" />
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerAddressCorrectOnCheckoutPage" />
+        </variation>
+    </testCase>
+</config>

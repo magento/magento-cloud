@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<mapping strict="0">
+    <fields>
+        <cc_type>
+            <input>select</input>
+            <selector>#eway_cc_type</selector>
+        </cc_type>
+        <cc_number>
+            <selector>#eway_cc_number_encrypt</selector>
+        </cc_number>
+        <cc_exp_month>
+            <input>select</input>
+            <selector>#eway_expiration</selector>
+        </cc_exp_month>
+        <cc_exp_year>
+            <input>select</input>
+            <selector>#eway_expiration_yr</selector>
+        </cc_exp_year>
+        <cc_cid>
+            <selector>#eway_cc_cid_encrypt</selector>
+        </cc_cid>
+    </fields>
+</mapping>

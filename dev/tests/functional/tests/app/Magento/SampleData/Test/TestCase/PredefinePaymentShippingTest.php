@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -39,7 +39,7 @@ class PredefinePaymentShippingTest extends Injectable
         $configCurrency->persist();
 
         $currencyRate = $this->objectManager->getInstance()->create(
-            'Magento\Directory\Test\Fixture\CurrencyRate',
+            \Magento\Directory\Test\Fixture\CurrencyRate::class,
             ['dataset' => $currency]
         );
         $currencyRate->persist();
@@ -54,7 +54,7 @@ class PredefinePaymentShippingTest extends Injectable
 
         $paymentData = explode(', ', $payments);
         foreach ($paymentData as $value) {
-            $configFixture = $fixtureFactory->create('\Magento\Config\Test\Fixture\Config');
+            $configFixture = $fixtureFactory->create(\Magento\Config\Test\Fixture\Config::class);
             $configFixture->switchData($value);
             $configFixture->persist();
         }

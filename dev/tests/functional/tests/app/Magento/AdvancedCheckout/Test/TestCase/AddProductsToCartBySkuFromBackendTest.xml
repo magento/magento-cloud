@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\AdvancedCheckout\Test\TestCase\AddProductsToCartBySkuFromBackendTest" summary="Add Product by SKU from Backend" ticketId="MAGETWO-17411">
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation1" summary="Add two simple products to order by sku on backend">
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/1" xsi:type="string">catalogProductSimple::default</data>
+            <data name="orderOptions/qty" xsi:type="array">
+                <item name="0" xsi:type="string">1</item>
+                <item name="1" xsi:type="string">1</item>
+            </data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSuccessMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation2" summary="Add one simple product to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSuccessMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation3" summary="Add one simple out of stock product to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::out_of_stock</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendIsOutOfStockFailMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation4" summary="Add one simple product with qty more than available to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="orderOptions/qty" xsi:type="string">26</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendProductQtyIsNotEnough" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation5" summary="Add one simple offline product to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::offline</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendIsDisabledFailMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation6" summary="Add one simple not visible product to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::not_visible_individually</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSuccessMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation7" summary="Add one simple product with cart limits to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::simple_with_cart_limits</data>
+            <data name="cartBlock" xsi:type="string">required_attention</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendMinRequestedQtyFailMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation8" summary="Add one simple product with maximum allowed Qty to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::simple_with_cart_limits</data>
+            <data name="orderOptions/qty" xsi:type="string">6</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendMaxRequestedQtyFailMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation9" summary="Add one configurable product to order by sku on backend">
+            <data name="products/0" xsi:type="string">configurableProduct::default</data>
+            <data name="orderOptions/qty" xsi:type="string">2</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSpecifyProductOptionsLink" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation10" summary="Add one bundle dynamic product to order by sku on backend">
+            <data name="products/0" xsi:type="string">bundleProduct::bundle_dynamic_product</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSpecifyProductOptionsLink" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation11" summary="Add one bundle fixed product to order by sku on backend">
+            <data name="products/0" xsi:type="string">bundleProduct::bundle_fixed_product</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSpecifyProductOptionsLink" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation12" summary="Add one simple product with custom options to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::with_one_custom_option</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSpecifyProductOptionsLink" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation13" summary="Add one simple product with custom options by compound sku to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::with_one_custom_option</data>
+            <data name="orderOptions/sku" xsi:type="string">simpleWithOptionCompoundSku</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSuccessMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation14" summary="Add one simple product qty increments to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::simple_with_qty_increments</data>
+            <data name="orderOptions/qty" xsi:type="string">3</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendQtyIncrementsFailMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation15" summary="Add configurable product where all sub-items are disabled to order by sku on backend">
+            <data name="products/0" xsi:type="string">configurableProduct::with_out_of_stock_item</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendIsOutOfStockFailMessage" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation16" summary="Add simple product with tier price and qty to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::simple_with_tier_price_and_qty</data>
+            <data name="orderOptions/qty" xsi:type="string">26</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendProductQtyIsNotEnough" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation17" summary="Add simple product with displaying prices considering MAP settings to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::msrp_before_order_confirmation</data>
+            <data name="orderOptions/qty" xsi:type="string">26</data>
+            <data name="config" xsi:type="string">msrp_before_order_confirmation</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendProductQtyIsNotEnough" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation18" summary="Add nonexistent product to order by sku on backend">
+            <data name="orderOptions/sku" xsi:type="string">nonExistentSku</data>
+            <data name="orderOptions/qty" xsi:type="string">1</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendSkuNotFound" />
+        </variation>
+        <variation name="AddProductsToCartBySkuFromBackendTestVariation19" summary="Add simple product with not valid qty to order by sku on backend">
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="orderOptions/qty" xsi:type="string">abc</data>
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendRequiredAttentionFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendActualNumberInQtyFieldNoticeMessage" />
+        </variation>
+    </testCase>
+</config>

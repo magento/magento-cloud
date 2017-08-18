@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,30 +9,46 @@
  */
 namespace Magento\GiftRegistry\Block\Form;
 
-class ElementTest extends \PHPUnit_Framework_TestCase
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
+use Magento\Framework\View\LayoutInterface;
+use Magento\TestFramework\Helper\Bootstrap;
+
+class ElementTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @var Element
+     */
+    private $block;
+
+    protected function setUp()
+    {
+        $this->block = Bootstrap::getObjectManager()->get(LayoutInterface::class)
+            ->createBlock(Element::class);
+    }
+
+    /**
+     * @magentoAppArea frontend
+     */
     public function testGetCalendarDateHtml()
     {
-        \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get('Magento\Framework\App\State')
-            ->setAreaCode('frontend');
-        $block = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
-        )->createBlock(
-            'Magento\GiftRegistry\Block\Form\Element'
-        );
-
         $value = null;
         $formatType = \IntlDateFormatter::FULL;
-
-        $html = $block->getCalendarDateHtml('date_name', 'date_id', $value, $formatType);
-
-        $dateFormat = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\Stdlib\DateTime\TimezoneInterface'
-        )->getDateFormat(
-            $formatType
-        );
-
+        $html = $this->block->getCalendarDateHtml('date_name', 'date_id', $value, $formatType);
+        $dateFormat = Bootstrap::getObjectManager()->get(TimezoneInterface::class)
+            ->getDateFormat($formatType);
         $this->assertContains('dateFormat: "' . $dateFormat . '",', $html);
         $this->assertContains('value=""', $html);
+    }
+
+    /**
+     * @magentoAppArea frontend
+     */
+    public function testGetCountryHtmlSelect()
+    {
+        $result = $this->block->getCountryHtmlSelect('name', 'id', 'US');
+        $this->assertStringMatchesFormat(
+            "%sselect name=\"name\" id=\"id\"%s<option value=\"US\" selected=\"selected\" >United States</option>%s",
+            $result
+        );
     }
 }

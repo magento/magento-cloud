@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -23,14 +23,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Click the "OK" button.
  * 6. Perform the assertions according to the Data Set.
  *
- * @group Customer_Segments_(CS)
+ * @group Customer_Segments
  * @ZephyrId MAGETWO-26791
  */
 class DeleteCustomerSegmentEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**

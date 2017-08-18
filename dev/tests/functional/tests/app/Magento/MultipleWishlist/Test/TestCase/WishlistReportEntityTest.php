@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -30,7 +30,7 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Use the main menu "REPORTS" -> "Customers" -> "Wish Lists".
  * 5. Perform assertions.
  *
- * @group Reports_(MX)
+ * @group Reports
  * @ZephyrId MAGETWO-27346
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -39,7 +39,6 @@ class WishlistReportEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -116,7 +115,7 @@ class WishlistReportEntityTest extends Injectable
 
         // TODO: Move set up configuration to "__prepare" method after fix bug MAGETWO-29331
         $this->objectManager->create(
-            '\Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default']
         )->run();
     }
@@ -163,7 +162,7 @@ class WishlistReportEntityTest extends Injectable
     protected function loginCustomer(Customer $customer)
     {
         $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         )->run();
     }
@@ -178,7 +177,7 @@ class WishlistReportEntityTest extends Injectable
         $this->customerAccountLogout->open();
         // TODO: Move set default configuration to "tearDownAfterClass" method after fix bug MAGETWO-29331
         $this->objectManager->create(
-            '\Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default', 'rollback' => true]
         )->run();
     }

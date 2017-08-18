@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,6 +9,7 @@ namespace Magento\CustomerCustomAttributes\Test\Block\Adminhtml\Customer\Attribu
 use Magento\Mtf\Client\Locator;
 use Magento\Mtf\Client\Element\SimpleElement;
 use Magento\Backend\Test\Block\Widget\Tab;
+use Magento\CustomerCustomAttributes\Test\Block\Adminhtml\Customer\Attribute\Edit\Tab\Options\Option;
 
 /**
  * Manage Options form on New Customer Attribute Page.
@@ -71,7 +72,7 @@ class Options extends Tab
                 unset($option['order']);
             }
             $this->blockFactory->create(
-                'Magento\CustomerCustomAttributes\Test\Block\Adminhtml\Customer\Attribute\Edit\Tab\Options\Option',
+                Option::class,
                 ['element' => $row]
             )->fillOptions($option);
         }

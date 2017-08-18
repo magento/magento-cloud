@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -27,7 +27,7 @@ class Items extends \Magento\Wishlist\Test\Block\Customer\Wishlist\Items
     {
         $productBlock = sprintf($this->itemBlock, $product->getName());
         return $this->blockFactory->create(
-            'Magento\MultipleWishlist\Test\Block\Customer\Wishlist\Items\Product',
+            \Magento\MultipleWishlist\Test\Block\Customer\Wishlist\Items\Product::class,
             ['element' => $this->_rootElement->find($productBlock, Locator::SELECTOR_XPATH)]
         );
     }

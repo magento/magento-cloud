@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,14 +28,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 6. Click "Save Customer" button
  * 7. Preform asserts
  *
- * @group Customers_(MX)
+ * @group Customers
  * @ZephyrId MAGETWO-24387
  */
 class CreateCustomerBalanceEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
+    const STABLE = 'no';
     /* end tags */
 
     /**

@@ -1,15 +1,20 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftWrapping\Api;
 
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Setup\Model\Bootstrap;
+use Magento\Store\Model\Website;
 use Magento\TestFramework\TestCase\WebapiAbstract;
 use Magento\Framework\Exception\NoSuchEntityException;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class WrappingRepositoryTest extends WebapiAbstract
 {
     const RESOURCE_PATH = '/V1/gift-wrappings';
@@ -43,14 +48,14 @@ class WrappingRepositoryTest extends WebapiAbstract
     {
         $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $this->wrappingRepository =
-            $this->objectManager->create('Magento\GiftWrapping\Api\WrappingRepositoryInterface');
+            $this->objectManager->create(\Magento\GiftWrapping\Api\WrappingRepositoryInterface::class);
         $this->searchCriteriaBuilder = $this->objectManager->create(
-            'Magento\Framework\Api\SearchCriteriaBuilder'
+            \Magento\Framework\Api\SearchCriteriaBuilder::class
         );
         $this->filterBuilder = $this->objectManager->create(
-            'Magento\Framework\Api\FilterBuilder'
+            \Magento\Framework\Api\FilterBuilder::class
         );
-        $this->wrappingFactory = $this->objectManager->create('Magento\GiftWrapping\Model\WrappingFactory');
+        $this->wrappingFactory = $this->objectManager->create(\Magento\GiftWrapping\Model\WrappingFactory::class);
         $this->testImagePath = __DIR__ . str_replace('/', DIRECTORY_SEPARATOR, '/_files/test_image.jpg');
     }
 
@@ -89,29 +94,84 @@ class WrappingRepositoryTest extends WebapiAbstract
         $this->assertStringStartsWith('http', $result['image_url'], 'Image URL property is incorrect');
     }
 
+    private function getPreparedWrappingSearchCriteria($websiteId)
+    {
+        $filters = [
+            [
+                $this->filterBuilder->setField('website_ids')->setValue($websiteId)
+                    ->setConditionType('in')
+                    ->create(),
+            ],  //2-th wrapping
+            [
+                $this->filterBuilder->setField('status')->setValue('1')
+                    ->create(),
+            ], //4-th wrapping
+            [
+                $this->filterBuilder->setField('store_id')->setValue('1')
+                    ->create(),
+            ],
+            [
+                $this->filterBuilder->setField('base_price')->setValue(20.00)
+                    ->setConditionType('lt')
+                    ->create(),
+                $this->filterBuilder->setField('image')->setValue('image2.png')->create(),
+            ] //4-th wrapping
+        ];
+
+        return $filters;
+    }
+
     /**
      * @magentoApiDataFixture Magento/GiftWrapping/_files/wrappings.php
      */
     public function testGetList()
     {
-        $result = $this->callSearch([]);
+        /** @var \Magento\Store\Model\Website $website */
+        $website = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
+            ->create(\Magento\Store\Model\Website::class);
+
+        if (!$website->load('wrapping_website')->getId()) {
+            $this->fail("Wrapping website is not specified");
+        }
+        $result = $this->callSearch($this->getPreparedWrappingSearchCriteria($website->getId()));
         $this->assertArrayHasKey('items', $result);
-        $collection = $this->getWrappingCollection();
-        $this->assertCount($collection->count(), $result['items']);
+        $this->assertCount(1, $result['items']);
+        $item = reset($result['items']);
+        $this->assertArrayHasKey('base_price', $item);
+        $this->assertArrayHasKey('design', $item);
+        $this->assertArrayHasKey('website_ids', $item);
+        $this->assertEquals($item['base_price'], 10.00);
+        $this->assertEquals($item['design'], 'Test Wrapping 2 design');
+        $this->assertEquals($item['website_ids'], [
+            '1', $website->getId()
+        ]);
+
         self::deleteAllFixtures();
+        self::deleteWebsite($website);
+    }
+
+    /**
+     * @param Website $website
+     */
+    private static function deleteWebsite(Website $website)
+    {
+        self::_enableSecureArea(true);
+        $website->delete();
+        self::_enableSecureArea(false);
     }
 
     /**
      * Perform search call to API
      *
-     * @param array $filters
+     * @param array $filterGroups
      * @return array|bool|float|int|string
      */
-    private function callSearch(array $filters)
+    private function callSearch(array $filterGroups)
     {
-        $storeId = $this->objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore()->getId();
-        $filters[] = $this->filterBuilder->setField('store_id')->setValue($storeId)->create();
-        $this->searchCriteriaBuilder->addFilters($filters);
+        foreach ($filterGroups as $filters) {
+            $this->searchCriteriaBuilder->addFilters($filters);
+        }
+
         $searchData = $this->searchCriteriaBuilder->create()->__toArray();
         $requestData = ['searchCriteria' => $searchData];
         $serviceInfo = [
@@ -304,7 +364,9 @@ class WrappingRepositoryTest extends WebapiAbstract
     private function getWrappingCollection()
     {
         /** @var \Magento\GiftWrapping\Model\ResourceModel\Wrapping\Collection $collection */
-        $collection = $this->objectManager->create('Magento\GiftWrapping\Model\ResourceModel\Wrapping\Collection');
+        $collection = $this->objectManager->create(
+            \Magento\GiftWrapping\Model\ResourceModel\Wrapping\Collection::class
+        );
         $collection->setOrder('wrapping_id');
         return $collection;
     }
@@ -325,7 +387,7 @@ class WrappingRepositoryTest extends WebapiAbstract
     private static function deleteAllFixtures()
     {
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->create('Magento\GiftWrapping\Model\ResourceModel\Wrapping\Collection');
+            ->create(\Magento\GiftWrapping\Model\ResourceModel\Wrapping\Collection::class);
         foreach ($collection as $item) {
             /** @var \Magento\GiftWrapping\Model\Wrapping $item */
             $item->delete();
@@ -337,7 +399,7 @@ class WrappingRepositoryTest extends WebapiAbstract
         parent::tearDownAfterClass();
         self::deleteAllFixtures();
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->create('Magento\GiftWrapping\Model\ResourceModel\Wrapping\Collection');
+            ->create(\Magento\GiftWrapping\Model\ResourceModel\Wrapping\Collection::class);
         foreach ($collection as $item) {
             /** @var \Magento\GiftWrapping\Model\Wrapping $item */
             $item->delete();

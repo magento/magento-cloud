@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -36,7 +36,7 @@ use Magento\CustomerSegment\Test\Fixture\CustomerSegment;
  * 4. Related Cart and Catalog Rules to banner.
  * 5. Perform all assertions.
  *
- * @group Banner_(PS)
+ * @group Banner
  * @ZephyrId MAGETWO-27159
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -45,8 +45,9 @@ class AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTest extends Injec
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'PS';
     const TEST_TYPE = 'extended_acceptance_test';
+    const SEVERITY = 'S1';
+    const STABLE = 'no';
     /* end tags */
 
     /**
@@ -251,7 +252,7 @@ class AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTest extends Injec
     protected function createWidget($widget, Banner $banner)
     {
         $widget = $this->fixtureFactory->create(
-            '\Magento\Banner\Test\Fixture\BannerWidget',
+            \Magento\Banner\Test\Fixture\BannerWidget::class,
             [
                 'dataset' => $widget,
                 'data' => [
@@ -274,8 +275,8 @@ class AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTest extends Injec
      */
     public function tearDown()
     {
-        $this->objectManager->create('Magento\Widget\Test\TestStep\DeleteAllWidgetsStep')->run();
-        $this->objectManager->create('Magento\CatalogRule\Test\TestStep\DeleteAllCatalogRulesStep')->run();
-        $this->objectManager->create('Magento\SalesRule\Test\TestStep\DeleteAllSalesRuleStep')->run();
+        $this->objectManager->create(\Magento\Widget\Test\TestStep\DeleteAllWidgetsStep::class)->run();
+        $this->objectManager->create(\Magento\CatalogRule\Test\TestStep\DeleteAllCatalogRulesStep::class)->run();
+        $this->objectManager->create(\Magento\SalesRule\Test\TestStep\DeleteAllSalesRuleStep::class)->run();
     }
 }

@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Sales\Test\TestCase\CreateCreditMemoEntityTest">
-        <variation name="CreateCreditMemoEntityTestVariation3">
-            <data name="description" xsi:type="string">Assert money return to StoreCredit</data>
-            <data name="data/form_data/shipping_amount" xsi:type="string">5</data>
-            <data name="data/form_data/refund_customerbalance_return_enable" xsi:type="string">Yes</data>
-            <data name="data/form_data/refund_customerbalance_return" xsi:type="string">10</data>
-            <data name="data/items_data/0/back_to_stock" xsi:type="string">Yes</data>
-            <data name="data/items_data/0/qty" xsi:type="string">1</data>
+        <variation name="CreateCreditMemoEntityTestVariation3" summary="Assert money return to StoreCredit">
+            <data name="order/data/refund" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="invoiceId" xsi:type="string">0</item>
+                    <item name="items_data" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="qty" xsi:type="string">1</item>
+                            <item name="back_to_stock" xsi:type="string">Yes</item>
+                        </item>
+                    </item>
+                    <item name="form_data" xsi:type="array">
+                        <item name="shipping_amount" xsi:type="string">5</item>
+                        <item name="refund_customerbalance_return_enable" xsi:type="string">Yes</item>
+                        <item name="refund_customerbalance_return" xsi:type="string">10</item>
+                    </item>
+                </item>
+            </data>
             <data name="order/dataset" xsi:type="string">default</data>
-            <data name="order/data/entity_id/products" xsi:type="string">catalogProductSimple::default</data>
             <data name="customerBalance/dataset" xsi:type="string">customerBalance_10</data>
             <data name="order/data/price/dataset" xsi:type="string">full_refund</data>
+            <data name="configData" xsi:type="string">checkmo</data>
             <constraint name="Magento\Sales\Test\Constraint\AssertRefundSuccessCreateMessage" />
             <constraint name="Magento\Sales\Test\Constraint\AssertNoCreditMemoButton" />
             <constraint name="Magento\Sales\Test\Constraint\AssertRefundInCreditMemoTab" />

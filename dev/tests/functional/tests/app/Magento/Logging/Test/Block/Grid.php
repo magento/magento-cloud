@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -75,7 +75,7 @@ class Grid extends GridInterface
         if ($rowItem->isVisible()) {
             $rowItem->find($this->firstViewLink, Locator::SELECTOR_CSS)->click();
         } else {
-            throw new \Exception('Searched item was not found.');
+            throw new \Exception("Searched item was not found by filter\n" . print_r($filter, true));
         }
     }
 }

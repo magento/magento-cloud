@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/fixture.xsd">
+    <fixture name="cybersource_sandbox_customer"
+             module="Magento_Cybersource"
+             type="virtual"
+             repository_class="Magento\Cybersource\Test\Repository\SandboxCustomer"
+             class="Magento\Cybersource\Test\Fixture\SandboxCustomer">
+        <field name="merchant_id" />
+        <field name="username" />
+        <field name="password" />
+    </fixture>
+</config>

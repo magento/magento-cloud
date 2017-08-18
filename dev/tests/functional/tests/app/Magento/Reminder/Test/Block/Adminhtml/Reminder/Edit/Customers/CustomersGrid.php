@@ -1,11 +1,10 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Reminder\Test\Block\Adminhtml\Reminder\Edit\Customers;
-
 
 /**
  * Customer grid on "Matched Customers" tab.

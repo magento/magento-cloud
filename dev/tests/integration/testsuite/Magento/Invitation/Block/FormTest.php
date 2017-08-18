@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Invitation\Block;
 
-class FormTest extends \PHPUnit_Framework_TestCase
+class FormTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Invitation\Block\Form
@@ -21,9 +21,9 @@ class FormTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_block = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         )->createBlock(
-            'Magento\Invitation\Block\Form'
+            \Magento\Invitation\Block\Form::class
         );
     }
 
@@ -63,14 +63,14 @@ class FormTest extends \PHPUnit_Framework_TestCase
     protected function _changeConfig($path, $value)
     {
         $oldValue = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\App\Config\MutableScopeConfigInterface'
+            \Magento\Framework\App\Config\MutableScopeConfigInterface::class
         )->getValue(
             $path,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
 
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\App\Config\MutableScopeConfigInterface'
+            \Magento\Framework\App\Config\MutableScopeConfigInterface::class
         )->setValue(
             $path,
             $value,
@@ -91,7 +91,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     protected function _restoreConfig()
     {
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\App\Config\MutableScopeConfigInterface'
+            \Magento\Framework\App\Config\MutableScopeConfigInterface::class
         )->setValue(
             $this->_rememberedConfig['path'],
             $this->_rememberedConfig['old_value'],

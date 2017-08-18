@@ -1,28 +1,19 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
     <repository class="Magento\CustomerCustomAttributes\Test\Repository\CustomerAddressAttribute">
-        <dataset name="default">
-            <field name="frontend_label" xsi:type="string">TextField_CustomerAddress_%isolation%</field>
-            <field name="attribute_code" xsi:type="string">text_field_%isolation%</field>
+        <dataset name="text_field_require">
+            <field name="frontend_label" xsi:type="string">TextField_Customer_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">textfield_%isolation%</field>
             <field name="frontend_input" xsi:type="string">Text Field</field>
-            <field name="is_required" xsi:type="string">No</field>
-            <field name="default_value_text" xsi:type="string">default_value_text_field_%isolation%</field>
             <field name="sort_order" xsi:type="string">10</field>
-        </dataset>
-        <dataset name="visible_on_front">
-            <field name="frontend_label" xsi:type="string">TextField_CustomerAddress_%isolation%</field>
-            <field name="attribute_code" xsi:type="string">text_field_%isolation%</field>
-            <field name="frontend_input" xsi:type="string">Text Field</field>
-            <field name="is_required" xsi:type="string">No</field>
-            <field name="default_value_text" xsi:type="string">default_value_text_field_%isolation%</field>
+            <field name="is_required" xsi:type="string">Yes</field>
             <field name="is_visible" xsi:type="string">Yes</field>
-            <field name="sort_order" xsi:type="string">60</field>
             <field name="used_in_forms" xsi:type="array">
                 <item name="0" xsi:type="string">Customer Address Registration</item>
                 <item name="1" xsi:type="string">Customer Account Address</item>

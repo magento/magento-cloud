@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Support\Model\Report\Group\Cron;
 
-class CronJobsTest extends \PHPUnit_Framework_TestCase
+class CronJobsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param string $namespace
@@ -17,7 +17,7 @@ class CronJobsTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \Magento\Support\Model\Report\Group\Cron\CronJobs $cronJobs */
         $cronJobs = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->create('Magento\Support\Model\Report\Group\Cron\CronJobs');
+            ->create(\Magento\Support\Model\Report\Group\Cron\CronJobs::class);
 
         $this->assertTrue(
             strpos($cronJobs->getFilePathByNamespace($namespace), $expectedPath) !== false,
@@ -32,7 +32,7 @@ class CronJobsTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                'namespace' => 'Magento\Support\Model\Report\Group\Cron\CronJobs',
+                'namespace' => \Magento\Support\Model\Report\Group\Cron\CronJobs::class,
                 'expectedPath' => 'Model/Report/Group/Cron/CronJobs.php'
             ],
             [

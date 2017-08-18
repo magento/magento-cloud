@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Logging\Block\Adminhtml\Grid\Filter;
@@ -8,7 +8,7 @@ namespace Magento\Logging\Block\Adminhtml\Grid\Filter;
 /**
  * @magentoAppArea adminhtml
  */
-class IpTest extends \PHPUnit_Framework_TestCase
+class IpTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Logging\Block\Adminhtml\Grid\Filter\Ip
@@ -19,9 +19,9 @@ class IpTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->_block = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         )->createBlock(
-            'Magento\Logging\Block\Adminhtml\Grid\Filter\Ip'
+            \Magento\Logging\Block\Adminhtml\Grid\Filter\Ip::class
         );
     }
 

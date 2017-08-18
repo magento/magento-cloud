@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -32,9 +32,9 @@ class AddAttributeToAttributeSetStep implements TestStepInterface
     protected $catalogProductSetEdit;
 
     /**
-     * Catalog Product Attribute fixtures.
+     * Catalog Product Attribute fixture.
      *
-     * @var CatalogProductAttribute[]
+     * @var CatalogProductAttribute
      */
     protected $attribute;
 
@@ -49,22 +49,18 @@ class AddAttributeToAttributeSetStep implements TestStepInterface
      * @constructor
      * @param CatalogProductSetIndex $catalogProductSetIndex
      * @param CatalogProductSetEdit $catalogProductSetEdit
-     * @param CatalogProductAttribute|array $attribute
+     * @param CatalogProductAttribute $attribute
      * @param CatalogAttributeSet $attributeSet
      */
     public function __construct(
         CatalogProductSetIndex $catalogProductSetIndex,
         CatalogProductSetEdit $catalogProductSetEdit,
-        $attribute,
+        CatalogProductAttribute $attribute,
         CatalogAttributeSet $attributeSet
     ) {
         $this->catalogProductSetIndex = $catalogProductSetIndex;
         $this->catalogProductSetEdit = $catalogProductSetEdit;
-        if (!is_array($attribute)) {
-            $this->attribute = [$attribute];
-        } else {
-            $this->attribute = $attribute;
-        }
+        $this->attribute = $attribute;
         $this->attributeSet = $attributeSet;
     }
 
@@ -75,11 +71,11 @@ class AddAttributeToAttributeSetStep implements TestStepInterface
      */
     public function run()
     {
-        $filterAttribute = ['set_name' => $this->attributeSet->getAttributeSetName()];
+        $filterAttribute = [
+            'set_name' => $this->attributeSet == null ? 'Default' : $this->attributeSet->getAttributeSetName()
+        ];
         $this->catalogProductSetIndex->open()->getGrid()->searchAndOpen($filterAttribute);
-        foreach ($this->attribute as $attribute) {
-            $this->catalogProductSetEdit->getAttributeSetEditBlock()->moveAttribute($attribute->getData());
-        }
+        $this->catalogProductSetEdit->getAttributeSetEditBlock()->moveAttribute($this->attribute->getData());
         $this->catalogProductSetEdit->getPageActions()->save();
     }
 }

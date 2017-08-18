@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftWrapping\Api;
@@ -33,7 +33,7 @@ class MessageGuestCartRepositoryTest extends WebapiAbstract
     public function testSave()
     {
         /** @var \Magento\GiftWrapping\Model\Wrapping $wrapping */
-        $wrapping = $this->objectManager->create('Magento\GiftWrapping\Model\Wrapping');
+        $wrapping = $this->objectManager->create(\Magento\GiftWrapping\Model\Wrapping::class);
         $wrapping->load('image.png', 'image');
 
         $allowGiftReceipt = true;
@@ -43,12 +43,12 @@ class MessageGuestCartRepositoryTest extends WebapiAbstract
         // @todo remove next statement when \Magento\TestFramework\TestCase\WebapiAbstract::_updateAppConfig is fixed
         $this->markTestIncomplete('This test relies on system configuration state.');
         /** @var \Magento\Quote\Model\Quote $quote */
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_message', 'reserved_order_id');
         $cartId = $quote->getId();
         /** @var \Magento\Quote\Model\QuoteIdMask $quoteIdMask */
         $quoteIdMask = Bootstrap::getObjectManager()
-            ->create('Magento\Quote\Model\QuoteIdMaskFactory')
+            ->create(\Magento\Quote\Model\QuoteIdMaskFactory::class)
             ->create();
         $quoteIdMask->load($cartId, 'quote_id');
         //Use masked cart Id

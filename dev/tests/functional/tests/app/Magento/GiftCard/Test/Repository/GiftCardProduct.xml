@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -43,6 +43,45 @@
             </field>
             <field name="checkout_data" xsi:type="array">
                 <item name="dataset" xsi:type="string">gift_card_default</item>
+            </field>
+        </dataset>
+
+        <dataset name="giftcard_50">
+            <field name="name" xsi:type="string">Test product giftcard %isolation%</field>
+            <field name="sku" xsi:type="string">sku_test_product_giftcard_%isolation%</field>
+            <field name="giftcard_type" xsi:type="string">Virtual</field>
+            <field name="giftcard_amounts" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">10</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="value" xsi:type="string">50</item>
+                </item>
+            </field>
+            <field name="quantity_and_stock_status" xsi:type="array">
+                <item name="qty" xsi:type="string">123</item>
+                <item name="is_in_stock" xsi:type="string">In Stock</item>
+            </field>
+            <field name="status" xsi:type="string">Yes</field>
+            <field name="use_config_is_redeemable" xsi:type="string">Yes</field>
+            <field name="use_config_lifetime" xsi:type="string">Yes</field>
+            <field name="allow_message" xsi:type="string">Yes</field>
+            <field name="use_config_allow_message" xsi:type="string">Yes</field>
+            <field name="email_template" xsi:type="string">Gift Card(s) Purchase (Default)</field>
+            <field name="use_config_email_template" xsi:type="string">No</field>
+            <field name="visibility" xsi:type="string">Catalog, Search</field>
+            <field name="url_key" xsi:type="string">test-product-giftcard-%isolation%</field>
+            <field name="use_config_gift_message_available" xsi:type="string">Yes</field>
+            <field name="website_ids" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default</item>
+                </item>
+            </field>
+            <field name="attribute_set_id" xsi:type="array">
+                <item name="dataset" xsi:type="string">default</item>
+            </field>
+            <field name="checkout_data" xsi:type="array">
+                <item name="dataset" xsi:type="string">gift_card_50</item>
             </field>
         </dataset>
 
@@ -115,7 +154,7 @@
                 <item name="dataset" xsi:type="string">default</item>
             </field>
             <field name="checkout_data" xsi:type="array">
-                <item name="dataset" xsi:type="string">gift_card_default</item>
+                <item name="dataset" xsi:type="string">gift_card_open_amount</item>
             </field>
         </dataset>
 
@@ -158,6 +197,45 @@
             </field>
             <field name="attribute_set_id" xsi:type="array">
                 <item name="dataset" xsi:type="string">default</item>
+            </field>
+        </dataset>
+
+        <dataset name="giftcard_buy_all">
+            <field name="name" xsi:type="string">Test product giftcard %isolation%</field>
+            <field name="sku" xsi:type="string">sku_test_product_giftcard_%isolation%</field>
+            <field name="giftcard_type" xsi:type="string">Virtual</field>
+            <field name="giftcard_amounts" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">120</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="value" xsi:type="string">150</item>
+                </item>
+            </field>
+            <field name="quantity_and_stock_status" xsi:type="array">
+                <item name="qty" xsi:type="string">1</item>
+                <item name="is_in_stock" xsi:type="string">In Stock</item>
+            </field>
+            <field name="status" xsi:type="string">Yes</field>
+            <field name="use_config_is_redeemable" xsi:type="string">Yes</field>
+            <field name="use_config_lifetime" xsi:type="string">Yes</field>
+            <field name="allow_message" xsi:type="string">Yes</field>
+            <field name="use_config_allow_message" xsi:type="string">Yes</field>
+            <field name="email_template" xsi:type="string">Gift Card(s) Purchase (Default)</field>
+            <field name="use_config_email_template" xsi:type="string">No</field>
+            <field name="visibility" xsi:type="string">Catalog, Search</field>
+            <field name="url_key" xsi:type="string">test-product-giftcard-%isolation%</field>
+            <field name="use_config_gift_message_available" xsi:type="string">Yes</field>
+            <field name="website_ids" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default</item>
+                </item>
+            </field>
+            <field name="attribute_set_id" xsi:type="array">
+                <item name="dataset" xsi:type="string">default</item>
+            </field>
+            <field name="checkout_data" xsi:type="array">
+                <item name="dataset" xsi:type="string">gift_card_default</item>
             </field>
         </dataset>
     </repository>

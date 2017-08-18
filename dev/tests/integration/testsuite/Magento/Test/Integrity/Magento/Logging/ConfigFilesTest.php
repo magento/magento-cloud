@@ -2,7 +2,7 @@
 /**
  * Tests that existing logging.xml files are valid to schema individually and merged.
  *
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Test\Integrity\Magento\Logging;
@@ -18,7 +18,7 @@ class ConfigFilesTest extends \Magento\TestFramework\TestCase\AbstractConfigFile
      */
     protected function _getReaderClassName()
     {
-        return 'Magento\Logging\Model\Config\Reader';
+        return \Magento\Logging\Model\Config\Reader::class;
     }
 
     /**

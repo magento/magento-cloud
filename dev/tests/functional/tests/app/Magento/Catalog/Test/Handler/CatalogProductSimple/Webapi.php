@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -65,6 +65,13 @@ class Webapi extends AbstractWebApi implements CatalogProductSimpleInterface
     ];
 
     /**
+     * Temporary media path.
+     *
+     * @var string
+     */
+    private $mediaPathTmp = '/pub/media/tmp/catalog/product/';
+
+    /**
      * @constructor
      * @param DataInterface $configuration
      * @param EventManagerInterface $eventManager
@@ -94,21 +101,49 @@ class Webapi extends AbstractWebApi implements CatalogProductSimpleInterface
         $this->fields = $this->handlerCurl->prepareData($this->fixture);
         $this->prepareData();
         $this->convertData();
-        $storeCode = $this->fixture->hasData('store_code') ? $this->fixture->getStoreCode() : 'default';
 
         /** @var CatalogProductSimple $fixture */
-        $url = $_ENV['app_frontend_url'] . 'rest/'. $storeCode .'/V1/products';
+        $url = $_ENV['app_frontend_url'] . 'rest/all/V1/products';
         $this->webapiTransport->write($url, $this->fields, CurlInterface::POST);
         $encodedResponse = $this->webapiTransport->read();
         $response = json_decode($encodedResponse, true);
         $this->webapiTransport->close();
 
         if (!isset($response['id'])) {
-            $this->eventManager->dispatchEvent(['curl_failed'], [$response]);
+            $this->eventManager->dispatchEvent(['webapi_failed'], [$response]);
             throw new \Exception("Product creation by webapi handler was not successful! Response: {$encodedResponse}");
         }
 
+        $this->updateProduct($fixture);
         return $this->parseResponse($response);
+    }
+
+    /**
+     * Update product info per website.
+     *
+     * @param FixtureInterface $fixture
+     * @return void
+     * @throws \Exception
+     */
+    private function updateProduct(FixtureInterface $fixture)
+    {
+        if (isset($fixture->getData()['website_data'])) {
+            $websiteData = $fixture->getData()['website_data'];
+            foreach ($fixture->getDataFieldConfig('website_ids')['source']->getStores() as $key => $store) {
+                $url = $_ENV['app_frontend_url'] . 'rest/' . $store->getCode() . '/V1/products/' . $fixture->getSku();
+                $this->webapiTransport->write($url, ['product' => $websiteData[$key]], CurlInterface::PUT);
+                $encodedResponse = $this->webapiTransport->read();
+                $response = json_decode($encodedResponse, true);
+                $this->webapiTransport->close();
+
+                if (!isset($response['id'])) {
+                    $this->eventManager->dispatchEvent(['webapi_failed'], [$response]);
+                    throw new \Exception(
+                        "Product update by webapi handler was not successful! Response: {$encodedResponse}"
+                    );
+                }
+            }
+        }
     }
 
     /**
@@ -125,6 +160,8 @@ class Webapi extends AbstractWebApi implements CatalogProductSimpleInterface
         $this->prepareAdvancedInventory();
         $this->prepareTierPrice();
         $this->prepareCustomOptions();
+        $this->prepareMediaGallery();
+        $this->prepareSpecialPrice();
     }
 
     /**
@@ -237,8 +274,16 @@ class Webapi extends AbstractWebApi implements CatalogProductSimpleInterface
                 $priceInfo['customer_group_id'] = $priceInfo['cust_group'];
                 unset($priceInfo['cust_group']);
 
-                $priceInfo['value'] = $priceInfo['price'];
-                unset($priceInfo['price']);
+                if (isset($priceInfo['price'])) {
+                    $priceInfo['value'] = $priceInfo['price'];
+                    unset($priceInfo['price']);
+                }
+                unset($priceInfo['value_type']);
+
+                if (isset($priceInfo['percentage_value'])) {
+                    $priceInfo['extension_attributes']['percentage_value'] = $priceInfo['percentage_value'];
+                    unset($priceInfo['percentage_value']);
+                }
 
                 $priceInfo['qty'] = $priceInfo['price_qty'];
                 unset($priceInfo['price_qty']);
@@ -248,6 +293,27 @@ class Webapi extends AbstractWebApi implements CatalogProductSimpleInterface
 
                 $this->fields['product']['tier_prices'][$key] = $priceInfo;
             }
+        }
+    }
+
+    /**
+     * Preparation of product special price data.
+     *
+     * @return void
+     */
+    protected function prepareSpecialPrice()
+    {
+        if (isset($this->fields['product']['special_from_date'])) {
+            $this->fields['product']['special_from_date'] = date(
+                'n/j/Y',
+                strtotime($this->fields['product']['special_from_date'])
+            );
+        }
+        if (isset($this->fields['product']['special_to_date'])) {
+            $this->fields['product']['special_to_date'] = date(
+                'n/j/Y',
+                strtotime($this->fields['product']['special_to_date'])
+            );
         }
     }
 
@@ -275,5 +341,44 @@ class Webapi extends AbstractWebApi implements CatalogProductSimpleInterface
                 $this->fields['product']['options'][$ko] = $option;
             }
         }
+    }
+
+    /**
+     * Create test image file.
+     *
+     * @return void
+     */
+    protected function prepareMediaGallery()
+    {
+        if (isset($this->fields['product']['media_gallery'])) {
+            foreach ($this->fields['product']['media_gallery']['images'] as $galleryItem) {
+                $filename = $galleryItem['file'];
+                $this->fields['product']['media_gallery_entries'][] = $this->getImageData($filename);
+            }
+            unset($this->fields['product']['media_gallery']);
+        }
+    }
+
+    /**
+     * Get media gallery data.
+     *
+     * @param $filename
+     * @return array
+     */
+    private function getImageData($filename)
+    {
+        return
+            [
+                'position' => 1,
+                'media_type' => 'image',
+                'disabled' => false,
+                'label' => $filename,
+                'types' => [],
+                'content' => [
+                    'type' => 'image/jpeg',
+                    'name' => $filename,
+                    'base64_encoded_data' => base64_encode(file_get_contents(BP . $this->mediaPathTmp . $filename)),
+                ]
+            ];
     }
 }

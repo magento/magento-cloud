@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -29,6 +29,7 @@ class AssertDragPositions extends AbstractConstraint
      */
     public function processAssert(CatalogCategoryMerchandiser $merchandiser)
     {
+        $merchandiser->getEditForm()->openSection('category_products');
         $merchandiser->getMerchandiserApp()->openTab('mode_grid');
 
         /** @var Grid $tab */

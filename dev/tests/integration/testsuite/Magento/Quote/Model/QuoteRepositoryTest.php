@@ -1,27 +1,26 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Quote\Model;
 
-use Magento\TestFramework\Helper\Bootstrap;
-use Magento\Framework\Api\FilterBuilder;
-use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Quote\Api\Data\CartInterface;
+use Magento\TestFramework\Helper\Bootstrap as BootstrapHelper;
 use Magento\Framework\ObjectManagerInterface;
-use Magento\User\Api\Data\UserInterface;
+use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\SearchResults;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Quote\Api\Data\CartInterface;
 use Magento\Quote\Api\Data\CartSearchResultsInterface;
-use Magento\Quote\Model\Quote\Address as QuoteAddress;
 use Magento\Quote\Api\Data\CartExtension;
+use Magento\User\Api\Data\UserInterface;
+use Magento\Quote\Model\Quote\Address as QuoteAddress;
 
 /**
- * QuoteRepository test.
- *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class QuoteRepositoryTest extends \PHPUnit_Framework_TestCase
+class QuoteRepositoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ObjectManagerInterface
@@ -45,14 +44,13 @@ class QuoteRepositoryTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->objectManager = Bootstrap::getObjectManager();
+        $this->objectManager = BootstrapHelper::getObjectManager();
         $this->quoteRepository = $this->objectManager->create(QuoteRepository::class);
         $this->searchCriteriaBuilder = $this->objectManager->create(SearchCriteriaBuilder::class);
         $this->filterBuilder = $this->objectManager->create(FilterBuilder::class);
     }
 
     /**
-     * Tests getting list of quotes according to search criteria.
      * @magentoDataFixture Magento/Sales/_files/quote.php
      */
     public function testGetList()
@@ -63,24 +61,20 @@ class QuoteRepositoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests getting list of quotes according to different search criterias.
      * @magentoDataFixture Magento/Sales/_files/quote.php
      */
     public function testGetListDoubleCall()
     {
         $searchCriteria1 = $this->getSearchCriteria('test01');
         $searchCriteria2 = $this->getSearchCriteria('test02');
-
         $searchResult = $this->quoteRepository->getList($searchCriteria1);
         $this->performAssertions($searchResult);
-
         $searchResult = $this->quoteRepository->getList($searchCriteria2);
+
         $this->assertEmpty($searchResult->getItems());
     }
 
     /**
-     * Save quote test.
-     *
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
      */
@@ -133,17 +127,15 @@ class QuoteRepositoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Get search criteria.
+     * Get search criteria
      *
      * @param string $filterValue
-     *
-     * @return \Magento\Framework\Api\SearchCriteria
+     * @return SearchCriteria
      */
     private function getSearchCriteria($filterValue)
     {
         $filters = [];
-        $filters[] = $this->filterBuilder
-            ->setField('reserved_order_id')
+        $filters[] = $this->filterBuilder->setField('reserved_order_id')
             ->setConditionType('=')
             ->setValue($filterValue)
             ->create();
@@ -153,11 +145,11 @@ class QuoteRepositoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Perform assertions.
+     * Perform assertions
      *
      * @param SearchResults|CartSearchResultsInterface $searchResult
      */
-    protected function performAssertions($searchResult)
+    private function performAssertions($searchResult)
     {
         $expectedExtensionAttributes = [
             'firstname' => 'firstname',
@@ -166,8 +158,10 @@ class QuoteRepositoryTest extends \PHPUnit_Framework_TestCase
         ];
 
         $items = $searchResult->getItems();
+
         /** @var CartInterface $actualQuote */
         $actualQuote = array_pop($items);
+
         /** @var UserInterface $testAttribute */
         $testAttribute = $actualQuote->getExtensionAttributes()->getQuoteTestAttribute();
 

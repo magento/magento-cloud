@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\VerifyCampaignIsBlockedTest" summary="Create product update and validate update preview" ticketId="MAGETWO-55146">
+        <variation name="VerifyCampaignIsBlockedTestVariation1">
+            <data name="update/dataset" xsi:type="string">permanent_update_with_simple_product</data>
+            <data name="secondUpdate/dataset" xsi:type="string">update_with_date_plus_2_year</data>
+            <data name="productUpdate/data/price/value" xsi:type="number">23.00</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertCampaignsBlocked" />
+        </variation>
+    </testCase>
+</config>

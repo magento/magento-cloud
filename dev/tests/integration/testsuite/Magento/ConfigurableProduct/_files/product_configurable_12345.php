@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -15,7 +15,7 @@ use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use Magento\Eav\Api\Data\AttributeOptionInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 
-Bootstrap::getInstance()->reinitialize();
+\Magento\TestFramework\Helper\Bootstrap::getInstance()->reinitialize();
 
 require __DIR__ . '/configurable_attribute.php';
 

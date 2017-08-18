@@ -1,8 +1,9 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magento\Swatches\Test\Block\Product;
 
 use Magento\Mtf\Client\Locator;
@@ -10,7 +11,7 @@ use Magento\Mtf\Fixture\FixtureInterface;
 use Magento\Catalog\Test\Block\Product\ListProduct as CatalogListProduct;
 
 /**
- * @inheritdoc
+ * Product list block.
  */
 class ListProduct extends CatalogListProduct
 {

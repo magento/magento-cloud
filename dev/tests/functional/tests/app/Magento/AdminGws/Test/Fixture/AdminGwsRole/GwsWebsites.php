@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -36,10 +36,17 @@ class GwsWebsites extends DataSource
             $datasets = array_map('trim', explode(',', $data['dataset']));
 
             foreach ($datasets as $dataset) {
-                $this->websites[] = $fixtureFactory->createByCode('website', ['dataset' => $dataset]);
+                $website = $fixtureFactory->createByCode('website', ['dataset' => $dataset]);
+                if (!$website->hasData('website_id')) {
+                    $website->persist();
+                }
+                $this->websites[] = $website;
             }
         }
         foreach ($this->websites as $website) {
+            if (!$website->hasData('website_id')) {
+                $website->persist();
+            }
             $this->data[] = $website->getName();
         }
     }

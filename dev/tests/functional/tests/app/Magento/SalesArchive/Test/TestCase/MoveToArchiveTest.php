@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -27,14 +27,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 3. Click 'Submit' button
  * 4. Perform all assertions
  *
- * @group Sales_Archive_(CS)
+ * @group Sales_Archive
  * @ZephyrId MAGETWO-28235
  */
 class MoveToArchiveTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -69,7 +68,7 @@ class MoveToArchiveTest extends Injectable
         $this->fixtureFactory = $fixtureFactory;
 
         $setupConfigurationStep = $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'checkmo, flatrate']
         );
         $setupConfigurationStep->run();
@@ -121,14 +120,22 @@ class MoveToArchiveTest extends Injectable
      */
     protected function processSteps(OrderInjectable $order, $steps, $module = 'Sales')
     {
+        $products = $order->getEntityId()['products'];
+        $cart['data']['items'] = ['products' => $products];
+        $cart = $this->fixtureFactory->createByCode('cart', $cart);
         $steps = array_diff(explode(',', $steps), ['-']);
         $ids = [];
         foreach ($steps as $step) {
             $action = str_replace(' ', '', ucwords($step));
             $methodAction = 'Create' . $action . 'Step';
             $path = 'Magento\\' . $module . '\Test\TestStep';
-            $processStep = $this->objectManager->create($path . '\\' . $methodAction, ['order' => $order]);
-            $ids = array_replace($ids, $processStep->run());
+            $processStep = $this->objectManager->create(
+                $path . '\\' . $methodAction,
+                ['order' => $order, 'cart' => $cart]
+            )->run();
+            if (isset($processStep['ids'])) {
+                $ids = array_replace($ids, $processStep['ids']);
+            }
         }
 
         return $ids;

@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerSegment\Model\ResourceModel;
 
-class SegmentTest extends \PHPUnit_Framework_TestCase
+class SegmentTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider createConditionSqlDataProvider
@@ -13,7 +13,7 @@ class SegmentTest extends \PHPUnit_Framework_TestCase
     public function testCreateConditionSql($field, $operator, $value, $expected)
     {
         $segment = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerSegment\Model\ResourceModel\Segment'
+            \Magento\CustomerSegment\Model\ResourceModel\Segment::class
         );
         $result = $segment->createConditionSql($field, $operator, $value);
         $this->assertEquals($expected, $result);
@@ -48,7 +48,31 @@ class SegmentTest extends \PHPUnit_Framework_TestCase
                 '!{}',
                 '90064,90065',
                 "value NOT LIKE '%90064%' AND value NOT LIKE '%90065%'",
-            ]
+            ],
+            'Operator contains array' => [
+                'value',
+                '[]',
+                [90064, 90065],
+                '(FIND_IN_SET(90064, value) OR FIND_IN_SET(90065, value))>0',
+            ],
+            'Operator does not contains array' => [
+                'value',
+                '![]',
+                [90064, 90065],
+                '(FIND_IN_SET(90064, value) OR FIND_IN_SET(90065, value))=0',
+            ],
+            'Operator is array' => [
+                'value',
+                'finset',
+                [90064, 90065],
+                'FIND_IN_SET(90064, value)>0 AND FIND_IN_SET(90065, value)>0 AND 11=LENGTH(value)',
+            ],
+            'Operator is not array' => [
+                'value',
+                '!finset',
+                [90064, 90065],
+                'FIND_IN_SET(90064, value)=0 OR FIND_IN_SET(90065, value)=0 OR 11<>LENGTH(value)',
+            ],
         ];
     }
 }

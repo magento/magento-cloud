@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -11,9 +11,12 @@ use Magento\TestFramework\Request;
 use Magento\Staging\Model\VersionManager;
 
 /**
- * Tests Magento\Framework\View\Element\UiComponent\DataProvider Class.
+ * Class DataProviderTest
+ *
+ * @magentoDbIsolation enabled
+ * @magentoAppArea adminhtml
  */
-class DataProviderTest extends \PHPUnit_Framework_TestCase
+class DataProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Framework\View\Element\UiComponent\DataProvider\Reporting
@@ -34,7 +37,7 @@ class DataProviderTest extends \PHPUnit_Framework_TestCase
      * @var \Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
      */
     private $dataProvider;
-    
+
     public function setUp()
     {
         $objectManager = Bootstrap::getObjectManager();
@@ -46,15 +49,12 @@ class DataProviderTest extends \PHPUnit_Framework_TestCase
 
         $this->reporting = $objectManager->create(
             Reporting::class,
-            [
-                'collectionFactory' => $this->collectionFactory,
-                'request' => $this->request
-            ]
+            ['collectionFactory' => $this->collectionFactory,
+                'request' => $this->request]
         );
         $this->dataProvider = $objectManager->create(
             DataProvider::class,
-            [
-                'name' => 'catalogstaging_upcoming_grid_data_source',
+            ['name' => 'catalogstaging_upcoming_grid_data_source',
                 'primaryFieldName' => 'row_id',
                 'requestFieldName' => 'id',
             ]
@@ -62,8 +62,8 @@ class DataProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @magentoAppIsolation enabled
-     * @magentoAppArea adminhtml
+     * Tests the search method on data provider
+     *
      * @magentoDataFixture Magento/Checkout/_files/simple_product.php
      * @magentoDataFixture Magento/Staging/_files/staging_catalog_product_entity.php
      * @magentoDataFixture Magento/Staging/_files/staging_update.php
@@ -71,6 +71,7 @@ class DataProviderTest extends \PHPUnit_Framework_TestCase
     public function testSearch()
     {
         $result = $this->dataProvider->getSearchResult();
+        // staging_catalog_product_entity created 4 updates
         $this->assertEquals(4, count($result->getItems()));
     }
 }

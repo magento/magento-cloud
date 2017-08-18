@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -37,6 +37,13 @@ class Tab extends AbstractTab
     protected $fieldSetStoreCredit = '#_customerbalancestorecredit_fieldset';
 
     /**
+     * Store credit grid row XPath.
+     *
+     * @var string
+     */
+    private $storeCreditGridRow = '//*[@id="balanceGrid"]//td[%s]';
+
+    /**
      * Fill data to fields on tab.
      *
      * @param array $fields
@@ -66,5 +73,17 @@ class Tab extends AbstractTab
             $storeCreditBalance . '[contains(.,"' . $value . '")]',
             Locator::SELECTOR_XPATH
         )->isVisible();
+    }
+
+    /**
+     * Return store credit status.
+     *
+     * @param int $rowNumber
+     * @return string
+     */
+    public function getStoreGridRow($rowNumber)
+    {
+        $row = $this->activeTab . sprintf($this->storeCreditGridRow, $rowNumber);
+        return $this->_rootElement->find($row, Locator::SELECTOR_XPATH)->getText();
     }
 }

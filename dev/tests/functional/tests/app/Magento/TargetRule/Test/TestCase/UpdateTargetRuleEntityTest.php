@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,14 +22,13 @@ use Magento\TargetRule\Test\Fixture\TargetRule;
  * 5. Click 'Save' button.
  * 6. Perform all asserts.
  *
- * @group Target_Rules_(MX)
+ * @group Target_Rules
  * @ZephyrId MAGETWO-24807
  */
 class UpdateTargetRuleEntityTest extends AbstractTargetRuleEntityTest
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'MX';
     /* end tags */
 
     /**
@@ -39,6 +38,7 @@ class UpdateTargetRuleEntityTest extends AbstractTargetRuleEntityTest
      * @param CatalogProductSimple $promotedProduct
      * @param TargetRule $initialTargetRule
      * @param TargetRule $targetRule
+     * @param string|null $conditionEntity
      * @param CustomerSegment|null $customerSegment
      * @return array
      */

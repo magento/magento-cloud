@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -33,7 +33,7 @@ class AssertBannerNotInWidgetOptions extends AbstractConstraint
         WidgetInstanceEdit $widgetInstanceEdit
     ) {
         $widget = $fixtureFactory->create(
-            '\Magento\Banner\Test\Fixture\BannerWidget',
+            \Magento\Banner\Test\Fixture\BannerWidget::class,
             ['dataset' => 'widget_banner_rotator']
         );
         $widgetInstanceNew->open();

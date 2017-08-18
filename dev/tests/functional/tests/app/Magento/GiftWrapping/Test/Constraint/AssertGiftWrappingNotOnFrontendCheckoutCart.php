@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -57,7 +57,7 @@ class AssertGiftWrappingNotOnFrontendCheckoutCart extends AbstractConstraint
                 $matches[] = $giftWrapping->getDesign();
             }
         }
-        $this->objectManager->create('Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep')->run();
+        $this->objectManager->create(\Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep::class)->run();
 
         \PHPUnit_Framework_Assert::assertEmpty(
             $matches,

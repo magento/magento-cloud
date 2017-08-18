@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reward\Block\Adminhtml\Reward\Rate\Edit;
@@ -8,7 +8,7 @@ namespace Magento\Reward\Block\Adminhtml\Reward\Rate\Edit;
 /**
  * @magentoAppArea adminhtml
  */
-class FormTest extends \PHPUnit_Framework_TestCase
+class FormTest extends \PHPUnit\Framework\TestCase
 {
     /** @var \Magento\Reward\Block\Adminhtml\Reward\Rate\Edit\Form */
     protected $_block;
@@ -16,17 +16,19 @@ class FormTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $layout = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Framework\View\Layout');
+        $layout = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\Framework\View\Layout::class
+        );
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        if (!$objectManager->get('Magento\Framework\Registry')->registry('current_reward_rate')) {
+        if (!$objectManager->get(\Magento\Framework\Registry::class)->registry('current_reward_rate')) {
             $rate = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-                'Magento\Reward\Model\Reward\Rate'
+                \Magento\Reward\Model\Reward\Rate::class
             );
-            $objectManager->get('Magento\Framework\Registry')->register('current_reward_rate', $rate);
+            $objectManager->get(\Magento\Framework\Registry::class)->register('current_reward_rate', $rate);
         }
 
-        $this->_block = $layout->createBlock('Magento\Reward\Block\Adminhtml\Reward\Rate\Edit\Form');
+        $this->_block = $layout->createBlock(\Magento\Reward\Block\Adminhtml\Reward\Rate\Edit\Form::class);
     }
 
     /**
@@ -38,7 +40,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
     {
         $this->_block->toHtml();
         $form = $this->_block->getForm();
-        $this->assertInstanceOf('Magento\Framework\Data\Form', $form);
+        $this->assertInstanceOf(\Magento\Framework\Data\Form::class, $form);
         $this->assertNull($form->getElement('website_id'));
     }
 
@@ -51,10 +53,10 @@ class FormTest extends \PHPUnit_Framework_TestCase
     {
         $this->_block->toHtml();
         $form = $this->_block->getForm();
-        $this->assertInstanceOf('Magento\Framework\Data\Form', $form);
+        $this->assertInstanceOf(\Magento\Framework\Data\Form::class, $form);
         $element = $form->getElement('website_id');
         $this->assertNotNull($element);
-        $this->assertInstanceOf('Magento\Framework\Data\Form\Element\Select', $element);
+        $this->assertInstanceOf(\Magento\Framework\Data\Form\Element\Select::class, $element);
         $this->assertEquals('website_id', $element->getId());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reward\Observer;
@@ -8,7 +8,7 @@ namespace Magento\Reward\Observer;
 use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 
-class SaveRewardPointsTest extends \PHPUnit_Framework_TestCase
+class SaveRewardPointsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @magentoDataFixture Magento/Customer/_files/import_export/customer.php
@@ -23,16 +23,18 @@ class SaveRewardPointsTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         /** @var \Magento\Customer\Model\Customer $customer */
-        $customer = $objectManager->get('Magento\Framework\Registry')
+        $customer = $objectManager->get(\Magento\Framework\Registry::class)
             ->registry('_fixture/Magento_ImportExport_Customer');
 
         /** @var CustomerRepositoryInterface $customerRepository */
-        $customerRepository = $objectManager->get('Magento\Customer\Api\CustomerRepositoryInterface');
+        $customerRepository = $objectManager->get(\Magento\Customer\Api\CustomerRepositoryInterface::class);
 
         $this->_saveRewardPoints($customerRepository->getById($customer->getId()), $pointsDelta);
 
         /** @var $reward \Magento\Reward\Model\Reward */
-        $reward = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reward\Model\Reward');
+        $reward = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\Reward\Model\Reward::class
+        );
         $reward->setCustomer($customer)->loadByCustomer();
 
         $this->assertEquals($expectedBalance, $reward->getPointsBalance());
@@ -57,7 +59,7 @@ class SaveRewardPointsTest extends \PHPUnit_Framework_TestCase
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         /** @var $request \Magento\TestFramework\Request */
-        $request = $objectManager->get('Magento\TestFramework\Request');
+        $request = $objectManager->get(\Magento\TestFramework\Request::class);
         $request->setPostValue(['reward' => $reward]);
 
         $event = new \Magento\Framework\Event(['request' => $request, 'customer' => $customer]);
@@ -65,7 +67,7 @@ class SaveRewardPointsTest extends \PHPUnit_Framework_TestCase
         $eventObserver = new \Magento\Framework\Event\Observer(['event' => $event]);
 
         $rewardObserver = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Reward\Observer\SaveRewardPoints'
+            \Magento\Reward\Observer\SaveRewardPoints::class
         );
         $rewardObserver->execute($eventObserver);
     }

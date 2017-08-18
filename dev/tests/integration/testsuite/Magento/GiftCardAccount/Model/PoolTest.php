@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftCardAccount\Model;
 
-class PoolTest extends \PHPUnit_Framework_TestCase
+class PoolTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\GiftCardAccount\Model\Pool
@@ -15,7 +15,7 @@ class PoolTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\GiftCardAccount\Model\Pool'
+            \Magento\GiftCardAccount\Model\Pool::class
         );
     }
 

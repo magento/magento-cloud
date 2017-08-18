@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -26,14 +26,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Click "Delete Banner"
  * 6. Perform all assertions
  *
- * @group CMS_Content_(PS)
+ * @group CMS_Content
  * @ZephyrId MAGETWO-25644
  */
 class DeleteBannerEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'PS';
+    const SEVERITY = 'S1';
     /* end tags */
 
     /**

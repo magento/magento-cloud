@@ -2,7 +2,7 @@
 /**
  * @category    Magento
  * @package     Magento_TargetRule
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,10 +25,10 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
     protected function setUp()
     {
         $this->_processor = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\TargetRule\Model\Indexer\TargetRule\Rule\Product\Processor'
+            \Magento\TargetRule\Model\Indexer\TargetRule\Rule\Product\Processor::class
         );
         $this->_ruleFactory = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\TargetRule\Model\RuleFactory'
+            \Magento\TargetRule\Model\RuleFactory::class
         );
     }
 
@@ -64,10 +64,10 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
     public function testReindexRowByCategories()
     {
         /**
-         * @var \Magento\Catalog\Model\resourceModel\Product $productRepository
+         * @var \Magento\Catalog\Model\ResourceModel\Product $productRepository
          */
         $productRepository = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->create('Magento\Catalog\Model\resourceModel\Product');
+            ->create(\Magento\Catalog\Model\ResourceModel\Product::class);
         $this->_processor->getIndexer()->setScheduled(false);
         $this->assertFalse($this->_processor->getIndexer()->isScheduled());
 
@@ -79,13 +79,13 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
             'customer_segment_ids' => ['0' => ''],
             'conditions' => [
                 '1' => [
-                    'type' => 'Magento\TargetRule\Model\Rule\Condition\Combine',
+                    'type' => \Magento\TargetRule\Model\Rule\Condition\Combine::class,
                     'aggregator' => 'all',
                     'value' => '1',
                     'new_child' => '',
                 ],
                 '1--1' => [
-                    'type' => 'Magento\TargetRule\Model\Rule\Condition\Product\Attributes',
+                    'type' => \Magento\TargetRule\Model\Rule\Condition\Product\Attributes::class,
                     'attribute' => 'category_ids',
                     'operator' => '()',
                     'value' => '11',
@@ -114,13 +114,13 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
             'customer_segment_ids' => ['0' => ''],
             'conditions' => [
                 '1' => [
-                    'type' => 'Magento\TargetRule\Model\Rule\Condition\Combine',
+                    'type' => \Magento\TargetRule\Model\Rule\Condition\Combine::class,
                     'aggregator' => 'all',
                     'value' => '1',
                     'new_child' => '',
                 ],
                 '1--1' => [
-                    'type' => 'Magento\TargetRule\Model\Rule\Condition\Product\Attributes',
+                    'type' => \Magento\TargetRule\Model\Rule\Condition\Product\Attributes::class,
                     'attribute' => 'category_ids',
                     'operator' => '==',
                     'value' => '5',

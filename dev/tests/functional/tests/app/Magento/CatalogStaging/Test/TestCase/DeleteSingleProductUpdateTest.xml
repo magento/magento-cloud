@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\DeleteSingleProductUpdateTest" summary="Delete product update">
+        <variation name="DeleteSingleProductUpdateVariation1" summary="Verify campaign delete message" ticketId="MAGETWO-50265">
+            <data name="update/dataset" xsi:type="string">permanent_update_with_simple_product</data>
+            <data name="productUpdate/data/price/value" xsi:type="number">11.00</data>
+            <data name="validateMessage" xsi:type="boolean">true</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductUpdateDeleteWarningMessage" />
+        </variation>
+        <variation name="DeleteSingleProductUpdateVariation2" summary="Verify that product has no update campaigns" ticketId="MAGETWO-50267">
+            <data name="update/dataset" xsi:type="string">permanent_update_with_simple_product</data>
+            <data name="productUpdate/data/price/value" xsi:type="number">11.00</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductHasNoUpdates" />
+        </variation>
+    </testCase>
+</config>

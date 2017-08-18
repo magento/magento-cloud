@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -14,16 +14,16 @@
         </block>
         <container name="left" as="left" label="Left Column">
             <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tabs" name="magento_rma_edit_tabs">
-                <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General" template="edit/general.phtml" name="magento_rma_edit_tab_general">
-                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Details" template="edit/general/details.phtml" name="request_details" />
-                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Shippingmethod" template="edit/shippingmethod.phtml" name="shipping_method">
-                        <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Shipping\Tracking" name="magento_rma_shipment_tracking" template="edit/shipping/tracking.phtml" />
+                <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General" template="Magento_Rma::edit/general.phtml" name="magento_rma_edit_tab_general">
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Details" template="Magento_Rma::edit/general/details.phtml" name="request_details" />
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Shippingmethod" template="Magento_Rma::edit/shippingmethod.phtml" name="shipping_method">
+                        <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Shipping\Tracking" name="magento_rma_shipment_tracking" template="Magento_Rma::edit/shipping/tracking.phtml" />
                     </block>
-                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\ShippingAddress" template="edit/general/shippingaddress.phtml" name="shipping_address" />
-                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Returnaddress" template="edit/general/returnadress.phtml" name="return_address" />
-                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\History" template="edit/general/history.phtml" name="comments_history" />
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\ShippingAddress" template="Magento_Rma::edit/general/shippingaddress.phtml" name="shipping_address" />
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\Returnaddress" template="Magento_Rma::edit/general/returnadress.phtml" name="return_address" />
+                    <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\General\History" template="Magento_Rma::edit/general/history.phtml" name="comments_history" />
                 </block>
-                <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\Items" template="edit/items.phtml" name="magento_rma_edit_tab_items">
+                <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\Items" template="Magento_Rma::edit/items.phtml" name="magento_rma_edit_tab_items">
                     <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Tab\Items\Grid" name="items_grid" />
                 </block>
                 <action method="addTab">
@@ -38,7 +38,7 @@
         </container>
         <container name="before_body_end" as="before_body_end" label="Before Body End">
             <block class="Magento\Backend\Block\Template" template="Magento_Rma::edit/mask.phtml" />
-            <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Js" template="edit/js.phtml" name="magento_rma_js_create" />
+            <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Js" template="Magento_Rma::edit/js.phtml" name="magento_rma_js_create" />
         </container>
     </body>
 </page>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\GiftRegistry\Test\TestCase\CreateGiftRegistryFrontendEntityTest" summary="Create Gift Registry on Frontend" ticketId="MAGETWO-26176">
         <variation name="CreateGiftRegistryFrontendEntityTestVariation1">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistry/data/type_id" xsi:type="string">Birthday</data>
             <data name="giftRegistry/data/title" xsi:type="string">My Birthday%isolation%</data>
             <data name="giftRegistry/data/message" xsi:type="string">My Birthday Gift registry Message</data>
@@ -32,7 +32,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryActiveInWishlist" />
         </variation>
         <variation name="CreateGiftRegistryFrontendEntityTestVariation2">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistry/data/type_id" xsi:type="string">Birthday</data>
             <data name="giftRegistry/data/title" xsi:type="string">My Birthday%isolation%</data>
             <data name="giftRegistry/data/message" xsi:type="string">My Birthday Gift registry Message</data>
@@ -56,7 +56,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryInactiveNotInWishlist" />
         </variation>
         <variation name="CreateGiftRegistryFrontendEntityTestVariation3">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistry/data/type_id" xsi:type="string">Baby Registry</data>
             <data name="giftRegistry/data/title" xsi:type="string">My baby Birthday%isolation%</data>
             <data name="giftRegistry/data/message" xsi:type="string">Baby Registry Gift Message</data>
@@ -80,7 +80,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryActiveInWishlist" />
         </variation>
         <variation name="CreateGiftRegistryFrontendEntityTestVariation4">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistry/data/type_id" xsi:type="string">Baby Registry</data>
             <data name="giftRegistry/data/title" xsi:type="string">My baby Birthday%isolation%</data>
             <data name="giftRegistry/data/message" xsi:type="string">Baby Registry Gift Message</data>
@@ -104,7 +104,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryInactiveNotInWishlist" />
         </variation>
         <variation name="CreateGiftRegistryFrontendEntityTestVariation5">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistry/data/type_id" xsi:type="string">Wedding</data>
             <data name="giftRegistry/data/title" xsi:type="string">My Wedding%isolation%</data>
             <data name="giftRegistry/data/message" xsi:type="string">Wedding Registry Gift Message</data>
@@ -128,7 +128,7 @@
             <constraint name="Magento\GiftRegistry\Test\Constraint\AssertGiftRegistryActiveInWishlist" />
         </variation>
         <variation name="CreateGiftRegistryFrontendEntityTestVariation6">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="giftRegistry/data/type_id" xsi:type="string">Wedding</data>
             <data name="giftRegistry/data/title" xsi:type="string">My Wedding%isolation%</data>
             <data name="giftRegistry/data/message" xsi:type="string">Wedding Registry Gift Message</data>

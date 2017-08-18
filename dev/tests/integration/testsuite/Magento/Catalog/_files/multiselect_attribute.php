@@ -1,14 +1,16 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 /* Create attribute */
 /** @var $installer \Magento\Catalog\Setup\CategorySetup */
-$installer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Setup\CategorySetup');
+$installer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Catalog\Setup\CategorySetup::class
+);
 /** @var $attribute \Magento\Catalog\Model\ResourceModel\Eav\Attribute */
 $attribute = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\Catalog\Model\ResourceModel\Eav\Attribute'
+    \Magento\Catalog\Model\ResourceModel\Eav\Attribute::class
 );
 $attribute->setData(
     [
@@ -22,7 +24,7 @@ $attribute->setData(
         'is_searchable' => 0,
         'is_visible_in_advanced_search' => 0,
         'is_comparable' => 0,
-        'is_filterable' => 0,
+        'is_filterable' => 1,
         'is_filterable_in_search' => 0,
         'is_used_for_promo_rules' => 0,
         'is_html_allowed_on_front' => 1,
@@ -31,7 +33,7 @@ $attribute->setData(
         'used_for_sort_by' => 0,
         'frontend_label' => ['Multiselect Attribute'],
         'backend_type' => 'varchar',
-        'backend_model' => 'Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend',
+        'backend_model' => \Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend::class,
         'option' => [
             'value' => [
                 'option_1' => ['Option 1'],

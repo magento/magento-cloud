@@ -1,14 +1,14 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\GiftCardAccount\Test\Fixture\GiftCardAccount;
 
 use Magento\Mtf\Fixture\DataSource;
-use Magento\Mtf\Fixture\FixtureFactory;
 use Magento\Store\Test\Fixture\Website;
+use Magento\Mtf\Fixture\FixtureFactory;
 
 /**
  * Prepare data for website_id field in reward rate fixture.
@@ -19,13 +19,14 @@ use Magento\Store\Test\Fixture\Website;
 class WebsiteId extends DataSource
 {
     /**
-     * Website fixture.
+     * Website fixture
      *
      * @var Website
      */
     protected $website;
 
     /**
+     * @constructor
      * @param FixtureFactory $fixtureFactory
      * @param array $params
      * @param array $data
@@ -41,9 +42,6 @@ class WebsiteId extends DataSource
             }
             $this->website = $website;
             $this->data = $website->getName();
-        } elseif (isset($data['source']) && $data['source'] instanceof Website) {
-            $this->website = $data['source'];
-            $this->data = $data['source']->getName();
         }
     }
 

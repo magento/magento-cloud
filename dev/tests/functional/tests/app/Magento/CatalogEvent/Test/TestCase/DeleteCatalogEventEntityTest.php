@@ -1,21 +1,18 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\CatalogEvent\Test\TestCase;
 
-use Magento\Catalog\Test\Fixture\CatalogProductSimple;
-use Magento\Catalog\Test\Fixture\Product\CategoryIds;
-use Magento\CatalogEvent\Test\Page\Adminhtml\CatalogEventIndex;
-use Magento\CatalogEvent\Test\Page\Adminhtml\CatalogEventNew;
-use Magento\Mtf\Fixture\FixtureFactory;
+use Magento\Catalog\Test\Fixture\Category;
 use Magento\Mtf\TestCase\Injectable;
+use Magento\CatalogEvent\Test\Fixture\CatalogEventEntity;
+use Magento\CatalogEvent\Test\Page\Adminhtml\CatalogEventNew;
+use Magento\CatalogEvent\Test\Page\Adminhtml\CatalogEventIndex;
 
 /**
- * Test Creation for Delete CatalogEventEntity
- *
  * Test Flow:
  * 1. Log in to backend as admin user.
  * 2. Navigate to MARKETING>Private Sales>Events.
@@ -23,86 +20,64 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click "Delete" button.
  * 5. Perform all assertions.
  *
- * @group Catalog_Events_(MX)
+ * @group Catalog_Events
  * @ZephyrId MAGETWO-23418
  */
 class DeleteCatalogEventEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'MX';
     /* end tags */
 
     /**
-     * Catalog Event Page
+     * Catalog Event Page.
      *
      * @var CatalogEventNew
      */
-    protected $catalogEventNew;
+    private $catalogEventNew;
 
     /**
-     * Event Page
+     * Event Page.
      *
      * @var CatalogEventIndex
      */
-    protected $catalogEventIndex;
+    private $catalogEventIndex;
 
     /**
+     * Prepare required dependencies for test.
+     *
      * @param CatalogEventNew $catalogEventNew
      * @param CatalogEventIndex $catalogEventIndex
-     * @param FixtureFactory $fixtureFactory
-     *
-     * @return array
+     * @return void
      */
-    public function __inject(
+    public function __prepare(
         CatalogEventNew $catalogEventNew,
-        CatalogEventIndex $catalogEventIndex,
-        FixtureFactory $fixtureFactory
+        CatalogEventIndex $catalogEventIndex
     ) {
         $this->catalogEventNew = $catalogEventNew;
         $this->catalogEventIndex = $catalogEventIndex;
-
-        /** @var CatalogProductSimple $product */
-        $product = $fixtureFactory->createByCode(
-            'catalogProductSimple',
-            ['dataset' => 'product_with_category']
-        );
-        $product->persist();
-
-        /** @var CategoryIds $sourceCategories */
-        $sourceCategory = $product->getDataFieldConfig('category_ids')['source']->getCategories()[0];
-        $catalogEventEntity = $fixtureFactory->createByCode(
-            'catalogEventEntity',
-            [
-                'dataset' => 'default',
-                'data' => ['category_id' => $sourceCategory->getId()],
-            ]
-        );
-        $catalogEventEntity->persist();
-
-        return [
-            'product' => $product,
-            'catalogEventEntity' => $catalogEventEntity,
-        ];
     }
 
     /**
-     * Delete Catalog Event Entity
+     * Delete Catalog Event Entity test.
      *
-     * @param CatalogProductSimple $product
-     * @return void
+     * @param CatalogEventEntity $catalogEvent
+     * @return array
      */
-    public function testDeleteCatalogEvent(
-        CatalogProductSimple $product
-    ) {
-        $filter = [
-            'category_name' => $product->getCategoryIds()[0],
-        ];
+    public function test(CatalogEventEntity $catalogEvent)
+    {
+        // Precondition
+        $catalogEvent->persist();
 
         //Steps
         $this->catalogEventIndex->open();
-        $this->catalogEventIndex->getEventGrid()->searchAndOpen($filter);
+        $this->catalogEventIndex->getEventGrid()->searchAndOpen(['category_name' => $catalogEvent->getCategoryId()]);
         $this->catalogEventNew->getPageActions()->delete();
         $this->catalogEventNew->getModalBlock()->acceptAlert();
+
+        /** @var Category $category */
+        $category = $catalogEvent->getDataFieldConfig('category_id')['source']->getCategory();
+        $product = current($category->getDataFieldConfig('category_products')['source']->getProducts());
+        return ['product' => $product, 'category' => $category];
     }
 }

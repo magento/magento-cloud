@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\CreateCustomWebsiteProductUpdateTest" summary="Create product update and validate update preview" ticketId="MAGETWO-49851">
+        <variation name="CreateCustomWebsiteProductUpdateTestVariation1">
+            <data name="product/dataset" xsi:type="string">product_with_additional_website</data>
+            <data name="staging/0/dataset" xsi:type="string">update_with_date_plus_9_months</data>
+            <data name="productUpdate/0/data/use_default_price" xsi:type="string">No</data>
+            <data name="productUpdate/0/data/price/value" xsi:type="number">11.00</data>
+            <data name="staging/1/dataset" xsi:type="string">permanent_update_campaign</data>
+            <data name="productUpdate/1/data/use_default_price" xsi:type="string">No</data>
+            <data name="productUpdate/1/data/price/value" xsi:type="number">12.00</data>
+            <data name="staging/2/dataset" xsi:type="string">update_with_date_plus_2_year</data>
+            <data name="productUpdate/2/data/use_default_price" xsi:type="string">No</data>
+            <data name="productUpdate/2/data/price/value" xsi:type="number">14.00</data>
+            <data name="productUpdateForCustomWebsite/data/use_default_price" xsi:type="string">No</data>
+            <data name="productUpdateForCustomWebsite/data/price/value" xsi:type="number">140.00</data>
+            <data name="configData" xsi:type="string">price_scope_website</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductPricesCorrectInBackendPreview" />
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductPriceCorrectInCustomWebsitePreview" />
+        </variation>
+    </testCase>
+</config>

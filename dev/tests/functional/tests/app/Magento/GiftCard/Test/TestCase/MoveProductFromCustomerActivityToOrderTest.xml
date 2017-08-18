@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -9,7 +9,7 @@
     <testCase name="Magento\MultipleWishlist\Test\TestCase\MoveProductFromCustomerActivityToOrderTest" summary="Move Product from Customer's Wish List while Order Creation in Admin" ticketId="MAGETWO-29530">
         <variation name="MoveGiftCardProductFromCustomerActivityToOrderTestVariation1">
             <data name="multipleWishlist/dataset" xsi:type="string">wishlist_public</data>
-            <data name="products" xsi:type="string">giftCardProduct::default</data>
+            <data name="products/0" xsi:type="string">giftCardProduct::default</data>
             <data name="duplicate" xsi:type="string">no</data>
             <data name="qtyToMove" xsi:type="string">1</data>
             <constraint name="Magento\Sales\Test\Constraint\AssertProductInItemsOrderedGrid" />

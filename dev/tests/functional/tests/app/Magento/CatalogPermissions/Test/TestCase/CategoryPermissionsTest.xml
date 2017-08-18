@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogPermissions\Test\TestCase\CategoryPermissionsTest" summary="Check category permissions" ticketId="MAGETWO-35639">
+        <variation name="CategoryPermissionsTestVariation1" summary="Check category permissions as a customer assigned to General group">
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="product/dataset" xsi:type="string">default</data>
+            <data name="categoryDatasets" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default_subcategory</item>
+                    <item name="product" xsi:type="string">catalogProductSimple::product_20_dollar</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default_subcategory</item>
+                    <item name="product" xsi:type="string">catalogProductSimple::product_20_dollar</item>
+                </item>
+            </data>
+            <data name="permissionsSettings/data/category_permissions/dataset" xsi:type="string">category_permissions_for_general_group</data>
+            <data name="categoryPermissions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="browsing_category" xsi:type="boolean">true</item>
+                    <item name="display_product_prices" xsi:type="boolean">true</item>
+                    <item name="add_to_cart" xsi:type="boolean">false</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="browsing_category" xsi:type="boolean">true</item>
+                    <item name="display_product_prices" xsi:type="boolean">false</item>
+                    <item name="add_to_cart" xsi:type="boolean">false</item>
+                </item>
+            </data>
+            <data name="productPermissions" xsi:type="array">
+                <item name="add_to_cart" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="0" xsi:type="boolean">false</item>
+                        <item name="1" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="0" xsi:type="boolean">false</item>
+                        <item name="1" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </data>
+            <data name="configData" xsi:type="string">enable_category_permissions</data>
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertSearchFieldVisible" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertCategoryBrowsingPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertDisplayProductPricesPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertAddToCartPermissions" />
+        </variation>
+        <variation name="CategoryPermissionsTestVariation2" summary="Check category permissions as a customer assigned to Retailer group">
+            <data name="customer/dataset" xsi:type="string">johndoe_retailer</data>
+            <data name="product/dataset" xsi:type="string">default</data>
+            <data name="categoryDatasets" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default_subcategory</item>
+                    <item name="product" xsi:type="string">catalogProductSimple::product_20_dollar</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default_subcategory</item>
+                    <item name="product" xsi:type="string">catalogProductSimple::product_20_dollar</item>
+                </item>
+            </data>
+            <data name="permissionsSettings/data/category_permissions/dataset" xsi:type="string">category_permissions_for_retailer_group</data>
+            <data name="categoryPermissions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="browsing_category" xsi:type="boolean">true</item>
+                    <item name="display_product_prices" xsi:type="boolean">true</item>
+                    <item name="add_to_cart" xsi:type="boolean">true</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="browsing_category" xsi:type="boolean">true</item>
+                    <item name="display_product_prices" xsi:type="boolean">true</item>
+                    <item name="add_to_cart" xsi:type="boolean">true</item>
+                </item>
+            </data>
+            <data name="productPermissions" xsi:type="array">
+                <item name="add_to_cart" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="0" xsi:type="boolean">true</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="0" xsi:type="boolean">true</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </data>
+            <data name="configData" xsi:type="string">enable_category_permissions</data>
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertSearchFieldVisible" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertCategoryBrowsingPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertDisplayProductPricesPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertAddToCartPermissions" />
+        </variation>
+        <variation name="CategoryPermissionsTestVariation3" summary="Check category permissions as a customer assigned to Wholesale group">
+            <data name="customer/dataset" xsi:type="string">johndoe_wholesale</data>
+            <data name="product/dataset" xsi:type="string">default</data>
+            <data name="categoryDatasets" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default_subcategory</item>
+                    <item name="product" xsi:type="string">catalogProductSimple::product_20_dollar</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default_subcategory</item>
+                    <item name="product" xsi:type="string">catalogProductSimple::product_20_dollar</item>
+                </item>
+            </data>
+            <data name="permissionsSettings/data/category_permissions/dataset" xsi:type="string">category_permissions_for_wholesale_group</data>
+            <data name="categoryPermissions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="browsing_category" xsi:type="boolean">true</item>
+                    <item name="display_product_prices" xsi:type="boolean">true</item>
+                    <item name="add_to_cart" xsi:type="boolean">false</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="browsing_category" xsi:type="boolean">false</item>
+                    <item name="display_product_prices" xsi:type="boolean">false</item>
+                    <item name="add_to_cart" xsi:type="boolean">false</item>
+                </item>
+            </data>
+            <data name="productPermissions" xsi:type="array">
+                <item name="add_to_cart" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="0" xsi:type="boolean">false</item>
+                        <item name="1" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="0" xsi:type="boolean">false</item>
+                        <item name="1" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </data>
+            <data name="configData" xsi:type="string">enable_category_permissions</data>
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertSearchFieldVisible" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertCategoryBrowsingPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertDisplayProductPricesPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertAddToCartPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertCategoryPresent" />
+        </variation>
+        <variation name="CategoryPermissionsTestVariation4" summary="Check category permissions as a not logged in customer">
+            <data name="product/dataset" xsi:type="string">default</data>
+            <data name="categoryDatasets" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default_subcategory</item>
+                    <item name="product" xsi:type="string">catalogProductSimple::product_20_dollar</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="dataset" xsi:type="string">default_subcategory</item>
+                    <item name="product" xsi:type="string">catalogProductSimple::product_20_dollar</item>
+                </item>
+            </data>
+            <data name="permissionsSettings/data/category_permissions/dataset" xsi:type="string">category_permissions_for_not_logged_in</data>
+            <data name="categoryPermissions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="browsing_category" xsi:type="boolean">true</item>
+                    <item name="display_product_prices" xsi:type="boolean">false</item>
+                    <item name="add_to_cart" xsi:type="boolean">false</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="browsing_category" xsi:type="boolean">true</item>
+                    <item name="display_product_prices" xsi:type="boolean">true</item>
+                    <item name="add_to_cart" xsi:type="boolean">true</item>
+                </item>
+            </data>
+            <data name="productPermissions" xsi:type="array">
+                <item name="add_to_cart" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="0" xsi:type="boolean">false</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="0" xsi:type="boolean">true</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </data>
+            <data name="configData" xsi:type="string">enable_category_permissions</data>
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertSearchFieldNotVisible" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertCategoryBrowsingPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertDisplayProductPricesPermissions" />
+            <constraint name="Magento\CatalogPermissions\Test\Constraint\AssertAddToCartPermissions" />
+        </variation>
+    </testCase>
+</config>

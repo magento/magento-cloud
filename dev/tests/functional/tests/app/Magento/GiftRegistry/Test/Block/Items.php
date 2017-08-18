@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -96,7 +96,7 @@ class Items extends Block
     protected function getItemForm(CatalogProductSimple $item)
     {
         return $this->blockFactory->create(
-            'Magento\GiftRegistry\Test\Block\Items\ItemForm',
+            \Magento\GiftRegistry\Test\Block\Items\ItemForm::class,
             ['element' => $this->_rootElement->find(sprintf($this->itemRow, $item->getName()), Locator::SELECTOR_XPATH)]
         );
     }

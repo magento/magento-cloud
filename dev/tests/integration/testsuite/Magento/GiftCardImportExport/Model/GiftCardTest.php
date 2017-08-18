@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftCardImportExport\Model;
@@ -51,11 +51,11 @@ class GiftCardTest extends AbstractProductExportImportTestCase
      * @dataProvider exportImportDataProvider
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      *
-     * @todo remove after MAGETWO-49466 resolved
+     * @todo remove after MAGETWO-38240 resolved
      */
     public function testExport($fixtures, $skus, $skippedAttributes = [], $rollbackFixtures = [])
     {
-        $this->markTestSkipped('Uncomment after MAGETWO-49467 resolved');
+        $this->markTestSkipped('Uncomment after MAGETWO-38240 resolved');
     }
 
     /**
@@ -64,11 +64,11 @@ class GiftCardTest extends AbstractProductExportImportTestCase
      * @dataProvider exportImportDataProvider
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      *
-     * @todo remove after MAGETWO-49466 resolved
+     * @todo remove after MAGETWO-38240 resolved
      */
     public function testImportDelete($fixtures, $skus, $skippedAttributes = [], $rollbackFixtures = [])
     {
-        $this->markTestSkipped('Uncomment after MAGETWO-49467 resolved');
+        $this->markTestSkipped('Uncomment after MAGETWO-38240 resolved');
     }
 
     /**
@@ -76,10 +76,11 @@ class GiftCardTest extends AbstractProductExportImportTestCase
      * @param string[] $skus
      * @param string[] $skippedAttributes
      * @dataProvider importReplaceDataProvider
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function testImportReplace($fixtures, $skus, $skippedAttributes = [], $rollbackFixtures = [])
     {
-        $this->markTestSkipped('Uncomment after MAGETWO-49467 resolved');
+        $this->markTestSkipped('Uncomment after MAGETWO-38240 resolved');
     }
 
     /**

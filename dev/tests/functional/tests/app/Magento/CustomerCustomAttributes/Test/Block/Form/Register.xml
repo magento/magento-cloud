@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<mapping strict="0">
+    <fields>
+        <custom_attribute>
+            <selector>//input[@name="%attribute_code%" and @class="input-file"]</selector>
+            <strategy>xpath</strategy>
+            <input>upload</input>
+        </custom_attribute>
+    </fields>
+</mapping>

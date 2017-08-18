@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Sales\Test\TestCase\CreateOrderBackendTest">
         <variation name="CreateOrderBackendTestVariation16" summary="Create order with simple and virtual products for registered US customer with discount coupon and reward points using Fixed shipping method and Cash On Delivery payment method">
-            <data name="products" xsi:type="string">catalogProductSimple::simple_for_sales, catalogProductVirtual::virtual_for_sales</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::simple_for_sales</data>
+            <data name="products/1" xsi:type="string">catalogProductVirtual::virtual_for_sales</data>
             <data name="salesRule" xsi:type="string">active_sales_rule_with_fixed_price_discount_coupon</data>
             <data name="customer/dataset" xsi:type="string">default</data>
             <data name="rewardPoints" xsi:type="string">reward_points_50</data>
@@ -31,7 +33,9 @@
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderInOrdersGridOnFrontend" />
         </variation>
         <variation name="CreateOrderBackendTestVariation17" summary="Create order with simple and virtual products for registered US customer with gift card account, coupon discount and reward points using Free shipping method and Bank Transfer payment method">
-            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
+            <data name="tag" xsi:type="string">stable:no, severity:S2</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/1" xsi:type="string">catalogProductVirtual::default</data>
             <data name="giftCardAccount" xsi:type="string">gift_card_account_amount_100</data>
             <data name="salesRule" xsi:type="string">active_sales_rule_with_fixed_price_discount_coupon</data>
             <data name="customer/dataset" xsi:type="string">default</data>

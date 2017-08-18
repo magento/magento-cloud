@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\TargetRule\Test\TestCase;
@@ -30,40 +30,40 @@ use Magento\TargetRule\Test\Page\Adminhtml\TargetRuleNew;
  * 6. Perform all assertions.
  *
  * @group Target_Rules
- * @ZephyrId MAGETWO-69547
+ * @ZephyrId MAGETWO-64447
  */
 class CreateTargetRuleEntityConfigurableProductTest extends Injectable
 {
     /**
-     * Target rule grid page.
+     * Target rule grid page
      *
      * @var TargetRuleIndex
      */
     protected $targetRuleIndex;
 
     /**
-     * Target rule create page.
+     * Target rule create page
      *
      * @var TargetRuleNew
      */
     protected $targetRuleNew;
 
     /**
-     * Target rule edit page.
+     * Target rule edit page
      *
      * @var TargetRuleEdit
      */
     protected $targetRuleEdit;
 
     /**
-     * Target rule entity name.
+     * Target rule entity name
      *
      * @var string
      */
     protected $targetRuleName;
 
     /**
-     * Injection data.
+     * Injection data
      *
      * @param TargetRuleIndex $targetRuleIndex
      * @param TargetRuleNew $targetRuleNew
@@ -81,7 +81,7 @@ class CreateTargetRuleEntityConfigurableProductTest extends Injectable
     }
 
     /**
-     * Prepare data for tear down.
+     * Prepare data for tear down
      *
      * @param TargetRule $targetRule
      * @param TargetRule $targetRuleInitial
@@ -93,7 +93,7 @@ class CreateTargetRuleEntityConfigurableProductTest extends Injectable
     }
 
     /**
-     * Clear data after test.
+     * Clear data after test
      *
      * @return void
      */
@@ -111,7 +111,7 @@ class CreateTargetRuleEntityConfigurableProductTest extends Injectable
     }
 
     /**
-     * Run create TargetRule entity test.
+     * Run create TargetRule entity test
      *
      * @param TargetRule $targetRule
      * @param CatalogProductSimple $product
@@ -154,7 +154,7 @@ class CreateTargetRuleEntityConfigurableProductTest extends Injectable
     }
 
     /**
-     * Get data for replace in variations.
+     * Get data for replace in variations
      *
      * @param InjectableFixture $product
      * @param string|null $conditionEntity
@@ -180,7 +180,7 @@ class CreateTargetRuleEntityConfigurableProductTest extends Injectable
     }
 
     /**
-     * Get product attribute.
+     * Get product attribute
      *
      * @param InjectableFixture $product
      * @return mixed
@@ -195,7 +195,7 @@ class CreateTargetRuleEntityConfigurableProductTest extends Injectable
     }
 
     /**
-     * Get products conditions data for replace in variations.
+     * Get products conditions data for replace in variations
      *
      * @param InjectableFixture $product
      * @param string|null $conditionEntity

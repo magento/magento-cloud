@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Webapi\Controller;
 
-class SoapTest extends \PHPUnit_Framework_TestCase
+class SoapTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Webapi\Controller\Soap
@@ -25,15 +25,15 @@ class SoapTest extends \PHPUnit_Framework_TestCase
     }
 
     /*
-      * Get the public wsdl with anonymous credentials
-      */
+     * Get the public wsdl with anonymous credentials
+     */
     public function testDispatchWsdlRequest()
     {
         $request = $this->objectManager->get(\Magento\Framework\Webapi\Request::class);
         $request->setParam(\Magento\Webapi\Model\Soap\Server::REQUEST_PARAM_LIST_WSDL, true);
         $response = $this->soapController->dispatch($request);
-        $decodedWsdl = json_decode($response->getContent(), true);
-        $this->assertArrayHasKey("customerAccountManagementV1", $decodedWsdl);
-        $this->assertArrayHasKey("integrationAdminTokenServiceV1", $decodedWsdl);
+        $decoded_wsdl = json_decode($response->getContent(), true);
+        $this->assertArrayHasKey("customerAccountManagementV1", $decoded_wsdl);
+        $this->assertArrayHasKey("integrationAdminTokenServiceV1", $decoded_wsdl);
     }
 }

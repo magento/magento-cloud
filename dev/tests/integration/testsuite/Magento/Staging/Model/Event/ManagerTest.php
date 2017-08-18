@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Staging\Model\Event;
 
 use Magento\TestFramework\Helper\Bootstrap;
 
-class ManagerTest extends \PHPUnit_Framework_TestCase
+class ManagerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Framework\Event\ConfigInterface|\PHPUnit_Framework_MockObject_MockObject
@@ -34,34 +34,14 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->invokerMock = $this->getMock(
-            'Magento\Framework\Event\Invoker\InvokerDefault',
-            ['dispatch'],
-            [],
-            '',
-            false
-        );
-        $this->eventConfigMock = $this->getMock(
-            'Magento\Framework\Event\Config',
-            ['getObservers'],
-            [],
-            '',
-            false
-        );
-        $this->versionManagerMock = $this->getMock(
-            '\Magento\Staging\Model\VersionManager',
-            ['isPreviewVersion'],
-            [],
-            '',
-            false
-        );
-        $this->versionManagerFactoryMock = $this->getMock(
-            '\Magento\Staging\Model\VersionManagerFactory',
-            ['create'],
-            [],
-            '',
-            false
-        );
+        $this->invokerMock =
+            $this->createPartialMock(\Magento\Framework\Event\Invoker\InvokerDefault::class, ['dispatch']);
+        $this->eventConfigMock =
+            $this->createPartialMock(\Magento\Framework\Event\Config::class, ['getObservers']);
+        $this->versionManagerMock =
+            $this->createPartialMock(\Magento\Staging\Model\VersionManager::class, ['isPreviewVersion']);
+        $this->versionManagerFactoryMock =
+            $this->createPartialMock(\Magento\Staging\Model\VersionManagerFactory::class, ['create']);
         $this->versionManagerFactoryMock->expects($this->any())
             ->method('create')
             ->will($this->returnValue($this->versionManagerMock));
@@ -143,7 +123,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
     {
         $objectManager = Bootstrap::getObjectManager();
         return $objectManager->create(
-            'Magento\Staging\Model\Event\Manager',
+            \Magento\Staging\Model\Event\Manager::class,
             [
                 'invoker' => $this->invokerMock,
                 'eventConfig' => $this->eventConfigMock,

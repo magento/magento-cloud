@@ -1,10 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Sales\Test\Block\Adminhtml\Order\View\Tab\Invoices;
+
+use Magento\Mtf\Client\Locator;
 
 /**
  * Invoices grid on order view page.
@@ -16,14 +18,21 @@ class Grid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
      *
      * @var string
      */
-    protected $editLink = '.action-menu-item[href*="view"]';
+    protected $editLink = '[data-column="increment_id"]';
 
     /**
-     * Locator for invoice ids
+     * Css selector for invoice ids.
      *
      * @var string
      */
     protected $invoiceId = 'tbody td:nth-child(2)';
+
+    /**
+     * Invoices data grid loader Xpath locator.
+     *
+     * @var string
+     */
+    protected $loader = '//div[contains(@data-component, "sales_order_view_invoice_grid")]';
 
     /**
      * Filters array mapping.
@@ -33,6 +42,9 @@ class Grid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
     protected $filters = [
         'id' => [
             'selector' => 'input[name="increment_id"]',
+        ],
+        'order_id' => [
+            'selector' => 'input[name="order_increment_id"]',
         ],
         'status' => [
             'selector' => 'select[name="state"]',
@@ -53,7 +65,9 @@ class Grid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
      */
     public function getIds()
     {
+        $this->resetFilter();
         $result = [];
+        $this->waitForElementNotVisible($this->loader, Locator::SELECTOR_XPATH);
         $invoiceIds = $this->_rootElement->getElements($this->invoiceId);
         foreach ($invoiceIds as $invoiceId) {
             $result[] = trim($invoiceId->getText());
@@ -69,6 +83,7 @@ class Grid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
      */
     public function viewInvoice()
     {
+        $this->waitForElementNotVisible($this->loader, Locator::SELECTOR_XPATH);
         $this->_rootElement->find($this->invoiceId)->click();
     }
 }

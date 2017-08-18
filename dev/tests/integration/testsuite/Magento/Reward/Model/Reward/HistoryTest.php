@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reward\Model\Reward;
 
-class HistoryTest extends \PHPUnit_Framework_TestCase
+class HistoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Reward\Model\Reward\History
@@ -15,7 +15,7 @@ class HistoryTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $this->_model = $objectManager->create('Magento\Reward\Model\Reward\History');
+        $this->_model = $objectManager->create(\Magento\Reward\Model\Reward\History::class);
     }
 
     /**
@@ -25,7 +25,9 @@ class HistoryTest extends \PHPUnit_Framework_TestCase
     public function testCrud()
     {
         /** @var $reward \Magento\Reward\Model\Reward */
-        $reward = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reward\Model\Reward');
+        $reward = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\Reward\Model\Reward::class
+        );
         $reward->setCustomerId(1);
         $reward->setWebsiteId(1);
         $reward->loadByCustomer();

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -12,7 +12,10 @@ namespace Magento\CustomerFinance\Model\Import\Eav\Customer;
 use Magento\CustomerFinance\Model\ResourceModel\Customer\Attribute\Finance\Collection;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
-class FinanceTest extends \PHPUnit_Framework_TestCase
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
+class FinanceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Remove test website
@@ -21,14 +24,14 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
     {
         /** @var $testWebsite \Magento\Store\Model\Website */
         $testWebsite = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Store\Model\Website'
+            \Magento\Store\Model\Website::class
         )->load(
             'test'
         );
         if ($testWebsite->getId()) {
             // Clear test website info from application cache.
             \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-                'Magento\Store\Model\StoreManagerInterface'
+                \Magento\Store\Model\StoreManagerInterface::class
             )->reinitStores();
         }
     }
@@ -58,15 +61,15 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
 
         /** @var $testWebsite \Magento\Store\Model\Website */
         $testWebsite = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Store\Model\Website'
+            \Magento\Store\Model\Website::class
         )->load(
             'test'
         );
-        $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getWebsite($testWebsite->getId());
+        $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->getWebsite($testWebsite->getId());
 
         // load websites to have ability get website code by id.
         $websiteCodes = [];
-        $websites = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getWebsites();
+        $websites = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->getWebsites();
         /** @var $website \Magento\Store\Model\Website */
         foreach ($websites as $website) {
             $websiteCodes[$website->getId()] = $website->getCode();
@@ -75,11 +78,11 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
         $userName = 'TestAdmin';
         $user = new \Magento\Framework\DataObject(['username' => $userName]);
         /** @var $session \Magento\Backend\Model\Auth\Session */
-        $session = $objectManager->get('Magento\Backend\Model\Auth\Session');
+        $session = $objectManager->get(\Magento\Backend\Model\Auth\Session::class);
         $session->setUser($user);
 
         $directory = $objectManager->create(
-            'Magento\Framework\Filesystem'
+            \Magento\Framework\Filesystem::class
         )->getDirectoryWrite(
             DirectoryList::ROOT
         );
@@ -89,7 +92,7 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
 
         $source = new \Magento\ImportExport\Model\Import\Source\Csv($pathToCsvFile, $directory);
         /** @var \Magento\CustomerFinance\Model\Import\Eav\Customer\Finance $model */
-        $model = $objectManager->create('Magento\CustomerFinance\Model\Import\Eav\Customer\Finance');
+        $model = $objectManager->create(\Magento\CustomerFinance\Model\Import\Eav\Customer\Finance::class);
         $model->setParameters(['behavior' => \Magento\ImportExport\Model\Import::BEHAVIOR_ADD_UPDATE]);
         $model->setSource($source);
         $model->validateData();
@@ -98,10 +101,10 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
         $rewardPointsKey = Collection::COLUMN_REWARD_POINTS;
         $customerBalanceKey = Collection::COLUMN_CUSTOMER_BALANCE;
 
-        $customerCollection = $objectManager->create('Magento\Customer\Model\ResourceModel\Customer\Collection');
+        $customerCollection = $objectManager->create(\Magento\Customer\Model\ResourceModel\Customer\Collection::class);
         /** @var $customer \Magento\Customer\Model\Customer */
         foreach ($customerCollection as $customer) {
-            $rewardCollection = $objectManager->create('Magento\Reward\Model\ResourceModel\Reward\Collection');
+            $rewardCollection = $objectManager->create(\Magento\Reward\Model\ResourceModel\Reward\Collection::class);
             $rewardCollection->addFieldToFilter('customer_id', $customer->getId());
             /** @var $rewardPoints \Magento\Reward\Model\Reward */
             foreach ($rewardCollection as $rewardPoints) {
@@ -117,7 +120,9 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
                 );
             }
 
-            $customerBalance = $objectManager->create('Magento\CustomerBalance\Model\ResourceModel\Balance\Collection');
+            $customerBalance = $objectManager->create(
+                \Magento\CustomerBalance\Model\ResourceModel\Balance\Collection::class
+            );
             $customerBalance->addFieldToFilter('customer_id', $customer->getId());
             /** @var $balance \Magento\CustomerBalance\Model\Balance */
             foreach ($customerBalance as $balance) {
@@ -145,14 +150,14 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
     {
         /* clean up the database from prior tests before importing */
         $rewards = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Reward\Model\ResourceModel\Reward\Collection'
+            \Magento\Reward\Model\ResourceModel\Reward\Collection::class
         );
         foreach ($rewards as $reward) {
             $reward->delete();
         }
 
         $directory = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Framework\Filesystem'
+            \Magento\Framework\Filesystem::class
         )->getDirectoryWrite(
             DirectoryList::ROOT
         );
@@ -161,7 +166,7 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
             $directory
         );
         $model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\Import\Eav\Customer\Finance'
+            \Magento\CustomerFinance\Model\Import\Eav\Customer\Finance::class
         );
         $model->setParameters(['behavior' => \Magento\ImportExport\Model\Import::BEHAVIOR_DELETE]);
         $model->setSource($source);
@@ -169,16 +174,16 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
         $model->importData();
 
         $rewards = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Reward\Model\ResourceModel\Reward\Collection'
+            \Magento\Reward\Model\ResourceModel\Reward\Collection::class
         );
         $balances = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerBalance\Model\ResourceModel\Balance\Collection'
+            \Magento\CustomerBalance\Model\ResourceModel\Balance\Collection::class
         );
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         $expectedRewards = $objectManager->get(
-            'Magento\Framework\Registry'
+            \Magento\Framework\Registry::class
         )->registry(
             '_fixture/Magento_ScheduledImportExport_Customers_ExpectedRewards'
         );
@@ -191,7 +196,7 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
         }
 
         $expectedBalances = $objectManager->get(
-            'Magento\Framework\Registry'
+            \Magento\Framework\Registry::class
         )->registry(
             '_fixture/Magento_ScheduledImportExport_Customers_ExpectedBalances'
         );

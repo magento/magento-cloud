@@ -1,13 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Sales\Test\Block\Adminhtml\Order\Create;
 
 use Magento\Mtf\Block\Block;
-use Magento\Mtf\Client\Locator;
 
 /**
  * Class Totals
@@ -24,18 +23,25 @@ class Totals extends Block
     protected $submitOrder = '.order-totals-actions button';
 
     /**
-     * Order totals table.
+     * Order Totals rows locator.
      *
      * @var string
      */
-    protected $totalsTable = '.data-table';
+    private $totalsRowsLocator = '.data-table tr';
 
     /**
-     * Total row label selector.
+     * Order Totals Item label locator.
      *
      * @var string
      */
-    protected $totalLabelLocator = './/tr[normalize-space(td)="%s"]';
+    private $totalsRowKeyLocator = '.admin__total-mark';
+
+    /**
+     * Order Totals Item amount locator.
+     *
+     * @var string
+     */
+    private $totalsRowValueLocator = '.price';
 
     /**
      * Click 'Submit Order' button
@@ -46,16 +52,21 @@ class Totals extends Block
     }
 
     /**
-     * Return total presence by label.
+     * Get Order totals.
      *
-     * @param string $total
-     * @return bool
+     * @return array
      */
-    public function isTotalPresent($total)
+    public function getOrderTotals()
     {
-        $totalsTable = $this->_rootElement->find($this->totalsTable);
-        $totalRow = $totalsTable->find(sprintf($this->totalLabelLocator, $total), Locator::SELECTOR_XPATH);
-        
-        return $totalRow->isVisible();
+        $totals = [];
+        $elements = $this->_rootElement->getElements($this->totalsRowsLocator);
+        foreach ($elements as $row) {
+            if ($row->isVisible()) {
+                $key = trim($row->find($this->totalsRowKeyLocator)->getText());
+                $value = $row->find($this->totalsRowValueLocator)->getText();
+                $totals[$key] = $value;
+            }
+        }
+        return $totals;
     }
 }

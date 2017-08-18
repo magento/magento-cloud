@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -23,14 +23,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click "Delete Attribute"
  * 5. Perform all assertions
  *
- * @group Customer_Attributes_(CS)
+ * @group Customer_Attributes
  * @ZephyrId MAGETWO-26619
  */
 class DeleteCustomerCustomAttributesEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**

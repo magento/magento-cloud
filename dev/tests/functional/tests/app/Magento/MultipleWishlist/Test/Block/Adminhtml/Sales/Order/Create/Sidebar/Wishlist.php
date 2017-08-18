@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -43,12 +43,12 @@ class Wishlist extends Sidebar
     /**
      * Get last ordered items block
      *
-     * @return \Magento\MultipleWishlist\Test\Block\Adminhtml\Sales\Order\Create\Sidebar\Wishlist\Items
+     * @return \Magento\Sales\Test\Block\Adminhtml\Order\Create\CustomerActivities\Sidebar\Wishlist
      */
     public function getWishlistItemsBlock()
     {
         return $this->blockFactory->create(
-            'Magento\MultipleWishlist\Test\Block\Adminhtml\Sales\Order\Create\Sidebar\Wishlist\Items',
+            \Magento\Sales\Test\Block\Adminhtml\Order\Create\CustomerActivities\Sidebar\Wishlist::class,
             ['element' => $this->_rootElement->find($this->wishlistItems)]
         );
     }

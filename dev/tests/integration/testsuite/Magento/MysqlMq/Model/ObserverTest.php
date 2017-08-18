@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\MysqlMq\Model;
 
-class ObserverTest extends \PHPUnit_Framework_TestCase
+class ObserverTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Framework\ObjectManagerInterface
@@ -25,8 +25,8 @@ class ObserverTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $this->observer = $this->objectManager->get('Magento\MysqlMq\Model\Observer');
-        $this->queueManagement = $this->objectManager->get('Magento\MysqlMq\Model\QueueManagement');
+        $this->observer = $this->objectManager->get(\Magento\MysqlMq\Model\Observer::class);
+        $this->queueManagement = $this->objectManager->get(\Magento\MysqlMq\Model\QueueManagement::class);
     }
 
     /**
@@ -38,11 +38,11 @@ class ObserverTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory $messageStatusCollectionFactory */
         $messageStatusCollectionFactory = $this->objectManager
-            ->create('Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory');
+            ->create(\Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory::class);
 
         /** @var \Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory $messageStatusCollectionFactory */
         $messageCollectionFactory = $this->objectManager
-            ->create('Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory');
+            ->create(\Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory::class);
 
         //Check how many messages in collection by the beginning of tests
         $messageCollection = $messageCollectionFactory->create()
@@ -75,11 +75,11 @@ class ObserverTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory $messageStatusCollectionFactory */
         $messageStatusCollectionFactory = $this->objectManager
-            ->create('Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory');
+            ->create(\Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory::class);
 
         /** @var \Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory $messageStatusCollectionFactory */
         $messageCollectionFactory = $this->objectManager
-            ->create('Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory');
+            ->create(\Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory::class);
 
         //Check how many messages in collection by the beginning of tests
         $messageCollection = $messageCollectionFactory->create()
@@ -131,11 +131,11 @@ class ObserverTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory $messageStatusCollectionFactory */
         $messageStatusCollectionFactory = $this->objectManager
-            ->create('Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory');
+            ->create(\Magento\MysqlMq\Model\ResourceModel\MessageStatusCollectionFactory::class);
 
         /** @var \Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory $messageStatusCollectionFactory */
         $messageCollectionFactory = $this->objectManager
-            ->create('Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory');
+            ->create(\Magento\MysqlMq\Model\ResourceModel\MessageCollectionFactory::class);
 
         //Check how many messages in collection by the beginning of tests
         $messageCollection = $messageCollectionFactory->create()

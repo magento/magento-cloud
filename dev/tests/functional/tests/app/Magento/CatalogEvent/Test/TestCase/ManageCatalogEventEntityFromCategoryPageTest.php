@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -26,14 +26,13 @@ use Magento\Mtf\Fixture\InjectableFixture;
  * 9. Delete event from the event page.
  * 7. Perform all assertions.
  *
- * @group Catalog_Events_(MX)
+ * @group Catalog_Events
  * @ZephyrId MAGETWO-47633
  */
 class ManageCatalogEventEntityFromCategoryPageTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'MX';
     /* end tags */
 
     /**

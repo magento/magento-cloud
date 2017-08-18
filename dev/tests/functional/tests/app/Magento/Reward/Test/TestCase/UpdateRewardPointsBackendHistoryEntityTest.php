@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -23,14 +23,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click Save and Continue.
  * 5. Perform all assertions.
  *
- * @group Reward_Points_(CS)
+ * @group Reward_Points
  * @ZephyrId MAGETWO-26683
  */
 class UpdateRewardPointsBackendHistoryEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
+    const SEVERITY = 'S3';
     /* end tags */
 
     /**

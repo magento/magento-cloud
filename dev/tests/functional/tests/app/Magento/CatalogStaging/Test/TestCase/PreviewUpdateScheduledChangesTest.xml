@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\PreviewUpdateScheduledChangesTest" summary="Preview scheduled changes" ticketId="MAGETWO-49851">
+        <variation name="PreviewUpdateScheduledChangesTestVariation1">
+            <data name="issue" xsi:type="string">MAGETWO-65580: [FT] Magento\CatalogStaging\Test\TestCase\PreviewUpdateScheduledChangesTest fails randomly on Jenkins</data>
+            <data name="tag" xsi:type="string">stable:no</data>
+            <data name="product/dataset" xsi:type="string">product_with_category</data>
+            <data name="update/dataset" xsi:type="string">permanent_update_campaign</data>
+            <data name="productUpdate/data/price/value" xsi:type="number">21.00</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductPricesCorrectInBackendPreview" />
+        </variation>
+    </testCase>
+</config>

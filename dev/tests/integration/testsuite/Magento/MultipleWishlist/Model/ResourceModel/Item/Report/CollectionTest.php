@@ -2,12 +2,12 @@
 /**
  * \Magento\MultipleWishlist\Model\ResourceModel\Item\Report\Collection
  *
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\MultipleWishlist\Model\ResourceModel\Item\Report;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\MultipleWishlist\Model\ResourceModel\Item\Report\Collection
@@ -17,7 +17,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->_collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\MultipleWishlist\Model\ResourceModel\Item\Report\Collection'
+            \Magento\MultipleWishlist\Model\ResourceModel\Item\Report\Collection::class
         );
     }
 

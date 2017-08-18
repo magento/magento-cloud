@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerFinance\Helper;
 
-class DataTest extends \PHPUnit_Framework_TestCase
+class DataTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CustomerFinance\Helper\Data
@@ -24,13 +24,13 @@ class DataTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->_moduleManagerMock = $this->getMock('Magento\Framework\Module\Manager', [], [], '', false);
+        $this->_moduleManagerMock = $this->createMock(\Magento\Framework\Module\Manager::class);
         $context = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Framework\App\Helper\Context',
+            \Magento\Framework\App\Helper\Context::class,
             ['moduleManager' => $this->_moduleManagerMock]
         );
         $this->_customerFinanceHelper = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Helper\Data',
+            \Magento\CustomerFinance\Helper\Data::class,
             ['context' => $context]
         );
     }

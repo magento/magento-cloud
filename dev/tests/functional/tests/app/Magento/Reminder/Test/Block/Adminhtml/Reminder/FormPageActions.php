@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -35,7 +35,7 @@ class FormPageActions extends \Magento\Backend\Test\Block\FormPageActions
         $this->_rootElement->find($this->runNowButton)->click();
         $element = $this->browser->find($this->confirmModal);
         /** @var \Magento\Ui\Test\Block\Adminhtml\Modal $modal */
-        $modal = $this->blockFactory->create('Magento\Ui\Test\Block\Adminhtml\Modal', ['element' => $element]);
+        $modal = $this->blockFactory->create(\Magento\Ui\Test\Block\Adminhtml\Modal::class, ['element' => $element]);
         $modal->acceptAlert();
     }
 }

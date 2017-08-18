@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -31,7 +31,7 @@ use Magento\CatalogRule\Test\Page\Adminhtml\CatalogRuleIndex;
  * 4. Go to frontend as not Logged In Customer. Observe home page.
  * 5. Perform all assertions.
  *
- * @group Catalog_Price_Rules_(MX)
+ * @group Catalog_Price_Rules
  * @ZephyrId MAGETWO-12389
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -40,7 +40,7 @@ class AssignCatalogRuleToBannerEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'PS';
+    const SEVERITY = 'S1';
     /* end tags */
 
     /**
@@ -121,7 +121,7 @@ class AssignCatalogRuleToBannerEntityTest extends Injectable
         $products,
         $widget
     ) {
-        $this->markTestSkipped('MAGETWO-50315');
+        $this->markTestSkipped('MAGETWO-50165');
 
         $customer->persist();
         $category->persist();
@@ -145,7 +145,7 @@ class AssignCatalogRuleToBannerEntityTest extends Injectable
             $data[] = ['category_ids' => ['category' => $category]];
         }
         $products = $this->objectManager->create(
-            '\Magento\Catalog\Test\TestStep\CreateProductsStep',
+            \Magento\Catalog\Test\TestStep\CreateProductsStep::class,
             ['data' => $data, 'products' => $products]
         )->run();
 
@@ -166,7 +166,7 @@ class AssignCatalogRuleToBannerEntityTest extends Injectable
     protected function createWidget($widget, Banner $banner)
     {
         $widget = $this->fixtureFactory->create(
-            '\Magento\Banner\Test\Fixture\BannerWidget',
+            \Magento\Banner\Test\Fixture\BannerWidget::class,
             [
                 'dataset' => $widget,
                 'data' => [
@@ -189,7 +189,7 @@ class AssignCatalogRuleToBannerEntityTest extends Injectable
      */
     public function tearDown()
     {
-        $this->objectManager->create('Magento\Widget\Test\TestStep\DeleteAllWidgetsStep')->run();
-        $this->objectManager->create('Magento\CatalogRule\Test\TestStep\DeleteAllCatalogRulesStep')->run();
+        $this->objectManager->create(\Magento\Widget\Test\TestStep\DeleteAllWidgetsStep::class)->run();
+        $this->objectManager->create(\Magento\CatalogRule\Test\TestStep\DeleteAllCatalogRulesStep::class)->run();
     }
 }

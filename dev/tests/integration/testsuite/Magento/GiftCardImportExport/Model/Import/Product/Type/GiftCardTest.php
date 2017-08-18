@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftCardImportExport\Model\Import\Product\Type;
@@ -8,7 +8,7 @@ namespace Magento\GiftCardImportExport\Model\Import\Product\Type;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\ImportExport\Model\Import;
 
-class GiftCardTest extends \PHPUnit_Framework_TestCase
+class GiftCardTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CatalogImportExport\Model\Import\Product

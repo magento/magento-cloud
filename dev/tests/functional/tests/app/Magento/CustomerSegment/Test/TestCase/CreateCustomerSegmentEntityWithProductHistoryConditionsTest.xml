@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerSegment\Test\TestCase\CreateCustomerSegmentEntityWithProductHistoryConditionsTest" summary="Create customer segment with product history condition" ticketId="MAGETWO-63461">
+        <variation name="CreateCustomerSegmentEntityWithProductHistoryConditionsTestVariation">
+            <data name="customer/dataset" xsi:type="string">johndoe</data>
+            <data name="customer/data/address/dataset" xsi:type="string">US_address</data>
+            <data name="customerSegment/data/name" xsi:type="string">Segment isnotoneof %isolation%</data>
+            <data name="customerSegment/data/description" xsi:type="string">Customer Segment with product history condition test</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegment/data/apply_to" xsi:type="string">Visitors and Registered Customers</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">{Product History*|was|ordered|ALL:[[%color_attribute%|is|%color_attribute_value%]]}</data>
+            <data name="productAttribute/dataset" xsi:type="string">color_for_promo_rules</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentSuccessSaveMessage" />
+        </variation>
+    </testCase>
+</config>

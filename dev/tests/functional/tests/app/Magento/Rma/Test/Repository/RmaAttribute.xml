@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Rma\Test\Repository\RmaAttribute">
+        <dataset name="default">
+            <field name="frontend_label" xsi:type="string">dropdown_%isolation%</field>
+            <field name="attribute_code" xsi:type="string">dropdown_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Yes/No</field>
+            <field name="is_required" xsi:type="string">No</field>
+            <field name="is_visible" xsi:type="string">Yes</field>
+            <field name="sort_order" xsi:type="string">5</field>
+            <field name="default_value_yesno" xsi:type="string">Yes</field>
+        </dataset>
+
+        <dataset name="required_attribute">
+            <field name="frontend_label" xsi:type="string">Condition of packaging</field>
+            <field name="attribute_code" xsi:type="string">dropdown_%isolation%</field>
+            <field name="frontend_input" xsi:type="string">Dropdown</field>
+            <field name="is_required" xsi:type="string">Yes</field>
+            <field name="is_visible" xsi:type="string">Yes</field>
+            <field name="sort_order" xsi:type="string">5</field>
+            <field name="value" xsi:type="string">new</field>
+            <field name="options" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="is_default" xsi:type="string">No</item>
+                    <item name="admin" xsi:type="string">new</item>
+                    <item name="view" xsi:type="string">option_0_%isolation%</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="is_default" xsi:type="string">No</item>
+                    <item name="admin" xsi:type="string">broken</item>
+                    <item name="view" xsi:type="string">option_1_%isolation%</item>
+                </item>
+                <item name="2" xsi:type="array">
+                    <item name="is_default" xsi:type="string">No</item>
+                    <item name="admin" xsi:type="string">absent</item>
+                    <item name="view" xsi:type="string">option_2_%isolation%</item>
+                </item>
+            </field>
+        </dataset>
+    </repository>
+</config>

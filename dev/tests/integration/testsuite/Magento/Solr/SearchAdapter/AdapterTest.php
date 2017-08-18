@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Solr\SearchAdapter;
@@ -8,7 +8,7 @@ namespace Magento\Solr\SearchAdapter;
 use Magento\Solr\Helper\Data;
 
 /**
- * Class AdapterTest.
+ * Class AdapterTest
  *
  * @magentoDbIsolation disabled
  * @magentoAppIsolation enabled
@@ -30,7 +30,7 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Get request config path.
+     * Get request config path
      *
      * @return string
      */
@@ -38,18 +38,17 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     {
         return __DIR__ . '/_files/requests.xml';
     }
-    
+
     /**
      * @return \Magento\Framework\Search\AdapterInterface
      */
     protected function createAdapter()
     {
-        return $this->objectManager->create('Magento\Solr\SearchAdapter\Adapter');
+        return $this->objectManager->create(\Magento\Solr\SearchAdapter\Adapter::class);
     }
 
     /**
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testMatchQuery()
     {
@@ -58,7 +57,14 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
 
     /**
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
+     */
+    public function testMatchOrderedQuery()
+    {
+        $this->markTestSkipped('Solr search not expected to order results by default. Test is skipped intentionally.');
+    }
+
+    /**
+     * @magentoConfigFixture current_store catalog/search/engine solr
      */
     public function testAggregationsQuery()
     {
@@ -74,10 +80,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Range filter test with all fields filled.
+     * Range filter test with all fields filled
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testRangeFilterWithAllFields()
     {
@@ -85,10 +90,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Range filter test without from field filled.
+     * Range filter test with all fields filled
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testRangeFilterWithoutFromField()
     {
@@ -96,10 +100,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Range filter test without to field filled.
+     * Range filter test with all fields filled
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testRangeFilterWithoutToField()
     {
@@ -107,10 +110,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Term filter test.
+     * Term filter test
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testTermFilter()
     {
@@ -118,10 +120,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Term filter test.
+     * Term filter test
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testTermFilterArray()
     {
@@ -129,10 +130,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Wildcard filter test.
+     * Term filter test
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testWildcardFilter()
     {
@@ -140,10 +140,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Request limits test.
+     * Request limits test
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testSearchLimit()
     {
@@ -151,10 +150,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Bool filter test.
+     * Bool filter test
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testBoolFilter()
     {
@@ -162,10 +160,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Test bool filter with nested negative bool filter.
+     * Test bool filter with nested negative bool filter
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testBoolFilterWithNestedNegativeBoolFilter()
     {
@@ -173,10 +170,9 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Test range inside nested negative bool filter.
+     * Test range inside nested negative bool filter
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testBoolFilterWithNestedRangeInNegativeBoolFilter()
     {
@@ -184,11 +180,14 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Sample Advanced search request test.
+     * Sample Advanced search request test
      *
      * @magentoConfigFixture current_store catalog/search/engine solr
      * @dataProvider advancedSearchDataProvider
-     * @return void
+     * @param string $nameQuery
+     * @param string $descriptionQuery
+     * @param array $rangeFilter
+     * @param int $expectedRecordsCount
      */
     public function testSimpleAdvancedSearch(
         $nameQuery,
@@ -207,7 +206,6 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     /**
      * @magentoDataFixture Magento/Framework/Search/_files/filterable_attribute.php
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @return void
      */
     public function testCustomFilterableAttribute()
     {
@@ -215,11 +213,26 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     }
 
     /**
-     * Advanced search request using date product attribute.
+     * Test filtering by two attributes.
+     *
+     * @magentoAppIsolation enabled
+     * @magentoDataFixture Magento/Framework/Search/_files/filterable_attributes.php
+     * @magentoConfigFixture current_store catalog/search/engine solr
+     * @dataProvider filterByAttributeValuesDataProvider
+     * @param string $requestName
+     * @param array $additionalData
+     * @return void
+     */
+    public function testFilterByAttributeValues($requestName, $additionalData)
+    {
+        parent::testFilterByAttributeValues($requestName, $additionalData);
+    }
+
+    /**
+     * Advanced search request using date product attribute
      *
      * @param $rangeFilter
      * @param $expectedRecordsCount
-     * @return void
      * @magentoDataFixture Magento/Framework/Search/_files/date_attribute.php
      * @magentoConfigFixture current_store catalog/search/engine solr
      * @dataProvider dateDataProvider
@@ -232,40 +245,35 @@ class AdapterTest extends \Magento\Framework\Search\Adapter\Mysql\AdapterTest
     /**
      * @magentoDataFixture Magento/Framework/Search/_files/product_configurable.php
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @dataProvider dateDataProvider
-     * @return void
      */
-    public function testAdvancedSearchConfigProductWithOutOfStockOption()
+    public function testAdvancedSearchCompositeProductWithOutOfStockOption()
     {
         $this->markTestSkipped('Filter of composite products with Out of Stock child not supported till MAGETWO-56525');
-        parent::testAdvancedSearchConfigProductWithOutOfStockOption();
+        parent::testAdvancedSearchCompositeProductWithOutOfStockOption();
     }
 
     /**
-     * Search request using custom price attribute.
-     *
-     * @param $rangeFilter
-     * @param $expectedRecordsCount
-     * @return void
-     * @magentoDataFixture Magento/Framework/Search/_files/price_attribute.php
+     * @magentoDataFixture Magento/Framework/Search/_files/product_configurable_with_disabled_child.php
      * @magentoConfigFixture current_store catalog/search/engine solr
-     * @dataProvider priceDataProvider
      */
-    public function testSearchCustomPriceField($rangeFilter, $expectedRecordsCount)
+    public function testAdvancedSearchCompositeProductWithDisabledChild()
     {
-        parent::testSearchCustomPriceField($rangeFilter, $expectedRecordsCount);
+        $this->markTestSkipped('Filter of composite products with Out of Stock child not supported till MAGETWO-56525');
+        parent::testAdvancedSearchCompositeProductWithDisabledChild();
     }
 
     /**
-     * Filter by tax class.
+     * Test for search weight customization to ensure that search weight works correctly and affects search results.
      *
-     * @magentoDataFixture Magento/Framework/Search/_files/grouped_product.php
+     * @magentoDataFixture Magento/Framework/Search/_files/search_weight_products.php
      * @magentoConfigFixture current_store catalog/search/engine solr
-     *
-     * @return void
      */
-    public function testFilterByTaxClass()
+    public function testSearchQueryBoost()
     {
-        parent::testFilterByTaxClass();
+        $this->markTestSkipped(
+            'Dynamic boosting of search query not supported in Solr.'
+            . ' Use Solr configuration to customize search results'
+        );
+        parent::testSearchQueryBoost();
     }
 }

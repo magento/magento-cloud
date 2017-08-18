@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -21,7 +21,7 @@ class EditShippingAddressStep implements TestStepInterface
      *
      * @var \Magento\Mtf\ObjectManager
      */
-    private $objectManager;
+    protected $objectManager;
 
     /**
      * Checkout One page.

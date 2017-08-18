@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 /** @var \Magento\Framework\ObjectManagerInterface $objectManager */
@@ -30,11 +30,11 @@ $data = [
     ],
 ];
 /** @var \Magento\Customer\Model\Customer $customer */
-$customer = $objectManager->create('Magento\Customer\Model\Customer');
+$customer = $objectManager->create(\Magento\Customer\Model\Customer::class);
 $customer->load(1);
 
 /** @var \Magento\GiftRegistry\Model\Entity $giftRegistry */
-$giftRegistry = $objectManager->create('Magento\GiftRegistry\Model\Entity');
+$giftRegistry = $objectManager->create(\Magento\GiftRegistry\Model\Entity::class);
 $giftRegistry->setTypeId($data['type_id']);
 $giftRegistry->importData(
     $data,
@@ -50,11 +50,11 @@ $giftRegistry->importData(
 );
 
 /** @var \Magento\GiftRegistry\Model\Person $person */
-$person = $objectManager->create('Magento\GiftRegistry\Model\Person');
+$person = $objectManager->create(\Magento\GiftRegistry\Model\Person::class);
 $person->addData($data['registrant'][0]);
 
 /** @var \Magento\Customer\Model\Address $address */
-$address = $objectManager->create('Magento\Customer\Model\Address');
+$address = $objectManager->create(\Magento\Customer\Model\Address::class);
 $address->isObjectNew(true);
 $address->addData($data['address']);
 $giftRegistry->importAddress($address);
@@ -62,12 +62,12 @@ $giftRegistry->importAddress($address);
 $giftRegistry->save();
 $person->setEntityId($giftRegistry->getId())->save();
 
-$product = $objectManager->create('Magento\Catalog\Model\Product');
+$product = $objectManager->create(\Magento\Catalog\Model\Product::class);
 $product->load(1);
 
 /** @var \Magento\GiftRegistry\Model\Item $item */
-$item = $objectManager->create('Magento\GiftRegistry\Model\Item');
+$item = $objectManager->create(\Magento\GiftRegistry\Model\Item::class);
 $item->setEntityId($giftRegistry->getId())->setProductId($product->getId())->setQty(2)->save();
 
-$objectManager->get('Magento\Framework\Registry')->register('test_gift_registry', $giftRegistry);
-$objectManager->get('Magento\Framework\Registry')->register('test_product', $product);
+$objectManager->get(\Magento\Framework\Registry::class)->register('test_gift_registry', $giftRegistry);
+$objectManager->get(\Magento\Framework\Registry::class)->register('test_product', $product);

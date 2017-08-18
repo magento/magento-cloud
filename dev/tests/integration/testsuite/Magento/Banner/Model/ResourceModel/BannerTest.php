@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Banner\Model\ResourceModel;
 
-class BannerTest extends \PHPUnit_Framework_TestCase
+class BannerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Banner\Model\ResourceModel\Banner
@@ -25,7 +25,7 @@ class BannerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_resourceModel = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Banner\Model\ResourceModel\Banner'
+            \Magento\Banner\Model\ResourceModel\Banner::class
         );
     }
 
@@ -52,7 +52,9 @@ class BannerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCatalogRuleRelatedBannerIds()
     {
-        $banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Banner\Model\Banner');
+        $banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\Banner\Model\Banner::class
+        );
         $banner->load('Test Banner', 'name');
 
         $this->assertSame(
@@ -89,11 +91,13 @@ class BannerTest extends \PHPUnit_Framework_TestCase
     public function testGetSalesRuleRelatedBannerIds()
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $registry = $objectManager->get('Magento\Framework\Registry');
+        $registry = $objectManager->get(\Magento\Framework\Registry::class);
         $ruleId = $registry->registry('Magento/SalesRule/_files/cart_rule_40_percent_off');
 
         /** @var \Magento\Banner\Model\Banner $banner */
-        $banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Banner\Model\Banner');
+        $banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\Banner\Model\Banner::class
+        );
         $banner->load('Get from 40% to 50% Off on Large Orders', 'name');
 
         $this->assertEquals(

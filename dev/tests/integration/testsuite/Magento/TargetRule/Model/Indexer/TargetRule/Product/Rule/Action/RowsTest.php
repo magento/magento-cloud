@@ -2,7 +2,7 @@
 /**
  * @category    Magento
  * @package     Magento_TargetRule
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,13 +28,13 @@ class RowsTest extends \Magento\TestFramework\Indexer\TestCase
     protected function setUp()
     {
         $this->_processor = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\TargetRule\Model\Indexer\TargetRule\Product\Rule\Processor'
+            \Magento\TargetRule\Model\Indexer\TargetRule\Product\Rule\Processor::class
         );
         $this->_rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\TargetRule\Model\Rule'
+            \Magento\TargetRule\Model\Rule::class
         );
         $this->_product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Catalog\Model\Product'
+            \Magento\Catalog\Model\Product::class
         );
     }
 

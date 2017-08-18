@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -29,14 +29,14 @@ class AssertHttpUsedOnFrontend extends AbstractConstraint
      *
      * @var BrowserInterface
      */
-    private $browser;
+    protected $browser;
 
     /**
      * Customer account.
      *
      * @var Customer
      */
-    private $customer;
+    protected $customer;
 
     /**
      * Validations execution.
@@ -66,7 +66,7 @@ class AssertHttpUsedOnFrontend extends AbstractConstraint
      * @param string $expectedProtocol
      * @return void
      */
-    private function assertUsedProtocol($expectedProtocol)
+    protected function assertUsedProtocol($expectedProtocol)
     {
         if (substr($expectedProtocol, -3) !== "://") {
             $expectedProtocol .= '://';

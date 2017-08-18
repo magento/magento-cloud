@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerSegment\Model\Segment\Condition\Combine;
 
-class RootTest extends \PHPUnit_Framework_TestCase
+class RootTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CustomerSegment\Model\Segment\Condition\Combine\Root
@@ -13,19 +13,19 @@ class RootTest extends \PHPUnit_Framework_TestCase
     protected $_model;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject_MockObject
      */
     protected $_resource;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject_MockObject
      */
     protected $_configShare;
 
     protected function setUp()
     {
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerSegment\Model\Segment\Condition\Combine\Root'
+            \Magento\CustomerSegment\Model\Segment\Condition\Combine\Root::class
         );
     }
 

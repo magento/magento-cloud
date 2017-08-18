@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,7 +9,7 @@ namespace Magento\CustomerCustomAttributes\Test\Constraint;
 use Magento\Customer\Test\Fixture\Customer;
 use Magento\CustomerCustomAttributes\Test\Fixture\CustomerCustomAttribute;
 use Magento\Sales\Test\Page\Adminhtml\OrderCreateIndex;
-use Magento\Sales\Test\Page\SalesOrder;
+use Magento\Sales\Test\Page\Adminhtml\OrderIndex as SalesOrder;
 use Magento\Mtf\Constraint\AbstractConstraint;
 
 /**

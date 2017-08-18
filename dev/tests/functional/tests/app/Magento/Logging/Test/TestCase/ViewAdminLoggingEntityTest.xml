@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Logging\Test\TestCase\ViewAdminLoggingEntityTest" summary="View Admin Logging" ticketId="MAGETWO-24702">
         <variation name="ViewAdminLoggingEntityTestVariation1">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="description" xsi:type="string">Check Admin User Data block in admin logging entry.</data>
             <data name="user/dataset" xsi:type="string">custom_admin_with_default_role</data>
             <data name="logging/data/aggregated_information" xsi:type="string">general</data>
             <constraint name="Magento\Logging\Test\Constraint\AssertAdminLoggingLastEntry" />
         </variation>
         <variation name="ViewCustomAdminLoggingEntityTest2" summary="Collect Admin User Logs (view logs by the same admin user)" ticketId="MAGETWO-12411">
+            <data name="tag" xsi:type="string">severity:S4</data>
             <data name="user/dataset" xsi:type="string">custom_admin_with_default_role</data>
             <data name="actionLogs" xsi:type="array">
                 <item name="0" xsi:type="array">
@@ -38,6 +40,7 @@
             <constraint name="Magento\Logging\Test\Constraint\AssertAdminLoggingGrid" />
         </variation>
         <variation name="ViewCustomAdminLoggingEntityTest3" summary="Collect Admin User Logs (view logs by default admin user)" ticketId="MAGETWO-12411">
+            <data name="tag" xsi:type="string">severity:S4</data>
             <data name="user/dataset" xsi:type="string">custom_admin_with_default_role</data>
             <data name="userToLoggedIn/dataset" xsi:type="string">default</data>
             <data name="actionLogs" xsi:type="array">

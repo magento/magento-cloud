@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Reminder\Test\TestCase\CreateAutomatedEmailReminderRuleTest" summary="Create Automated Email Reminder Rule" ticketId="MAGETWO-29790">
         <variation name="ReminderRule_Create_NoCartRule_MatchCustomers" summary="Create new reminder rule">
+            <data name="issue" xsi:type="string">MAGETWO-57948: Automated Email Reminder Rule doesn't match customers</data>
             <data name="reminder/data/name" xsi:type="string">Reminder%isolation%</data>
             <data name="reminder/data/description" xsi:type="string">Description%isolation%</data>
             <data name="reminder/data/is_active" xsi:type="string">Active</data>
@@ -21,7 +22,8 @@
             <constraint name="Magento\Reminder\Test\Constraint\AssertReminderMatchedCustomers" />
         </variation>
         <variation name="ReminderRule_Create_PromotingCartRule_MatchCustomers" summary="Create new reminder rule with shopping cart rule">
-            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, stable:no</data>
+            <data name="issue" xsi:type="string">MAGETWO-57948: Automated Email Reminder Rule doesn't match customers</data>
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
             <data name="reminder/data/name" xsi:type="string">Reminder%isolation%</data>
             <data name="reminder/data/description" xsi:type="string">Description%isolation%</data>
             <data name="reminder/data/is_active" xsi:type="string">Active</data>

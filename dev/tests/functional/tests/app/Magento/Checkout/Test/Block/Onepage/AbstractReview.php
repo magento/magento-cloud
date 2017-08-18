@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -134,27 +134,28 @@ abstract class AbstractReview extends Block
     protected $waitElement = '.loading-mask';
 
     /**
-     * Selector for items counter.
+     * Selector for cart items block
      *
      * @var string
      */
-    private $itemsBlock = '.block.items-in-cart  > .title';
+    protected $itemsBlock = '.block.items-in-cart  > .title';
 
     /**
-     * Selector for items counter.
+     * Selector for items counter
      *
      * @var string
      */
-    private $itemsCounterSelector = '.items-in-cart .title';
+    protected $itemsCounterSelector = '.items-in-cart .title';
 
     /**
-     * Selector for list of cart items.
+     * Selector for list of cart items
      *
      * @var string
      */
-    private $cartItemsContentSelector = '.content.minicart-items';
+    protected $cartItemsContentSelector = '.content.minicart-items';
 
     /**
+     * @constructor
      * @param SimpleElement $element
      * @param BlockFactory $blockFactory
      * @param BrowserInterface $browser
@@ -254,7 +255,7 @@ abstract class AbstractReview extends Block
     }
 
     /**
-     * Click to expand cart items block.
+     * Click to expand cart items block
      *
      * @return void
      */
@@ -266,7 +267,7 @@ abstract class AbstractReview extends Block
     }
 
     /**
-     * Returns checkout summary block items counter value.
+     * Returns checkout summary block items counter value
      *
      * @return string
      */
@@ -276,7 +277,7 @@ abstract class AbstractReview extends Block
     }
 
     /**
-     * Returns go to cart link element.
+     * Returns go to cart link element
      *
      * @return \Magento\Mtf\Client\ElementInterface
      */

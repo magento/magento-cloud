@@ -1,11 +1,13 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 /** @var $eventClosed \Magento\CatalogEvent\Model\Event */
-$eventClosed = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\CatalogEvent\Model\Event');
+$eventClosed = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\CatalogEvent\Model\Event::class
+);
 $eventClosed->setCategoryId(
     null
 )->setDateStart(
@@ -22,7 +24,9 @@ $eventClosed->setCategoryId(
 $eventClosed->setStoreId(1)->setImage('default_store_view.jpg')->save();
 
 /** @var $eventOpen \Magento\CatalogEvent\Model\Event */
-$eventOpen = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\CatalogEvent\Model\Event');
+$eventOpen = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\CatalogEvent\Model\Event::class
+);
 $eventOpen->setCategoryId(
     1
 )->setDateStart(
@@ -39,7 +43,7 @@ $eventOpen->setCategoryId(
 
 /** @var $eventUpcoming \Magento\CatalogEvent\Model\Event */
 $eventUpcoming = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CatalogEvent\Model\Event'
+    \Magento\CatalogEvent\Model\Event::class
 );
 $eventUpcoming->setCategoryId(
     2

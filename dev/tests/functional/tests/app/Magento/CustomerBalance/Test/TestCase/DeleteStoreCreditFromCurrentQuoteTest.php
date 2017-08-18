@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -35,7 +35,7 @@ use Magento\Mtf\TestCase\Injectable;
  * 9. Click "Remove" link for Store Credit.
  * 8. Perform all asserts.
  *
- * @group Customers_(CS)
+ * @group Customers
  * @ZephyrId MAGETWO-27688
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -44,7 +44,6 @@ class DeleteStoreCreditFromCurrentQuoteTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -147,7 +146,7 @@ class DeleteStoreCreditFromCurrentQuoteTest extends Injectable
 
         // Steps
         $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         )->run();
         $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');

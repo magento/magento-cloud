@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<tabs>
+    <properties>
+        <class>\Magento\Backend\Test\Block\Widget\Tab</class>
+        <selector>#magento_customercustomattributes_address_attribute_edit_tabs_general</selector>
+        <strategy>css selector</strategy>
+        <fields>
+            <frontend_label>
+                <selector>[name^='frontend_label']</selector>
+            </frontend_label>
+            <attribute_code />
+            <frontend_input>
+                <input>select</input>
+            </frontend_input>
+            <is_required>
+                <input>select</input>
+            </is_required>
+            <default_value_text />
+            <input_validation>
+                <input>select</input>
+            </input_validation>
+            <input_filter>
+                <input>select</input>
+            </input_filter>
+            <is_used_for_customer_segment>
+                <input>select</input>
+            </is_used_for_customer_segment>
+            <is_visible>
+                <input>select</input>
+            </is_visible>
+            <sort_order />
+            <used_in_forms>
+                <selector>[name="used_in_forms[]"]</selector>
+                <input>multiselectgrouplist</input>
+            </used_in_forms>
+        </fields>
+    </properties>
+    <manage_label>
+        <class>\Magento\Backend\Test\Block\Widget\Tab</class>
+        <selector>#magento_customercustomattributes_address_attribute_edit_tabs_options</selector>
+        <strategy>css selector</strategy>
+        <fields>
+            <frontend_label>
+                <selector>[name^='frontend_label']</selector>
+            </frontend_label>
+        </fields>
+    </manage_label>
+</tabs>

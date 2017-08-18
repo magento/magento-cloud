@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,5 +25,38 @@ class Register extends \Magento\Customer\Test\Block\Form\Register
         return $this->_rootElement->find(
             sprintf($this->customerAttribute, $customerAttribute->getAttributeCode())
         )->isVisible();
+    }
+
+    /**
+     * Get value of Customer custom Attribute
+     *
+     * @param CustomerCustomAttribute $customerAttribute
+     * @return string
+     */
+    public function getCustomerAttributeValue(CustomerCustomAttribute $customerAttribute)
+    {
+        return $this->_rootElement->find(
+            sprintf($this->customerAttribute, $customerAttribute->getAttributeCode())
+        )->getValue();
+    }
+
+    /**
+     * Fixture mapping.
+     *
+     * @param array|null $fields
+     * @param string|null $parent
+     * @return array
+     */
+    protected function dataMapping(array $fields = null, $parent = null)
+    {
+        if (isset($fields['custom_attribute']['code']) && isset($fields['custom_attribute']['value'])) {
+            $this->placeholders = ['attribute_code' => $fields['custom_attribute']['code']];
+            $fields['custom_attribute']['value'] = MTF_TESTS_PATH . $fields['custom_attribute']['value'];
+            if (isset($fields['group_id'])) {
+                unset($fields['group_id']);
+            }
+            $this->applyPlaceholders();
+        }
+        return parent::dataMapping($fields, $parent);
     }
 }

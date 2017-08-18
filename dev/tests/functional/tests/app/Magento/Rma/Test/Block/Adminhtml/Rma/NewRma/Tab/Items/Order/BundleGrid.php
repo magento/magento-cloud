@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -65,7 +65,7 @@ class BundleGrid extends Grid
     protected function getSelectItemsBlock()
     {
         return $this->blockFactory->create(
-            'Magento\Rma\Test\Block\Adminhtml\Product\Bundle\Items',
+            \Magento\Rma\Test\Block\Adminhtml\Product\Bundle\Items::class,
             ['element' => $this->_rootElement->find($this->bundleItemsPopup, Locator::SELECTOR_XPATH)]
         );
     }

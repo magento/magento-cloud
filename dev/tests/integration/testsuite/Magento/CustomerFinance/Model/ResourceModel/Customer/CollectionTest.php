@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -17,7 +17,7 @@ use Magento\TestFramework\Helper\Bootstrap;
  * @magentoConfigFixture current_store magento_reward/general/is_enabled            1
  * @magentoConfigFixture current_store customer/magento_customerbalance/is_enabled  1
  */
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Remove not used websites
@@ -25,7 +25,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Store\Model\StoreManagerInterface'
+            \Magento\Store\Model\StoreManagerInterface::class
         )->reinitStores();
     }
 
@@ -38,7 +38,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         /** @var $collection \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\ResourceModel\Customer\Collection'
+            \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection::class
         );
         $collection->joinWithRewardPoints(
             $this->getCustomerEntityAttributeCollection(),
@@ -52,13 +52,13 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         /** @var $website \Magento\Store\Model\Website */
-        $websites = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getWebsites();
+        $websites = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->getWebsites();
         foreach ($websites as $website) {
             $key = $website->getCode() . '_' . FinanceAttributeCollection::COLUMN_REWARD_POINTS;
             $rewardPoints = $customer->getData($key);
             $this->assertNotEmpty($rewardPoints);
             $this->assertEquals(
-                $objectManager->get('Magento\Framework\Registry')
+                $objectManager->get(\Magento\Framework\Registry::class)
                     ->registry('reward_point_balance_' . $website->getCode()),
                 $rewardPoints
             );
@@ -74,7 +74,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         /** @var $collection \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\ResourceModel\Customer\Collection'
+            \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection::class
         );
         $collection->joinWithCustomerBalance(
             $this->getCustomerEntityAttributeCollection(),
@@ -87,14 +87,15 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $customer = reset($items);
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $websites = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getWebsites();
+        $websites = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->getWebsites();
         /** @var $website \Magento\Store\Model\Website */
         foreach ($websites as $website) {
             $key = $website->getCode() . '_' . FinanceAttributeCollection::COLUMN_CUSTOMER_BALANCE;
             $customerBalance = $customer->getData($key);
             $this->assertNotEmpty($customerBalance);
             $this->assertEquals(
-                $objectManager->get('Magento\Framework\Registry')->registry('customer_balance_' . $website->getCode()),
+                $objectManager->get(
+                    \Magento\Framework\Registry::class)->registry('customer_balance_' . $website->getCode()),
                 $customerBalance
             );
         }
@@ -109,7 +110,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         /** @var $collection \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\ResourceModel\Customer\Collection'
+            \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection::class
         );
         $collection
             ->joinWithCustomerBalance(
@@ -131,19 +132,19 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_rp_cb'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_rp_cb'),
             $emails
         );
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_rp'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_rp'),
             $emails
         );
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_cb'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_cb'),
             $emails
         );
         $this->assertNotContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email'),
             $emails
         );
     }
@@ -157,7 +158,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         /** @var $collection \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\ResourceModel\Customer\Collection'
+            \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection::class
         );
         $collection->joinWithRewardPoints(
             $this->getCustomerEntityAttributeCollection(),
@@ -174,19 +175,19 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_rp_cb'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_rp_cb'),
             $emails
         );
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_rp'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_rp'),
             $emails
         );
         $this->assertNotContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_cb'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_cb'),
             $emails
         );
         $this->assertNotContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email'),
             $emails
         );
     }
@@ -200,7 +201,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         /** @var $collection \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\ResourceModel\Customer\Collection'
+            \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection::class
         );
         $collection->joinWithCustomerBalance(
             $this->getCustomerEntityAttributeCollection(),
@@ -217,19 +218,19 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_rp_cb'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_rp_cb'),
             $emails
         );
         $this->assertNotContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_rp'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_rp'),
             $emails
         );
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_cb'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_cb'),
             $emails
         );
         $this->assertNotContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email'),
             $emails
         );
     }
@@ -243,7 +244,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         /** @var $collection \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\ResourceModel\Customer\Collection'
+            \Magento\CustomerFinance\Model\ResourceModel\Customer\Collection::class
         );
         $items = $collection->getItems();
         $this->assertCount(4, $items);
@@ -257,19 +258,19 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_rp_cb'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_rp_cb'),
             $emails
         );
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_rp'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_rp'),
             $emails
         );
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email_cb'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email_cb'),
             $emails
         );
         $this->assertContains(
-            $objectManager->get('Magento\Framework\Registry')->registry('customer_finance_email'),
+            $objectManager->get(\Magento\Framework\Registry::class)->registry('customer_finance_email'),
             $emails
         );
     }
@@ -280,7 +281,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     protected function getCustomerEntityAttributeCollection()
     {
         /** @var \Magento\CustomerImportExport\Model\Export\Customer $entity */
-        $entity = Bootstrap::getObjectManager()->get('Magento\CustomerImportExport\Model\Export\Customer');
+        $entity = Bootstrap::getObjectManager()->get(\Magento\CustomerImportExport\Model\Export\Customer::class);
         return $entity->getAttributeCollection();
     }
 
@@ -290,8 +291,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     protected function getFinanceEntityAttributeCollection()
     {
         /** @var \Magento\CustomerFinance\Model\Export\Customer\Finance $entity */
-        $entity = Bootstrap::getObjectManager()->get('Magento\CustomerFinance\Model\Export\Customer\Finance');
+        $entity = Bootstrap::getObjectManager()->get(\Magento\CustomerFinance\Model\Export\Customer\Finance::class);
         return $entity->getAttributeCollection();
     }
-
 }

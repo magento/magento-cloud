@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Banner\Test\Constraint\AssertBannerDeleteMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerInGrid">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerInShoppingCart">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerMassDeleteMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerNotInCartRule">
+        <arguments>
+            <argument name="severity" xsi:type="string">S3</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerNotInCatalogRule">
+        <arguments>
+            <argument name="severity" xsi:type="string">S3</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerNotInGrid">
+        <arguments>
+            <argument name="severity" xsi:type="string">S3</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerNotInShoppingCart">
+        <arguments>
+            <argument name="severity" xsi:type="string">S3</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerNotInWidgetOptions">
+        <arguments>
+            <argument name="severity" xsi:type="string">S3</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerNotOnCategoryPage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S3</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerOnCategoryPage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertBannerSuccessSaveMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertWidgetBannerRotator">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Banner\Test\Constraint\AssertWidgetBannerRotatorOnProductPage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+</config>

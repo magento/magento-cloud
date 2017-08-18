@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -26,14 +26,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Save Gift Card Account.
  * 6. Perform appropriate assertions.
  *
- * @group Gift_Card_Account_(CS)
+ * @group Gift_Card_Account
  * @ZephyrId MAGETWO-26665
  */
 class UpdateGiftCardAccountEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**

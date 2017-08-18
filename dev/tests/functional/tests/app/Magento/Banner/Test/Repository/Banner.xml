@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -64,6 +64,22 @@
                         </item>
                     </item>
                 </item>
+            </field>
+        </dataset>
+
+        <dataset name="banner_rotator_fixed">
+            <field name="name" xsi:type="string">banner_%isolation%</field>
+            <field name="is_enabled" xsi:type="string">Active</field>
+            <field name="use_customer_segment" xsi:type="string">All</field>
+            <field name="store_contents_not_use" xsi:type="array">
+                <item name="value_1" xsi:type="string">Yes</item>
+            </field>
+            <field name="store_contents" xsi:type="array">
+                <item name="value_0" xsi:type="string">banner_content_%isolation%</item>
+            </field>
+            <field name="types" xsi:type="array">
+                <item name="0" xsi:type="string">content</item>
+                <item name="1" xsi:type="string">footer</item>
             </field>
         </dataset>
     </repository>

@@ -1,18 +1,14 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\MultipleWishlist\Test\TestCase;
 
-use Magento\Customer\Test\Page\Adminhtml\CustomerIndex;
-use Magento\Customer\Test\Page\Adminhtml\CustomerIndexEdit;
-use Magento\GroupedProduct\Test\Fixture\GroupedProduct;
 use Magento\MultipleWishlist\Test\Fixture\MultipleWishlist;
-use Magento\Sales\Test\Page\Adminhtml\OrderCreateIndex;
-use Magento\Mtf\ObjectManager;
 use Magento\Mtf\TestCase\Injectable;
+use Magento\MultipleWishlist\Test\TestStep\CreateOrderForCustomerMultipleWishlistStep;
 
 /**
  * Preconditions:
@@ -31,57 +27,25 @@ use Magento\Mtf\TestCase\Injectable;
  * 7. Mark checkbox near product.
  * 8. Click button Update Changes.
  *
- * @group Multiple_Wishlists_(CS)
+ * @group Multiple_Wishlists
  * @ZephyrId MAGETWO-29530
  */
 class MoveProductFromCustomerActivityToOrderTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
-
-    /**
-     * CustomerIndex page.
-     *
-     * @var CustomerIndex
-     */
-    protected $customerIndex;
-
-    /**
-     * CustomerIndexEdit page.
-     *
-     * @var CustomerIndexEdit
-     */
-    protected $customerIndexEdit;
-
-    /**
-     * OrderCreateIndex page.
-     *
-     * @var OrderCreateIndex
-     */
-    protected $orderCreateIndex;
 
     /**
      * Injection data.
      *
-     * @param CustomerIndex $customerIndex
-     * @param CustomerIndexEdit $customerIndexEdit
-     * @param OrderCreateIndex $orderCreateIndex
      * @return void
      */
-    public function __inject(
-        CustomerIndex $customerIndex,
-        CustomerIndexEdit $customerIndexEdit,
-        OrderCreateIndex $orderCreateIndex
-    ) {
-        $this->customerIndex = $customerIndex;
-        $this->customerIndexEdit = $customerIndexEdit;
-        $this->orderCreateIndex = $orderCreateIndex;
-
+    public function __inject()
+    {
         // TODO: Move set up configuration to "__prepare" method after fix bug MAGETWO-29331
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default']
         )->run();
     }
@@ -101,36 +65,34 @@ class MoveProductFromCustomerActivityToOrderTest extends Injectable
         $multipleWishlist->persist();
         $customer = $multipleWishlist->getDataFieldConfig('customer_id')['source']->getCustomer();
         $createProductsStep = $this->objectManager->create(
-            'Magento\Catalog\Test\TestStep\CreateProductsStep',
+            \Magento\Catalog\Test\TestStep\CreateProductsStep::class,
             ['products' => $products]
         );
         $product = $createProductsStep->run()['products'][0];
 
         // Steps
         $loginCustomer = $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         );
         $loginCustomer->run();
 
         $addProductToMultiplewishlist = $this->objectManager->create(
-            'Magento\MultipleWishlist\Test\TestStep\AddProductToMultipleWishlistStep',
+            \Magento\MultipleWishlist\Test\TestStep\AddProductToMultipleWishlistStep::class,
             ['product' => $product, 'duplicate' => $duplicate, 'multipleWishlist' => $multipleWishlist]
         );
         $addProductToMultiplewishlist->run();
 
-        $this->customerIndex->open();
-        $this->customerIndex->getCustomerGridBlock()->searchAndOpen(['email' => $customer->getEmail()]);
-        $this->customerIndexEdit->getPageActionsBlock()->createOrder();
-        $this->orderCreateIndex->getStoreBlock()->selectStoreView();
-        $this->orderCreateIndex->getMultipleWishlistBlock()->selectWishlist($multipleWishlist->getName());
-        $wishlistItemsBlock = $this->orderCreateIndex->getMultipleWishlistBlock()->getWishlistItemsBlock();
-        $wishlistItemsBlock->selectItemToAddToOrder($product, $qtyToMove);
-        if (!$product instanceof GroupedProduct) {
-            $this->orderCreateIndex->getCustomerActivitiesBlock()->updateChanges();
-        } else {
-            $this->orderCreateIndex->getConfigureProductBlock()->clickOk();
-        }
+        $createOrderForCustomerMultipleWishlist = $this->objectManager->create(
+            CreateOrderForCustomerMultipleWishlistStep::class,
+            [
+                'customer' => $customer,
+                'multipleWishlist' => $multipleWishlist,
+                'product' => $product,
+                'qtyToMove' => $qtyToMove
+            ]
+        );
+        $createOrderForCustomerMultipleWishlist->run();
 
         return ['products' => [$product]];
     }
@@ -144,7 +106,7 @@ class MoveProductFromCustomerActivityToOrderTest extends Injectable
     {
         // TODO: Move set default configuration to "tearDownAfterClass" method after fix bug MAGETWO-29331
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default', 'rollback' => true]
         )->run();
     }

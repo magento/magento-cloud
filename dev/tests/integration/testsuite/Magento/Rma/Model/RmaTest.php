@@ -1,20 +1,20 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Rma\Model;
 
-class RmaTest extends \PHPUnit_Framework_TestCase
+class RmaTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @magentoDataFixture Magento/Rma/_files/order.php
      */
     public function testSaveRma()
     {
-        $order = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Sales\Model\Order');
+        $order = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Sales\Model\Order::class);
         $order->loadByIncrementId('100000001');
-        $rma = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Rma\Model\Rma');
+        $rma = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Rma\Model\Rma::class);
         $rmaItems = [];
 
         foreach ($order->getItemsCollection() as $item) {
@@ -30,7 +30,7 @@ class RmaTest extends \PHPUnit_Framework_TestCase
         $rmaData = [
             'status' => \Magento\Rma\Model\Rma\Source\Status::STATE_PENDING,
             'date_requested' => \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-                'Magento\Framework\Stdlib\DateTime\DateTime'
+                \Magento\Framework\Stdlib\DateTime\DateTime::class
             )->gmtDate(),
             'order_id' => $order->getId(),
             'order_increment_id' => $order->getIncrementId(),
@@ -45,7 +45,7 @@ class RmaTest extends \PHPUnit_Framework_TestCase
         $rmaId = $rma->getId();
 
         unset($rma);
-        $rma = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Rma\Model\Rma');
+        $rma = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Rma\Model\Rma::class);
         $rma->load($rmaId);
         $this->assertEquals($rma->getId(), $rmaId);
         $this->assertEquals($rma->getOrderId(), $order->getId());

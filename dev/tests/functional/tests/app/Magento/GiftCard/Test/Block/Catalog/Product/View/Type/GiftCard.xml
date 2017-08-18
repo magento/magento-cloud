@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -12,6 +12,10 @@
             <strategy>css selector</strategy>
             <input>select</input>
         </giftcard_amount>
+        <custom_giftcard_amount>
+            <selector>[name="custom_giftcard_amount"]</selector>
+            <strategy>css selector</strategy>
+        </custom_giftcard_amount>
         <giftcard_sender_name>
             <selector>[name='giftcard_sender_name']</selector>
             <strategy>css selector</strategy>

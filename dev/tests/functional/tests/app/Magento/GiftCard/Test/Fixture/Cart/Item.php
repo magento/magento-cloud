@@ -1,13 +1,10 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\GiftCard\Test\Fixture\Cart;
-
-use Magento\GiftCard\Test\Fixture\GiftCardProduct;
-use Magento\Mtf\Fixture\FixtureInterface;
 
 /**
  * Data for verify cart item block on checkout page.
@@ -18,15 +15,16 @@ use Magento\Mtf\Fixture\FixtureInterface;
 class Item extends \Magento\Catalog\Test\Fixture\Cart\Item
 {
     /**
-     * @constructor
-     * @param FixtureInterface $product
+     * Return prepared dataset.
+     *
+     * @param null|string $key
+     * @return array
      */
-    public function __construct(FixtureInterface $product)
+    public function getData($key = null)
     {
-        parent::__construct($product);
+        parent::getData($key);
 
-        /** @var GiftCardProduct $product */
-        $checkoutData = $product->getCheckoutData();
+        $checkoutData = $this->product->getCheckoutData();
         $optionsData = $checkoutData['options']['giftcard_options'];
         $cartItemOptions = [
             [
@@ -46,5 +44,7 @@ class Item extends \Magento\Catalog\Test\Fixture\Cart\Item
         $this->data['options'] = isset($this->data['options'])
             ? $this->data['options'] + $cartItemOptions
             : $cartItemOptions;
+
+        return $this->data;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,14 +25,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click Delete
  * 5. Perform all assertions
  *
- * @group Gift_Registry_(CS)
+ * @group Gift_Registry
  * @ZephyrId MAGETWO-27352
  */
 class DeleteGiftRegistryTypeEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**

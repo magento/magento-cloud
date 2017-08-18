@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -53,7 +53,6 @@ class AssertGiftCardAccountStatusInShoppingCart extends AbstractAssertGiftCardAc
             $result['pageData'],
             'Wrong success message is displayed.'
         );
-        $this->logout();
     }
 
     /**

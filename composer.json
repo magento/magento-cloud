@@ -2,19 +2,34 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.1.8",
+    "version": "2.2.0",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
-    "repositories": [
-        {
+    "repositories": {
+        "fastly-magento2": {
+            "type": "git",
+            "url": "https://github.com/fastly/fastly-magento2.git"
+        },
+        "sandbox": {
             "type": "composer",
-            "url": "https://repo.magento.com/"
+            "url": "https://connect20-qa01.magedevteam.com"
+        },
+        "magento-cloud-configuration": {
+            "type": "vcs",
+            "url": "git@github.com:magento/ece-tools.git"
+        },
+        "magento-ece-patches": {
+            "type": "vcs",
+            "url": "git@github.com:magento/ece-patches.git"
         }
-    ],
+    },
     "require": {
-        "magento/magento-cloud-metapackage": "2.1.8"
+        "magento/product-enterprise-edition": "2.2.*",
+        "magento/ece-patches": "dev-master",
+        "magento/ece-tools": "dev-master",
+        "fastly/magento2": "^1.2"
     },
     "config": {
         "use-include-path": true

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -72,7 +72,7 @@ class TileGrid extends Grid
     public function getAddProductDialog()
     {
         return $this->blockFactory->create(
-            'Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\AddProduct',
+            \Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\AddProduct::class,
             ['element' => $this->browser->find($this->addProductDialog)]
         );
     }

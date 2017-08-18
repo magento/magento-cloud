@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -24,14 +24,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click on the "Delete" button.
  * 5. Perform all assertions.
  *
- * @group Target_Rules_(MX)
+ * @group Target_Rules
  * @ZephyrId MAGETWO-24856
  */
 class DeleteTargetRuleEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'MX';
     /* end tags */
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -72,7 +72,7 @@ class RemoveTaxRule extends Curl
             return null;
         }
         foreach ($result[1] as $taxRuleId) {
-            $this->deleteTaxRuleRequest((int)$taxRuleId);
+            $this->_deleteTaxRuleRequest((int)$taxRuleId);
             break;
         }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -34,8 +34,9 @@ class BundleItems extends Items
             foreach ($bundleSelections['products'] as $optionProducts) {
                 foreach ($optionProducts as $productItem) {
                     if (false !== strpos($productItem->getName(), $option['value']['name'])) {
-                        $fields = $this->dataMapping($itemData);
                         $itemRow = $this->getItemsGrid()->getItemRow($productItem);
+                        $itemData = $this->fillDetailsForm($itemData, $itemRow);
+                        $fields = $this->dataMapping($itemData);
                         $this->_fill($fields, $itemRow);
                     }
                 }

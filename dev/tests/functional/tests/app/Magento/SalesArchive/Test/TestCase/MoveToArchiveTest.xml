@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\SalesArchive\Test\TestCase\MoveToArchiveTest" summary="Move Order to Archive" ticketId="MAGETWO-28235">
         <variation name="MoveToArchiveTestVariation1">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">move order in status Pending to Archive, verify order moved from order grid Archive grid</data>
             <data name="configArchive" xsi:type="string">salesarchive_pending_closed</data>
             <data name="steps" xsi:type="string">-</data>
@@ -26,10 +25,9 @@
             <constraint name="Magento\SalesArchive\Test\Constraint\AssertArchiveOrderStatusInGrid" />
         </variation>
         <variation name="MoveToArchiveTestVariation2">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">move order in status Completed to Archive, verify order moved from order grid Archive grid</data>
             <data name="configArchive" xsi:type="string">salesarchive_pending_closed</data>
-            <data name="steps" xsi:type="string">invoice, shipment, credit memo</data>
+            <data name="steps" xsi:type="string">shipment, invoice, credit memo</data>
             <data name="order/dataset" xsi:type="string">default</data>
             <data name="order/data/price/dataset" xsi:type="string">full_invoice</data>
             <data name="order/data/entity_id/products" xsi:type="string">catalogProductSimple::default</data>
@@ -59,7 +57,7 @@
         <variation name="MoveToArchiveTestVariation4">
             <data name="description" xsi:type="string">open Archive Completed order and verify all buttons present</data>
             <data name="configArchive" xsi:type="string">salesarchive_complete</data>
-            <data name="steps" xsi:type="string">invoice, shipment</data>
+            <data name="steps" xsi:type="string">shipment, invoice</data>
             <data name="order/dataset" xsi:type="string">default</data>
             <data name="order/data/price/dataset" xsi:type="string">full_invoice</data>
             <data name="order/data/entity_id/products" xsi:type="string">catalogProductSimple::default</data>
@@ -71,7 +69,6 @@
             <constraint name="Magento\SalesArchive\Test\Constraint\AssertArchiveOrderStatusInGrid" />
         </variation>
         <variation name="MoveToArchiveTestVariation5">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="description" xsi:type="string">move order in status Pending to Archive, verify Archive Invoice in grid and items grid on Archive Invoice page</data>
             <data name="configArchive" xsi:type="string">salesarchive_all_statuses</data>
             <data name="steps" xsi:type="string">invoice</data>
@@ -87,7 +84,7 @@
         <variation name="MoveToArchiveTestVariation6">
             <data name="description" xsi:type="string">move order in status Complete to Archive, verify Archive Credit Memo in grid and items on Archive Credit Memo page</data>
             <data name="configArchive" xsi:type="string">salesarchive_all_statuses</data>
-            <data name="steps" xsi:type="string">invoice, shipment, credit memo</data>
+            <data name="steps" xsi:type="string">shipment, invoice, credit memo</data>
             <data name="order/dataset" xsi:type="string">default</data>
             <data name="order/data/price/dataset" xsi:type="string">full_invoice</data>
             <data name="order/data/entity_id/products" xsi:type="string">catalogProductSimple::default</data>

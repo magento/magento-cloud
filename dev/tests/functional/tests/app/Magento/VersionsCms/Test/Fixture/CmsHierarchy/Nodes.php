@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\VersionsCms\Test\Fixture\CmsHierarchy;
@@ -10,23 +10,23 @@ use Magento\Mtf\Fixture\FixtureFactory;
 use Magento\Mtf\Repository\RepositoryFactory;
 
 /**
- * Prepare content for Cms Hierarchy Node.
+ * Prepare content for Cms Hierarchy Node
  */
 class Nodes extends DataSource
 {
     /**
-     * Fixture factory.
+     * Fixture factory
      *
      * @var FixtureFactory
      */
-    private $fixtureFactory;
+    protected $fixtureFactory;
 
     /**
-     * Repository factory.
+     * Repository factory
      *
      * @var RepositoryFactory
      */
-    private $repositoryFactory;
+    protected $repositoryFactory;
 
     /**
      * @param RepositoryFactory $repositoryFactory
@@ -47,7 +47,7 @@ class Nodes extends DataSource
     }
 
     /**
-     * Return prepared data set.
+     * Return prepared data set
      *
      * Update CMS Hierarchy Node data (page_id, identifier, label).
      * Set appropriate data values from CMS page assigned to CMS Hierarchy Node.

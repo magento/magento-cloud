@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,18 +9,18 @@ require __DIR__ . '/../../../Magento/CustomerSegment/_files/segment_developers.p
 
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 /** @var Magento\Framework\Registry $registry */
-$registry = $objectManager->get('Magento\Framework\Registry');
+$registry = $objectManager->get(\Magento\Framework\Registry::class);
 
 $ruleId = $registry->registry('Magento/SalesRule/_files/cart_rule_50_percent_off');
 
 /** @var $segment \Magento\CustomerSegment\Model\Segment */
 $segment = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CustomerSegment\Model\Segment'
+    \Magento\CustomerSegment\Model\Segment::class
 );
 $segment->load('Developers', 'name');
 
 /** @var \Magento\Banner\Model\Banner $banner */
-$banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Banner\Model\Banner');
+$banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Banner\Model\Banner::class);
 $banner->setData(
     [
         'name' => 'Get 50% Off on Development IDEs',

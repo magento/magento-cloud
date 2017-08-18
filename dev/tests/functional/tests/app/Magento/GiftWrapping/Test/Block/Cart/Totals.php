@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,7 +9,7 @@ namespace Magento\GiftWrapping\Test\Block\Cart;
 use Magento\Mtf\Client\Locator;
 
 /**
- * Cart totals block.
+ * Cart totals block
  */
 class Totals extends \Magento\Checkout\Test\Block\Cart\Totals
 {

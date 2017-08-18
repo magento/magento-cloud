@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,12 +8,14 @@ require __DIR__ . '/../../Store/_files/core_fixturestore.php';
 require __DIR__ . '/simple_product.php';
 
 /** @var $store \Magento\Store\Model\Store */
-$store = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Store\Model\Store');
+$store = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Store\Model\Store::class);
 $store->load('fixturestore', 'code');
 $storeId = $store->getId();
 
 /** @var $bundleProduct \Magento\Catalog\Model\Product */
-$bundleProduct = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
+$bundleProduct = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Catalog\Model\Product::class
+);
 $bundleProduct->setTypeId(
     \Magento\Catalog\Model\Product\Type::TYPE_BUNDLE
 )->setId(
@@ -84,7 +86,7 @@ $bundleProduct->setTypeId(
 )->save();
 
 /** @var $product \Magento\Catalog\Model\Product */
-$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
+$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Catalog\Model\Product::class);
 $product->load($bundleProduct->getId());
 
 /** @var $typeInstance \Magento\Bundle\Model\Product\Type */

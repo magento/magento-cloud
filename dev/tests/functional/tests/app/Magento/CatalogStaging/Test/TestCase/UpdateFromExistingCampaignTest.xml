@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\UpdateFromExistingCampaignTest" summary="Assign product to existing campaign and verify the update" ticketId="MAGETWO-55074">
+        <variation name="UpdateFromExistingCampaignTestVariation1">
+            <data name="issue" xsi:type="string">MAGETWO-60000: JS validation error is displayed after selecting date using date picker on Update edit page</data>
+            <data name="product/dataset" xsi:type="string">product_with_category</data>
+            <data name="update/dataset" xsi:type="string">update_with_simple_product</data>
+            <data name="updateCampaign/dataset" xsi:type="string">permanent_update_campaign</data>
+            <data name="productUpdate/data/price/value" xsi:type="number">23.00</data>
+            <constraint name="Magento\Staging\Test\Constraint\AssertUpdateCampaignsAreVisibleInGrid" />
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertAssignedExistingCampaignPreviewCorrect" />
+        </variation>
+    </testCase>
+</config>

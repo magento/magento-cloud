@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -27,15 +27,15 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Click 'Submit' button
  * 6. Perform all asserts
  *
- * @group Gift_Wrapping_(CS)
+ * @group Gift_Wrapping
  * @ZephyrId MAGETWO-27896
  */
 class MassActionsGiftWrappingEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     const STABLE = 'no';
+    const SEVERITY = 'S3';
     /* end tags */
 
     /**
@@ -91,7 +91,7 @@ class MassActionsGiftWrappingEntityTest extends Injectable
     {
         // Preconditions
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'enable_gift_message']
         )->run();
         $giftWrappingsInitial = explode(",", $giftWrappings);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -36,6 +36,9 @@ class AssertGiftWrappingNotOnOrderCreationPage extends AbstractConstraint
         $orderIndex->open();
         $orderIndex->getGridPageActions()->addNew();
         $orderCreateIndex->getCustomerBlock()->selectCustomer($customer);
+        if ($orderCreateIndex->getStoreBlock()->isVisible()) {
+            $orderCreateIndex->getStoreBlock()->selectStoreView();
+        }
         \PHPUnit_Framework_Assert::assertFalse(
             $orderCreateIndex->getGiftOptionsBlock()->isGiftWrappingAvailable($giftWrapping->getDesign()),
             'Gift Wrapping \'' . $giftWrapping->getDesign() . '\' is present on order creation page.'

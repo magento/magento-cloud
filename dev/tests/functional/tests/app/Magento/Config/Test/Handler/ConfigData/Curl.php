@@ -1,16 +1,16 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Config\Test\Handler\ConfigData;
 
+use Magento\Config\Test\Fixture\ConfigData\Section;
 use Magento\Mtf\Fixture\FixtureInterface;
 use Magento\Mtf\Handler\Curl as AbstractCurl;
 use Magento\Mtf\Util\Protocol\CurlTransport;
 use Magento\Mtf\Util\Protocol\CurlTransport\BackendDecorator;
-use Magento\Config\Test\Fixture\ConfigData\Section;
 use Magento\Store\Test\Fixture\Store;
 use Magento\Store\Test\Fixture\Website;
 
@@ -19,6 +19,13 @@ use Magento\Store\Test\Fixture\Website;
  */
 class Curl extends AbstractCurl implements ConfigDataInterface
 {
+    /**
+     * FixtureInterface object.
+     *
+     * @var FixtureInterface
+     */
+    private $fixture;
+
     /**
      * Mapping values for data.
      *
@@ -31,13 +38,6 @@ class Curl extends AbstractCurl implements ConfigDataInterface
             'Store View' => 'store',
         ],
     ];
-
-    /**
-     * FixtureInterface object.
-     *
-     * @var FixtureInterface
-     */
-    private $fixture;
 
     /**
      * Post request for setting configuration.
@@ -100,15 +100,16 @@ class Curl extends AbstractCurl implements ConfigDataInterface
             }
             $resultArray .= '[' . $subPath . ']';
         }
-        $resultArray .= '[value]';
-        if (is_array($input['value'])) {
+        $valueCode = isset($input['inherit']) ? 'inherit' : 'value';
+        $resultArray .= "[$valueCode]";
+        if (isset($input['value']) && is_array($input['value'])) {
             $values = [];
             foreach ($input['value'] as $key => $value) {
                 $values[] = $resultArray . "[$key]=$value";
             }
             $resultArray = implode('&', $values);
         } else {
-            $resultArray .= '=' . $input['value'];
+            $resultArray .= '=' . $input[$valueCode];
         }
         return $resultArray;
     }
@@ -131,7 +132,9 @@ class Curl extends AbstractCurl implements ConfigDataInterface
 
         if (strpos($response, 'data-ui-id="messages-message-success"') === false) {
             $this->_eventManager->dispatchEvent(['curl_failed'], [$response]);
-            throw new \Exception("Configuration settings are not applied! Url: $url");
+            throw new \Exception(
+                "Configuration settings are not applied! Url: $url" . PHP_EOL . "data: " . print_r($data, true)
+            );
         }
     }
 

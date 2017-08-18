@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magento\Mtf\Util\Command\File\CustomerFinancesExport" type="Magento\Mtf\Util\Command\File\Export">
+        <arguments>
+            <argument name="type" xsi:type="string">customerFinances</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\CustomerFinance\Test\Constraint\AssertExportCustomerFinances">
+        <arguments>
+            <argument name="export" xsi:type="object">Magento\Mtf\Util\Command\File\CustomerFinancesExport</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Magento\Mtf\Util\Command\File\Export\CustomerFinancesReader" type="Magento\Mtf\Util\Command\File\Export\Reader">
+        <arguments>
+            <argument name="template" xsi:type="string">customer_finance.*?\.csv</argument>
+        </arguments>
+    </virtualType>
+</config>

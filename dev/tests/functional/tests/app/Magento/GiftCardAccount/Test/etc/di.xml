@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountForm">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountInGrid">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountIsNotUsableInCartOnFrontend">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountNotInGrid">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountNotRedeemableOnFrontend">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountOnPrintOrder">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountRedeemableOnFrontend">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountSaveMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountStatusInCustomerAccount">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountStatusInShoppingCart">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountSuccessDeleteMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardAccountUsableInCartOnFrontend">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardDiscount">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\GiftCardAccount\Test\Constraint\AssertGiftCardSuccessAddMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 use Magento\Catalog\Api\ProductRepositoryInterface;
@@ -17,7 +17,7 @@ use Magento\TestFramework\Helper\Bootstrap;
 
 Bootstrap::getInstance()->reinitialize();
 
-require __DIR__ . '/../../../Magento/ConfigurableProduct/_files/configurable_attribute.php';
+require __DIR__ . '/../../../Magento/Framework/Search/_files/configurable_attribute.php';
 
 /** @var ProductRepositoryInterface $productRepository */
 $productRepository = Bootstrap::getObjectManager()

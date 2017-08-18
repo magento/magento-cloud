@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reminder\Block\Adminhtml\Reminder\Edit\Tab;
@@ -9,7 +9,7 @@ namespace Magento\Reminder\Block\Adminhtml\Reminder\Edit\Tab;
  * Test class for \Magento\Reminder\Block\Adminhtml\Reminder\Edit\Tab\General
  * @magentoAppArea adminhtml
  */
-class GeneralTest extends \PHPUnit_Framework_TestCase
+class GeneralTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @magentoAppIsolation enabled
@@ -17,26 +17,26 @@ class GeneralTest extends \PHPUnit_Framework_TestCase
     public function testPrepareForm()
     {
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\DesignInterface'
+            \Magento\Framework\View\DesignInterface::class
         )->setArea(
             \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE
         )->setDefaultDesignTheme();
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $objectManager->get(
-            'Magento\Framework\Registry'
+            \Magento\Framework\Registry::class
         )->register(
             'current_reminder_rule',
-            \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reminder\Model\Rule')
+            \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Reminder\Model\Rule::class)
         );
 
         $block = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         )->createBlock(
-            'Magento\Reminder\Block\Adminhtml\Reminder\Edit\Tab\General'
+            \Magento\Reminder\Block\Adminhtml\Reminder\Edit\Tab\General::class
         );
         $prepareFormMethod = new \ReflectionMethod(
-            'Magento\Reminder\Block\Adminhtml\Reminder\Edit\Tab\General',
+            \Magento\Reminder\Block\Adminhtml\Reminder\Edit\Tab\General::class,
             '_prepareForm'
         );
         $prepareFormMethod->setAccessible(true);

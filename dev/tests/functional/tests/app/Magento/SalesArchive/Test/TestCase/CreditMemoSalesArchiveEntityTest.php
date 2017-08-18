@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -12,6 +12,7 @@ use Magento\Sales\Test\Page\Adminhtml\OrderIndex;
 use Magento\Sales\Test\Page\Adminhtml\SalesOrderView;
 use Magento\SalesArchive\Test\Page\Adminhtml\ArchiveOrders;
 use Magento\Mtf\TestCase\Injectable;
+use Magento\Mtf\Fixture\FixtureFactory;
 
 /**
  * Preconditions:
@@ -30,14 +31,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click 'Submit' button
  * 5. Perform all assertions
  *
- * @group Sales_Archive_(CS)
+ * @group Sales_Archive
  * @ZephyrId MAGETWO-29100
  */
 class CreditMemoSalesArchiveEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
+    const STABLE = 'no';
     /* end tags */
 
     /**
@@ -69,6 +70,13 @@ class CreditMemoSalesArchiveEntityTest extends Injectable
     protected $orderCreditMemoNew;
 
     /**
+     * Fixture factory.
+     *
+     * @var FixtureFactory
+     */
+    private $fixtureFactory;
+
+    /**
      * Enable "Check/Money Order", "Flat Rate" and archiving for all statuses in configuration.
      *
      * @return void
@@ -76,7 +84,7 @@ class CreditMemoSalesArchiveEntityTest extends Injectable
     public function __prepare()
     {
         $setupConfig = $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'salesarchive_all_statuses, checkmo, flatrate']
         );
         $setupConfig->run();
@@ -85,6 +93,7 @@ class CreditMemoSalesArchiveEntityTest extends Injectable
     /**
      * Injection data.
      *
+     * @param FixtureFactory $fixtureFactory
      * @param OrderIndex $orderIndex
      * @param ArchiveOrders $archiveOrders
      * @param SalesOrderView $salesOrderView
@@ -92,11 +101,13 @@ class CreditMemoSalesArchiveEntityTest extends Injectable
      * @return void
      */
     public function __inject(
+        FixtureFactory $fixtureFactory,
         OrderIndex $orderIndex,
         ArchiveOrders $archiveOrders,
         SalesOrderView $salesOrderView,
         OrderCreditMemoNew $orderCreditMemoNew
     ) {
+        $this->fixtureFactory = $fixtureFactory;
         $this->orderIndex = $orderIndex;
         $this->archiveOrders = $archiveOrders;
         $this->salesOrderView = $salesOrderView;
@@ -114,8 +125,16 @@ class CreditMemoSalesArchiveEntityTest extends Injectable
     {
         // Preconditions
         $order->persist();
-        $this->objectManager->create('Magento\Sales\Test\TestStep\CreateInvoiceStep', ['order' => $order])->run();
-        $this->objectManager->create('Magento\Sales\Test\TestStep\CreateShipmentStep', ['order' => $order])->run();
+        $products = $order->getEntityId()['products'];
+        $cart['data']['items'] = ['products' => $products];
+        $cart = $this->fixtureFactory->createByCode('cart', $cart);
+        $invoice = $this->objectManager->create(
+            \Magento\Sales\Test\TestStep\CreateInvoiceStep::class,
+            ['order' => $order, 'cart' => $cart]
+        );
+        $invoice->run();
+        $this->objectManager->create(\Magento\Sales\Test\TestStep\CreateShipmentStep::class, ['order' => $order])
+            ->run();
         $this->orderIndex->open();
         $orderId = $order->getId();
         $this->orderIndex->getSalesOrderGrid()->massaction([['id' => $orderId]], 'Move to Archive');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -19,14 +19,14 @@ use Magento\Widget\Test\TestCase\AbstractCreateWidgetEntityTest;
  * 6. Fill widget data according dataset.
  * 7. Perform all assertions.
  *
- * @group Widget_(PS)
+ * @group Widget
  * @ZephyrId MAGETWO-27916
  */
 class CreateWidgetBannerTest extends AbstractCreateWidgetEntityTest
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'PS';
+    const SEVERITY = 'S1';
     /* end tags */
 
     /**
@@ -60,12 +60,13 @@ class CreateWidgetBannerTest extends AbstractCreateWidgetEntityTest
     public function tearDown()
     {
         if ($this->widget !== null) {
-            $this->objectManager->create('Magento\Widget\Test\TestStep\DeleteAllWidgetsStep')->run();
+            $this->objectManager->create(\Magento\Widget\Test\TestStep\DeleteAllWidgetsStep::class)->run();
             if ($this->widget->getParameters()['entities'][0]->hasData('banner_catalog_rules')) {
-                $this->objectManager->create('Magento\CatalogRule\Test\TestStep\DeleteAllCatalogRulesStep')->run();
+                $this->objectManager->create(\Magento\CatalogRule\Test\TestStep\DeleteAllCatalogRulesStep::class)
+                    ->run();
             }
             if ($this->widget->getParameters()['entities'][0]->hasData('banner_sales_rules')) {
-                $this->objectManager->create('Magento\SalesRule\Test\TestStep\DeleteAllSalesRuleStep')->run();
+                $this->objectManager->create(\Magento\SalesRule\Test\TestStep\DeleteAllSalesRuleStep::class)->run();
             }
         }
     }

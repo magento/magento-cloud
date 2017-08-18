@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,11 +9,11 @@
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
 $productRepository = $objectManager->create(
-    'Magento\Catalog\Api\ProductRepositoryInterface'
+    \Magento\Catalog\Api\ProductRepositoryInterface::class
 );
 
 $categoryLinkRepository = $objectManager->create(
-    'Magento\Catalog\Api\CategoryLinkRepositoryInterface',
+    \Magento\Catalog\Api\CategoryLinkRepositoryInterface::class,
     [
         'productRepository' => $productRepository
     ]
@@ -21,7 +21,7 @@ $categoryLinkRepository = $objectManager->create(
 
 /** @var Magento\Catalog\Api\CategoryLinkManagementInterface $linkManagement */
 $categoryLinkManagement = $objectManager->create(
-    'Magento\Catalog\Api\CategoryLinkManagementInterface',
+    \Magento\Catalog\Api\CategoryLinkManagementInterface::class,
     [
         'productRepository' => $productRepository,
         'categoryLinkRepository' => $categoryLinkRepository
@@ -29,11 +29,11 @@ $categoryLinkManagement = $objectManager->create(
 );
 
 $permission = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CatalogPermissions\Model\Permission'
+    \Magento\CatalogPermissions\Model\Permission::class
 );
 $permission->setWebsiteId(
     \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-        'Magento\Store\Model\StoreManagerInterface'
+        \Magento\Store\Model\StoreManagerInterface::class
     )->getWebsite()->getId()
 )->setCategoryId(
     6
@@ -49,11 +49,11 @@ $permission->setWebsiteId(
 
 /** @var $permissionAllow \Magento\CatalogPermissions\Model\Permission */
 $permissionAllow = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CatalogPermissions\Model\Permission'
+    \Magento\CatalogPermissions\Model\Permission::class
 );
 $permissionAllow->setWebsiteId(
     \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-        'Magento\Store\Model\StoreManagerInterface'
+        \Magento\Store\Model\StoreManagerInterface::class
     )->getWebsite()->getId()
 )->setCategoryId(
     12
@@ -68,11 +68,11 @@ $permissionAllow->setWebsiteId(
 )->save();
 
 $installer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\Catalog\Setup\CategorySetup'
+    \Magento\Catalog\Setup\CategorySetup::class
 );
 
 /** @var $product \Magento\Catalog\Model\Product */
-$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
+$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Catalog\Model\Product::class);
 $product->setTypeId(
     \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE
 )->setId(

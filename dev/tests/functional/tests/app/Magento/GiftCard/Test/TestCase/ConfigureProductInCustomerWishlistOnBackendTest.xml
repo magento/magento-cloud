@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -9,7 +9,7 @@
     <testCase name="Magento\Wishlist\Test\TestCase\ConfigureProductInCustomerWishlistOnBackendTest" summary="Configure Products in Customer Wishlist on Backend" ticketId="MAGETWO-29257">
         <variation name="ConfigureGiftCardInWishlistOnBackendTestVariation1">
             <data name="tag" xsi:type="string">to_maintain:yes</data>
-            <data name="product" xsi:type="string">giftCardProduct::default</data>
+            <data name="product/0" xsi:type="string">giftCardProduct::default</data>
             <constraint name="Magento\GiftCard\Test\Constraint\AssertGiftCardProductInCustomerWishlistOnBackendGrid" />
         </variation>
     </testCase>

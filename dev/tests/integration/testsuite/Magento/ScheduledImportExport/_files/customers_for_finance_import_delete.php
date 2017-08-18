@@ -1,28 +1,28 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 $defaultWebsiteId = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-    'Magento\Store\Model\StoreManagerInterface'
+    \Magento\Store\Model\StoreManagerInterface::class
 )->getStore()->getWebsiteId();
 
 /** @var $website \Magento\Store\Model\Website */
-$website = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Store\Model\Website');
+$website = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Store\Model\Website::class);
 $website->setData(['code' => 'base2', 'name' => 'Test Website', 'default_group_id' => '1', 'is_default' => '0']);
 $website->save();
 \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-    'Magento\Store\Model\StoreManagerInterface'
+    \Magento\Store\Model\StoreManagerInterface::class
 )->reinitStores();
 
 $additionalWebsiteId = $website->getId();
 
 /** @var $objectManager \Magento\TestFramework\ObjectManager */
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-$objectManager->get('Magento\Framework\Registry')
+$objectManager->get(\Magento\Framework\Registry::class)
     ->unregister('_fixture/Magento_ScheduledImportExport_Model_TestWebsite');
 $objectManager->get(
-    'Magento\Framework\Registry'
+    \Magento\Framework\Registry::class
 )->register(
     '_fixture/Magento_ScheduledImportExport_Model_TestWebsite',
     $website
@@ -33,7 +33,9 @@ $expectedRewards = [];
 
 //Create customer
 /** @var $customer \Magento\Customer\Model\Customer */
-$customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Customer\Model\Customer');
+$customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Customer\Model\Customer::class
+);
 $customer->setWebsiteId(
     0
 )->setEntityTypeId(
@@ -62,7 +64,7 @@ $customer->save();
 
 /** @var $customerBalance \Magento\CustomerBalance\Model\Balance */
 $customerBalance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CustomerBalance\Model\Balance'
+    \Magento\CustomerBalance\Model\Balance::class
 );
 $customerBalance->setCustomerId($customer->getId());
 $customerBalance->setAmountDelta(50);
@@ -70,7 +72,9 @@ $customerBalance->setWebsiteId($additionalWebsiteId);
 $customerBalance->save();
 
 /** @var $rewardPoints \Magento\Reward\Model\Reward */
-$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reward\Model\Reward');
+$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Reward\Model\Reward::class
+);
 $rewardPoints->setCustomerId($customer->getId());
 $rewardPoints->setPointsBalance(50);
 $rewardPoints->setWebsiteId($additionalWebsiteId);
@@ -80,7 +84,9 @@ $expectedBalances[$customer->getId()][$additionalWebsiteId] = 0;
 $expectedRewards[$customer->getId()][$additionalWebsiteId] = 0;
 
 /** @var $customer \Magento\Customer\Model\Customer */
-$customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Customer\Model\Customer');
+$customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Customer\Model\Customer::class
+);
 $customer->setWebsiteId(
     0
 )->setEntityTypeId(
@@ -109,7 +115,7 @@ $customer->save();
 
 /** @var $customerBalance \Magento\CustomerBalance\Model\Balance */
 $customerBalance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CustomerBalance\Model\Balance'
+    \Magento\CustomerBalance\Model\Balance::class
 );
 $customerBalance->setCustomerId($customer->getId());
 $customerBalance->setAmountDelta(100);
@@ -117,7 +123,9 @@ $customerBalance->setWebsiteId($defaultWebsiteId);
 $customerBalance->save();
 
 /** @var $rewardPoints \Magento\Reward\Model\Reward */
-$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reward\Model\Reward');
+$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Reward\Model\Reward::class
+);
 $rewardPoints->setCustomerId($customer->getId());
 $rewardPoints->setPointsBalance(100);
 $rewardPoints->setWebsiteId($defaultWebsiteId);
@@ -127,7 +135,9 @@ $expectedBalances[$customer->getId()][$defaultWebsiteId] = 0;
 $expectedRewards[$customer->getId()][$defaultWebsiteId] = 0;
 
 /** @var $customer \Magento\Customer\Model\Customer */
-$customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Customer\Model\Customer');
+$customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Customer\Model\Customer::class
+);
 $customer->setWebsiteId(
     0
 )->setEntityTypeId(
@@ -156,7 +166,7 @@ $customer->save();
 
 /** @var $customerBalance \Magento\CustomerBalance\Model\Balance */
 $customerBalance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CustomerBalance\Model\Balance'
+    \Magento\CustomerBalance\Model\Balance::class
 );
 $customerBalance->setCustomerId($customer->getId());
 $customerBalance->setAmountDelta(200);
@@ -164,7 +174,9 @@ $customerBalance->setWebsiteId($additionalWebsiteId);
 $customerBalance->save();
 
 /** @var $rewardPoints \Magento\Reward\Model\Reward */
-$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reward\Model\Reward');
+$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Reward\Model\Reward::class
+);
 $rewardPoints->setCustomerId($customer->getId());
 $rewardPoints->setPointsBalance(200);
 $rewardPoints->setWebsiteId($additionalWebsiteId);
@@ -175,7 +187,7 @@ $expectedRewards[$customer->getId()][$additionalWebsiteId] = 200;
 
 /** @var $customerBalance \Magento\CustomerBalance\Model\Balance */
 $customerBalance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CustomerBalance\Model\Balance'
+    \Magento\CustomerBalance\Model\Balance::class
 );
 $customerBalance->setCustomerId($customer->getId());
 $customerBalance->setAmountDelta(300);
@@ -183,7 +195,9 @@ $customerBalance->setWebsiteId($defaultWebsiteId);
 $customerBalance->save();
 
 /** @var $rewardPoints \Magento\Reward\Model\Reward */
-$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reward\Model\Reward');
+$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Reward\Model\Reward::class
+);
 $rewardPoints->setCustomerId($customer->getId());
 $rewardPoints->setPointsBalance(300);
 $rewardPoints->setWebsiteId($defaultWebsiteId);
@@ -192,7 +206,9 @@ $rewardPoints->save();
 $expectedBalances[$customer->getId()][$defaultWebsiteId] = 300;
 $expectedRewards[$customer->getId()][$defaultWebsiteId] = 300;
 
-$customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Customer\Model\Customer');
+$customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Customer\Model\Customer::class
+);
 $customer->setWebsiteId(
     0
 )->setEntityTypeId(
@@ -221,7 +237,7 @@ $customer->save();
 
 /** @var $customerBalance \Magento\CustomerBalance\Model\Balance */
 $customerBalance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CustomerBalance\Model\Balance'
+    \Magento\CustomerBalance\Model\Balance::class
 );
 $customerBalance->setCustomerId($customer->getId());
 $customerBalance->setAmountDelta(400);
@@ -229,7 +245,9 @@ $customerBalance->setWebsiteId($additionalWebsiteId);
 $customerBalance->save();
 
 /** @var $rewardPoints \Magento\Reward\Model\Reward */
-$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reward\Model\Reward');
+$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Reward\Model\Reward::class
+);
 $rewardPoints->setCustomerId($customer->getId());
 $rewardPoints->setPointsBalance(400);
 $rewardPoints->setWebsiteId($additionalWebsiteId);
@@ -240,7 +258,7 @@ $expectedRewards[$customer->getId()][$additionalWebsiteId] = 0;
 
 /** @var $customerBalance \Magento\CustomerBalance\Model\Balance */
 $customerBalance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CustomerBalance\Model\Balance'
+    \Magento\CustomerBalance\Model\Balance::class
 );
 $customerBalance->setCustomerId($customer->getId());
 $customerBalance->setAmountDelta(500);
@@ -248,7 +266,9 @@ $customerBalance->setWebsiteId($defaultWebsiteId);
 $customerBalance->save();
 
 /** @var $rewardPoints \Magento\Reward\Model\Reward */
-$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reward\Model\Reward');
+$rewardPoints = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Reward\Model\Reward::class
+);
 $rewardPoints->setCustomerId($customer->getId());
 $rewardPoints->setPointsBalance(500);
 $rewardPoints->setWebsiteId($defaultWebsiteId);
@@ -258,24 +278,24 @@ $expectedBalances[$customer->getId()][$defaultWebsiteId] = 500;
 $expectedRewards[$customer->getId()][$defaultWebsiteId] = 500;
 
 $objectManager->get(
-    'Magento\Framework\Registry'
+    \Magento\Framework\Registry::class
 )->unregister(
     '_fixture/Magento_ScheduledImportExport_Customers_ExpectedBalances'
 );
 $objectManager->get(
-    'Magento\Framework\Registry'
+    \Magento\Framework\Registry::class
 )->register(
     '_fixture/Magento_ScheduledImportExport_Customers_ExpectedBalances',
     $expectedBalances
 );
 
 $objectManager->get(
-    'Magento\Framework\Registry'
+    \Magento\Framework\Registry::class
 )->unregister(
     '_fixture/Magento_ScheduledImportExport_Customers_ExpectedRewards'
 );
 $objectManager->get(
-    'Magento\Framework\Registry'
+    \Magento\Framework\Registry::class
 )->register(
     '_fixture/Magento_ScheduledImportExport_Customers_ExpectedRewards',
     $expectedRewards

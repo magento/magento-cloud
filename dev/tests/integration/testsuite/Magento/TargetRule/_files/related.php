@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,7 +10,7 @@ if (!isset($type)) {
 $applyTo = $type == 'related' ? '1' : '2';
 
 /** @var $rule \Magento\TargetRule\Model\Rule */
-$rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\TargetRule\Model\Rule');
+$rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\TargetRule\Model\Rule::class);
 $data = [
     'name' => $type,
     'is_active' => '1',

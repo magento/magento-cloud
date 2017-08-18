@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<sections>
+    <staging-advanced-pricing>
+        <class>Magento\Staging\Test\Block\Adminhtml\Product\Edit\Section\StagingAdvancedPricing</class>
+        <selector>[data-index="advanced_pricing_button"]</selector>
+        <strategy>css selector</strategy>
+        <wrapper>product</wrapper>
+        <fields>
+            <special_price>
+                <selector>[name="product[special_price]"]</selector>
+            </special_price>
+            <special_from_date>
+                <selector>[name="product[special_from_date]"]</selector>
+            </special_from_date>
+            <special_to_date>
+                <selector>[name="product[special_to_date]"]</selector>
+            </special_to_date>
+            <cost>
+                <selector>[name="product[cost]"]</selector>
+            </cost>
+        </fields>
+    </staging-advanced-pricing>
+</sections>

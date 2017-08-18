@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -29,7 +29,7 @@ use Magento\Mtf\TestCase\Scenario;
  * 12. Perform all assertions.
  *
  * @group Checkout
- * @ZephyrId MAGETWO-71053
+ * @ZephyrId MAGETWO-67837
  */
 class EditShippingAddressOnePageCheckoutTest extends Scenario
 {

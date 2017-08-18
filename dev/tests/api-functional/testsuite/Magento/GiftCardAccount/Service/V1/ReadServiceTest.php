@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -34,7 +34,7 @@ class ReadServiceTest extends WebapiAbstract
     public function testGetList()
     {
         /** @var \Magento\Quote\Model\Quote  $quote */
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_1', 'reserved_order_id');
         $quoteId = $quote->getId();
 

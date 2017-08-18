@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Config\Test\Repository\ConfigData">
+        <dataset name="cybersource">
+            <field name="payment/cybersource/merchant_id" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="string">CYBERSOURCE_MERCHANT_ID</item>
+            </field>
+            <field name="payment/cybersource/transaction_key" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="string">CYBERSOURCE_TRANSACTION_KEY</item>
+            </field>
+            <field name="payment/cybersource/profile_id" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="string">CYBERSOURCE__PROFILE_ID</item>
+            </field>
+            <field name="payment/cybersource/access_key" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="string">CYBERSOURCE_ACCESS_KEY</item>
+            </field>
+            <field name="payment/cybersource/secret_key" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="string">CYBERSOURCE_SECRET_KEY</item>
+            </field>
+            <field name="payment/cybersource/debug" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="number">1</item>
+            </field>
+            <field name="payment/cybersource/sandbox_flag" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="number">1</item>
+            </field>
+            <field name="payment/cybersource/active" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="number">1</item>
+            </field>
+        </dataset>
+        <dataset name="cybersource_rollback">
+            <field name="payment/cybersource/active" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">No</item>
+                <item name="value" xsi:type="number">0</item>
+            </field>
+        </dataset>
+    </repository>
+</config>

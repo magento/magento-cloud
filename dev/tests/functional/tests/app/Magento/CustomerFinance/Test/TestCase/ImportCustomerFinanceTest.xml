@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerFinance\Test\TestCase\ImportCustomerFinanceTest" summary="Import customer finances">
+        <variation name="ImportCustomerFinanceVariation1" ticketId="MAGETWO-30598" summary="Import customer finances with Delete Behavior">
+            <data name="rewardPoints/0" xsi:type="string">reward_points_50</data>
+            <data name="storeCredits/0" xsi:type="string">customerBalance_10</data>
+            <data name="import/data" xsi:type="array">
+                <item name="entity" xsi:type="string">Customer Finances</item>
+                <item name="behavior" xsi:type="string">Delete Entities</item>
+                <item name="validation_strategy" xsi:type="string">Stop on Error</item>
+                <item name="allowed_error_count" xsi:type="string">10</item>
+                <item name="import_field_separator" xsi:type="string">,</item>
+                <item name="import_multiple_value_separator" xsi:type="string">,</item>
+                <item name="import_file" xsi:type="array">
+                    <item name="entities" xsi:type="array">
+                        <item name="0" xsi:type="string">customer::default</item>
+                        <item name="1" xsi:type="string">customer::default</item>
+                    </item>
+                    <item name="template" xsi:type="array">
+                        <item name="filename" xsi:type="string">Magento/CustomerFinance/Test/_files/template/customer_variation_1</item>
+                        <item name="count" xsi:type="number">2</item>
+                    </item>
+                </item>
+            </data>
+            <constraint name="Magento\CustomerFinance\Test\Constraint\AssertImportCustomerFinances" />
+        </variation>
+        <variation name="ImportCustomerFinanceVariation2" ticketId="MAGETWO-30597" summary="Import customer finances with Add/Update Behavior">
+            <data name="rewardPoints/0" xsi:type="string">reward_points_50</data>
+            <data name="storeCredits/0" xsi:type="string">customerBalance_10</data>
+            <data name="import/data" xsi:type="array">
+                <item name="entity" xsi:type="string">Customer Finances</item>
+                <item name="behavior" xsi:type="string">Add/Update Complex Data</item>
+                <item name="validation_strategy" xsi:type="string">Stop on Error</item>
+                <item name="allowed_error_count" xsi:type="string">10</item>
+                <item name="import_field_separator" xsi:type="string">,</item>
+                <item name="import_multiple_value_separator" xsi:type="string">,</item>
+                <item name="import_file" xsi:type="array">
+                    <item name="entities" xsi:type="array">
+                        <item name="0" xsi:type="string">customer::default</item>
+                        <item name="1" xsi:type="string">customer::default</item>
+                    </item>
+                    <item name="template" xsi:type="array">
+                        <item name="filename" xsi:type="string">Magento/CustomerFinance/Test/_files/template/customer_variation_2</item>
+                        <item name="count" xsi:type="number">2</item>
+                    </item>
+                </item>
+            </data>
+            <constraint name="Magento\CustomerFinance\Test\Constraint\AssertImportCustomerFinances" />
+        </variation>
+    </testCase>
+</config>

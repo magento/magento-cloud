@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -30,7 +30,7 @@ class MatchedCustomers extends Tab
     public function getCustomersGrid()
     {
         return $this->blockFactory->create(
-            'Magento\CustomerSegment\Test\Block\Adminhtml\Report\Customer\Segment\DetailGrid',
+            \Magento\CustomerSegment\Test\Block\Adminhtml\Report\Customer\Segment\DetailGrid::class,
             ['element' => $this->_rootElement->find($this->gridPath)]
         );
     }

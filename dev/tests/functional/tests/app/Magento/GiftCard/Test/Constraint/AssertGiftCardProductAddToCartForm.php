@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -39,9 +39,7 @@ class AssertGiftCardProductAddToCartForm extends AbstractAssertForm
     ) {
         $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
 
-        $giftcardAmounts = ($product->hasData('giftcard_amounts') && $product->getGiftcardAmounts() !== 'none')
-            ? $product->getGiftcardAmounts()
-            : [];
+        $giftcardAmounts = $product->hasData('giftcard_amounts') ? $product->getGiftcardAmounts() : [];
         $amountForm = (1 == count($giftcardAmounts))
             ? [$catalogProductView->getViewBlock()->getPriceBlock()->getPrice()]
             : $catalogProductView->getGiftCardBlock()->getAmountValues();
@@ -99,8 +97,7 @@ class AssertGiftCardProductAddToCartForm extends AbstractAssertForm
         $isAmountInputVisible = $giftCard->isAmountInputVisible();
         $isAllowOpenAmount = $product->hasData('allow_open_amount') && 'Yes' == $product->getAllowOpenAmount();
         $isShowSelectAmount = $product->hasData('giftcard_amounts')
-            && ($isAllowOpenAmount || 1 < count($product->getGiftcardAmounts()))
-            && $product->getGiftcardAmounts() !== 'none';
+            && ($isAllowOpenAmount || 1 < count($product->getGiftcardAmounts()));
         $errors = [];
 
         // Prepare form

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -39,7 +39,7 @@ class RewardPoints extends Block
     protected function getSubscriptionForm()
     {
         return $this->blockFactory->create(
-            '\Magento\Reward\Test\Block\Customer\RewardPoints\Subscription',
+            \Magento\Reward\Test\Block\Customer\RewardPoints\Subscription::class,
             ['element' => $this->_rootElement->find($this->subscriptionForm)]
         );
     }
@@ -52,7 +52,7 @@ class RewardPoints extends Block
     protected function getRewardPointsInformation()
     {
         return $this->blockFactory->create(
-            '\Magento\Reward\Test\Block\Customer\RewardPoints\RewardPointsInformation',
+            \Magento\Reward\Test\Block\Customer\RewardPoints\RewardPointsInformation::class,
             ['element' => $this->_rootElement->find($this->rewardPointsInformation)]
         );
     }

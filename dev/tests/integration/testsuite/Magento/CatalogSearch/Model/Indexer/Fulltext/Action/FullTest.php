@@ -1,20 +1,20 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogSearch\Model\Indexer\Fulltext\Action;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\CatalogSearch\Model\ResourceModel\Engine;
 use Magento\Catalog\Api\ProductAttributeRepositoryInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Store\Model\Store;
+use Magento\Catalog\Model\Product;
 use Magento\TestFramework\Helper\Bootstrap;
 
-class FullTest extends \PHPUnit_Framework_TestCase
+class FullTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CatalogSearch\Model\Indexer\Fulltext\Action\Full
@@ -67,10 +67,10 @@ class FullTest extends \PHPUnit_Framework_TestCase
         $skuId = $attributeRepository->get(ProductInterface::SKU)->getAttributeId();
         $nameId = $attributeRepository->get(ProductInterface::NAME)->getAttributeId();
         /** @see dev/tests/integration/testsuite/Magento/Framework/Search/_files/configurable_attribute.php */
-        $configurableId = $attributeRepository->get('test_configurable_searchable')->getAttributeId();
+        $configurableId = $attributeRepository->get('test_configurable')->getAttributeId();
         return [
-            'configurable_searchable' => [
-                $skuId => 'configurable_searchable',
+            'configurable' => [
+                $skuId => 'configurable',
                 $configurableId => 'Option 1 | Option 2',
                 $nameId => 'Configurable Product | Configurable OptionOption 1 | Configurable OptionOption 2',
             ],

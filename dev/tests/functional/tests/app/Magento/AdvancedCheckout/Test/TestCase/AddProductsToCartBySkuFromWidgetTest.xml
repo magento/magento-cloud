@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\AdvancedCheckout\Test\TestCase\AddProductsToCartBySkuFromWidgetTest" summary="Add Product by SKU from Widget" ticketId="MAGETWO-29781">
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation1">
+            <data name="tag" xsi:type="string">severity:S1</data>
             <data name="description" xsi:type="string">Two Simple products</data>
-            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductSimple::default</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/1" xsi:type="string">catalogProductSimple::default</data>
             <data name="cartBlock" xsi:type="string">cart, cart</data>
             <data name="orderOptions/sku" xsi:type="string">-, -</data>
             <data name="orderOptions/qty" xsi:type="string">1, 1</data>
@@ -17,8 +19,9 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertProductPresentInShoppingCart" />
         </variation>
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation2">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="description" xsi:type="string">Simple product</data>
-            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
             <data name="cartBlock" xsi:type="string">cart</data>
             <data name="orderOptions/sku" xsi:type="string">-</data>
             <data name="orderOptions/qty" xsi:type="string">1</data>
@@ -26,8 +29,9 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertProductPresentInShoppingCart" />
         </variation>
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation3">
+            <data name="tag" xsi:type="string">severity:S1</data>
             <data name="description" xsi:type="string">Simple Out Of Stock</data>
-            <data name="products" xsi:type="string">catalogProductSimple::out_of_stock</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::out_of_stock</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>
             <data name="orderOptions/sku" xsi:type="string">-</data>
             <data name="orderOptions/qty" xsi:type="string">1</data>
@@ -36,9 +40,9 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
         </variation>
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation4">
-            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, severity:S1</data>
             <data name="description" xsi:type="string">Product, for which Qty exceeds maximum allowed in cart</data>
-            <data name="products" xsi:type="string">catalogProductSimple::simple_with_cart_limits</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::simple_with_cart_limits</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>
             <data name="orderOptions/sku" xsi:type="string">-</data>
             <data name="orderOptions/qty" xsi:type="string">6</data>
@@ -47,8 +51,9 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
         </variation>
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation5">
+            <data name="tag" xsi:type="string">severity:S1</data>
             <data name="description" xsi:type="string">Configurable product</data>
-            <data name="products" xsi:type="string">configurableProduct::default</data>
+            <data name="products/0" xsi:type="string">configurableProduct::default</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>
             <data name="orderOptions/sku" xsi:type="string">-</data>
             <data name="orderOptions/qty" xsi:type="string">2</data>
@@ -58,8 +63,9 @@
             <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductConfiguringFromRequiringAttention" />
         </variation>
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation6">
+            <data name="tag" xsi:type="string">severity:S1</data>
             <data name="description" xsi:type="string">Bundle dynamic product</data>
-            <data name="products" xsi:type="string">bundleProduct::bundle_dynamic_product</data>
+            <data name="products/0" xsi:type="string">bundleProduct::bundle_dynamic_product</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>
             <data name="orderOptions/sku" xsi:type="string">-</data>
             <data name="orderOptions/qty" xsi:type="string">1</data>
@@ -68,8 +74,9 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertCartIsEmpty" />
         </variation>
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation7">
+            <data name="tag" xsi:type="string">severity:S1</data>
             <data name="description" xsi:type="string">Simple product with custom options by compound sku</data>
-            <data name="products" xsi:type="string">catalogProductSimple::with_one_custom_option</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::with_one_custom_option</data>
             <data name="cartBlock" xsi:type="string">cart</data>
             <data name="orderOptions/sku" xsi:type="string">simpleWithOptionCompoundSku</data>
             <data name="orderOptions/qty" xsi:type="string">1</data>
@@ -77,8 +84,9 @@
             <constraint name="Magento\Checkout\Test\Constraint\AssertProductPresentInShoppingCart" />
         </variation>
         <variation name="AddProductsToCartBySkuFromWidgetTestVariation8">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="description" xsi:type="string">Product with not valid qty</data>
-            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
             <data name="cartBlock" xsi:type="string">required_attention</data>
             <data name="orderOptions/sku" xsi:type="string">-</data>
             <data name="orderOptions/qty" xsi:type="string">abc</data>

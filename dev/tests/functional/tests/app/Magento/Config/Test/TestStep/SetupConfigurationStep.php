@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -38,11 +38,11 @@ class SetupConfigurationStep implements TestStepInterface
     protected $rollback;
 
     /**
-     * Flush cache after change config flag.
+     * Flush cache.
      *
      * @var bool
      */
-    private $flushCache;
+    protected $flushCache;
 
     /**
      * Cli command to do operations with cache.
@@ -94,14 +94,12 @@ class SetupConfigurationStep implements TestStepInterface
             $config = $this->fixtureFactory->createByCode('configData', ['dataset' => $configDataSet . $prefix]);
             if ($config->hasData('section')) {
                 $config->persist();
-                $result = array_replace_recursive($result, $config->getSection());
+                $result = array_merge($result, $config->getSection());
+            }
+            if ($this->flushCache) {
+                $this->cache->flush();
             }
         }
-
-        if ($this->flushCache) {
-            $this->cache->flush();
-        }
-
         $config = $this->fixtureFactory->createByCode('configData', ['data' => $result]);
 
         return ['config' => $config];

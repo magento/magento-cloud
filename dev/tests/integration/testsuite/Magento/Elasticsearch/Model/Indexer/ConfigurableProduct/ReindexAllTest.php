@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Elasticsearch\Model\Indexer\ConfigurableProduct;
@@ -24,7 +24,7 @@ use Magento\Elasticsearch\SearchAdapter\SearchIndexNameResolver;
  * @magentoAppIsolation enabled
  * @magentoDataFixture Magento/ConfigurableProduct/_files/configurable_products.php
  */
-class ReindexAllTest extends \PHPUnit_Framework_TestCase
+class ReindexAllTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ConnectionManager

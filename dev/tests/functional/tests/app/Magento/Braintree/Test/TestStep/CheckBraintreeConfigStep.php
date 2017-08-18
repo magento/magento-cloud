@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -120,7 +120,7 @@ class CheckBraintreeConfigStep implements TestStepInterface
         $this->braintreeConfigBlock->enableBraintree();
         $this->assertFieldsAreActive->processAssert($this->systemConfigEditSectionPayment, $enablers);
         $this->systemConfigEditSectionPayment->getPageActions()->save();
-        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessageAndRefreshPage();
+        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessage();
     }
 
     /**
@@ -140,6 +140,6 @@ class CheckBraintreeConfigStep implements TestStepInterface
         $this->braintreeConfigBlock->disableBraintree();
         $this->assertFieldsAreActive->processAssert($this->systemConfigEditSectionPayment, $enablers);
         $this->systemConfigEditSectionPayment->getPageActions()->save();
-        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessageAndRefreshPage();
+        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessage();
     }
 }

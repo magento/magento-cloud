@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -37,14 +37,14 @@ class FillBillingInformationStep implements TestStepInterface
      *
      * @var Address
      */
-    private $shippingAddress;
+    protected $shippingAddress;
 
     /**
      * Customer fixture.
      *
      * @var Customer
      */
-    private $customer;
+    protected $customer;
 
     /**
      * "Same as Shipping" checkbox value assertion.
@@ -79,7 +79,7 @@ class FillBillingInformationStep implements TestStepInterface
      *
      * @var ObjectManager $objectManager
      */
-    private $objectManager;
+    protected $objectManager;
 
     /**
      * @constructor
@@ -123,7 +123,6 @@ class FillBillingInformationStep implements TestStepInterface
     public function run()
     {
         $billingAddress = $this->billingAddress;
-
         if ($this->billingCheckboxState) {
             $this->assertBillingAddressCheckbox->processAssert($this->checkoutOnepage, $this->billingCheckboxState);
         }

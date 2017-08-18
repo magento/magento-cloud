@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -29,14 +29,21 @@ class AssertRmaInGrid extends AbstractConstraint
      */
     public function processAssert(Rma $rma, RmaIndex $rmaIndex)
     {
-        /** @var OrderInjectable $order*/
+        /** @var OrderInjectable $order */
         $order = $rma->getDataFieldConfig('order_id')['source']->getOrder();
-        /** @var Customer $customer */
-        $customer = $order->getDataFieldConfig('customer_id')['source']->getCustomer();
         $orderId = $rma->getOrderId();
+
+        if ($order->getData('customer_id')) {
+            /** @var Customer $customer */
+            $customer = $order->getDataFieldConfig('customer_id')['source']->getCustomer();
+            $customerName = $customer->getFirstname() . ' ' . $customer->getLastname();
+        } else {
+            $customerName = 'Guest';
+        }
+
         $filter = [
             'order_id' => $orderId,
-            'customer' => sprintf('%s %s', $customer->getFirstname(), $customer->getLastname()),
+            'customer' => $customerName,
             'status' => $rma->getStatus(),
         ];
 

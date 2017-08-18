@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -46,7 +46,7 @@ class AssertCustomerCustomAttributeNotOnCustomerEditPage extends AbstractConstra
         $customerAccountIndex->getAccountMenuBlock()->openMenuItem('Account Information');
         $isCustomerAttributeVisible = $customerAccountEdit->getAccountInfoForm()
             ->isCustomerAttributeVisible($customerAttribute);
-        $objectManager->create('Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep')->run();
+        $objectManager->create(\Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep::class)->run();
         \PHPUnit_Framework_Assert::assertFalse(
             $isCustomerAttributeVisible,
             'Customer Custom Attribute with attribute code: \'' . $customerAttribute->getAttributeCode() . '\' '

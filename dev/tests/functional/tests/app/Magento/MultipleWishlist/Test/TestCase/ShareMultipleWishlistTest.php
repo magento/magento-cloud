@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,14 +28,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Click "Share Wishlist" button
  * 6. Perform all assertions
  *
- * @group Multiple_Wishlists_(CS)
+ * @group Multiple_Wishlists
  * @ZephyrId MAGETWO-28982
  */
 class ShareMultipleWishlistTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -74,7 +73,7 @@ class ShareMultipleWishlistTest extends Injectable
     public function __prepare()
     {
         $setupConfig = $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default']
         );
         $setupConfig->run();
@@ -121,7 +120,7 @@ class ShareMultipleWishlistTest extends Injectable
 
         // Steps
         $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         )->run();
         $this->browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
@@ -139,7 +138,7 @@ class ShareMultipleWishlistTest extends Injectable
     public function tearDown()
     {
         $setupConfig = $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default', 'rollback' => true]
         );
         $setupConfig->run();

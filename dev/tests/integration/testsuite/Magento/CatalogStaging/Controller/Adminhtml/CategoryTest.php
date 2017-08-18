@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogStaging\Controller\Adminhtml;
@@ -58,13 +58,13 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         parent::setUp();
 
-        $this->_objectManager->get('Magento\Backend\Model\UrlInterface')->turnOffSecretKey();
+        $this->_objectManager->get(\Magento\Backend\Model\UrlInterface::class)->turnOffSecretKey();
 
-        $this->auth = $this->_objectManager->get('Magento\Backend\Model\Auth');
+        $this->auth = $this->_objectManager->get(\Magento\Backend\Model\Auth::class);
         $this->session = $this->auth->getAuthStorage();
         $credentials = $this->getAdminCredentials();
         $this->auth->login($credentials['user'], $credentials['password']);
-        $this->_objectManager->get('Magento\Security\Model\Plugin\Auth')->afterLogin($this->auth);
+        $this->_objectManager->get(\Magento\Security\Model\Plugin\Auth::class)->afterLogin($this->auth);
     }
 
     /**
@@ -90,22 +90,22 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->auth->getAuthStorage()->destroy(['send_expire_cookie' => false]);
         $this->auth = null;
         $this->session = null;
-        $this->_objectManager->get('Magento\Backend\Model\UrlInterface')->turnOnSecretKey();
+        $this->_objectManager->get(\Magento\Backend\Model\UrlInterface::class)->turnOnSecretKey();
         parent::tearDown();
     }
 
     /**
      * Utilize backend session model by default
      *
-     * @param \PHPUnit_Framework_Constraint $constraint
+     * @param \PHPUnit\Framework\Constraint\Constraint $constraint
      * @param string|null $messageType
      * @param string $messageManagerClass
      * @return void
      */
     public function assertSessionMessages(
-        \PHPUnit_Framework_Constraint $constraint,
+        \PHPUnit\Framework\Constraint\Constraint $constraint,
         $messageType = null,
-        $messageManagerClass = 'Magento\Framework\Message\Manager'
+        $messageManagerClass = \Magento\Framework\Message\Manager::class
     ) {
         parent::assertSessionMessages($constraint, $messageType, $messageManagerClass);
     }
@@ -144,19 +144,19 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->markTestSkipped('MAGETWO-54657');
         /** @var $storeManager \Magento\Store\Model\StoreManagerInterface */
         $storeManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Store\Model\StoreManagerInterface'
+            \Magento\Store\Model\StoreManagerInterface::class
         );
 
         //Change and check category update values in 'fixturestore' store
 
         /** @var $store \Magento\Store\Model\Store */
-        $store = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Store\Model\Store');
+        $store = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Store\Model\Store::class);
         $store->load('fixturestore', 'code');
         $storeId = $store->getId();
 
         /** @var $category \Magento\Catalog\Model\Category */
         $category = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Catalog\Model\Category'
+            \Magento\Catalog\Model\Category::class
         );
         $store = $storeManager->getStore($storeId);
         $storeManager->setCurrentStore($store->getCode());
@@ -177,7 +177,7 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
 
         /** @var $category \Magento\Catalog\Model\Category */
         $category = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Catalog\Model\Category'
+            \Magento\Catalog\Model\Category::class
         );
         $store = $storeManager->getStore($storeId);
         $storeManager->setCurrentStore($store->getCode());
@@ -190,7 +190,7 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
 
         /** @var $update \Magento\Staging\Model\Update */
         $update = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Staging\Model\Update'
+            \Magento\Staging\Model\Update::class
         );
         $update->load($createdIn);
         $this->assertEquals($updateName, $update->getData('name'));
@@ -210,7 +210,7 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
 
         /** @var $category \Magento\Catalog\Model\Category */
         $category = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Catalog\Model\Category'
+            \Magento\Catalog\Model\Category::class
         );
         $store = $storeManager->getStore($storeId);
         $storeManager->setCurrentStore($store->getCode());
@@ -220,7 +220,7 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
 
         /** @var $update \Magento\Staging\Model\Update */
         $update = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Staging\Model\Update'
+            \Magento\Staging\Model\Update::class
         );
         $update->load($createdIn);
         $this->assertEquals($secondUpdateName, $update->getData('name'));
@@ -229,13 +229,13 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractController
         //Check last category update values in 'default' store
 
         /** @var $store \Magento\Store\Model\Store */
-        $store = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Store\Model\Store');
+        $store = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Store\Model\Store::class);
         $store->load('default', 'code');
         $defaultStoreId = $store->getId();
 
         /** @var $category \Magento\Catalog\Model\Category */
         $category = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Catalog\Model\Category'
+            \Magento\Catalog\Model\Category::class
         );
         $store = $storeManager->getStore($defaultStoreId);
         $storeManager->setCurrentStore($store->getCode());

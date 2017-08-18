@@ -1,9 +1,8 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 namespace Magento\Eway\Test\TestCase;
 
 use Magento\Mtf\TestCase\Scenario;
@@ -29,7 +28,7 @@ use Magento\Mtf\TestCase\Scenario;
  * 11. Perform assertions.
  *
  * @group Eway
- * @ZephyrId MAGETWO-67461
+ * @ZephyrId MAGETWO-41667
  */
 class OnePageCheckoutSharedPagesTest extends Scenario
 {

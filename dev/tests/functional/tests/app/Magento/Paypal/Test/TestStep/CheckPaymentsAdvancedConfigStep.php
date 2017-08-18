@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -130,7 +130,7 @@ class CheckPaymentsAdvancedConfigStep implements TestStepInterface
             [$enablers['Enable this Solution'], $enablers['Enable PayPal Credit']]
         );
         $this->systemConfigEditSectionPayment->getPageActions()->save();
-        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessageAndRefreshPage();
+        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessage();
     }
 
     /**
@@ -150,6 +150,6 @@ class CheckPaymentsAdvancedConfigStep implements TestStepInterface
             [$enablers['Enable PayPal Credit']]
         );
         $this->systemConfigEditSectionPayment->getPageActions()->save();
-        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessageAndRefreshPage();
+        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessage();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -13,5 +13,23 @@ use Magento\Backend\Test\Block\Widget\FormTabs;
  */
 class CustomerCustomAttributesForm extends FormTabs
 {
-    //
+    /**
+     * Get fields status array.
+     *
+     * @param array $fields [optional]
+     * @return array
+     */
+    public function getFieldsStatus(array $fields = [])
+    {
+        $tab = $this->getTab('properties');
+        $dataMapping = $tab->dataMapping($fields);
+        $fieldsStatuses = [];
+        foreach ($dataMapping as $code => $field) {
+            $fieldsStatuses[$code] = $this->_rootElement
+                ->find($field['selector'], $field['strategy'])
+                ->isDisabled();
+        }
+
+        return $fieldsStatuses;
+    }
 }

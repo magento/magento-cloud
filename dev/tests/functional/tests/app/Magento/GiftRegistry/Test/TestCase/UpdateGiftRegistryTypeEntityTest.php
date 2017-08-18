@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,14 +25,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Update data according to dataset
  * 5. Perform all assertions
  *
- * @group Gift_Registry_(CS)
+ * @group Gift_Registry
  * @ZephyrId MAGETWO-27333
  */
 class UpdateGiftRegistryTypeEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**

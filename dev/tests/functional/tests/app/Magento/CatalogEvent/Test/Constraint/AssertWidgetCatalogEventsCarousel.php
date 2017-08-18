@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -48,13 +48,12 @@ class AssertWidgetCatalogEventsCarousel extends AbstractConstraint
         $event2->persist();
         $cmsIndex->open();
         $categoryName = $event2->getCategoryId();
-        $cmsIndex->getTopmenu()->selectCategoryByName($categoryName);
         \PHPUnit_Framework_Assert::assertTrue(
             $catalogCategoryView->getWidgetView()->isWidgetVisible($widget, $categoryName),
             'Widget is absent on Category page.'
         );
 
-        $cmsIndex->getWidgetView()->clickToWidget($widget, 'Go To Sale');
+        $cmsIndex->getCatalogEventWidgetView()->openInterestedEvent($categoryName);
         $pageTitle = $cmsIndex->getCmsPageBlock()->getPageTitle();
         \PHPUnit_Framework_Assert::assertEquals(
             $categoryName,

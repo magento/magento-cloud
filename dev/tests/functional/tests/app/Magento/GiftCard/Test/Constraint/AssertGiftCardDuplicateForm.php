@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -34,6 +34,7 @@ class AssertGiftCardDuplicateForm extends AssertProductDuplicateForm
         $productGrid->getProductGrid()->searchAndOpen($filter);
 
         $formData = $productPage->getProductForm()->getData($product);
+        $formData['website_ids'] = [$formData['website_ids'][0]];
         $fixtureData = $this->prepareFixtureData($product->getData());
 
         $errors = $this->verifyData($fixtureData, $formData);

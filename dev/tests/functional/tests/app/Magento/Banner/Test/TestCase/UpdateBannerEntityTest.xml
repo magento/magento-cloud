@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Banner\Test\TestCase\UpdateBannerEntityTest" summary="Update Banner" ticketId="MAGETWO-25639">
         <variation name="UpdateBannerEntityTestVariation1">
+            <data name="tag" xsi:type="string">severity:S1</data>
             <data name="bannerOrigin/dataset" xsi:type="string">default</data>
             <data name="banner/data/name" xsi:type="string">banner_update_%isolation%</data>
             <data name="banner/data/is_enabled" xsi:type="string">Inactive</data>

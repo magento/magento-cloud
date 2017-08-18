@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -19,6 +19,12 @@
                 <item name="scope_id" xsi:type="number">1</item>
                 <item name="label" xsi:type="string"/>
                 <item name="value" xsi:type="string">EWAY_SANDBOX_API_PASSWORD</item>
+            </field>
+            <field name="payment/eway/sandbox_encryption_key" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string"/>
+                <item name="value" xsi:type="string">EWAY_SANDBOX_ENCRYPTION_KEY</item>
             </field>
             <field name="payment/eway/sandbox_flag" xsi:type="array">
                 <item name="scope" xsi:type="string">payment</item>
@@ -48,55 +54,21 @@
             </field>
         </dataset>
 
+        <dataset name="eway_direct">
+            <field name="payment/eway/connection_type" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Direct Connection</item>
+                <item name="value" xsi:type="string">direct</item>
+            </field>
+        </dataset>
+
         <dataset name="eway_shared_pages">
             <field name="payment/eway/connection_type" xsi:type="array">
                 <item name="scope" xsi:type="string">payment</item>
                 <item name="scope_id" xsi:type="number">1</item>
                 <item name="label" xsi:type="string">Responsive shared page</item>
                 <item name="value" xsi:type="string">shared</item>
-            </field>
-        </dataset>
-
-        <dataset name="config_base_currency_aud">
-            <field name="currency/options/allow" xsi:type="array">
-                <item name="scope" xsi:type="string">currency</item>
-                <item name="scope_id" xsi:type="number">1</item>
-                <item name="value" xsi:type="array">
-                    <item name="Australian Dollar" xsi:type="string">AUD</item>
-                </item>
-            </field>
-            <field name="currency/options/base" xsi:type="array">
-                <item name="scope" xsi:type="string">currency</item>
-                <item name="label" xsi:type="string">Australian Dollar</item>
-                <item name="scope_id" xsi:type="number">1</item>
-                <item name="value" xsi:type="string">AUD</item>
-            </field>
-            <field name="currency/options/default" xsi:type="array">
-                <item name="scope" xsi:type="string">currency</item>
-                <item name="label" xsi:type="string">Australian Dollar</item>
-                <item name="scope_id" xsi:type="number">1</item>
-                <item name="value" xsi:type="string">AUD</item>
-            </field>
-        </dataset>
-        <dataset name="config_base_currency_aud_rollback">
-            <field name="currency/options/allow" xsi:type="array">
-                <item name="scope" xsi:type="string">currency</item>
-                <item name="scope_id" xsi:type="number">1</item>
-                <item name="value" xsi:type="array">
-                    <item name="US Dollar" xsi:type="string">USD</item>
-                </item>
-            </field>
-            <field name="currency/options/base" xsi:type="array">
-                <item name="scope" xsi:type="string">currency</item>
-                <item name="label" xsi:type="string">US Dollar</item>
-                <item name="scope_id" xsi:type="number">1</item>
-                <item name="value" xsi:type="string">USD</item>
-            </field>
-            <field name="currency/options/default" xsi:type="array">
-                <item name="scope" xsi:type="string">currency</item>
-                <item name="label" xsi:type="string">US Dollar</item>
-                <item name="scope_id" xsi:type="number">1</item>
-                <item name="value" xsi:type="string">USD</item>
             </field>
         </dataset>
     </repository>

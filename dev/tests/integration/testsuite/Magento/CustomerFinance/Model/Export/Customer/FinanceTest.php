@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerFinance\Model\Export\Customer;
@@ -11,12 +11,12 @@ use Magento\CustomerFinance\Model\ResourceModel\Customer\Attribute\Finance\Colle
  * @magentoConfigFixture current_store magento_reward/general/is_enabled            1
  * @magentoConfigFixture current_store customer/magento_customerbalance/is_enabled  1
  */
-class FinanceTest extends \PHPUnit_Framework_TestCase
+class FinanceTest extends \PHPUnit\Framework\TestCase
 {
     protected function tearDown()
     {
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Store\Model\StoreManagerInterface'
+            \Magento\Store\Model\StoreManagerInterface::class
         )->reinitStores();
     }
 
@@ -36,7 +36,7 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(
             count(
                 \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-                    'Magento\Store\Model\StoreManagerInterface'
+                    \Magento\Store\Model\StoreManagerInterface::class
                 )->getWebsites()
             ),
             $csvData
@@ -57,7 +57,7 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
-        $websites = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getWebsites();
+        $websites = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->getWebsites();
         /** @var $website \Magento\Store\Model\Website */
         foreach ($websites as $website) {
             $websiteCode = $website->getCode();
@@ -68,21 +68,21 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
             // prepare correct data
             $correctCustomerData = [
                 Finance::COLUMN_EMAIL => $objectManager->get(
-                    'Magento\Framework\Registry'
+                    \Magento\Framework\Registry::class
                 )->registry(
                     'customer_finance_email'
                 ),
                 Finance::COLUMN_WEBSITE => \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-                    'Magento\Store\Model\StoreManagerInterface'
+                    \Magento\Store\Model\StoreManagerInterface::class
                 )->getStore()->getWebsite()->getCode(),
                 Finance::COLUMN_FINANCE_WEBSITE => $websiteCode,
                 FinanceAttributeCollection::COLUMN_CUSTOMER_BALANCE => $objectManager->get(
-                    'Magento\Framework\Registry'
+                    \Magento\Framework\Registry::class
                 )->registry(
                     'customer_balance_' . $websiteCode
                 ),
                 FinanceAttributeCollection::COLUMN_REWARD_POINTS => $objectManager->get(
-                    'Magento\Framework\Registry'
+                    \Magento\Framework\Registry::class
                 )->registry(
                     'reward_point_balance_' . $websiteCode
                 ),
@@ -144,12 +144,12 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
     public function testGetAttributeCollection()
     {
         $customerFinance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\Export\Customer\Finance'
+            \Magento\CustomerFinance\Model\Export\Customer\Finance::class
         );
         $attributeCollection = $customerFinance->getAttributeCollection();
 
         $this->assertInstanceOf(
-            'Magento\CustomerFinance\Model\ResourceModel\Customer\Attribute\Finance\Collection',
+            \Magento\CustomerFinance\Model\ResourceModel\Customer\Attribute\Finance\Collection::class,
             $attributeCollection
         );
     }
@@ -206,11 +206,11 @@ class FinanceTest extends \PHPUnit_Framework_TestCase
     protected function _createCustomerFinanceExport()
     {
         $customerFinance = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerFinance\Model\Export\Customer\Finance'
+            \Magento\CustomerFinance\Model\Export\Customer\Finance::class
         );
         $customerFinance->setWriter(
             \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-                'Magento\ImportExport\Model\Export\Adapter\Csv'
+                \Magento\ImportExport\Model\Export\Adapter\Csv::class
             )
         );
         return $customerFinance;

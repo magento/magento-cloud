@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,14 +25,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Fill data according to dataset
  * 5. Perform all assertions
  *
- * @group CMS_Content_(PS)
+ * @group CMS_Content
  * @ZephyrId MAGETWO-25272
  */
 class CreateBannerEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'PS';
+    const SEVERITY = 'S1';
     /* end tags */
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 use Magento\TestFramework\Helper\Bootstrap;
@@ -9,14 +9,14 @@ use Magento\Staging\Model\VersionManager;
 /**
  * @var $resourceModel Magento\CatalogRule\Model\ResourceModel\Rule
  */
-$resourceModel = Bootstrap::getObjectManager()->create('\Magento\Staging\Model\ResourceModel\Update');
+$resourceModel = Bootstrap::getObjectManager()->create(\Magento\Staging\Model\ResourceModel\Update::class);
 $entityIdField = $resourceModel->getIdFieldName();
 $entityTable = $resourceModel->getMainTable();
 
 /**
  * @var $resource Magento\Framework\App\ResourceConnection
  */
-$resource = Bootstrap::getObjectManager()->get('Magento\Framework\App\ResourceConnection');
+$resource = Bootstrap::getObjectManager()->get(\Magento\Framework\App\ResourceConnection::class);
 $connection = $resource->getConnection();
 
 $updates = [

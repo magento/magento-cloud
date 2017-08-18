@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\AdvancedSalesRule\Model\Indexer\SalesRule\Action;
@@ -10,7 +10,7 @@ namespace Magento\AdvancedSalesRule\Model\Indexer\SalesRule\Action;
  * @magentoDbIsolation enabled
  * @magentoAppIsolation enabled
  */
-class RowsTest extends \PHPUnit_Framework_TestCase
+class RowsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @magentoDbIsolation enabled
@@ -23,16 +23,16 @@ class RowsTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         /** @var \Magento\SalesRule\Model\Rule $rule */
-        $rule1 = $objectManager->get('Magento\Framework\Registry')
+        $rule1 = $objectManager->get(\Magento\Framework\Registry::class)
             ->registry('_fixture/Magento_SalesRule_Multiple_Categories');
 
         /** @var \Magento\SalesRule\Model\Rule $rule */
-        $rule2 = $objectManager->get('Magento\Framework\Registry')
+        $rule2 = $objectManager->get(\Magento\Framework\Registry::class)
             ->registry('_fixture/Magento_SalesRule_Category');
 
         /** @var \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter $filter */
         $filter = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter'
+            \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter::class
         );
 
         $connection = $filter->getConnection();
@@ -45,7 +45,7 @@ class RowsTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(empty($items));
 
         /** @var \Magento\AdvancedSalesRule\Model\Indexer\SalesRule\Action\Rows $action */
-        $action = $objectManager->create('Magento\AdvancedSalesRule\Model\Indexer\SalesRule\Action\Rows');
+        $action = $objectManager->create(\Magento\AdvancedSalesRule\Model\Indexer\SalesRule\Action\Rows::class);
         $action->execute([$rule1->getRuleId(), $rule2->getRuleId()]);
 
         $connection = $filter->getConnection();
@@ -61,7 +61,7 @@ class RowsTest extends \PHPUnit_Framework_TestCase
                     'weight' => '0.5',
                     'filter_text' => 'product:category:2',
                     'filter_text_generator_class' =>
-                        'Magento\\AdvancedSalesRule\\Model\\Rule\\Condition\\FilterTextGenerator\\Product\\Category',
+                        \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Category::class,
                     'filter_text_generator_arguments' => '[]',
                 ],
                 [
@@ -70,7 +70,7 @@ class RowsTest extends \PHPUnit_Framework_TestCase
                     'weight' => '0.5',
                     'filter_text' => 'product:category:3',
                     'filter_text_generator_class' =>
-                        'Magento\\AdvancedSalesRule\\Model\\Rule\\Condition\\FilterTextGenerator\\Product\\Category',
+                        \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Category::class,
                     'filter_text_generator_arguments' => '[]',
                 ],
                 [
@@ -79,7 +79,7 @@ class RowsTest extends \PHPUnit_Framework_TestCase
                     'weight' => '1',
                     'filter_text' => 'product:category:66',
                     'filter_text_generator_class' =>
-                        'Magento\\AdvancedSalesRule\\Model\\Rule\\Condition\\FilterTextGenerator\\Product\\Category',
+                        \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Category::class,
                     'filter_text_generator_arguments' => '[]',
                 ]
             ],

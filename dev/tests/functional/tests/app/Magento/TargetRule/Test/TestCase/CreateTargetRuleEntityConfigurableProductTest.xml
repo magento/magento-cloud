@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
-    <testCase name="Magento\TargetRule\Test\TestCase\CreateTargetRuleEntityConfigurableProductTest" summary="Create Target Rule for Configurable Product" ticketId="MAGETWO-69547">
+    <testCase name="Magento\TargetRule\Test\TestCase\CreateTargetRuleEntityConfigurableProductTest" summary="Create Target Rule for Configurable Product" ticketId="MAGETWO-61830">
         <variation name="TargetRule_Create_UpSell_Configurable_Product_With_Attribute_Conditions" summary="Create target rule for up-sell configurable product with attribute conditions">
             <data name="customerSegment/dataset" xsi:type="string">-</data>
             <data name="conditionEntity" xsi:type="string">attribute</data>

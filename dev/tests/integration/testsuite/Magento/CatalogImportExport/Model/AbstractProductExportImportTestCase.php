@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogImportExport\Model;
@@ -14,7 +14,7 @@ use Magento\Framework\App\Filesystem\DirectoryList;
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-abstract class AbstractProductExportImportTestCase extends \PHPUnit_Framework_TestCase
+abstract class AbstractProductExportImportTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CatalogImportExport\Model\Export\Product
@@ -155,7 +155,7 @@ abstract class AbstractProductExportImportTestCase extends \PHPUnit_Framework_Te
 
             $this->assertEquals(
                 $value,
-                $actual[$key],
+                isset($actual[$key]) ? $actual[$key] : null,
                 'Assert value at key - ' . $key . ' failed'
             );
         }

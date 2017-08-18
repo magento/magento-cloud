@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition;
@@ -10,7 +10,7 @@ namespace Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition;
  * @magentoAppIsolation enabled
  * @magentoDataFixture Magento/SalesRule/_files/rules_category.php
  */
-class FilterTest extends \PHPUnit_Framework_TestCase
+class FilterTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider insertRuleFilterDataProvider
@@ -22,7 +22,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         /** @var \Magento\SalesRule\Model\Rule $rule */
-        $rule = $objectManager->get('Magento\Framework\Registry')
+        $rule = $objectManager->get(\Magento\Framework\Registry::class)
             ->registry('_fixture/Magento_SalesRule_Category');
 
         foreach ($data as $key => $tmp) {
@@ -31,7 +31,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 
         /** @var \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter $filter */
         $filter = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter'
+            \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter::class
         );
 
         $connection = $filter->getConnection();
@@ -54,12 +54,12 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         /** @var \Magento\SalesRule\Model\Rule $rule */
-        $rule = $objectManager->get('Magento\Framework\Registry')
+        $rule = $objectManager->get(\Magento\Framework\Registry::class)
             ->registry('_fixture/Magento_SalesRule_Category');
 
         /** @var \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter $filter */
         $filter = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter'
+            \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter::class
         );
 
         $connection = $filter->getConnection();
@@ -88,7 +88,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
                         'weight' => 0.5,
                         'filter_text' => 'product:category:2',
                         'filter_text_generator_class' =>
-                           'Magento\\AdvancedSalesRule\\Model\\Rule\\Condition\\FilterTextGenerator\\Product\\Category',
+                            \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Category::class,
                         'filter_text_generator_arguments' => '[]'
                     ],
                     [
@@ -97,7 +97,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
                         'weight' => 0.5,
                         'filter_text' => 'product:category:3',
                         'filter_text_generator_class' =>
-                           'Magento\\AdvancedSalesRule\\Model\\Rule\\Condition\\FilterTextGenerator\\Product\\Category',
+                            \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Category::class,
                         'filter_text_generator_arguments' => '[]'
                     ],
                 ]
@@ -119,7 +119,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 
         /** @var \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter $filter */
         $filter = $objectManager->create(
-            'Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter'
+            \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter::class
         );
 
         $connection = $filter->getConnection();
@@ -154,7 +154,6 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-
     /**
      * @return array
      */
@@ -163,17 +162,17 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         return [
             'attr_set' =>  [
                 'filter_text_generator_class' =>
-                    'Magento\\AdvancedSalesRule\\Model\\Rule\\Condition\\FilterTextGenerator\\Product\\Attribute',
+                    \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Attribute::class,
                 'filter_text_generator_arguments' => '{"attribute":"attribute_set_id"}',
             ],
             'sku' =>  [
                 'filter_text_generator_class' =>
-                    'Magento\\AdvancedSalesRule\\Model\\Rule\\Condition\\FilterTextGenerator\\Product\\Attribute',
+                    \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Attribute::class,
                 'filter_text_generator_arguments' => '{"attribute":"sku"}',
             ],
             'category' =>  [
                 'filter_text_generator_class' =>
-                    'Magento\\AdvancedSalesRule\\Model\\Rule\\Condition\\FilterTextGenerator\\Product\\Category',
+                    \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Category::class,
                 'filter_text_generator_arguments' => '[]',
             ]
         ];
@@ -217,7 +216,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         /** @var \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter $filter */
         $filter = $objectManager->create(
-            'Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter'
+            \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter::class
         );
 
         $this->assertEquals($count, count($filter->filterRules($inputArray)));

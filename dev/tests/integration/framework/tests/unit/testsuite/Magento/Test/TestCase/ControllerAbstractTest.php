@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Test\TestCase;
@@ -29,9 +29,9 @@ class ControllerAbstractTest extends \Magento\TestFramework\TestCase\AbstractCon
     {
         $testObjectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
 
-        $this->messageManager = $this->getMock('\Magento\Framework\Message\Manager', [], [], '', false);
-        $this->cookieManagerMock = $this->getMock(CookieManagerInterface::class, [], [], '', false);
-        $this->interpretationStrategyMock = $this->getMock(InterpretationStrategyInterface::class, [], [], '', false);
+        $this->messageManager = $this->createMock(\Magento\Framework\Message\Manager::class);
+        $this->cookieManagerMock = $this->createMock(CookieManagerInterface::class);
+        $this->interpretationStrategyMock = $this->createMock(InterpretationStrategyInterface::class);
         $this->interpretationStrategyMock->expects($this->any())
             ->method('interpret')
             ->willReturnCallback(
@@ -40,23 +40,18 @@ class ControllerAbstractTest extends \Magento\TestFramework\TestCase\AbstractCon
                 }
             );
 
-        $request = $testObjectManager->getObject('Magento\TestFramework\Request');
-        $response = $testObjectManager->getObject('Magento\TestFramework\Response');
-        $this->_objectManager = $this->getMock(
-            'Magento\TestFramework\ObjectManager',
-            ['get', 'create'],
-            [],
-            '',
-            false
-        );
+        $request = $testObjectManager->getObject(\Magento\TestFramework\Request::class);
+        $response = $testObjectManager->getObject(\Magento\TestFramework\Response::class);
+        $this->_objectManager =
+            $this->createPartialMock(\Magento\TestFramework\ObjectManager::class, ['get', 'create']);
         $this->_objectManager->expects($this->any())
             ->method('get')
             ->will(
                 $this->returnValueMap(
                     [
-                        ['Magento\Framework\App\RequestInterface', $request],
-                        ['Magento\Framework\App\ResponseInterface', $response],
-                        ['Magento\Framework\Message\Manager', $this->messageManager],
+                        [\Magento\Framework\App\RequestInterface::class, $request],
+                        [\Magento\Framework\App\ResponseInterface::class, $response],
+                        [\Magento\Framework\Message\Manager::class, $this->messageManager],
                         [CookieManagerInterface::class, $this->cookieManagerMock],
                         [InterpretationStrategyInterface::class, $this->interpretationStrategyMock],
                     ]
@@ -73,13 +68,7 @@ class ControllerAbstractTest extends \Magento\TestFramework\TestCase\AbstractCon
     protected function _getBootstrap()
     {
         if (!$this->_bootstrap) {
-            $this->_bootstrap = $this->getMock(
-                'Magento\TestFramework\Bootstrap',
-                ['getAllOptions'],
-                [],
-                '',
-                false
-            );
+            $this->_bootstrap = $this->createPartialMock(\Magento\TestFramework\Bootstrap::class, ['getAllOptions']);
         }
         return $this->_bootstrap;
     }
@@ -87,13 +76,13 @@ class ControllerAbstractTest extends \Magento\TestFramework\TestCase\AbstractCon
     public function testGetRequest()
     {
         $request = $this->getRequest();
-        $this->assertInstanceOf('Magento\TestFramework\Request', $request);
+        $this->assertInstanceOf(\Magento\TestFramework\Request::class, $request);
     }
 
     public function testGetResponse()
     {
         $response = $this->getResponse();
-        $this->assertInstanceOf('Magento\TestFramework\Response', $response);
+        $this->assertInstanceOf(\Magento\TestFramework\Response::class, $response);
     }
 
     /**
@@ -110,14 +99,14 @@ class ControllerAbstractTest extends \Magento\TestFramework\TestCase\AbstractCon
         $this->getResponse()->setBody('');
         try {
             $this->assert404NotFound();
-        } catch (\PHPUnit_Framework_AssertionFailedError $e) {
+        } catch (\PHPUnit\Framework\AssertionFailedError $e) {
             return;
         }
         $this->fail('Failed response body validation');
     }
 
     /**
-     * @expectedException \PHPUnit_Framework_AssertionFailedError
+     * @expectedException \PHPUnit\Framework\AssertionFailedError
      */
     public function testAssertRedirectFailure()
     {
@@ -134,7 +123,7 @@ class ControllerAbstractTest extends \Magento\TestFramework\TestCase\AbstractCon
          * which requires fully initialized application environment intentionally not available
          * for unit tests
          */
-        $setRedirectMethod = new \ReflectionMethod('Magento\Framework\App\Response\Http', 'setRedirect');
+        $setRedirectMethod = new \ReflectionMethod(\Magento\Framework\App\Response\Http::class, 'setRedirect');
         $setRedirectMethod->invoke($this->getResponse(), 'http://magentocommerce.com');
         $this->assertRedirect();
         $this->assertRedirect($this->equalTo('http://magentocommerce.com'));
@@ -148,8 +137,9 @@ class ControllerAbstractTest extends \Magento\TestFramework\TestCase\AbstractCon
     public function testAssertSessionMessagesSuccess(array $expectedMessages, $messageTypeFilter)
     {
         $this->addSessionMessages();
-        /** @var \PHPUnit_Framework_MockObject_MockObject|\PHPUnit_Framework_Constraint $constraint */
-        $constraint = $this->getMock('PHPUnit_Framework_Constraint', ['toString', 'matches']);
+        /** @var \PHPUnit_Framework_MockObject_MockObject|\PHPUnit\Framework\Constraint\Constraint $constraint */
+        $constraint =
+            $this->createPartialMock(\PHPUnit\Framework\Constraint\Constraint::class, ['toString', 'matches']);
         $constraint->expects(
             $this->once()
         )->method('matches')

@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\TargetRule\Model;
 
-class RuleTest extends \PHPUnit_Framework_TestCase
+class RuleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\TargetRule\Model\Rule
@@ -15,7 +15,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\TargetRule\Model\Rule'
+            \Magento\TargetRule\Model\Rule::class
         );
     }
 
@@ -29,7 +29,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     {
         $data = new \Magento\Framework\DataObject();
         $data->setRule(
-            ['actions' => ['test' => ['type' => 'Magento\TargetRule\Model\Actions\Condition\Combine']]]
+            ['actions' => ['test' => ['type' => \Magento\TargetRule\Model\Actions\Condition\Combine::class]]]
         );
 
         $this->assertTrue($this->_model->validateData($data), 'True for right data');
@@ -46,7 +46,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
             [
                 'actions' => [
                     'test' => [
-                        'type' => 'Magento\TargetRule\Model\Actions\Condition\Combine',
+                        'type' => \Magento\TargetRule\Model\Actions\Condition\Combine::class,
                         'attribute' => $code,
                     ],
                 ],

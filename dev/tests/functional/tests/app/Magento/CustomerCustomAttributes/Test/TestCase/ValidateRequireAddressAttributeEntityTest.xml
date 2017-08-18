@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerCustomAttributes\Test\TestCase\ValidateRequireAddressAttributeEntityTest" summary="Validation Require Customer Address Attribute" ticketId="MAGETWO-59593">
+        <variation name="ValidateRequireAddressAttributeEntityTestVariation1">
+            <data name="description" xsi:type="string">Assert that require customer custom attribute is validate on One page checkout new shipping address page</data>
+            <data name="customAttribute/dataset" xsi:type="string">text_field_require</data>
+            <data name="customer/dataset" xsi:type="string">johndoe_with_addresses</data>
+            <data name="products" xsi:type="array">
+                <item name="0" xsi:type="string">catalogProductSimple::default</item>
+            </data>
+            <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerAddressAttributeErrorRequireMessage"/>
+        </variation>
+    </testCase>
+</config>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -66,18 +66,18 @@ class FormPageActions extends ParentFormPageActions
     private $storeSwitcherBlock = '.store-switcher';
 
     /**
-     * Selector for confirm.
-     *
-     * @var string
-     */
-    private $confirmModal = '.confirm._show[data-role=modal]';
-
-    /**
      * Dropdown block locator.
      *
      * @var string
      */
     private $dropdownBlock = '.dropdown';
+
+    /**
+     * Selector for confirm.
+     *
+     * @var string
+     */
+    private $confirmModal = '.confirm._show[data-role=modal]';
 
     /**
      * Click on "Save" button.

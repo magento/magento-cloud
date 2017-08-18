@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -11,7 +11,7 @@ namespace Magento\Invitation\Block\Adminhtml\Invitation\View\Tab;
  *
  * @magentoAppArea adminhtml
  */
-class GeneralTest extends \PHPUnit_Framework_TestCase
+class GeneralTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @magentoAppIsolation enabled
@@ -21,12 +21,12 @@ class GeneralTest extends \PHPUnit_Framework_TestCase
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $objectManager->get(
-            'Magento\Framework\View\DesignInterface'
+            \Magento\Framework\View\DesignInterface::class
         )->setArea(
             \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE
         )->setDefaultDesignTheme();
 
-        $block = $objectManager->create('Magento\Invitation\Block\Adminhtml\Invitation\View\Tab\General');
+        $block = $objectManager->create(\Magento\Invitation\Block\Adminhtml\Invitation\View\Tab\General::class);
 
         $this->assertContains("General", $block->getCustomerGroupCode(1));
         $this->assertContains("Wholesale", $block->getCustomerGroupCode(2));

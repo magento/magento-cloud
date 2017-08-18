@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -24,4 +24,11 @@ class Grid extends \Magento\Ui\Test\Block\Adminhtml\DataGrid
             'selector' => 'input[name="order_increment_id"]',
         ],
     ];
+
+    /**
+     * Locator value for "View" link inside action column.
+     *
+     * @var string
+     */
+    protected $editLink = '.action-menu-item[href*="view"]';
 }

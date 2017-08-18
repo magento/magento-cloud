@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,23 +10,20 @@ use Magento\Mtf\Constraint\AbstractConstraint;
 use Magento\Checkout\Test\Page\CheckoutOnepage;
 use Magento\Cms\Test\Page\CmsIndex;
 
-/**
- * Assert that quantity of visible Cart items is the same as minicart configuration value.
- */
 class AssertVisibleItemsQtyMessageOnCheckoutSummaryBlock extends AbstractConstraint
 {
     /**
-     * Items counter default message.
+     * Items counter default message
      */
     const ITEMS_COUNTER_MASSAGE = "%s Items in Cart";
 
     /**
-     * Items counter message with limitations.
+     * Items counter message with limitations
      */
     const VISIBLE_ITEMS_COUNTER_MASSAGE = "%s of %s Items in Cart";
 
     /**
-     * Assert that quantity of visible Cart items is the same as minicart configuration value.
+     * Assert that quantity of visible Cart items are the same as minicart configuration value.
      *
      * @param CmsIndex $cmsIndex
      * @param CheckoutOnepage $checkoutPage
@@ -61,15 +58,17 @@ class AssertVisibleItemsQtyMessageOnCheckoutSummaryBlock extends AbstractConstra
         \PHPUnit_Framework_Assert::assertEquals(
             $counterMessage,
             $count,
-            'Visible cart items quantity has wrong value in mini shopping cart'
+            'Wrong counter text of visible Cart items in mini shopping cart'
         );
     }
 
     /**
-     * {@inheritdoc}
+     * Returns a string representation of the object.
+     *
+     * @return string
      */
     public function toString()
     {
-        return 'Quantity of visible Cart items is the same as minicart configuration value.';
+        return 'Quantity of visible Cart items the same as minicart configuration value.';
     }
 }

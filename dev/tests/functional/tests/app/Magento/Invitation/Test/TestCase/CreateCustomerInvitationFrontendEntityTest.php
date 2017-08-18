@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,14 +25,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Click Send.
  * 6. Perform all assertions.
  *
- * @group Invitations_(CS)
+ * @group Invitations
  * @ZephyrId MAGETWO-29607
  */
 class CreateCustomerInvitationFrontendEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
     const TEST_TYPE = 'extended_acceptance_test';
     /* end tags */
 
@@ -89,7 +88,7 @@ class CreateCustomerInvitationFrontendEntityTest extends Injectable
 
         // Steps
         $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         )->run();
         $this->customerAccountIndex->getAccountMenuBlock()->openMenuItem('My Invitations');

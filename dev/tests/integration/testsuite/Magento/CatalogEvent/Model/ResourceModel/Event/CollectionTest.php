@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogEvent\Model\ResourceModel\Event;
@@ -8,7 +8,7 @@ namespace Magento\CatalogEvent\Model\ResourceModel\Event;
 /**
  * @magentoDataFixture Magento/CatalogEvent/_files/events.php
  */
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Collection
@@ -18,7 +18,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CatalogEvent\Model\ResourceModel\Event\Collection'
+            \Magento\CatalogEvent\Model\ResourceModel\Event\Collection::class
         )->addOrder(
             'category_id',
             Collection::SORT_ORDER_ASC
@@ -40,7 +40,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         /** @var $actualItem \Magento\CatalogEvent\Model\Event */
         $actualItem = $items[$expectedItemIndex];
 
-        $this->assertInstanceOf('Magento\CatalogEvent\Model\Event', $actualItem);
+        $this->assertInstanceOf(\Magento\CatalogEvent\Model\Event::class, $actualItem);
         foreach ($expectedItemData as $filedName => $expectedValue) {
             $actualValue = $actualItem->getDataUsingMethod($filedName);
             $this->assertEquals(

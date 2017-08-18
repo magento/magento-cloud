@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Customer\Test\TestCase\CreateOrderFromCustomerPageTest">
         <variation name="CreateOrderFromCustomerPageTestVariation1">
-            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/1" xsi:type="string">catalogProductVirtual::default</data>
             <data name="addProduct/data/qty" xsi:type="string">-</data>
             <data name="addProduct/data/%custom_price%" xsi:type="string">No</data>
             <data name="addProduct/data/custom_price" xsi:type="string">-</data>

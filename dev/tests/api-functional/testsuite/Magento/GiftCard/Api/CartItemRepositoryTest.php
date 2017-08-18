@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftCard\Api;
@@ -29,7 +29,7 @@ class CartItemRepositoryTest extends WebapiAbstract
     public function testGetList()
     {
         /** @var \Magento\Quote\Model\Quote  $quote */
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $cartId = $quote->getId();
         $output = [];
@@ -106,12 +106,12 @@ class CartItemRepositoryTest extends WebapiAbstract
     public function testAddItem()
     {
         /** @var  \Magento\Catalog\Model\Product $product */
-        $product = $this->objectManager->create('Magento\Catalog\Model\Product');
+        $product = $this->objectManager->create(\Magento\Catalog\Model\Product::class);
         $productId = $product->getIdBySku('gift-card');
         $product->load($productId);
         $productSku = $product->getSku();
         /** @var \Magento\Quote\Model\Quote  $quote */
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $cartId = $quote->getId();
         $serviceInfo = [
@@ -158,10 +158,10 @@ class CartItemRepositoryTest extends WebapiAbstract
     public function testRemoveItem()
     {
         /** @var \Magento\Quote\Model\Quote  $quote */
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $cartId = $quote->getId();
-        $product = $this->objectManager->create('Magento\Catalog\Model\Product');
+        $product = $this->objectManager->create(\Magento\Catalog\Model\Product::class);
         $productId = $product->getIdBySku('gift-card-with-allowed-messages');
         $product->load($productId);
         $items = $quote->getAllItems();
@@ -183,7 +183,7 @@ class CartItemRepositoryTest extends WebapiAbstract
             "itemId" => $itemId,
         ];
         $this->assertTrue($this->_webApiCall($serviceInfo, $requestData));
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $this->assertFalse($quote->hasProductId($productId));
     }
@@ -195,10 +195,10 @@ class CartItemRepositoryTest extends WebapiAbstract
     public function testUpdateItemAmount()
     {
         /** @var \Magento\Quote\Model\Quote  $quote */
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $cartId = $quote->getId();
-        $product = $this->objectManager->create('Magento\Catalog\Model\Product');
+        $product = $this->objectManager->create(\Magento\Catalog\Model\Product::class);
         $productId = $product->getIdBySku('gift-card-with-allowed-messages');
         $product->load($productId);
         $items = $quote->getAllItems();
@@ -297,7 +297,7 @@ class CartItemRepositoryTest extends WebapiAbstract
             ];
         }
         $updatedItem = $this->_webApiCall($serviceInfo, $requestData);
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $this->assertTrue($quote->hasProductId($productId));
         $items = $quote->getAllItems();
@@ -316,10 +316,10 @@ class CartItemRepositoryTest extends WebapiAbstract
     public function testUpdateItemQty()
     {
         /** @var \Magento\Quote\Model\Quote  $quote */
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $cartId = $quote->getId();
-        $product = $this->objectManager->create('Magento\Catalog\Model\Product');
+        $product = $this->objectManager->create(\Magento\Catalog\Model\Product::class);
         $productId = $product->getIdBySku('gift-card-with-allowed-messages');
         $product->load($productId);
         $items = $quote->getAllItems();
@@ -354,7 +354,7 @@ class CartItemRepositoryTest extends WebapiAbstract
             ];
         }
         $updatedItem = $this->_webApiCall($serviceInfo, $requestData);
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $this->assertTrue($quote->hasProductId($productId));
         $items = $quote->getAllItems();
@@ -375,12 +375,12 @@ class CartItemRepositoryTest extends WebapiAbstract
     public function testAddItemWithInvalidData($giftCardOptionData, $message)
     {
         /** @var  \Magento\Catalog\Model\Product $product */
-        $product = $this->objectManager->create('Magento\Catalog\Model\Product');
+        $product = $this->objectManager->create(\Magento\Catalog\Model\Product::class);
         $productId = $product->getIdBySku('gift-card');
         $product->load($productId);
         $productSku = $product->getSku();
         /** @var \Magento\Quote\Model\Quote  $quote */
-        $quote = $this->objectManager->create('Magento\Quote\Model\Quote');
+        $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load('test_order_item_with_gift_card_items', 'reserved_order_id');
         $cartId = $quote->getId();
         $serviceInfo = [

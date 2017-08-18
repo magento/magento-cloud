@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogPermissions\Model\Indexer\Plugin;
@@ -10,7 +10,7 @@ use Magento\TestFramework\Helper\Bootstrap;
 /**
  * @magentoDbIsolation enabled
  */
-class CategoryTest extends \PHPUnit_Framework_TestCase
+class CategoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CatalogPermissions\Model\ResourceModel\Permission\Index
@@ -31,19 +31,17 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
     {
         Bootstrap::getObjectManager()->addSharedInstance(
             Bootstrap::getObjectManager()->create(
-                '\Magento\Framework\Authorization',
+                \Magento\Framework\Authorization::class,
                 ['aclPolicy' => new \Magento\Framework\Authorization\Policy\DefaultPolicy()]
             ),
-            'Magento\Framework\AuthorizationInterface\Proxy'
+            \Magento\Framework\AuthorizationInterface\Proxy::class
         );
 
         $this->permissionIndex = Bootstrap::getObjectManager()->create(
-            'Magento\CatalogPermissions\Model\ResourceModel\Permission\Index'
+            \Magento\CatalogPermissions\Model\ResourceModel\Permission\Index::class
         );
 
-        $this->category = Bootstrap::getObjectManager()->create(
-            'Magento\Catalog\Model\Category'
-        );
+        $this->category = Bootstrap::getObjectManager()->create(\Magento\Catalog\Model\Category::class);
     }
 
     /**
@@ -55,7 +53,7 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
     public function testSavePermissionsForAllAndNotLoggedInGroups()
     {
         $websiteId = Bootstrap::getObjectManager()->get(
-            'Magento\Store\Model\StoreManagerInterface'
+            \Magento\Store\Model\StoreManagerInterface::class
         )->getWebsite()->getId();
         $permissionsDataDenyNotLoggedIn = [
             'website_id' => $websiteId,
@@ -65,6 +63,7 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
             'grant_checkout_items' => \Magento\CatalogPermissions\Model\Permission::PERMISSION_DENY,
         ];
         $this->category->setData('permissions', [1 => $permissionsDataDenyNotLoggedIn]);
+        $this->category->setName('Test Category');
         $this->category->save();
         $categoryId = $this->category->getId();
         $this->assertContains(
@@ -102,7 +101,7 @@ class CategoryTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         Bootstrap::getObjectManager()->removeSharedInstance(
-            'Magento\Framework\AuthorizationInterface\Proxy'
+            \Magento\Framework\AuthorizationInterface\Proxy::class
         );
     }
 }

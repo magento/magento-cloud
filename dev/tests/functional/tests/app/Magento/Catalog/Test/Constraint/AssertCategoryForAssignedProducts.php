@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -23,22 +23,18 @@ class AssertCategoryForAssignedProducts extends AbstractConstraint
      * @param Category $category
      * @param CatalogCategoryView $categoryView
      * @param BrowserInterface $browser
-     * @param array $products
      * @return void
      */
     public function processAssert(
         Category $category,
         CatalogCategoryView $categoryView,
-        BrowserInterface $browser,
-        array $products = []
+        BrowserInterface $browser
     ) {
         $categoryUrlKey = $category->hasData('url_key')
             ? strtolower($category->getUrlKey())
             : trim(strtolower(preg_replace('#[^0-9a-z%]+#i', '-', $category->getName())), '-');
-
-        if (empty($products)) {
-            $products = $category->getDataFieldConfig('category_products')['source']->getProducts();
-        }
+        
+        $products = $category->getDataFieldConfig('category_products')['source']->getProducts();
 
         $browser->open($_ENV['app_frontend_url'] . $categoryUrlKey . '.html');
         foreach ($products as $productFixture) {

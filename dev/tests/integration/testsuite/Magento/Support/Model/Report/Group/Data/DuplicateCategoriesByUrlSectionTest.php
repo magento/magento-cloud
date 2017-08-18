@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Support\Model\Report\Group\Data;
@@ -16,7 +16,7 @@ use Magento\Catalog\Api\Data\CategoryAttributeInterface;
 /**
  * Test for \Magento\Support\Model\Report\Group\Data\DuplicateCategoriesByUrlSection
  */
-class DuplicateCategoriesByUrlSectionTest extends \PHPUnit_Framework_TestCase
+class DuplicateCategoriesByUrlSectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var DuplicateCategoriesByUrlSection
@@ -57,7 +57,7 @@ class DuplicateCategoriesByUrlSectionTest extends \PHPUnit_Framework_TestCase
         $category2 = $repository->get(4);
 
         /** @var \Magento\Eav\Api\AttributeRepositoryInterface $attributeRepository */
-        $attributeRepository = $objectManager->get('Magento\Eav\Api\AttributeRepositoryInterface');
+        $attributeRepository = $objectManager->get(\Magento\Eav\Api\AttributeRepositoryInterface::class);
         $urlKeyAttribute = $attributeRepository->get(CategoryAttributeInterface::ENTITY_TYPE_CODE, 'url_key');
 
         $adapter->update(

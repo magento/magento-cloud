@@ -1,6 +1,8 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Creates a simple product to be used for test cases.
+ *
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -105,14 +107,14 @@ $oldOptions = [
         'sort_order' => 0,
         'values'    => [
             [
-                'option_type_id' => -1,
+                'option_type_id' => null,
                 'title'         => 'Option 1',
                 'price'         => 3,
                 'price_type'    => 'fixed',
                 'sku'           => '3-1-select',
             ],
             [
-                'option_type_id' => -1,
+                'option_type_id' => null,
                 'title'         => 'Option 2',
                 'price'         => 3,
                 'price_type'    => 'fixed',
@@ -128,14 +130,14 @@ $oldOptions = [
         'sort_order' => 0,
         'values'    => [
             [
-                'option_type_id' => -1,
+                'option_type_id' => null,
                 'title'         => 'Option 1',
                 'price'         => 3,
                 'price_type'    => 'fixed',
                 'sku'           => '4-1-radio',
             ],
             [
-                'option_type_id' => -1,
+                'option_type_id' => null,
                 'title'         => 'Option 2',
                 'price'         => 3,
                 'price_type'    => 'fixed',

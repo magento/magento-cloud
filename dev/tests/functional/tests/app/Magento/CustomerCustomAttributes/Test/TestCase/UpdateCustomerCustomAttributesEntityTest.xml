@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\CustomerCustomAttributes\Test\TestCase\UpdateCustomerCustomAttributesEntityTest" summary="Update Customer Custom Attributes" ticketId="MAGETWO-26366">
         <variation name="UpdateCustomerCustomAttributesEntityTestVariation1">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="initialCustomerAttribute/dataset" xsi:type="string">text_field</data>
             <data name="customerAttribute/data/frontend_label" xsi:type="string">TextField_CustomerUpd%isolation%</data>
             <data name="customerAttribute/data/is_required" xsi:type="string">No</data>
@@ -53,6 +54,7 @@
             <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeOnCustomerEditPage" />
         </variation>
         <variation name="UpdateCustomerCustomAttributesEntityTestVariation4">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="initialCustomerAttribute/dataset" xsi:type="string">date</data>
             <data name="customerAttribute/data/frontend_label" xsi:type="string">Date_CustomerUpd%isolation%</data>
             <data name="customerAttribute/data/is_required" xsi:type="string">No</data>
@@ -70,6 +72,7 @@
             <constraint name="Magento\CustomerCustomAttributes\Test\Constraint\AssertCustomerCustomAttributeOnCreateOrderBackend" />
         </variation>
         <variation name="UpdateCustomerCustomAttributesEntityTestVariation5">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="initialCustomerAttribute/dataset" xsi:type="string">dropdown</data>
             <data name="customerAttribute/data/frontend_label" xsi:type="string">Dropdown_CustomerUpd%isolation%</data>
             <data name="customerAttribute/data/option/dataset" xsi:type="string">default</data>

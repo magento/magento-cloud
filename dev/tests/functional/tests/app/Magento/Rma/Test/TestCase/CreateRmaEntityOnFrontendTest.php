@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,14 +28,13 @@ use Magento\Sales\Test\Page\SalesGuestView;
  * 5. Submit returns.
  * 6. Perform all assertions.
  *
- * @group RMA_(CS)
+ * @group RMA
  * @ZephyrId MAGETWO-12432
  */
 class CreateRmaEntityOnFrontendTest extends AbstractRmaEntityTest
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     const TEST_TYPE = 'extended_acceptance_test';
     /* end tags */
 
@@ -60,22 +59,25 @@ class CreateRmaEntityOnFrontendTest extends AbstractRmaEntityTest
     ) {
         // Preconditions
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => $configData]
         )->run();
         $order = $rma->getDataFieldConfig('order_id')['source']->getOrder();
+        $products = $order->getEntityId()['products'];
+        $cart['data']['items'] = ['products' => $products];
+        $cart = $this->fixtureFactory->createByCode('cart', $cart);
         $this->objectManager->create(
-            'Magento\Sales\Test\TestStep\CreateInvoiceStep',
-            ['order' => $order]
+            \Magento\Sales\Test\TestStep\CreateInvoiceStep::class,
+            ['order' => $order, 'cart' => $cart]
         )->run();
         $this->objectManager->create(
-            'Magento\Sales\Test\TestStep\CreateShipmentStep',
+            \Magento\Sales\Test\TestStep\CreateShipmentStep::class,
             ['order' => $order]
         )->run();
 
         // Steps
         $this->objectManager->create(
-            'Magento\Sales\Test\TestStep\OpenSalesOrderOnFrontendForGuestStep',
+            \Magento\Sales\Test\TestStep\OpenSalesOrderOnFrontendForGuestStep::class,
             ['order' => $order]
         )->run();
         $salesGuestView->getActionsToolbar()->clickLink('Return');

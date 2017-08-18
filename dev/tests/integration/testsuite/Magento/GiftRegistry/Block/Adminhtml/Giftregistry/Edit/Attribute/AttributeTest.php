@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftRegistry\Block\Adminhtml\Giftregistry\Edit\Attribute;
 
-class AttributeTest extends \PHPUnit_Framework_TestCase
+class AttributeTest extends \PHPUnit\Framework\TestCase
 {
     /** @var \Magento\Framework\View\LayoutInterface */
     protected $_layout = null;
@@ -17,10 +17,10 @@ class AttributeTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->_layout = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         );
         $this->_block = $this->_layout->createBlock(
-            'Magento\GiftRegistry\Block\Adminhtml\Giftregistry\Edit\Attribute\Attribute'
+            \Magento\GiftRegistry\Block\Adminhtml\Giftregistry\Edit\Attribute\Attribute::class
         );
     }
 

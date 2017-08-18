@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
 <layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
     <block class="Magento\Rma\Block\Adminhtml\Rma\Create" name="content">
-        <block class="Magento\Rma\Block\Adminhtml\Rma\Create\Form" template="create/form.phtml" name="form">
-            <block class="Magento\Rma\Block\Adminhtml\Rma\Create\Order" template="create/order.phtml" name="rma_create_order">
+        <block class="Magento\Rma\Block\Adminhtml\Rma\Create\Form" template="Magento_Rma::create/form.phtml" name="form">
+            <block class="Magento\Rma\Block\Adminhtml\Rma\Create\Order" template="Magento_Rma::create/order.phtml" name="rma_create_order">
                 <block class="Magento\Rma\Block\Adminhtml\Rma\Create\Order\Grid" name="grid" />
             </block>
         </block>

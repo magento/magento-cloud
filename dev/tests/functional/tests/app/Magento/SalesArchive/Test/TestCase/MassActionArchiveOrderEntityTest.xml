@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -33,7 +33,6 @@
             <constraint name="Magento\SalesArchive\Test\Constraint\AssertArchiveOrdersInGrid" />
         </variation>
         <variation name="MassActionArchiveOrderEntityTestVariation3">
-            <data name="tag" xsi:type="string">stable:no</data>
             <data name="description" xsi:type="string">Try to cancel orders in status Pending, Complete</data>
             <data name="steps" xsi:type="string">-; invoice, shipment</data>
             <data name="orderStatuses" xsi:type="array">
@@ -47,7 +46,6 @@
             <constraint name="Magento\SalesArchive\Test\Constraint\AssertArchiveOrdersInGrid" />
         </variation>
         <variation name="MassActionArchiveOrderEntityTestVariation4">
-            <data name="tag" xsi:type="string">stable:no</data>
             <data name="description" xsi:type="string">Put orders in statuses Pending, Processing on Hold</data>
             <data name="steps" xsi:type="string">-; -</data>
             <data name="orderStatuses" xsi:type="array">
@@ -61,7 +59,6 @@
             <constraint name="Magento\SalesArchive\Test\Constraint\AssertArchiveOrdersInGrid" />
         </variation>
         <variation name="MassActionArchiveOrderEntityTestVariation5">
-            <data name="tag" xsi:type="string">stable:no</data>
             <data name="description" xsi:type="string">Try to put order in status Complete on Hold</data>
             <data name="steps" xsi:type="string">invoice, shipment</data>
             <data name="orderStatuses" xsi:type="array">
@@ -73,7 +70,6 @@
             <constraint name="Magento\SalesArchive\Test\Constraint\AssertArchiveOrdersInGrid" />
         </variation>
         <variation name="MassActionArchiveOrderEntityTestVariation6">
-            <data name="tag" xsi:type="string">stable:no</data>
             <data name="description" xsi:type="string">Release order in status On Hold</data>
             <data name="steps" xsi:type="string">hold</data>
             <data name="orderStatuses" xsi:type="array">
@@ -86,7 +82,6 @@
             <constraint name="Magento\Sales\Test\Constraint\AssertOrdersInOrdersGrid" />
         </variation>
         <variation name="MassActionArchiveOrderEntityTestVariation7">
-            <data name="tag" xsi:type="string">stable:no</data>
             <data name="description" xsi:type="string">Try to Release order in status Pending</data>
             <data name="steps" xsi:type="string">-</data>
             <data name="orderStatuses" xsi:type="array">
@@ -98,14 +93,13 @@
             <constraint name="Magento\SalesArchive\Test\Constraint\AssertArchiveOrdersInGrid" />
         </variation>
         <variation name="MassActionArchiveOrderEntityTestVariation8">
-            <data name="tag" xsi:type="string">stable:no</data>
             <data name="description" xsi:type="string">Return order from archive to Order management</data>
             <data name="steps" xsi:type="string">-; invoice, shipment</data>
             <data name="orderStatuses" xsi:type="array">
                 <item name="0" xsi:type="string">Pending</item>
                 <item name="1" xsi:type="string">Complete</item>
             </data>
-            <data name="massAction" xsi:type="string">Move to Orders Management</data>
+            <data name="massAction" xsi:type="string">Remove to Archive</data>
             <data name="successMassActions" xsi:type="string">2</data>
             <data name="ordersQty" xsi:type="string">2</data>
             <constraint name="Magento\SalesArchive\Test\Constraint\AssertArchiveOrderSuccessRemoveMessage" />

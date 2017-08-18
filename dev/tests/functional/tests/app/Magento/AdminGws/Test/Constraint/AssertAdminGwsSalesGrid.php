@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -38,7 +38,8 @@ class AssertAdminGwsSalesGrid extends AbstractConstraint
             $storeGroupNames[] = $storeGroup->getName();
         }
 
-        $this->objectManager->create('Magento\User\Test\TestStep\LoginUserOnBackendStep', ['user' => $user])->run();
+        $this->objectManager->create(\Magento\User\Test\TestStep\LoginUserOnBackendStep::class, ['user' => $user])
+            ->run();
         $orderIndex->open();
         \PHPUnit_Framework_Assert::assertEquals(
             $storeGroupNames,

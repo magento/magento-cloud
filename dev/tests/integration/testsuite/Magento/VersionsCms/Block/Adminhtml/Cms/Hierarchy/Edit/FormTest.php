@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -11,7 +11,7 @@ namespace Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit;
 /**
  * @magentoAppArea adminhtml
  */
-class FormTest extends \PHPUnit_Framework_TestCase
+class FormTest extends \PHPUnit\Framework\TestCase
 {
     /** @var \Magento\Framework\View\LayoutInterface */
     protected $_layout = null;
@@ -23,20 +23,22 @@ class FormTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->_layout = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         );
-        $this->_block = $this->_layout->createBlock('Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit\Form');
+        $this->_block = $this->_layout->createBlock(
+             \Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit\Form::class
+         );
     }
 
     public function testGetGridJsObject()
     {
         $parentName = 'parent';
         $mockClass = $this->getMockClass(
-            'Magento\Catalog\Block\Product\AbstractProduct',
+            \Magento\Catalog\Block\Product\AbstractProduct::class,
             ['_prepareLayout'],
             [
                 \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-                    'Magento\Framework\View\Element\Template\Context'
+                    \Magento\Framework\View\Element\Template\Context::class
                 )
             ]
         );
@@ -44,7 +46,7 @@ class FormTest extends \PHPUnit_Framework_TestCase
         $this->_layout->setChild($parentName, $this->_block->getNameInLayout(), '');
 
         $pageGrid = $this->_layout->addBlock(
-            'Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit\Form\Grid',
+            \Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit\Form\Grid::class,
             'cms_page_grid',
             $parentName
         );
@@ -60,18 +62,19 @@ class FormTest extends \PHPUnit_Framework_TestCase
     public function testPrepareForm($isMetadataEnabled, $result)
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $cmsHierarchyMock = $this->getMockBuilder('\Magento\VersionsCms\Helper\Hierarchy')
+        $cmsHierarchyMock = $this->getMockBuilder(\Magento\VersionsCms\Helper\Hierarchy::class)
             ->setMethods(['isMetadataEnabled'])
             ->disableOriginalConstructor()
             ->getMock();
         $cmsHierarchyMock->expects($this->any())
             ->method('isMetadataEnabled')
             ->will($this->returnValue($isMetadataEnabled));
-        $block = $objectManager->create('Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit\Form',
+        $block = $objectManager->create(
+            \Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit\Form::class,
             ['cmsHierarchy' =>$cmsHierarchyMock]
         );
         $prepareFormMethod = new \ReflectionMethod(
-            'Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit\Form',
+            \Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Edit\Form::class,
             '_prepareForm'
         );
         $prepareFormMethod->setAccessible(true);

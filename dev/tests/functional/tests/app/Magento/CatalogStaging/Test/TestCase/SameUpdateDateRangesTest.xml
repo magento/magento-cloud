@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\SameUpdateDateRangesTest" summary="Create scheduled update">
+        <variation name="SameUpdateDateRangesTestVariation1" summary="Create 2 product update campaigns with the same date range" ticketId="MAGETWO-55018">
+            <data name="update/dataset" xsi:type="string">update_with_simple_product_plus_9_months</data>
+            <data name="sameUpdateCampaign/dataset" xsi:type="string">update_with_date_plus_9_months</data>
+            <data name="errorMessage" xsi:type="string">error: : Future Update in this time range already exists. Select a different range to add a new Future Update.</data>
+            <constraint name="Magento\Staging\Test\Constraint\AssertUpdateScheduledChangesErrorMessage" />
+        </variation>
+    </testCase>
+</config>

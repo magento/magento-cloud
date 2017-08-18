@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Elasticsearch\Model\Indexer;
@@ -21,7 +21,7 @@ use Magento\Elasticsearch\SearchAdapter\SearchIndexNameResolver;
  * @magentoDbIsolation disabled
  * @magentoDataFixture Magento/Elasticsearch/_files/indexer.php
  */
-class IndexHandlerTest extends \PHPUnit_Framework_TestCase
+class IndexHandlerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ConnectionManager
@@ -84,22 +84,22 @@ class IndexHandlerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->connectionManager = Bootstrap::getObjectManager()->create(
-            'Magento\Elasticsearch\SearchAdapter\ConnectionManager'
+            \Magento\Elasticsearch\SearchAdapter\ConnectionManager::class
         );
 
         $this->client = $this->connectionManager->getConnection();
 
         $this->storeManager = Bootstrap::getObjectManager()->create(
-            'Magento\Store\Model\StoreManagerInterface'
+            \Magento\Store\Model\StoreManagerInterface::class
         );
         $this->storeIds = array_keys($this->storeManager->getStores());
 
         $this->clientConfig = Bootstrap::getObjectManager()->create(
-            'Magento\Elasticsearch\Model\Config'
+            \Magento\Elasticsearch\Model\Config::class
         );
 
         $this->searchIndexNameResolver = Bootstrap::getObjectManager()->create(
-            'Magento\Elasticsearch\SearchAdapter\SearchIndexNameResolver'
+            \Magento\Elasticsearch\SearchAdapter\SearchIndexNameResolver::class
         );
 
         $this->productApple = $this->getProductBySku('fulltext-1');
@@ -172,7 +172,7 @@ class IndexHandlerTest extends \PHPUnit_Framework_TestCase
 
         /** @var \Magento\Catalog\Model\Product\Action $action */
         $action = Bootstrap::getObjectManager()->get(
-            'Magento\Catalog\Model\Product\Action'
+            \Magento\Catalog\Model\Product\Action::class
         );
 
         foreach ($this->storeIds as $storeId) {
@@ -253,7 +253,7 @@ class IndexHandlerTest extends \PHPUnit_Framework_TestCase
     {
         /** @var Product $product */
         $product = Bootstrap::getObjectManager()->get(
-            'Magento\Catalog\Model\Product'
+            \Magento\Catalog\Model\Product::class
         );
         return $product->loadByAttribute('sku', $sku);
     }
@@ -266,7 +266,7 @@ class IndexHandlerTest extends \PHPUnit_Framework_TestCase
     private function reindexAll()
     {
         $indexer = Bootstrap::getObjectManager()->create(
-            'Magento\Indexer\Model\Indexer'
+            \Magento\Indexer\Model\Indexer::class
         );
         $indexer->load('catalogsearch_fulltext');
         $indexer->reindexAll();

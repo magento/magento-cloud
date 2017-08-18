@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -84,6 +84,8 @@ abstract class AbstractCustomerCustomAttributesEntityTest extends Injectable
         $this->customerAttributeNew->getModalBlock()->acceptAlert();
         $this->customerCustomAttribute = null;
 
-        $this->objectManager->create('Magento\CustomerSegment\Test\TestStep\DeleteAllCustomerSegmentsStep')->run();
+        $this->objectManager->create(
+            \Magento\CustomerSegment\Test\TestStep\DeleteAllCustomerSegmentsStep::class
+        )->run();
     }
 }

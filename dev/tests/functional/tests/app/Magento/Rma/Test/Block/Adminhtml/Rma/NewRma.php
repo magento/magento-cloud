@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,10 +28,15 @@ class NewRma extends FormTabs
      */
     public function fill(FixtureInterface $fixture, SimpleElement $element = null)
     {
+        $additionalAttributes = [];
+        if ($fixture->hasData('attribute_ids')) {
+            $additionalAttributes = $fixture->getDataFieldConfig('attribute_ids')['source']->getRmaAttributes();
+        }
         $tabs = $this->getFixtureFieldsByContainers($fixture);
         if (isset($tabs['items']['items']['value'])) {
             $orderItems = $this->getOrderItems($fixture);
-            $tabs['items']['items']['value'] = $this->prepareItems($orderItems, $tabs['items']['items']['value']);
+            $tabs['items']['items']['value'] =
+                $this->prepareItems($orderItems, $tabs['items']['items']['value'], $additionalAttributes);
         }
 
         return $this->fillTabs($tabs, $element);
@@ -55,15 +60,19 @@ class NewRma extends FormTabs
      *
      * @param array $orderItems
      * @param array $items
+     * @param array $additionalAttributes
      * @return array
      *
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
-    protected function prepareItems(array $orderItems, array $items)
+    protected function prepareItems(array $orderItems, array $items, array $additionalAttributes = [])
     {
         foreach ($items as $productKey => $productData) {
             $key = str_replace('product_key_', '', $productKey);
             $items[$productKey]['product'] = $orderItems[$key];
+            if ($additionalAttributes) {
+                $items[$productKey]['additional_attributes'] = $additionalAttributes;
+            }
         }
         return $items;
     }

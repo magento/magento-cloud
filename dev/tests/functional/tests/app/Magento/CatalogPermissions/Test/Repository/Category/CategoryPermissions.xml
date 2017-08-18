@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\CatalogPermissions\Test\Repository\Category\CategoryPermissions">
+        <dataset name="category_permissions_for_general_group">
+            <field name="permissions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="website" xsi:type="string">All Websites</item>
+                    <item name="customer_group" xsi:type="string">General</item>
+                    <item name="browsing_category" xsi:type="string">Allow</item>
+                    <item name="display_product_prices" xsi:type="string">Deny</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="website" xsi:type="string">All Websites</item>
+                    <item name="customer_group" xsi:type="string">All Customer Groups</item>
+                    <item name="browsing_category" xsi:type="string">Allow</item>
+                    <item name="display_product_prices" xsi:type="string">Allow</item>
+                    <item name="add_to_cart" xsi:type="string">Allow</item>
+                </item>
+            </field>
+        </dataset>
+
+        <dataset name="category_permissions_for_retailer_group">
+            <field name="permissions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="website" xsi:type="string">All Websites</item>
+                    <item name="customer_group" xsi:type="string">All Customer Groups</item>
+                    <item name="browsing_category" xsi:type="string">Allow</item>
+                    <item name="display_product_prices" xsi:type="string">Allow</item>
+                    <item name="add_to_cart" xsi:type="string">Allow</item>
+                </item>
+            </field>
+        </dataset>
+
+        <dataset name="category_permissions_for_wholesale_group">
+            <field name="permissions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="website" xsi:type="string">All Websites</item>
+                    <item name="customer_group" xsi:type="string">Wholesale</item>
+                    <item name="browsing_category" xsi:type="string">Deny</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="website" xsi:type="string">All Websites</item>
+                    <item name="customer_group" xsi:type="string">All Customer Groups</item>
+                    <item name="browsing_category" xsi:type="string">Allow</item>
+                    <item name="display_product_prices" xsi:type="string">Allow</item>
+                    <item name="add_to_cart" xsi:type="string">Allow</item>
+                </item>
+            </field>
+        </dataset>
+
+        <dataset name="category_permissions_for_not_logged_in">
+            <field name="permissions" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="website" xsi:type="string">All Websites</item>
+                    <item name="customer_group" xsi:type="string">NOT LOGGED IN</item>
+                    <item name="browsing_category" xsi:type="string">Allow</item>
+                    <item name="display_product_prices" xsi:type="string">Allow</item>
+                    <item name="add_to_cart" xsi:type="string">Allow</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="website" xsi:type="string">All Websites</item>
+                    <item name="customer_group" xsi:type="string">All Customer Groups</item>
+                    <item name="browsing_category" xsi:type="string">Allow</item>
+                    <item name="display_product_prices" xsi:type="string">Allow</item>
+                    <item name="add_to_cart" xsi:type="string">Allow</item>
+                </item>
+            </field>
+        </dataset>
+    </repository>
+</config>

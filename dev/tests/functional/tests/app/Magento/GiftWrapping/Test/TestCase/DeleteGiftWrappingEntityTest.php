@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,14 +25,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click 'Delete' button
  * 5. Perform all assertions
  *
- * @group Gift_Wrapping_(CS)
+ * @group Gift_Wrapping
  * @ZephyrId MAGETWO-27659
  */
 class DeleteGiftWrappingEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
+    const SEVERITY = 'S3';
     /* end tags */
 
     /**
@@ -72,7 +72,7 @@ class DeleteGiftWrappingEntityTest extends Injectable
     {
         // Preconditions
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'enable_gift_message']
         )->run();
         $giftWrapping->persist();

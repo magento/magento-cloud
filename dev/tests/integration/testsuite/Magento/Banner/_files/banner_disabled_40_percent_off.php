@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,13 +8,13 @@ require __DIR__ . '/../../../Magento/SalesRule/_files/cart_rule_40_percent_off.p
 
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 /** @var \Magento\SalesRule\Model\Rule $rule */
-$rule = $objectManager->create('Magento\SalesRule\Model\Rule');
-$ruleId = $objectManager->get('Magento\Framework\Registry')
+$rule = $objectManager->create(\Magento\SalesRule\Model\Rule::class);
+$ruleId = $objectManager->get(\Magento\Framework\Registry::class)
     ->registry('Magento/SalesRule/_files/cart_rule_40_percent_off');
 $rule->load($ruleId);
 
 /** @var \Magento\Banner\Model\Banner $banner */
-$banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Banner\Model\Banner');
+$banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Banner\Model\Banner::class);
 $banner->setData(
     [
         'name' => 'Get 40% Off on Large Orders',

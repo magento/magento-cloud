@@ -1,15 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\SalesRule\Model\Quote\Address\Total;
 
-/**
- * Shipping test.
- */
-class ShippingTest extends \PHPUnit_Framework_TestCase
+class ShippingTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Quote\Api\GuestCartManagementInterface
@@ -34,10 +31,9 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Estimate shipment for product that match salesrule with free shipping.
-     *
+     * @magentoAppIsolation enabled
      * @magentoDataFixture Magento/SalesRule/_files/rule_free_shipping_by_product_weight.php
-     * @magentoDataFixture Magento/Catalog/_files/product_without_options.php
+     * @magentoDataFixture Magento/Quote/_files/is_salable_product.php
      */
     public function testRuleByProductWeightWithFreeShipping()
     {
@@ -50,10 +46,9 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Estimate shipment for product that doesn't match salesrule with free shipping.
-     *
+     * @magentoAppIsolation enabled
      * @magentoDataFixture Magento/SalesRule/_files/rule_free_shipping_by_product_weight.php
-     * @magentoDataFixture Magento/Catalog/_files/product_without_options.php
+     * @magentoDataFixture Magento/Quote/_files/is_salable_product.php
      */
     public function testRuleByProductWeightWithoutFreeShipping()
     {
@@ -66,7 +61,7 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Estimate shipment for guest cart.
+     * Estimate shipment for guest cart
      *
      * @param int $cartId
      * @return \Magento\Quote\Api\Data\ShippingMethodInterface[]
@@ -81,12 +76,11 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
 
         /** @var \Magento\Quote\Api\GuestShipmentEstimationInterface $estimation */
         $estimation = $this->objectManager->get(\Magento\Quote\Api\GuestShipmentEstimationInterface::class);
-
         return $estimation->estimateByExtendedAddress($cartId, $address);
     }
 
     /**
-     * Create guest quote with products.
+     * Create guest quote with products
      *
      * @param int $itemQty
      * @return int
@@ -102,7 +96,7 @@ class ShippingTest extends \PHPUnit_Framework_TestCase
         $cartItem = $cartItemFactory->create();
         $cartItem->setQuoteId($cartId);
         $cartItem->setQty($itemQty);
-        $cartItem->setSku('simple');
+        $cartItem->setSku('simple-99');
         $cartItem->setProductType(\Magento\Catalog\Model\Product\Type::TYPE_SIMPLE);
 
         $this->itemRepository->save($cartItem);

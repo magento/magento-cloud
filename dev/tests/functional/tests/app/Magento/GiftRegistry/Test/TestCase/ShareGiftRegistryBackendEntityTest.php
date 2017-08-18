@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -34,14 +34,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 7. Click Share Gift Registry
  * 8. Perform all assertions
  *
- * @group Gift_Registry_(CS)
+ * @group Gift_Registry
  * @ZephyrId MAGETWO-27225
  */
 class ShareGiftRegistryBackendEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**
@@ -130,7 +130,7 @@ class ShareGiftRegistryBackendEntityTest extends Injectable
     {
         // Preconditions
         $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         )->run();
         $giftRegistry->persist();

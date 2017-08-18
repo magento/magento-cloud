@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -40,14 +40,14 @@ class PageActions extends Block
      *
      * @var string
      */
-    private $loader = '.loading-mask';
+    protected $loader = '.loading-mask';
 
     /**
-     * Scope CSS selector.
+     * Scope CSS selector
      *
      * @var string
      */
-    private $scopeSelector = '.store-switcher .actions.dropdown';
+    protected $scopeSelector = '.store-switcher .actions.dropdown';
 
     /**
      * Click save button.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ResourceConnections\DB\Adapter\Pdo;
@@ -10,7 +10,7 @@ namespace Magento\ResourceConnections\DB\Adapter\Pdo;
  * @magentoDbIsolation enabled
  * @backupGlobals enabled
  */
-class MysqlProxyTest extends \PHPUnit_Framework_TestCase
+class MysqlProxyTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Config\Model\ResourceModel\Config
@@ -21,14 +21,14 @@ class MysqlProxyTest extends \PHPUnit_Framework_TestCase
      * @var array
      */
     protected $configArray;
-    
+
     /**
      * @return void
      */
     protected function setUp()
     {
         $config = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\App\DeploymentConfig'
+            \Magento\Framework\App\DeploymentConfig::class
         );
         $this->configArray = $config->getConfigData();
 
@@ -42,7 +42,7 @@ class MysqlProxyTest extends \PHPUnit_Framework_TestCase
     protected function updateSlaveConfig($slaveConfig)
     {
         $writer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\App\DeploymentConfig\Writer'
+            \Magento\Framework\App\DeploymentConfig\Writer::class
         );
         $writer->saveConfig(
             ['app_env' =>
@@ -59,26 +59,26 @@ class MysqlProxyTest extends \PHPUnit_Framework_TestCase
         );
 
         $reader = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            '\Magento\Framework\App\DeploymentConfig\Reader'
+            \Magento\Framework\App\DeploymentConfig\Reader::class
         );
 
         $deploymentConfig = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            '\Magento\Framework\App\DeploymentConfig',
+            \Magento\Framework\App\DeploymentConfig::class,
             ['reader' => $reader]
         );
 
         $resource = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Framework\App\ResourceConnection',
+            \Magento\Framework\App\ResourceConnection::class,
             ['deploymentConfig' => $deploymentConfig]
         );
 
         $context = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Framework\Model\ResourceModel\Db\Context',
+            \Magento\Framework\Model\ResourceModel\Db\Context::class,
             ['resource' => $resource]
         );
 
         $this->configModel = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Config\Model\ResourceModel\Config',
+            \Magento\Config\Model\ResourceModel\Config::class,
             ['context' => $context]
         );
     }
@@ -95,7 +95,7 @@ class MysqlProxyTest extends \PHPUnit_Framework_TestCase
         $this->updateSlaveConfig($slaveConfig);
 
         $connection = $this->configModel->getConnection();
-        $this->assertInstanceOf('Magento\ResourceConnections\DB\Adapter\Pdo\MysqlProxy', $connection);
+        $this->assertInstanceOf(\Magento\ResourceConnections\DB\Adapter\Pdo\MysqlProxy::class, $connection);
         $connection->select()->from($this->configModel->getMainTable())->where('path=?', 'test/config');
     }
 
@@ -108,7 +108,7 @@ class MysqlProxyTest extends \PHPUnit_Framework_TestCase
         $this->updateSlaveConfig($slaveConfig);
 
         $connection = $this->configModel->getConnection();
-        $this->assertInstanceOf('Magento\ResourceConnections\DB\Adapter\Pdo\MysqlProxy', $connection);
+        $this->assertInstanceOf(\Magento\ResourceConnections\DB\Adapter\Pdo\MysqlProxy::class, $connection);
         $select = $connection->select()->from($this->configModel->getMainTable())->where('path=?', 'test/config');
         $this->configModel->saveConfig('test/config', 'test', 'default', 0);
         $this->assertNotEmpty($connection->fetchRow($select));
@@ -123,7 +123,7 @@ class MysqlProxyTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $writer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\App\DeploymentConfig\Writer'
+            \Magento\Framework\App\DeploymentConfig\Writer::class
         );
         $writer->saveConfig(['app_env' => ['db' => $this->configArray['db']]], true);
     }

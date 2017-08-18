@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -26,6 +26,19 @@ class CustomerForm extends \Magento\Customer\Test\Block\Form\CustomerForm
         return $this->_rootElement->find(
             sprintf($this->customerAttribute, $customerAttribute->getAttributeCode())
         )->isVisible();
+    }
+
+    /**
+     * Get Customer custom Attribute value.
+     *
+     * @param CustomerCustomAttribute $customerAttribute
+     * @return string
+     */
+    public function getCustomerAttributeValue(CustomerCustomAttribute $customerAttribute)
+    {
+        return $this->_rootElement->find(
+            sprintf($this->customerAttribute, $customerAttribute->getAttributeCode())
+        )->getValue();
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -92,12 +92,10 @@ class AssertCustomerSegmentPriceRule extends AbstractConstraint
         $product->persist();
 
         // Assert steps
-        /** @var \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep $loginStep */
-        $loginStep = $this->objectManager->create(
+        $this->objectManager->create(
             \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
-        );
-        $loginStep->run();
+        )->run();
         $checkoutCart->open();
         $checkoutCart->getCartBlock()->clearShoppingCart();
         $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
@@ -114,8 +112,6 @@ class AssertCustomerSegmentPriceRule extends AbstractConstraint
             $checkoutCart->getTotalsBlock()->getGrandTotal(),
             'Grand total in shopping cart is not corresponded to Cart Price Rule configuration.'
         );
-
-        $loginStep->cleanup();
     }
 
     /**

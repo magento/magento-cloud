@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,14 +22,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 3. Select created wishlist and add product to it
  * 4. Perform appropriate assertions.
  *
- * @group Multiple_Wishlists_(CS)
+ * @group Multiple_Wishlists
  * @ZephyrId MAGETWO-29044
  */
 class AddProductToMultipleWishListTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -41,7 +40,7 @@ class AddProductToMultipleWishListTest extends Injectable
     {
         // TODO: Move set up configuration to "__prepare" method after fix bug MAGETWO-29331
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default']
         )->run();
     }
@@ -60,19 +59,19 @@ class AddProductToMultipleWishListTest extends Injectable
         $multipleWishlist->persist();
         $customer = $multipleWishlist->getDataFieldConfig('customer_id')['source']->getCustomer();
         $createProductsStep = $this->objectManager->create(
-            'Magento\Catalog\Test\TestStep\CreateProductsStep',
+            \Magento\Catalog\Test\TestStep\CreateProductsStep::class,
             ['products' => $products]
         );
         $product = $createProductsStep->run()['products'][0];
 
         // Steps
         $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         )->run();
 
         $this->objectManager->create(
-            'Magento\MultipleWishlist\Test\TestStep\AddProductToMultipleWishlistStep',
+            \Magento\MultipleWishlist\Test\TestStep\AddProductToMultipleWishlistStep::class,
             ['product' => $product, 'duplicate' => $duplicate, 'multipleWishlist' => $multipleWishlist]
         )->run();
 
@@ -92,7 +91,7 @@ class AddProductToMultipleWishListTest extends Injectable
     {
         // TODO: Move set default configuration to "tearDownAfterClass" method after fix bug MAGETWO-29331
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'multiple_wishlist_default', 'rollback' => true]
         )->run();
     }

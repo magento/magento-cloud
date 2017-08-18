@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,6 +28,27 @@ class Additional extends Form
     protected $waitElement = '.loading-mask';
 
     /**
+     * Magento new loader.
+     *
+     * @var string
+     */
+    protected $spinner = '[data-role="spinner"]';
+
+    /**
+     * Magento loader.
+     *
+     * @var string
+     */
+    protected $loader = '[data-role="loader"]';
+
+    /**
+     * Magento varienLoader.js loader.
+     *
+     * @var string
+     */
+    protected $loaderOld = '#loading-mask #loading_mask_loader';
+
+    /**
      * Apply store credit.
      *
      * @return void
@@ -36,5 +57,8 @@ class Additional extends Form
     {
         $this->_rootElement->find($this->useStoreCreditButton)->click();
         $this->waitForElementNotVisible($this->waitElement);
+        $this->waitForElementNotVisible($this->spinner);
+        $this->waitForElementNotVisible($this->loader);
+        $this->waitForElementNotVisible($this->loaderOld);
     }
 }

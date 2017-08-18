@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerSegment\Model\Condition\Combine;
 
-class AbstractTest extends \PHPUnit_Framework_TestCase
+class AbstractTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CustomerSegment\Model\Segment\Condition\Combine\Root
@@ -13,19 +13,19 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
     protected $_model;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject_MockObject
      */
     protected $_resource;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject_MockObject
      */
     protected $_configShare;
 
     protected function setUp()
     {
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerSegment\Model\Segment\Condition\Combine\Root'
+            \Magento\CustomerSegment\Model\Segment\Condition\Combine\Root::class
         );
     }
 
@@ -36,7 +36,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
     public function testLimitByStoreWebsite($website)
     {
         $expectedWhere = is_numeric($website) ? 'main.store_id IN (?)' : 'store.website_id IN (?)';
-        $select = $this->getMock('Magento\Framework\DB\Select', ['join', 'where'], [], '', false);
+        $select = $this->createPartialMock(\Magento\Framework\DB\Select::class, ['join', 'where']);
         if ($website instanceof \Zend_Db_Expr) {
             $select->expects(
                 $this->once()

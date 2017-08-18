@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -19,10 +19,15 @@ use Magento\Mtf\TestCase\Scenario;
  * 3. Perform all asserts.
  *
  * @group Gift_Wrapping
- * @ZephyrId MAGETWO-69276
+ * @ZephyrId MAGETWO-24797
  */
 class CheckoutWithGiftWrappingTest extends Scenario
 {
+    /* tags */
+    const MVP = 'no';
+    const SEVERITY = 'S2';
+    /* end tags */
+
     /**
      * Checkout with Gift Wrapping test.
      *

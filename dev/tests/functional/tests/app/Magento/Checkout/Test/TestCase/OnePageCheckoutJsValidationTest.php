@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -17,10 +17,14 @@ use Magento\Mtf\TestCase\Scenario;
  * 5. Perform assertions.
  *
  * @group One_Page_Checkout
- * @ZephyrId MAGETWO-64190
+ * @ZephyrId MAGETWO-59697
  */
 class OnePageCheckoutJsValidationTest extends Scenario
 {
+    /* tags */
+    const SEVERITY = 'S2';
+    /* end tags */
+
     /**
      * Runs one page checkout js validation test.
      *

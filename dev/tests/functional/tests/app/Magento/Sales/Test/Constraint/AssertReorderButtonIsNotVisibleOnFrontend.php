@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,11 +8,10 @@ namespace Magento\Sales\Test\Constraint;
 
 use Magento\Customer\Test\Fixture\Customer;
 use Magento\Customer\Test\Page\CustomerAccountIndex;
-use Magento\Mtf\TestStep\TestStepFactory;
-use Magento\Sales\Test\Fixture\OrderInjectable;
-use Magento\Sales\Test\Page\OrderHistory;
 use Magento\Mtf\Constraint\AbstractConstraint;
 use Magento\Mtf\ObjectManager;
+use Magento\Sales\Test\Fixture\OrderInjectable;
+use Magento\Sales\Test\Page\OrderHistory;
 
 /**
  * Assert that "Reorder" button is absent in Orders grid on frontend.
@@ -28,7 +27,7 @@ class AssertReorderButtonIsNotVisibleOnFrontend extends AbstractConstraint
      *
      * @param OrderInjectable $order
      * @param Customer $customer
-     * @param TestStepFactory $testStepFactory
+     * @param ObjectManager $objectManager
      * @param CustomerAccountIndex $customerAccountIndex
      * @param OrderHistory $orderHistory
      * @param string $status
@@ -39,7 +38,7 @@ class AssertReorderButtonIsNotVisibleOnFrontend extends AbstractConstraint
     public function processAssert(
         OrderInjectable $order,
         Customer $customer,
-        TestStepFactory $testStepFactory,
+        ObjectManager $objectManager,
         CustomerAccountIndex $customerAccountIndex,
         OrderHistory $orderHistory,
         $status = null,
@@ -51,23 +50,17 @@ class AssertReorderButtonIsNotVisibleOnFrontend extends AbstractConstraint
             'status' => $statusToCheck === null ? $status : $statusToCheck,
         ];
 
-        /** @var \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep $loginStep */
-        $loginStep = $testStepFactory->create(
+        $objectManager->create(
             \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
-        );
-        $loginStep->run();
-
+        )->run();
         $customerAccountIndex->getAccountMenuBlock()->openMenuItem('My Orders');
         $errorMessage = implode(', ', $filter);
-
         \PHPUnit_Framework_Assert::assertFalse(
             $orderHistory->getOrderHistoryBlock()->isReorderButtonPresentByOrderId($filter['id']),
             '"Reorder" button for order with following data \'' . $errorMessage
             . '\' is present in Orders block on frontend.'
         );
-
-        $loginStep->cleanup();
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -49,12 +49,20 @@ class AssertRmaForm extends AbstractAssertRmaOnBackend
         /** @var OrderInjectable $order */
         $order = $rma->getDataFieldConfig('order_id')['source']->getOrder();
         $orderItems = $order->getEntityId()['products'];
-        /** @var Customer $customer */
-        $customer = $order->getDataFieldConfig('customer_id')['source']->getCustomer();
+
+        if ($order->getData('customer_id')) {
+            /** @var Customer $customer */
+            $customer = $order->getDataFieldConfig('customer_id')['source']->getCustomer();
+            $customerName = $customer->getFirstname() . ' ' . $customer->getLastname();
+            $customerEmail = $customer->getEmail();
+        } else {
+            $customerName = 'Guest';
+            $customerEmail = $order->getDataFieldConfig('billing_address_id')['source']->getData()['email'];
+        }
 
         $data = $rma->getData();
-        $data['customer_name'] = sprintf('%s %s', $customer->getFirstname(), $customer->getLastname());
-        $data['customer_email'] = $customer->getEmail();
+        $data['customer_name'] = $customerName;
+        $data['customer_email'] = $customerEmail;
 
         foreach ($data['items'] as $key => $item) {
             $product = $orderItems[$key];

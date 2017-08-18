@@ -1,12 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\CatalogEvent\Test\Constraint;
 
-use Magento\Catalog\Test\Fixture\CatalogProductSimple;
 use Magento\CatalogEvent\Test\Fixture\CatalogEventEntity;
 use Magento\CatalogEvent\Test\Page\Adminhtml\CatalogEventIndex;
 use Magento\Mtf\Constraint\AbstractConstraint;
@@ -19,24 +18,23 @@ class AssertCatalogEventAbsentInGrid extends AbstractConstraint
     /**
      * Assert that catalog event is absent in the "Events" grid.
      *
-     * @param CatalogProductSimple $product
+     * @param CatalogEventEntity $catalogEvent
      * @param CatalogEventIndex $catalogEventIndex
      *
      * @return void
      */
     public function processAssert(
-        CatalogProductSimple $product,
+        CatalogEventEntity $catalogEvent,
         CatalogEventIndex $catalogEventIndex
     ) {
-        $categoryName = $product->getCategoryIds()[0];
         $filter = [
-            'category_name' => $categoryName,
+            'category_name' => $catalogEvent->getCategoryId(),
         ];
         $catalogEventIndex->open();
-        $catalogEventIndex->getEventGrid()->search(['category_name' => $filter['category_name']]);
+        $catalogEventIndex->getEventGrid()->search($filter);
         \PHPUnit_Framework_Assert::assertFalse(
             $catalogEventIndex->getEventGrid()->isRowVisible($filter, false, false),
-            "Event on category '$categoryName' is present in Events grid."
+            "Event on category " . $catalogEvent->getCategoryId() . " is present in Events grid."
         );
     }
 

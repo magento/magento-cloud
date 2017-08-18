@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -51,7 +51,7 @@ use Magento\Mtf\Util\Command\Cli\StaticContent;
  * Postconditions:
  *  1. Turn the Secure URLs usage off (with further cache refreshing & static content deploying).
  *
- * @ZephyrId MAGETWO-63760
+ * @ZephyrId MAGETWO-35408
  */
 class ConfigureSecureUrlsTest extends Injectable
 {
@@ -65,48 +65,42 @@ class ConfigureSecureUrlsTest extends Injectable
      *
      * @var FixtureFactory
      */
-    private $fixtureFactory;
+    protected $fixtureFactory;
 
     /**
      * "Configuration" page in Admin panel.
      *
      * @var SystemConfigEdit
      */
-    private $configurationAdminPage;
+    protected $configurationAdminPage;
 
     /**
      * Cache CLI.
      *
      * @var Cache
      */
-    private $cache;
+    protected $cache;
 
     /**
      * Static content CLI.
      *
      * @var StaticContent
      */
-    private $staticContent;
+    protected $staticContent;
 
     /**
      * Prepare data for further test execution.
      *
      * @param FixtureFactory $fixtureFactory
      * @param SystemConfigEdit $configurationAdminPage
-     * @param Cache $cache
-     * @param StaticContent $staticContent
      * @return void
      */
     public function __inject(
         FixtureFactory $fixtureFactory,
-        SystemConfigEdit $configurationAdminPage,
-        Cache $cache,
-        StaticContent $staticContent
+        SystemConfigEdit $configurationAdminPage
     ) {
         $this->fixtureFactory = $fixtureFactory;
         $this->configurationAdminPage = $configurationAdminPage;
-        $this->cache = $cache;
-        $this->staticContent = $staticContent;
     }
 
     /**
@@ -135,7 +129,14 @@ class ConfigureSecureUrlsTest extends Injectable
         $this->configurationAdminPage->getPageActions()->save();
         $_ENV['app_backend_url'] = str_replace('http', 'https', $_ENV['app_backend_url']);
 
+        $this->configurationAdminPage = $this->objectManager->create(
+            \Magento\Backend\Test\Page\Adminhtml\SystemConfigEdit::class
+        );
+
+        $this->cache = $this->objectManager->create(\Magento\Mtf\Util\Command\Cli\Cache::class);
         $this->cache->flush(['config', 'full_page']);
+
+        $this->staticContent = $this->objectManager->create(\Magento\Mtf\Util\Command\Cli\StaticContent::class);
         $this->staticContent->deploy();
     }
 
@@ -146,13 +147,11 @@ class ConfigureSecureUrlsTest extends Injectable
      */
     public function tearDown()
     {
-        $configAdminPage = \Magento\Mtf\ObjectManagerFactory::getObjectManager()->create(SystemConfigEdit::class);
-        $configAdminPage->open();
-        $configAdminPage->getForm()
+        $this->configurationAdminPage->open();
+        $this->configurationAdminPage->getForm()
             ->getGroup('web', 'secure')
             ->setValue('web', 'secure', 'use_in_adminhtml', 'No');
-        $configAdminPage->getPageActions()->save();
-
+        $this->configurationAdminPage->getPageActions()->save();
         $this->cache->flush(['config', 'full_page']);
         $this->staticContent->deploy();
     }

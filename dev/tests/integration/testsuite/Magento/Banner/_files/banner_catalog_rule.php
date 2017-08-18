@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -11,8 +11,10 @@
 require __DIR__ . '/banner.php';
 require __DIR__ . '/../../../Magento/CatalogRule/_files/catalog_rule_10_off_not_logged.php';
 
-$catalogRule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\CatalogRule\Model\Rule');
+$catalogRule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\CatalogRule\Model\Rule::class
+);
 $ruleId = $catalogRule->getCollection()->getFirstItem()->getId();
 
-$banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Banner\Model\Banner');
+$banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Banner\Model\Banner::class);
 $banner->load('Test Banner', 'name')->setBannerCatalogRules([$ruleId])->save();

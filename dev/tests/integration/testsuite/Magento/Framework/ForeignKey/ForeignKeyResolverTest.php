@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,7 +9,10 @@ namespace Magento\Framework\ForeignKey;
 use Magento\Framework\ForeignKey\StrategyInterface;
 use Magento\Framework\Exception\LocalizedException;
 
-class ForeignKeyResolverTest extends \PHPUnit_Framework_TestCase
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
+class ForeignKeyResolverTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Framework\DB\Adapter\AdapterInterface
@@ -47,10 +50,10 @@ class ForeignKeyResolverTest extends \PHPUnit_Framework_TestCase
         $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         /** @var \Magento\Framework\App\ResourceConnection $resource */
-        $resource = $this->objectManager->get('\Magento\Framework\App\ResourceConnection');
+        $resource = $this->objectManager->get(\Magento\Framework\App\ResourceConnection::class);
         $this->connection = $resource->getConnection('default');
         $this->relationProcessor = $this->objectManager->create(
-            '\Magento\Framework\Model\ResourceModel\Db\ObjectRelationProcessor'
+            \Magento\Framework\Model\ResourceModel\Db\ObjectRelationProcessor::class
         );
     }
 
@@ -241,8 +244,8 @@ class ForeignKeyResolverTest extends \PHPUnit_Framework_TestCase
     protected function invokeValidation($referenceId)
     {
         $strategy = $this->getConfig(StrategyInterface::TYPE_CASCADE);
-        $this->objectManager->addSharedInstance($strategy, 'Magento\Framework\ForeignKey\ConfigInterface');
-        $this->objectManager->addSharedInstance($strategy, 'Magento\Framework\ForeignKey\Config');
+        $this->objectManager->addSharedInstance($strategy, \Magento\Framework\ForeignKey\ConfigInterface::class);
+        $this->objectManager->addSharedInstance($strategy, \Magento\Framework\ForeignKey\Config::class);
 
         $this->relationProcessor->validateDataIntegrity(
             $this->connection->getTableName('test_entity_two'),
@@ -258,11 +261,11 @@ class ForeignKeyResolverTest extends \PHPUnit_Framework_TestCase
     protected function invokeDeleteAction($strategy, $table)
     {
         $strategy = $this->getConfig($strategy);
-        $this->objectManager->addSharedInstance($strategy, 'Magento\Framework\ForeignKey\ConfigInterface');
-        $this->objectManager->addSharedInstance($strategy, 'Magento\Framework\ForeignKey\Config');
+        $this->objectManager->addSharedInstance($strategy, \Magento\Framework\ForeignKey\ConfigInterface::class);
+        $this->objectManager->addSharedInstance($strategy, \Magento\Framework\ForeignKey\Config::class);
 
         $transactionManager = $this->objectManager->create(
-            'Magento\Framework\Model\ResourceModel\Db\TransactionManagerInterface'
+            \Magento\Framework\Model\ResourceModel\Db\TransactionManagerInterface::class
         );
 
         $transactionManager->start($this->connection);
@@ -289,27 +292,27 @@ class ForeignKeyResolverTest extends \PHPUnit_Framework_TestCase
     {
         $configPath = __DIR__ . '/etc/constraints_' . str_replace(' ', '_', strtolower($strategy)) . '.xml';
 
-        $fileResolverMock = $this->getMock('\Magento\Framework\Config\FileResolverInterface');
+        $fileResolverMock = $this->createMock(\Magento\Framework\Config\FileResolverInterface::class);
         $fileResolverMock->expects($this->any())
             ->method('get')
             ->willReturn([$configPath => file_get_contents(($configPath))]);
 
         /** @var \Magento\Framework\ForeignKey\Config\Reader $reader */
         $reader = $this->objectManager->create(
-            '\Magento\Framework\ForeignKey\Config\Reader',
+            \Magento\Framework\ForeignKey\Config\Reader::class,
             ['fileResolver' => $fileResolverMock]
         );
 
         /** @var \Magento\Framework\ForeignKey\Config\Data $dataContainer */
         $dataContainer = $this->objectManager->create(
-            '\Magento\Framework\ForeignKey\Config\Data',
+            \Magento\Framework\ForeignKey\Config\Data::class,
             ['reader' => $reader]
         );
         $dataContainer->reset();
 
         /** @var \Magento\Framework\ForeignKey\ConfigInterface $config */
         $config = $this->objectManager->create(
-            '\Magento\Framework\ForeignKey\ConfigInterface',
+            \Magento\Framework\ForeignKey\ConfigInterface::class,
             ['dataContainer' => $dataContainer]
         );
         return $config;

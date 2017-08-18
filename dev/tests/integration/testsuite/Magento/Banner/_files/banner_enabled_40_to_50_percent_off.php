@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,20 +8,20 @@ require __DIR__ . '/../../../Magento/SalesRule/_files/cart_rule_40_percent_off.p
 require __DIR__ . '/../../../Magento/SalesRule/_files/cart_rule_50_percent_off.php';
 
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-$registry = $objectManager->get('Magento\Framework\Registry');
+$registry = $objectManager->get(\Magento\Framework\Registry::class);
 
 /** @var \Magento\SalesRule\Model\Rule $ruleFrom */
-$ruleFrom = $objectManager->create('Magento\SalesRule\Model\Rule');
+$ruleFrom = $objectManager->create(\Magento\SalesRule\Model\Rule::class);
 $ruleFromId = $registry->registry('Magento/SalesRule/_files/cart_rule_40_percent_off');
 $ruleFrom->load($ruleFromId);
 
 /** @var \Magento\SalesRule\Model\Rule $ruleTo */
-$ruleTo = $objectManager->create('Magento\SalesRule\Model\Rule');
+$ruleTo = $objectManager->create(\Magento\SalesRule\Model\Rule::class);
 $ruleToId = $registry->registry('Magento/SalesRule/_files/cart_rule_50_percent_off');
 $ruleTo->load($ruleToId);
 
 /** @var \Magento\Banner\Model\Banner $banner */
-$banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Banner\Model\Banner');
+$banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Banner\Model\Banner::class);
 $banner->setData(
     [
         'name' => 'Get from 40% to 50% Off on Large Orders',

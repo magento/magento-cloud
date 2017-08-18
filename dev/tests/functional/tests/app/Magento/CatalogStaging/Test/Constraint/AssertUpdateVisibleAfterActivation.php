@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -12,12 +12,12 @@ use Magento\Mtf\Constraint\AbstractConstraint;
 use Magento\Catalog\Test\Fixture\CatalogProductSimple;
 
 /**
- * Assert that temporary product update is still visible after activation.
+ * Assert that temporary product update is still visible after activation
  */
 class AssertUpdateVisibleAfterActivation extends AbstractConstraint
 {
     /**
-     * Assert that temporary product update is visible after activation.
+     * Assert that temporary product update is visible after activation
      *
      * @param array $updates
      * @param Cron $cron
@@ -31,12 +31,12 @@ class AssertUpdateVisibleAfterActivation extends AbstractConstraint
         CatalogProductEdit $catalogProductEdit,
         CatalogProductSimple $product
     ) {
-        //Each time, the $cron->run() is called, it executes cron:run and sleeps for 60 secs.
-        // Run cron thrice to force the update.
+        //Each time, the $cron->run() is called, it executes cron:run and sleeps for 60 secs
+        // Run cron thrice to force the update
         $cron->run();
         $cron->run();
 
-        //Both the crons above were run at 60 seconds interval.
+        //Both the crons above were run at 60 seconds interval
         //Therefore, the last cron was run 60 seconds ago when the product staging update
         //was not yet active. Need to execute this third time,
         //so that cron is executed once the staging update time is reached

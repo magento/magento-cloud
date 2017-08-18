@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reminder\Model\Rule\Condition;
 
-class CartTest extends \PHPUnit_Framework_TestCase
+class CartTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Reminder\Model\Rule\Condition\Cart
@@ -17,17 +17,11 @@ class CartTest extends \PHPUnit_Framework_TestCase
      */
     public function testDaysDiffCondition($operator, $value, $expectedResult)
     {
-        $dateModelMock = $this->getMock(
-            'Magento\Framework\Stdlib\DateTime\DateTime',
-            ['gmtDate'],
-            [],
-            '',
-            false
-        );
+        $dateModelMock = $this->createPartialMock(\Magento\Framework\Stdlib\DateTime\DateTime::class, ['gmtDate']);
         $dateModelMock->expects($this->atLeastOnce())->method('gmtDate')->will($this->returnValue('2013-12-24'));
 
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Reminder\Model\Rule\Condition\Cart',
+            \Magento\Reminder\Model\Rule\Condition\Cart::class,
             ['dateModel' => $dateModelMock]
         );
         $this->_model->setOperator($operator);
@@ -74,7 +68,7 @@ class CartTest extends \PHPUnit_Framework_TestCase
     public function testDaysDiffConditionException()
     {
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Reminder\Model\Rule\Condition\Cart'
+            \Magento\Reminder\Model\Rule\Condition\Cart::class
         );
         $this->_model->setOperator('');
         $this->_model->setValue(-1);

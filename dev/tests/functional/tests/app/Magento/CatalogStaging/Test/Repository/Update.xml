@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Staging\Test\Repository\Update">
+        <dataset name="update_with_simple_product">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +5 minutes</item>
+            </field>
+            <field name="end_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +10 minutes</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+            <field name="entity_type" xsi:type="string">product</field>
+            <field name="product" xsi:type="array">
+                <item name="dataset" xsi:type="string">catalogProductSimple::default</item>
+            </field>
+        </dataset>
+
+        <dataset name="permanent_update_with_simple_product">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +5 minutes</item>
+            </field>
+            <field name="end_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +10 minutes</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+            <field name="entity_type" xsi:type="string">product</field>
+            <field name="product" xsi:type="array">
+                <item name="dataset" xsi:type="string">catalogProductSimple::default</item>
+            </field>
+        </dataset>
+
+        <dataset name="permanent_update_with_simple_product_with_2_website">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +5 minutes</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+            <field name="entity_type" xsi:type="string">product</field>
+            <field name="product" xsi:type="array">
+                <item name="dataset" xsi:type="string">catalogProductSimple::product_with_additional_website</item>
+            </field>
+        </dataset>
+
+        <dataset name="permanent_update_plus_2_minutes_with_simple_product">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +2 minutes</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+            <field name="entity_type" xsi:type="string">product</field>
+            <field name="product" xsi:type="array">
+                <item name="dataset" xsi:type="string">catalogProductSimple::default</item>
+            </field>
+        </dataset>
+
+        <dataset name="update_with_simple_product_plus_9_months">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +9 months</item>
+            </field>
+            <field name="end_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +12 months</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+            <field name="entity_type" xsi:type="string">product</field>
+            <field name="product" xsi:type="array">
+                <item name="dataset" xsi:type="string">catalogProductSimple::default</item>
+            </field>
+        </dataset>
+
+        <dataset name="permanent_update_plus_2_minutes_with_simple_product_with special_price">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +2 minutes</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_special_price%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+            <field name="entity_type" xsi:type="string">product</field>
+            <field name="product" xsi:type="array">
+                <item name="dataset" xsi:type="string">catalogProductSimple::product_with_special_price_and_category_2</item>
+            </field>
+        </dataset>
+    </repository>
+</config>

@@ -1,10 +1,10 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
-require __DIR__ . '/order.php';
+require 'order.php';
 /** @var \Magento\Catalog\Model\Product $product */
 /** @var \Magento\Sales\Model\Order $order */
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();

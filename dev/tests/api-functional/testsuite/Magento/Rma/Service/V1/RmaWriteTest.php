@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -96,7 +96,7 @@ class RmaWriteTest extends WebapiAbstract
     private function getNewRmaData()
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $collection = $objectManager->create('Magento\Sales\Model\ResourceModel\Order\Collection');
+        $collection = $objectManager->create(\Magento\Sales\Model\ResourceModel\Order\Collection::class);
         $collection->setOrder('entity_id')
             ->setPageSize(1)
             ->load();
@@ -142,7 +142,7 @@ class RmaWriteTest extends WebapiAbstract
     private function getRmaFixture()
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $collection = $objectManager->create('Magento\Rma\Model\ResourceModel\Rma\Collection');
+        $collection = $objectManager->create(\Magento\Rma\Model\ResourceModel\Rma\Collection::class);
         $collection->setOrder('entity_id')
             ->setPageSize(1)
             ->load();

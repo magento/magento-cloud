@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -33,14 +33,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 6. Click the "Remove" button for a original conditions.
  * 7. Perform assertions.
  *
- * @group Customer_Segments_(CS)
+ * @group Customer_Segments
  * @ZephyrId MAGETWO-26420
  */
 class UpdateCustomerSegmentEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -145,7 +144,8 @@ class UpdateCustomerSegmentEntityTest extends Injectable
      */
     public function tearDown()
     {
-        $this->objectManager->create('Magento\SalesRule\Test\TestStep\DeleteAllSalesRuleStep')->run();
-        $this->objectManager->create('Magento\CustomerSegment\Test\TestStep\DeleteAllCustomerSegmentsStep')->run();
+        $this->objectManager->create(\Magento\SalesRule\Test\TestStep\DeleteAllSalesRuleStep::class)->run();
+        $this->objectManager->create(\Magento\CustomerSegment\Test\TestStep\DeleteAllCustomerSegmentsStep::class)
+            ->run();
     }
 }

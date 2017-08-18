@@ -1,16 +1,17 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Banner\Test\Constraint;
 
-use Magento\PageCache\Test\Page\Adminhtml\AdminCache;
+use Magento\Mtf\Util\Command\Cli\Cache;
 use Magento\CatalogSearch\Test\Page\AdvancedSearch;
 use Magento\Cms\Test\Page\CmsIndex;
 use Magento\Widget\Test\Fixture\Widget;
 use Magento\Mtf\Constraint\AbstractConstraint;
+use Magento\Mtf\Client\BrowserInterface;
 
 /**
  * Check that created Banner Rotator widget displayed on frontend on Home page and on Advanced Search.
@@ -27,24 +28,28 @@ class AssertWidgetBannerRotator extends AbstractConstraint
      * @param CmsIndex $cmsIndex
      * @param AdvancedSearch $advancedSearch
      * @param Widget $widget
-     * @param AdminCache $adminCache
+     * @param Cache $cache
+     * @param BrowserInterface $browser
      * @return void
      */
     public function processAssert(
         CmsIndex $cmsIndex,
         AdvancedSearch $advancedSearch,
         Widget $widget,
-        AdminCache $adminCache
+        Cache $cache,
+        BrowserInterface $browser
     ) {
         // Flush cache
-        $adminCache->open();
-        $adminCache->getActionsBlock()->flushMagentoCache();
-        $adminCache->getMessagesBlock()->waitSuccessMessage();
+        $cache->flush();
 
         $cmsIndex->open();
         $widgetText = $widget->getParameters()['entities'][0]->getStoreContents()['value_0'];
         \PHPUnit_Framework_Assert::assertTrue(
-            $cmsIndex->getWidgetView()->isWidgetVisible($widget, $widgetText),
+            $browser->waitUntil(
+                function () use ($cmsIndex, $widget, $widgetText) {
+                    return $cmsIndex->getWidgetView()->isWidgetVisible($widget, $widgetText) ? true : null;
+                }
+            ),
             'Widget with type ' . $widget->getCode() . ' is absent on Home page.'
         );
         $cmsIndex->getFooterBlock()->openAdvancedSearch();

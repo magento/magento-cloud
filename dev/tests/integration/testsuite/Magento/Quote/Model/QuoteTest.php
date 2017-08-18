@@ -1,25 +1,20 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Quote\Model;
 
-use Magento\Customer\Api\Data\CustomerInterfaceFactory;
-use Magento\TestFramework\Helper\Bootstrap;
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Catalog\Model\ProductRepository;
+use Magento\Customer\Api\Data\CustomerInterfaceFactory;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\TestFramework\Helper\Bootstrap;
 
 /**
- * Test quote
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class QuoteTest extends \PHPUnit_Framework_TestCase
+class QuoteTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @param $entity
-     * @return mixed
-     */
     private function convertToArray($entity)
     {
         return Bootstrap::getObjectManager()
@@ -58,9 +53,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
             CustomerInterfaceFactory::class
         );
         /** @var \Magento\Framework\Api\DataObjectHelper $dataObjectHelper */
-        $dataObjectHelper = Bootstrap::getObjectManager()->create(
-            \Magento\Framework\Api\DataObjectHelper::class
-        );
+        $dataObjectHelper = Bootstrap::getObjectManager()->create(\Magento\Framework\Api\DataObjectHelper::class);
         $expected = $this->_getCustomerDataArray();
         $customer = $customerFactory->create();
         $dataObjectHelper->populateWithArray(
@@ -85,9 +78,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
             CustomerInterfaceFactory::class
         );
         /** @var \Magento\Framework\Api\DataObjectHelper $dataObjectHelper */
-        $dataObjectHelper = Bootstrap::getObjectManager()->create(
-            \Magento\Framework\Api\DataObjectHelper::class
-        );
+        $dataObjectHelper = Bootstrap::getObjectManager()->create(\Magento\Framework\Api\DataObjectHelper::class);
         $expected = $this->_getCustomerDataArray();
         //For save in repository
         $expected = $this->removeIdFromCustomerData($expected);
@@ -141,11 +132,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
         $quote->unsetData('customer_group_id');
 
         /** Execute SUT */
-        $this->assertEquals(
-            $customerGroupId,
-            $quote->getCustomerGroupId(),
-            "Customer group ID is invalid"
-        );
+        $this->assertEquals($customerGroupId, $quote->getCustomerGroupId(), "Customer group ID is invalid");
     }
 
     /**
@@ -166,11 +153,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
         $quote->setCustomerGroupId($fixtureGroupId);
 
         /** Execute SUT */
-        $this->assertEquals(
-            $fixtureTaxClassId,
-            $quote->getCustomerTaxClassId(),
-            'Customer tax class ID is invalid.'
-        );
+        $this->assertEquals($fixtureTaxClassId, $quote->getCustomerTaxClassId(), 'Customer tax class ID is invalid.');
     }
 
     /**
@@ -287,11 +270,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
 
         /** Check if SUT caused expected effects */
         $fixtureCustomerId = 1;
-        $this->assertEquals(
-            $fixtureCustomerId,
-            $quote->getCustomerId(),
-            'Customer ID in quote is invalid.'
-        );
+        $this->assertEquals($fixtureCustomerId, $quote->getCustomerId(), 'Customer ID in quote is invalid.');
 
         $billingAddress = $quote->getBillingAddress();
         foreach ($expectedBillingAddressData as $field => $value) {
@@ -344,7 +323,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
         $quote->setTotalsCollectedFlag(false)->collectTotals();
         $this->assertEquals(1, $quote->getItemsQty());
 
-        $this->setExpectedException(
+        $this->expectException(
             \Magento\Framework\Exception\LocalizedException::class,
             'We don\'t have as many "Simple Product" as you requested.'
         );
@@ -364,9 +343,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
     {
         $objectManager = Bootstrap::getObjectManager();
         /** @var \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository */
-        $customerRepository = $objectManager->create(
-            \Magento\Customer\Api\CustomerRepositoryInterface::class
-        );
+        $customerRepository = $objectManager->create(\Magento\Customer\Api\CustomerRepositoryInterface::class);
         $fixtureCustomerId = 1;
         /** @var \Magento\Customer\Model\Customer $customer */
         $customer = $objectManager->create(\Magento\Customer\Model\Customer::class);
@@ -405,9 +382,6 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
         return $customerData;
     }
 
-    /**
-     * @return array
-     */
     protected function _getCustomerDataArray()
     {
         return [
@@ -421,7 +395,7 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
             \Magento\Customer\Model\Data\Customer::FIRSTNAME => 'Joe',
             \Magento\Customer\Model\Data\Customer::GENDER => 'Male',
             \Magento\Customer\Model\Data\Customer::GROUP_ID =>
-            \Magento\Customer\Model\GroupManagement::NOT_LOGGED_IN_ID,
+                \Magento\Customer\Model\GroupManagement::NOT_LOGGED_IN_ID,
             \Magento\Customer\Model\Data\Customer::ID => 1,
             \Magento\Customer\Model\Data\Customer::LASTNAME => 'Dou',
             \Magento\Customer\Model\Data\Customer::MIDDLENAME => 'Ivan',
@@ -432,10 +406,28 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
             \Magento\Customer\Model\Data\Customer::WEBSITE_ID => 1
         ];
     }
-    
+
     /**
-     * Test to verify that disabled product cannot be added to cart.
+     * Test to verify that reserved_order_id will be changed if it already in used
      *
+     * @magentoDataFixture Magento/Sales/_files/order.php
+     * @magentoDataFixture Magento/Quote/_files/empty_quote.php
+     */
+    public function testReserveOrderId()
+    {
+        $objectManager = Bootstrap::getObjectManager();
+        /** @var \Magento\Quote\Model\Quote  $quote */
+        $quote = $objectManager->create(\Magento\Quote\Model\Quote::class);
+        $quote->load('reserved_order_id', 'reserved_order_id');
+        $quote->reserveOrderId();
+        $this->assertEquals('reserved_order_id', $quote->getReservedOrderId());
+        $quote->setReservedOrderId('100000001');
+        $quote->reserveOrderId();
+        $this->assertNotEquals('100000001', $quote->getReservedOrderId());
+    }
+
+    /**
+     * Test to verify that disabled product cannot be added to cart
      * @magentoDataFixture Magento/Quote/_files/is_not_salable_product.php
      */
     public function testAddedProductToQuoteIsSalable()
@@ -449,12 +441,35 @@ class QuoteTest extends \PHPUnit_Framework_TestCase
         /** @var \Magento\Quote\Model\Quote  $quote */
         $product = $productRepository->getById($productId, false, null, true);
 
-        $this->setExpectedException(
+        $this->expectException(
             LocalizedException::class,
             'Product that you are trying to add is not available.'
         );
 
         $quote = $objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->addProduct($product);
+    }
+
+    /**
+     * @magentoDataFixture Magento/Sales/_files/quote.php
+     * @magentoDataFixture Magento/Catalog/_files/product_simple.php
+     */
+    public function testGetItemById()
+    {
+        $objectManager = Bootstrap::getObjectManager();
+        $quote = $objectManager->create(\Magento\Quote\Model\Quote::class);
+        $quote->load('test01', 'reserved_order_id');
+
+        $quoteItem = $objectManager->create(\Magento\Quote\Model\Quote\Item::class);
+
+        $productRepository = $objectManager->create(\Magento\Catalog\Api\ProductRepositoryInterface::class);
+        $product = $productRepository->get('simple');
+
+        $quoteItem->setProduct($product);
+        $quote->addItem($quoteItem);
+        $quote->save();
+
+        $this->assertInstanceOf(\Magento\Quote\Model\Quote\Item::class, $quote->getItemById($quoteItem->getId()));
+        $this->assertEquals($quoteItem->getId(), $quote->getItemById($quoteItem->getId())->getId());
     }
 }

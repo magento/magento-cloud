@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -27,14 +27,13 @@ use Magento\MultipleWishlist\Test\Fixture\MultipleWishlist;
  * 4. Set qtyToCopy and copy it to another wish list.
  * 5. Perform assertions.
  *
- * @group Multiple_Wishlists_(CS)
+ * @group Multiple_Wishlists
  * @ZephyrId MAGETWO-29640
  */
 class CopyProductToAnotherWishlistEntityTest extends AbstractActionProductToAnotherWishlistTest
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     const TEST_TYPE = 'extended_acceptance_test';
     /* end tags */
 

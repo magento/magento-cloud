@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 use Magento\Eav\Api\Data\AttributeOptionInterface;
@@ -50,7 +50,7 @@ $data['options']['option'] = array_reduce(
     function ($values, $index) use ($optionsPerAttribute) {
         $values[] = [
             'label' => 'option ' . $index,
-            'value' => 'option_' . $index
+            'value' => 'option_' . $index,
         ];
         return $values;
     },
@@ -61,8 +61,7 @@ $options = [];
 foreach ($data['options']['option'] as $optionData) {
     $options[] = $objectManager->get(AttributeOptionInterface::class)
         ->setLabel($optionData['label'])
-        ->setValue($optionData['value'])
-        ;
+        ->setValue($optionData['value']);
 }
 
 $attribute = $objectManager->create(

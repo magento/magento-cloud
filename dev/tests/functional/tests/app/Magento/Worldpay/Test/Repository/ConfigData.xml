@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Config\Test\Repository\ConfigData">
+        <dataset name="worldpay">
+            <field name="payment/worldpay/installation_id" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="string">WORLDPAY_INSTALLATION_ID</item>
+            </field>
+            <field name="payment/worldpay/response_password" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="string">WORLDPAY_RESPONSE_PASSWORD</item>
+            </field>
+            <field name="payment/worldpay/md5_secret" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="string">WORLDPAY_MD5_SECRET</item>
+            </field>
+            <field name="payment/worldpay/debug" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="number">1</item>
+            </field>
+            <field name="payment/worldpay/sandbox_flag" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="number">1</item>
+            </field>
+            <field name="payment/worldpay/active" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="number">1</item>
+            </field>
+        </dataset>
+        <dataset name="worldpay_rollback">
+            <field name="payment/worldpay/active" xsi:type="array">
+                <item name="scope" xsi:type="string">payment</item>
+                <item name="scope_id" xsi:type="number">1</item>
+                <item name="label" xsi:type="string">No</item>
+                <item name="value" xsi:type="number">0</item>
+            </field>
+        </dataset>
+    </repository>
+</config>

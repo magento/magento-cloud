@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Logging\Model\Config;
 
-class ConverterTest extends \PHPUnit_Framework_TestCase
+class ConverterTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \DOMDocument
@@ -22,7 +22,7 @@ class ConverterTest extends \PHPUnit_Framework_TestCase
         $this->_loggingDom = new \DOMDocument();
         $this->_loggingDom->load(__DIR__ . '/_files/logging.xml');
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $this->_converter = $objectManager->get('Magento\Logging\Model\Config\Converter');
+        $this->_converter = $objectManager->get(\Magento\Logging\Model\Config\Converter::class);
     }
 
     /**

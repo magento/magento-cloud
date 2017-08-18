@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -19,33 +19,32 @@
                 <item name="value" label="Yes" xsi:type="string">1</item>
             </field>
         </dataset>
-        <dataset name="gift_wrapping_tax_class_taxable_goods">
-            <field name="tax/classes/wrapping_tax_class" xsi:type="array">
-                <item name="scope" xsi:type="string">default</item>
-                <item name="scope_id" xsi:type="number">0</item>
-                <item name="value" label="Taxable Goods" xsi:type="string">2</item>
-            </field>
-        </dataset>
-        <dataset name="gift_wrapping_tax_class_taxable_goods_rollback">
-            <field name="tax/classes/wrapping_tax_class" xsi:type="array">
-                <item name="scope" xsi:type="string">default</item>
-                <item name="scope_id" xsi:type="number">0</item>
-                <item name="value" label="None" xsi:type="string">0</item>
-            </field>
-        </dataset>
 
-        <dataset name="gift_wrapping_display_excluding_including_tax">
+        <dataset name="display_excluding_including_tax">
+            <field name="tax/classes/wrapping_tax_class" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="label" xsi:type="string">Taxable Goods</item>
+                <item name="value" xsi:type="number">2</item>
+            </field>
             <field name="tax/cart_display/gift_wrapping" xsi:type="array">
-                <item name="scope" xsi:type="string">tax</item>
-                <item name="scope_id" xsi:type="number">1</item>
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
                 <item name="label" xsi:type="string">Including and Excluding Tax</item>
                 <item name="value" xsi:type="number">3</item>
             </field>
         </dataset>
-        <dataset name="gift_wrapping_display_excluding_including_tax_rollback">
+
+        <dataset name="display_excluding_including_tax_rollback">
+            <field name="tax/classes/wrapping_tax_class" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="label" xsi:type="string">None</item>
+                <item name="value" xsi:type="number">0</item>
+            </field>
             <field name="tax/cart_display/gift_wrapping" xsi:type="array">
-                <item name="scope" xsi:type="string">tax</item>
-                <item name="scope_id" xsi:type="number">1</item>
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
                 <item name="label" xsi:type="string">Excluding Tax</item>
                 <item name="value" xsi:type="number">1</item>
             </field>

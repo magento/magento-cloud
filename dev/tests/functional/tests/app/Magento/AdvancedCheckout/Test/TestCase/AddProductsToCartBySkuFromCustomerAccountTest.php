@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -24,15 +24,15 @@ use Magento\Customer\Test\Page\CustomerAccountIndex;
  * 4. Click Add to Cart button.
  * 5. Perform all asserts.
  *
- * @group Add_by_SKU_(CS)
+ * @group Add_by_SKU
  * @ZephyrId MAGETWO-28259
  */
 class AddProductsToCartBySkuFromCustomerAccountTest extends AbstractAdvancedCheckoutEntityTest
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     const TEST_TYPE = 'extended_acceptance_test';
+    const SEVERITY = 'S1';
     /* end tags */
 
     /**
@@ -73,13 +73,13 @@ class AddProductsToCartBySkuFromCustomerAccountTest extends AbstractAdvancedChec
      * Adding to cart AdvancedCheckoutEntity(from MyAccount).
      *
      * @param Customer $customer
-     * @param string $products
      * @param array $orderOptions
      * @param string $cartBlock
      * @param string $config
+     * @param array $products
      * @return array
      */
-    public function test(Customer $customer, $products, array $orderOptions, $cartBlock, $config)
+    public function test(Customer $customer, array $orderOptions, $cartBlock, $config, array $products = [])
     {
         // Preconditions
         $this->configuration = $config;

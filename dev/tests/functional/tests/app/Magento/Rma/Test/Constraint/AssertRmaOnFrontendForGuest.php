@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -37,7 +37,7 @@ class AssertRmaOnFrontendForGuest extends AbstractAssertRmaOnFrontend
         /** @var OrderInjectable $order */
         $order = $rma->getDataFieldConfig('order_id')['source']->getOrder();
         $this->objectManager->create(
-            'Magento\Sales\Test\TestStep\OpenSalesOrderOnFrontendForGuestStep',
+            \Magento\Sales\Test\TestStep\OpenSalesOrderOnFrontendForGuestStep::class,
             ['order' => $order]
         )->run();
 

@@ -1,11 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Checkout\Test\TestCase;
 
+use Magento\Config\Test\Fixture\ConfigData;
 use Magento\Mtf\TestCase\Scenario;
 use Magento\Mtf\Fixture\FixtureFactory;
 
@@ -21,7 +22,7 @@ use Magento\Mtf\Fixture\FixtureFactory;
  * 5. Perform all assertions.
  *
  * @group Shopping_Cart
- * @ZephyrId MAGETWO-70146
+ * @ZephyrId MAGETWO-63338, MAGETWO-63339, MAGETWO-63337
  */
 class ShoppingCartPagerTest extends Scenario
 {

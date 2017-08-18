@@ -1,9 +1,8 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 require __DIR__ . '/../../Customer/_files/customer.php';
 require __DIR__ . '/../../Customer/_files/customer_two_addresses.php';
 
@@ -11,8 +10,9 @@ require __DIR__ . '/../../Customer/_files/customer_two_addresses.php';
 
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
-$objectManager->get(\Magento\Framework\App\Config\MutableScopeConfigInterface::class)
-    ->setValue('carriers/flatrate/active', 1, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$objectManager->get(
+    \Magento\Framework\App\Config\MutableScopeConfigInterface::class
+)->setValue('carriers/flatrate/active', 1, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 $objectManager->get(\Magento\Framework\App\Config\MutableScopeConfigInterface::class)
     ->setValue('payment/paypal_express/active', 1, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Invitation\Model\ResourceModel\Report\Invitation\Order\Initial;
@@ -10,7 +10,7 @@ namespace Magento\Invitation\Model\ResourceModel\Report\Invitation\Order\Initial
  *
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends \PHPUnit\Framework\TestCase
 {
 
     /** @var \Magento\Invitation\Model\ResourceModel\Report\Invitation\Order\Collection */
@@ -19,7 +19,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->create('\Magento\Invitation\Model\ResourceModel\Report\Invitation\Order\Collection');
+            ->create(\Magento\Invitation\Model\ResourceModel\Report\Invitation\Order\Collection::class);
         $this->_model->setDateRange('2011-08-03', '2040-08-03');
     }
 

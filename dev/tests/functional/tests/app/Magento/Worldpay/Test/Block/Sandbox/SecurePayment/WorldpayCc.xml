@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<mapping strict="0">
+    <fields>
+        <cc_number>
+            <selector>#cardNoInput</selector>
+        </cc_number>
+        <cc_exp_month>
+            <input>select</input>
+            <selector>[name="cardExp.month"]</selector>
+        </cc_exp_month>
+        <cc_exp_year>
+            <input>select</input>
+            <selector>[name="cardExp.year"]</selector>
+        </cc_exp_year>
+        <cc_cid>
+            <selector>#cardCVV</selector>
+        </cc_cid>
+    </fields>
+</mapping>

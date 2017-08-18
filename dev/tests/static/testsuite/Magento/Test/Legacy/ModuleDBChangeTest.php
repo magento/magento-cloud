@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,7 +10,7 @@
  */
 namespace Magento\Test\Legacy;
 
-class ModuleDBChangeTest extends \PHPUnit_Framework_TestCase
+class ModuleDBChangeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var string
@@ -50,7 +50,7 @@ class ModuleDBChangeTest extends \PHPUnit_Framework_TestCase
                 //get all version branches
                 preg_match_all('|^(\d+\.\d+)|m', file_get_contents($branchesFile), $matches);
 
-                //check is this the latest release branch
+                //check is this a latest release branch
                 self::$actualBranch = ($branchName == max($matches[0]));
             }
         }

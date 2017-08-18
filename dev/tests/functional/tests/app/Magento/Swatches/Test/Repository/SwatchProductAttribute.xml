@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -11,7 +11,6 @@
             <field name="attribute_code" xsi:type="string">sw_color%isolation%</field>
             <field name="frontend_input" xsi:type="string" >Text Swatch</field>
             <field name="frontend_label" xsi:type="string" >Text Swatch</field>
-            <field name="used_in_product_listing" xsi:type="string">Yes</field>
             <field name="options" xsi:type="array">
                 <item name="0" xsi:type="array">
                     <item name="is_default" xsi:type="string">No</item>
@@ -29,6 +28,8 @@
                     <item name="view" xsi:type="string">B</item>
                 </item>
             </field>
+            <field name="is_global" xsi:type="string">Global</field>
+            <field name="used_in_product_listing" xsi:type="string">Yes</field>
         </dataset>
     </repository>
 </config>

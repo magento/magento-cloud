@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -28,14 +28,14 @@ use Magento\Mtf\TestCase\Injectable;
  *  3. Click 'Generate' In the grid for sitemap from preconditions
  *  4. Perform all assertions
  *
- * @group XML_Sitemap_(PS)
+ * @group XML_Sitemap
  * @ZephyrId MAGETWO-25362
  */
 class UpdateSitemapEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'PS';
+    const SEVERITY = 'S1';
     /* end tags */
 
     /**

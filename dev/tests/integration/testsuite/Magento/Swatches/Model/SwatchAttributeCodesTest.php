@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Swatches\Model;
 
-class SwatchAttributeCodesTest extends \PHPUnit_Framework_TestCase
+class SwatchAttributeCodesTest extends \PHPUnit\Framework\TestCase
 {
     /** @var  \Magento\Swatches\Model\SwatchAttributeCodes */
     private $swatchAttributeCodes;
@@ -13,12 +13,12 @@ class SwatchAttributeCodesTest extends \PHPUnit_Framework_TestCase
     /**
      * @var \Magento\Framework\ObjectManagerInterface
      */
-    private $_objectManager;
+    private $objectManager;
 
     protected function setUp()
     {
-        $this->_objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $this->swatchAttributeCodes = $this->_objectManager->create(
+        $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
+        $this->swatchAttributeCodes = $this->objectManager->create(
             \Magento\Swatches\Model\SwatchAttributeCodes::class
         );
     }
@@ -29,7 +29,7 @@ class SwatchAttributeCodesTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCodes()
     {
-        $attribute = $this->_objectManager
+        $attribute = $this->objectManager
             ->create(\Magento\Catalog\Model\ResourceModel\Eav\Attribute::class)
             ->load('color_swatch', 'attribute_code');
         $expected = [

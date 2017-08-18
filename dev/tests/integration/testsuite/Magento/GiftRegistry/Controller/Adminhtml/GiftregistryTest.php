@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftRegistry\Controller\Adminhtml;
@@ -42,12 +42,14 @@ class GiftregistryTest extends \Magento\TestFramework\TestCase\AbstractBackendCo
         );
         $this->dispatch('backend/admin/giftregistry/save/store/0');
         /** @var $type \Magento\GiftRegistry\Model\Type */
-        $type = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\GiftRegistry\Model\Type');
+        $type = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\GiftRegistry\Model\Type::class
+        );
         $type->setStoreId(0);
 
         $type = $type->load('test_registry', 'code');
 
-        $this->assertInstanceOf('Magento\GiftRegistry\Model\Type', $type);
+        $this->assertInstanceOf(\Magento\GiftRegistry\Model\Type::class, $type);
         $this->assertNotEmpty($type->getId());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -24,20 +24,16 @@ class AssertAttributeOptionsOnProductForm extends AbstractConstraint
      * @param CatalogProductIndex $productGrid
      * @param CatalogProductAttribute $attribute
      * @param CatalogProductEdit $productEdit
-     * @param string|null $ifAssertOnNewProduct
      * @return void
      */
     public function processAssert(
         InjectableFixture $product,
         CatalogProductIndex $productGrid,
         CatalogProductAttribute $attribute,
-        CatalogProductEdit $productEdit,
-        $ifAssertOnNewProduct = null
+        CatalogProductEdit $productEdit
     ) {
-        if ($ifAssertOnNewProduct != 'Yes') {
-            $productGrid->open();
-            $productGrid->getProductGrid()->searchAndOpen(['sku' => $product->getSku()]);
-        }
+        $productGrid->open();
+        $productGrid->getProductGrid()->searchAndOpen(['sku' => $product->getSku()]);
 
         $attributeOptions = $attribute->getOptions();
         $options[] = $attribute->getFrontendLabel();
@@ -45,7 +41,7 @@ class AssertAttributeOptionsOnProductForm extends AbstractConstraint
             $options[] = $option['admin'];
         }
         $productAttributeOptions = $productEdit->getProductForm()->getAttributeElement($attribute)->getText();
-        $productOptions = explode("\n", str_replace(' ', '', $productAttributeOptions));
+        $productOptions = explode("\n", $productAttributeOptions);
         $diff = array_diff($options, $productOptions);
 
         \PHPUnit_Framework_Assert::assertTrue(

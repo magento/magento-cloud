@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reminder\Model\ResourceModel\Rule;
 
 use Magento\Reminder\Model\Rule;
 
-class TemplateTest extends \PHPUnit_Framework_TestCase
+class TemplateTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test creation of reminder rule with custom template.
@@ -16,13 +16,13 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
     {
         /** @var $store \Magento\Store\Model\Store */
         $store = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Store\Model\StoreManagerInterface'
+            \Magento\Store\Model\StoreManagerInterface::class
         )->getStore();
         $storeId = $store->getId();
 
         /** @var \Magento\Email\Model\Template $template */
         $template = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Email\Model\Template'
+            \Magento\Email\Model\Template::class
         );
         $template->setTemplateCode(
             'fixture_tpl'
@@ -40,10 +40,10 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
             1
         )->save();
 
-        $conditions = serialize([]);
+        $conditions = json_encode([]);
 
         $ruleCreate = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Reminder\Model\Rule'
+            \Magento\Reminder\Model\Rule::class
         );
 
         $ruleCreate->setData(
@@ -64,16 +64,16 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
         )->save();
 
         $dateModel = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Framework\Stdlib\DateTime\DateTime'
+            \Magento\Framework\Stdlib\DateTime\DateTime::class
         );
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Reminder\Model\ResourceModel\Rule\Collection'
+            \Magento\Reminder\Model\ResourceModel\Rule\Collection::class
         );
         $collection->addDateFilter($dateModel->date());
         $this->assertEquals(1, $collection->count());
         /** @var $rule Rule */
         foreach ($collection as $rule) {
-            $this->assertInstanceOf('Magento\Reminder\Model\Rule', $rule);
+            $this->assertInstanceOf(\Magento\Reminder\Model\Rule::class, $rule);
             $this->assertEquals('My Rule', $rule->getName());
             $storeData = $rule->getStoreData($rule->getId(), $storeId);
             $this->assertNotNull($storeData);

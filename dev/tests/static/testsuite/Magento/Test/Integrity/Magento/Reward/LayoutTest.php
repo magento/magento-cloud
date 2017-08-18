@@ -2,12 +2,12 @@
 /**
  * Validator of class names in Reward nodes
  *
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Test\Integrity\Magento\Reward;
 
-class LayoutTest extends \PHPUnit_Framework_TestCase
+class LayoutTest extends \PHPUnit\Framework\TestCase
 {
     public function testInitRewardTypeClasses()
     {

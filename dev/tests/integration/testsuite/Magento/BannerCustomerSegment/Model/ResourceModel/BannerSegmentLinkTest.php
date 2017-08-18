@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\BannerCustomerSegment\Model\ResourceModel;
 
-class BannerSegmentLinkTest extends \PHPUnit_Framework_TestCase
+class BannerSegmentLinkTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\BannerCustomerSegment\Model\ResourceModel\BannerSegmentLink
@@ -15,7 +15,7 @@ class BannerSegmentLinkTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->_resourceModel = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\BannerCustomerSegment\Model\ResourceModel\BannerSegmentLink'
+            \Magento\BannerCustomerSegment\Model\ResourceModel\BannerSegmentLink::class
         );
     }
 
@@ -75,7 +75,7 @@ class BannerSegmentLinkTest extends \PHPUnit_Framework_TestCase
 
         /** @var \Magento\Banner\Model\ResourceModel\Salesrule\Collection $collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Banner\Model\ResourceModel\Salesrule\Collection'
+            \Magento\Banner\Model\ResourceModel\Salesrule\Collection::class
         );
         $select = $collection->getSelect();
         $initialSql = (string)$select;
@@ -115,7 +115,9 @@ class BannerSegmentLinkTest extends \PHPUnit_Framework_TestCase
     protected function _getBannerId($bannerName)
     {
         /** @var \Magento\Banner\Model\Banner $banner */
-        $banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Banner\Model\Banner');
+        $banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+            \Magento\Banner\Model\Banner::class
+        );
         $banner->load($bannerName, 'name');
         return $banner->getId();
     }
@@ -132,7 +134,7 @@ class BannerSegmentLinkTest extends \PHPUnit_Framework_TestCase
         foreach ($segmentNames as $segmentName) {
             /** @var $segment \Magento\CustomerSegment\Model\Segment */
             $segment = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-                'Magento\CustomerSegment\Model\Segment'
+                \Magento\CustomerSegment\Model\Segment::class
             );
             $segment->load($segmentName, 'name');
             $result[] = $segment->getId();

@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 require __DIR__ . '/../../../Magento/Invitation/_files/invitation.php';
 
 $invitation2 = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-    ->create('\Magento\Invitation\Model\Invitation');
+    ->create(\Magento\Invitation\Model\Invitation::class);
 
 $invitation2->setInvitationDate('2015-08-03 09:13:11');
 $invitation2->isObjectNew(true);

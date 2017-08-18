@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -16,16 +16,11 @@ use Magento\Staging\Test\Fixture\Update;
  * 1. Create simple product.
  *
  * Steps:
- * 1. Login to backend.
- * 2. Navigate to PRODUCTS -> Catalog.
- * 3. Select a product in the grid.
- * 4. Start to create schedule update.
- * 4. Fill in data according to dataset.
- * 5. Click "Save".
- * 6. Perform asserts.
+ * 1. Create product update campaign with different time ranges.
+ * 2. Verify that correct error messages are displayed in case campaign can not be created.
  *
  * @group CatalogStaging
- * @ZephyrId MAGETWO-69538
+ * @ZephyrId MAGETWO-49851, MAGETWO-49852, MAGETWO-49052, MAGETWO-55015, MAGETWO-55016
  */
 class CreateScheduledProductUpdateTest extends Injectable
 {

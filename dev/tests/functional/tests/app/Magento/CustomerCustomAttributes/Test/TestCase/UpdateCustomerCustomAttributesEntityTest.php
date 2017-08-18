@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -20,14 +20,13 @@ use Magento\CustomerCustomAttributes\Test\Fixture\CustomerCustomAttribute;
  * 5. Save attribute
  * 6. Perform all assertions
  *
- * @group Customer_Attributes_(CS)
+ * @group Customer_Attributes
  * @ZephyrId MAGETWO-26366
  */
 class UpdateCustomerCustomAttributesEntityTest extends AbstractCustomerCustomAttributesEntityTest
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**

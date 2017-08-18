@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -62,7 +62,7 @@ class Grid extends \Magento\Backend\Test\Block\Widget\Grid
         if ($selectItem->isVisible()) {
             $selectItem->find($this->editLink)->click();
         } else {
-            throw new \Exception('Searched item was not found.');
+            throw new \Exception("Searched item was not found by filter\n" . print_r($filter, true));
         }
     }
 
@@ -81,28 +81,7 @@ class Grid extends \Magento\Backend\Test\Block\Widget\Grid
         if ($selectItem->isVisible()) {
             return $selectItem->find($this->editLink)->getText();
         } else {
-            throw new \Exception('Searched item was not found.');
+            throw new \Exception("Searched item was not found by filter\n" . print_r($filter, true));
         }
-    }
-
-    /**
-     * Return newest row data.
-     *
-     * @param array $columns
-     * @return array
-     */
-    public function getNewestRowData(array $columns)
-    {
-        $this->sortGridByField($this->sortLinkName);
-        $row = $this->_rootElement->find($this->rowItem);
-        $rowData = [];
-
-        if ($row->isVisible()) {
-            foreach ($columns as $columnName) {
-                $rowData[$columnName] = trim($row->find('.col-' . $columnName)->getText());
-            }
-        }
-
-        return $rowData;
     }
 }

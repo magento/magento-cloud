@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -9,60 +9,56 @@ namespace Magento\CatalogEvent\Test\Constraint;
 use Magento\Catalog\Test\Fixture\CatalogProductSimple;
 use Magento\Catalog\Test\Page\Category\CatalogCategoryView;
 use Magento\Catalog\Test\Page\Product\CatalogProductView;
+use Magento\CatalogEvent\Test\Fixture\CatalogEventEntity;
 use Magento\Cms\Test\Page\CmsIndex;
 use Magento\Mtf\Constraint\AbstractConstraint;
 
 /**
- * Class AssertCatalogEventBlockAbsent
- * Check invisible Event block on category/product pages
+ * Check invisible Event block on category/product pages.
  */
 class AssertCatalogEventBlockAbsent extends AbstractConstraint
 {
-    /* tags */
-    const SEVERITY = 'low';
-    /* end tags */
-
     /**
-     * Category Page on Frontend
+     * Category Page on Storefront.
      *
      * @var CatalogCategoryView
      */
     protected $catalogCategoryView;
 
     /**
-     * Index Page on Frontend
+     * Index Page on Storefront.
      *
      * @var CmsIndex
      */
     protected $cmsIndex;
 
     /**
-     * Product Page on Frontend
+     * Product Page on Storefront.
      *
      * @var CatalogProductView
      */
     protected $catalogProductView;
 
     /**
-     * Category Name
+     * Category name.
      *
      * @var string
      */
     protected $categoryName;
 
     /**
-     * Product.
+     * Product fixture.
      *
      * @var CatalogProductSimple
      */
     protected $product;
 
     /**
-     * Assert that Event block is invisible on category/product pages
+     * Assert that Event block is invisible on category/product pages.
      *
      * @param CmsIndex $cmsIndex
      * @param CatalogCategoryView $catalogCategoryView
-     * @param CatalogProductSimple $product
+     * @param CatalogEventEntity $catalogEvent
      * @param CatalogProductView $catalogProductView
      *
      * @return void
@@ -70,22 +66,27 @@ class AssertCatalogEventBlockAbsent extends AbstractConstraint
     public function processAssert(
         CmsIndex $cmsIndex,
         CatalogCategoryView $catalogCategoryView,
-        CatalogProductSimple $product,
+        CatalogEventEntity $catalogEvent,
         CatalogProductView $catalogProductView
     ) {
         $this->catalogCategoryView = $catalogCategoryView;
         $this->cmsIndex = $cmsIndex;
         $this->catalogProductView = $catalogProductView;
 
-        $this->categoryName = $product->getCategoryIds()[0];
-        $this->product = $product;
+        $this->categoryName = $catalogEvent->getCategoryId();
+        $this->product = current(
+            $catalogEvent->getDataFieldConfig('category_id')['source']
+                ->getCategory()
+                ->getDataFieldConfig('category_products')['source']
+                ->getProducts()
+        );
 
         $this->checkEventBlockOnCategoryPageAbsent();
         $this->checkEventBlockOnProductPageAbsent();
     }
 
     /**
-     * Event block is invisible on Category page
+     * Event block is invisible on Category page.
      *
      * @return void
      */
@@ -100,7 +101,7 @@ class AssertCatalogEventBlockAbsent extends AbstractConstraint
     }
 
     /**
-     * Event block is invisible on Product page
+     * Event block is invisible on Product page.
      *
      * @return void
      */
@@ -116,7 +117,7 @@ class AssertCatalogEventBlockAbsent extends AbstractConstraint
     }
 
     /**
-     * Text invisible Event Block on category/product pages
+     * Text invisible Event Block on category/product pages.
      *
      * @return string
      */

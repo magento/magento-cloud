@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Braintree\Test\TestCase\OnePageCheckoutWithBraintreePaypalTest" summary="One page checkout with Braintree PayPal.">
+        <variation name="OnePageCheckoutWithBraintreePaypalGiftCardTestVariation1" summary="Checkout with Braintree Paypal (Payment Action = Authorize and Capture) for Gift Card as Customer" ticketId="MAGETWO-56119">
+            <data name="products/0" xsi:type="string">giftCardProduct::default</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="checkoutMethod" xsi:type="string">login</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">150.00</item>
+            </data>
+            <data name="transactions/Capture" xsi:type="array">
+                <item name="transactionType" xsi:type="string">Capture</item>
+                <item name="statusIsClosed" xsi:type="string">No</item>
+            </data>
+            <data name="invoiceStatus" xsi:type="string">Paid</data>
+            <data name="payment/method" xsi:type="string">braintree_paypal</data>
+            <data name="configData" xsi:type="string">braintree, braintree_paypal_sale, braintree_paypal_skip_order_review</data>
+            <data name="status" xsi:type="string">Complete</data>
+            <data name="tag" xsi:type="string">test_type:3rd_party_test, severity:S1</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertTransactionStatus" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertInvoiceStatusInOrdersGrid" />
+        </variation>
+        <variation name="OnePageCheckoutWithBraintreePaypalGiftCardTestVariation2" summary="Checkout with Braintree Paypal (Payment Action = Authorize and Capture) for Gift Card as Guest" ticketId="MAGETWO-56118">
+            <data name="products/0" xsi:type="string">giftCardProduct::default</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="checkoutMethod" xsi:type="string">guest</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">150.00</item>
+            </data>
+            <data name="transactions/Capture" xsi:type="array">
+                <item name="transactionType" xsi:type="string">Capture</item>
+                <item name="statusIsClosed" xsi:type="string">No</item>
+            </data>
+            <data name="invoiceStatus" xsi:type="string">Paid</data>
+            <data name="payment/method" xsi:type="string">braintree_paypal</data>
+            <data name="configData" xsi:type="string">braintree, braintree_paypal_sale, braintree_paypal_skip_order_review</data>
+            <data name="status" xsi:type="string">Complete</data>
+            <data name="tag" xsi:type="string">test_type:3rd_party_test, severity:S1</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertTransactionStatus" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertInvoiceStatusInOrdersGrid" />
+        </variation>
+    </testCase>
+</config>

@@ -1,15 +1,15 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogPermissions\Model\Indexer;
 
 /**
- * @magentoDbIsolation enabled
+ * @magentoDbIsolation disabled
  * @magentoAppIsolation enabled
  */
-class ProductTest extends \PHPUnit_Framework_TestCase
+class ProductTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\CatalogPermissions\Model\ResourceModel\Permission\Index
@@ -24,10 +24,10 @@ class ProductTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->indexTable = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CatalogPermissions\Model\ResourceModel\Permission\Index'
+            \Magento\CatalogPermissions\Model\ResourceModel\Permission\Index::class
         );
         $this->product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Catalog\Model\Product'
+            \Magento\Catalog\Model\Product::class
         );
     }
 
@@ -44,7 +44,7 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         $product = $this->getProduct();
         /** @var  $indexer \Magento\Framework\Indexer\IndexerInterface */
         $indexer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Indexer\Model\Indexer'
+            \Magento\Indexer\Model\Indexer::class
         );
         $indexer->load(\Magento\CatalogPermissions\Model\Indexer\Product::INDEXER_ID);
         $indexer->reindexAll();

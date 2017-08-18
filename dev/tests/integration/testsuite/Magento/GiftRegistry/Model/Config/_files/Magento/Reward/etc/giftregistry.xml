@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_GiftRegistry:etc/giftregistry.xsd">
     <attribute_type name="text2">
-        <label translate="false">Text</label>
+        <label translate="true">Text</label>
     </attribute_type>
     <attribute_group name="event_information2"
                      sort_order="5" visible="true">
-        <label translate="false">Event Information</label>
+        <label translate="true">Event Information</label>
     </attribute_group>
     <registry>
         <static_attribute name="event_country2"
                           type="country" group="event_information" visible="true">
-            <label translate="false">Event Country</label>
+            <label translate="true">Event Country</label>
         </static_attribute>
         <custom_attribute name="my_event_special2"
                           type="country" group="event_information" visible="true">
-            <label translate="false">My event special</label>
+            <label translate="true">My event special</label>
         </custom_attribute>
     </registry>
     <registrant>
         <static_attribute name="role2" type="select"
                           group="registrant" visible="true">
-            <label translate="false">Role</label>
+            <label translate="true">Role</label>
         </static_attribute>
         <custom_attribute name="my_special_attribute2"
                           type="country" group="registrant" visible="true">
-            <label translate="false">My special attribute</label>
+            <label translate="true">My special attribute</label>
         </custom_attribute>
     </registrant>
 </config>

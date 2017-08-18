@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -50,6 +50,9 @@ class Curl extends AbstractCurl implements CustomerCustomAttributeInterface
         'used_in_forms' => [
             'Customer Address Registration' => 'customer_register_address',
             'Customer Account Address' => 'customer_address_edit'
+        ],
+        'is_used_for_customer_segment' => [
+            'Yes' => 1
         ]
     ];
 
@@ -71,9 +74,20 @@ class Curl extends AbstractCurl implements CustomerCustomAttributeInterface
         if (!strpos($response, 'data-ui-id="messages-message-success"')) {
             throw new \Exception("CustomerAttribute creating by curl handler was not successful! Response: $response");
         }
-        preg_match('`\/attribute_id\/(\d*?)\/`', $response, $match);
-
-        return ['attribute_id' => empty($match[1]) ? null : $match[1]];
+        preg_match('`\/attribute_id\/(\d*?)\/`', $response, $attributeId);
+        preg_match_all('`id":"(\d+)".*?"store\d+":"([^"]+)"`', $response, $match);
+        $options = [];
+        if (isset($data['option']['value'])) {
+            $i = 0;
+            foreach ($data['option']['value'] as $option) {
+                $options[$option[0]] = $match[1][$i];
+                $i++;
+            }
+        }
+        return [
+            'attribute_id' => empty($attributeId[1]) ? null : $attributeId[1],
+            'options' => $options
+        ];
     }
 
     /**

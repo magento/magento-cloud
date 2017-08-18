@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../vendor/magento/mtf/etc/pages.xsd">
+    <page name="StagingUpdatePreview" area="Adminhtml" mca="staging/update/preview">
+        <block name="productInfoBlock" class="Magento\CatalogStaging\Test\Block\Adminhtml\Preview\ProductInfo" locator=".staging-preview-content .product-info-main" strategy="css selector" />
+        <block name="productsListBlock" class="Magento\CatalogStaging\Test\Block\Adminhtml\Preview\ProductsList" locator=".products-grid" strategy="css selector" />
+        <block name="navigationBlock" class="Magento\CatalogStaging\Test\Block\Adminhtml\Preview\Navigation" locator=".navigation" strategy="css selector" />
+    </page>
+</config>

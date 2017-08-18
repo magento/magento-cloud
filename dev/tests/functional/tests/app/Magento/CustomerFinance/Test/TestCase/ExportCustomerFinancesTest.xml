@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerFinance\Test\TestCase\ExportCustomerFinancesTest" summary="Export customer finances" ticketId="MAGETWO-46178">
+        <variation name="ExportCustomerFinancesTestVariation1">
+            <data name="exportData/dataset" xsi:type="string">csv_with_customer_finances</data>
+            <data name="customers/0" xsi:type="array">
+                <item name="fixture" xsi:type="string">customer</item>
+                <item name="dataset" xsi:type="string">johndoe_with_addresses</item>
+                <item name="rewardPoints" xsi:type="string">reward_points_5</item>
+                <item name="customerBalance" xsi:type="string">customerBalance_5</item>
+            </data>
+            <data name="customers/1" xsi:type="array">
+                <item name="fixture" xsi:type="string">customer</item>
+                <item name="dataset" xsi:type="string">johndoe_with_addresses</item>
+                <item name="rewardPoints" xsi:type="string">reward_points_10</item>
+                <item name="customerBalance" xsi:type="string">customerBalance_10</item>
+                <item name="store" xsi:type="string">custom_store</item>
+            </data>
+            <constraint name="Magento\CustomerFinance\Test\Constraint\AssertExportCustomerFinances" />
+        </variation>
+    </testCase>
+</config>

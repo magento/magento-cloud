@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerSegment\Test\TestCase\CreateCustomerSegmentEntityWithSalesConditionsTestSalesAmountTest" summary="Create Customer Segment" ticketId="MAGETWO-36700">
+        <variation name="CreateCustomerSegmentEntityWithSalesConditionsTestSalesAmountVariation1" summary="Create customer segment based on customer's sales total amount condition in which total is 40 dollars and date range from 2010-01-01 to 2020-01-01" ticketId="MAGETWO-36700">
+            <data name="customer/dataset" xsi:type="string">johndoe</data>
+            <data name="customer/data/address/dataset" xsi:type="string">US_address</data>
+            <data name="orders/0/dataset" xsi:type="string">default</data>
+            <data name="orders/0/data/entity_id/products" xsi:type="string">catalogProductSimple::product_10_dollar</data>
+            <data name="orders/0/data/shipping_method" xsi:type="string">freeshipping_freeshipping</data>
+            <data name="orders/1/dataset" xsi:type="string">default</data>
+            <data name="orders/1/data/entity_id/products" xsi:type="string">catalogProductSimple::product_30_dollar</data>
+            <data name="orders/1/data/shipping_method" xsi:type="string">freeshipping_freeshipping</data>
+            <data name="customerSegment/data/name" xsi:type="string">Segment Name %isolation%</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">{Sales Amount|Total|is|40:[[Date Range|is|2010-01-01...2020-01-01]]}</data>
+            <data name="configData" xsi:type="string">freeshipping</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentMatchedCustomer" />
+        </variation>
+        <variation name="CreateCustomerSegmentEntityWithSalesConditionsTestSalesAmountVariation2" summary="Create customer segment based on customer's sales total amount condition in which total is 50 dollars and date range from 2010-01-01 to 2020-01-01" ticketId="MAGETWO-36700">
+            <data name="customer/dataset" xsi:type="string">johndoe</data>
+            <data name="customer/data/address/dataset" xsi:type="string">US_address</data>
+            <data name="orders/0/dataset" xsi:type="string">default</data>
+            <data name="orders/0/data/entity_id/products" xsi:type="string">catalogProductSimple::product_10_dollar</data>
+            <data name="orders/0/data/shipping_method" xsi:type="string">freeshipping_freeshipping</data>
+            <data name="orders/1/dataset" xsi:type="string">default</data>
+            <data name="orders/1/data/entity_id/products" xsi:type="string">catalogProductSimple::product_30_dollar</data>
+            <data name="orders/1/data/shipping_method" xsi:type="string">freeshipping_freeshipping</data>
+            <data name="customerSegment/data/name" xsi:type="string">Segment Name %isolation%</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">{Sales Amount|Total|is|50:[[Date Range|is|2010-01-01...2020-01-01]]}</data>
+            <data name="configData" xsi:type="string">freeshipping</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentNotMatchedCustomer" />
+        </variation>
+    </testCase>
+</config>

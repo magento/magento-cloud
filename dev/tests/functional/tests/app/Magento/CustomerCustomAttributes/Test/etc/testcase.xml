@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/TestCase/etc/testcase.xsd">
+    <scenario name="ValidateRequireAddressAttributeEntityTest" firstStep="createCustomer">
+        <step name="createCustomer" module="Magento_Customer" next="createCustomerAddressAttribute"/>
+        <step name="createCustomerAddressAttribute" module="Magento_CustomerCustomAttributes" next="createProducts"/>
+        <step name="createProducts" module="Magento_Catalog" next="loginCustomerOnFrontend"/>
+        <step name="loginCustomerOnFrontend" module="Magento_Customer" next="addProductsToTheCart"/>
+        <step name="addProductsToTheCart" module="Magento_Checkout" next="proceedToCheckout"/>
+        <step name="proceedToCheckout" module="Magento_Checkout" next="addNewShippingAddress"/>
+        <step name="addNewShippingAddress" module="Magento_Checkout"/>
+    </scenario>
+</config>

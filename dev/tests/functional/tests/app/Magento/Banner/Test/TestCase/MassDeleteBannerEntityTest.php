@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -27,14 +27,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Select "Delete" in mass action dropdown and click "Submit" button
  * 6. Perform all assertions
  *
- * @group Banner_(PS)
+ * @group Banner
  * @ZephyrId MAGETWO-26677
  */
 class MassDeleteBannerEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'PS';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**

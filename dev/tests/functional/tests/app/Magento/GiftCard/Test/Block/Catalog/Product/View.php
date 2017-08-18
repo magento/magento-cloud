@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -26,7 +26,7 @@ class View extends \Magento\Catalog\Test\Block\Product\View
     public function getGiftCardBlock()
     {
         return $this->blockFactory->create(
-            'Magento\GiftCard\Test\Block\Catalog\Product\View\Type\GiftCard',
+            \Magento\GiftCard\Test\Block\Catalog\Product\View\Type\GiftCard::class,
             ['element' => $this->_rootElement]
         );
     }

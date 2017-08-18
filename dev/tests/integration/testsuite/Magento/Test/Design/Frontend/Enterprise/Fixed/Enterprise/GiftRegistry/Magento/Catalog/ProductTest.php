@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Test\Design\Frontend\Enterprise\Fixed\Enterprise\GiftRegistry\Magento\Catalog;
@@ -15,7 +15,7 @@ class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         /** @var \Magento\Catalog\Api\ProductRepositoryInterface $productRepository */
-        $productRepository = $objectManager->create('Magento\Catalog\Api\ProductRepositoryInterface');
+        $productRepository = $objectManager->create(\Magento\Catalog\Api\ProductRepositoryInterface::class);
         $product = $productRepository->get('bundle-product');
 
         $this->getRequest()->setParam('options', \Magento\GiftRegistry\Block\Product\View::FLAG);

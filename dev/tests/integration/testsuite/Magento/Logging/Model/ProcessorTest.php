@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Logging\Model;
@@ -27,14 +27,14 @@ class ProcessorTest extends \Magento\TestFramework\TestCase\AbstractController
         \Magento\TestFramework\Helper\Bootstrap::getInstance()
             ->loadArea(\Magento\Backend\App\Area\FrontNameResolver::AREA_CODE);
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->create('Magento\Logging\Model\Event')->getCollection();
+            ->create(\Magento\Logging\Model\Event::class)->getCollection();
         $eventCountBefore = count($collection);
 
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
-        $objectManager->get('Magento\Backend\Model\UrlInterface')->turnOffSecretKey();
+        $objectManager->get(\Magento\Backend\Model\UrlInterface::class)->turnOffSecretKey();
 
-        $this->_auth = $objectManager->get('Magento\Backend\Model\Auth');
+        $this->_auth = $objectManager->get(\Magento\Backend\Model\Auth::class);
         $this->_auth->login(
             \Magento\TestFramework\Bootstrap::ADMIN_NAME,
             \Magento\TestFramework\Bootstrap::ADMIN_PASSWORD
@@ -45,12 +45,12 @@ class ProcessorTest extends \Magento\TestFramework\TestCase\AbstractController
             array_merge(
                 $post,
                 [
-                    'form_key' => $objectManager->get('Magento\Framework\Data\Form\FormKey')->getFormKey()
+                    'form_key' => $objectManager->get(\Magento\Framework\Data\Form\FormKey::class)->getFormKey()
                 ]
             )
         );
         $this->dispatch($url);
-        $collection = $objectManager->create('Magento\Logging\Model\Event')->getCollection();
+        $collection = $objectManager->create(\Magento\Logging\Model\Event::class)->getCollection();
 
         // Number 2 means we have "login" event logged first and then the tested one.
         $eventCountAfter = $eventCountBefore + 2;

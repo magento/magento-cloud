@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\SaveAsNewUpdateTest" summary="Update scheduled changes" ticketId="MAGETWO-49059">
+        <variation name="SaveAsNewUpdateTestVariation1" summary="Create permanent product update campaign, remove it and save as new update">
+            <data name="firstUpdate/dataset" xsi:type="string">permanent_update_with_simple_product</data>
+            <data name="secondUpdate/dataset" xsi:type="string">permanent_update_campaign</data>
+            <data name="secondUpdate/data/start_time/apply_timezone" xsi:type="boolean">true</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductUpdateInfoCorrect" />
+        </variation>
+        <variation name="SaveAsNewUpdateTestVariation2" summary="Create temporary product update campaign, remove it and save as new update">
+            <data name="firstUpdate/dataset" xsi:type="string">update_with_simple_product</data>
+            <data name="secondUpdate/dataset" xsi:type="string">update_with_date_plus_2_year</data>
+            <data name="secondUpdate/data/start_time/apply_timezone" xsi:type="boolean">true</data>
+            <data name="secondUpdate/data/end_time/apply_timezone" xsi:type="boolean">true</data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductUpdateInfoCorrect" />
+        </variation>
+    </testCase>
+</config>

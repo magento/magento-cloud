@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -28,6 +28,18 @@
             <field name="rotate" xsi:type="string">Display all instead of rotating</field>
             <field name="entities" xsi:type="array">
                 <item name="0" xsi:type="string">banner::banner_rotator_catalog_rules</item>
+            </field>
+        </dataset>
+
+        <dataset name="bannerRotatorFixed">
+            <field name="display_mode" xsi:type="string">Specified Banners</field>
+            <field name="rotate" xsi:type="string">One at the time, Series</field>
+            <field name="types" xsi:type="array">
+                <item name="0" xsi:type="string">Content Area</item>
+            </field>
+            <field name="entities" xsi:type="array">
+                <item name="0" xsi:type="string">banner::banner_rotator_fixed</item>
+                <item name="1" xsi:type="string">banner::banner_rotator_fixed</item>
             </field>
         </dataset>
     </repository>

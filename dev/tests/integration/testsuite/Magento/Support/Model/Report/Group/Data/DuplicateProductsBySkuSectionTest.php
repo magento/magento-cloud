@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Support\Model\Report\Group\Data;
@@ -13,7 +13,7 @@ use Magento\TestFramework\Helper\Bootstrap;
 /**
  * Test for \Magento\Support\Model\Report\Group\Data\DuplicateProductsBySkuSection
  */
-class DuplicateProductsBySkuSectionTest extends \PHPUnit_Framework_TestCase
+class DuplicateProductsBySkuSectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var DuplicateProductsBySkuSection

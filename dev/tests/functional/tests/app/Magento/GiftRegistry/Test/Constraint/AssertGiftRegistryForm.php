@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -51,7 +51,7 @@ class AssertGiftRegistryForm extends AbstractAssertForm
             : $giftRegistry->getData();
         unset($fixtureData['type_id']);
         $giftRegistry = $this->objectManager->create(
-            'Magento\GiftRegistry\Test\Fixture\GiftRegistry',
+            \Magento\GiftRegistry\Test\Fixture\GiftRegistry::class,
             ['data' => $fixtureData]
         );
         $giftRegistryIndex->open();

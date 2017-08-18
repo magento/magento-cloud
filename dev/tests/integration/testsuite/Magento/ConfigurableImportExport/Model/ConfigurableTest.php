@@ -1,20 +1,14 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ConfigurableImportExport\Model;
 
 use Magento\CatalogImportExport\Model\AbstractProductExportImportTestCase;
 
-/**
- * Configurable product import test.
- */
 class ConfigurableTest extends AbstractProductExportImportTestCase
 {
-    /**
-     * @return array
-     */
     public function exportImportDataProvider()
     {
         return [
@@ -45,10 +39,10 @@ class ConfigurableTest extends AbstractProductExportImportTestCase
      */
     protected function assertEqualsSpecificAttributes($expectedProduct, $actualProduct)
     {
-        /** @var \Magento\ConfigurableProduct\Model\Product\Type\Configurable $productType */
-        $productType = $expectedProduct->getTypeInstance();
-        $expectedAssociatedProducts = $productType->getUsedProductCollection($expectedProduct);
-        $actualAssociatedProducts = iterator_to_array($productType->getUsedProductCollection($actualProduct));
+        /** @var \Magento\ConfigurableProduct\Model\Product\Type\Configurable $prooductType */
+        $prooductType = $expectedProduct->getTypeInstance();
+        $expectedAssociatedProducts = $prooductType->getUsedProductCollection($expectedProduct);
+        $actualAssociatedProducts = iterator_to_array($prooductType->getUsedProductCollection($actualProduct));
 
         $expectedAssociatedProductSkus = [];
         $actualAssociatedProductSkus = [];

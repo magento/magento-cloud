@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -36,10 +36,17 @@ class GwsStoreGroups extends DataSource
             $datasets = array_map('trim', explode(',', $data['dataset']));
 
             foreach ($datasets as $dataset) {
-                $this->storesGroups[] = $fixtureFactory->createByCode('storeGroup', ['dataset' => $dataset]);
+                $storeGroup = $fixtureFactory->createByCode('storeGroup', ['dataset' => $dataset]);
+                if (!$storeGroup->hasData('group_id')) {
+                    $storeGroup->persist();
+                }
+                $this->storesGroups[] = $storeGroup;
             }
         }
         foreach ($this->storesGroups as $storeGroup) {
+            if (!$storeGroup->hasData('group_id')) {
+                $storeGroup->persist();
+            }
             $this->data[] = $storeGroup->getName();
         }
     }

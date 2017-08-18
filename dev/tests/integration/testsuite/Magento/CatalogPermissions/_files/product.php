@@ -1,18 +1,20 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
-$installer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Setup\CategorySetup');
+$installer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Catalog\Setup\CategorySetup::class
+);
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
 $productRepository = $objectManager->create(
-    'Magento\Catalog\Api\ProductRepositoryInterface'
+    \Magento\Catalog\Api\ProductRepositoryInterface::class
 );
 
 $categoryLinkRepository = $objectManager->create(
-    'Magento\Catalog\Api\CategoryLinkRepositoryInterface',
+    \Magento\Catalog\Api\CategoryLinkRepositoryInterface::class,
     [
         'productRepository' => $productRepository
     ]
@@ -20,14 +22,14 @@ $categoryLinkRepository = $objectManager->create(
 
 /** @var Magento\Catalog\Api\CategoryLinkManagementInterface $linkManagement */
 $categoryLinkManagement = $objectManager->create(
-    'Magento\Catalog\Api\CategoryLinkManagementInterface',
+    \Magento\Catalog\Api\CategoryLinkManagementInterface::class,
     [
         'productRepository' => $productRepository,
         'categoryLinkRepository' => $categoryLinkRepository
     ]
 );
 /** @var $product \Magento\Catalog\Model\Product */
-$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Catalog\Model\Product');
+$product = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Catalog\Model\Product::class);
 $product->setTypeId(
     \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE
 )->setId(

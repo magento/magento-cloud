@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -46,10 +46,10 @@ class CommentWriteTest extends WebapiAbstract
             'data' => [
                 History::ENTITY_ID => null,
                 History::COMMENT => 'Comment',
-                History::CUSTOMER_NOTIFIED => false,
-                History::VISIBLE_ON_FRONT => true,
+                'customer_notified' => false,
+                'visible_on_front' => true,
                 History::CREATED_AT => null,
-                History::ADMIN => null,
+                'admin' => null,
                 History::STATUS => null,
                 'rma_entity_id' => $rma->getId(),
             ],
@@ -66,7 +66,7 @@ class CommentWriteTest extends WebapiAbstract
     private function getRmaFixture()
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $collection = $objectManager->create('Magento\Rma\Model\ResourceModel\Rma\Collection');
+        $collection = $objectManager->create(\Magento\Rma\Model\ResourceModel\Rma\Collection::class);
         $collection->setOrder('entity_id')
             ->setPageSize(1)
             ->load();

@@ -1,17 +1,17 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\CustomerCustomAttributes\Test\Handler\CustomerAddressAttribute;
 
-use Magento\CustomerCustomAttributes\Test\Handler\CustomerCustomAttribute\Curl as CustomerCurl;
+use Magento\CustomerCustomAttributes\Test\Handler\CustomerCustomAttribute\Curl as ParentCurl;
 
 /**
- * Curl handler for creating custom CustomerAddressAttribute.
+ * Curl handler for creating custom Customer Address Attribute.
  */
-class Curl extends CustomerCurl implements CustomerAddressAttributeInterface
+class Curl extends ParentCurl implements CustomerAddressAttributeInterface
 {
     /**
      * Url for saving data.

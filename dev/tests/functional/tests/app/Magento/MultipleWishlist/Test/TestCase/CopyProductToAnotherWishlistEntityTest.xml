@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -16,7 +16,7 @@
             <constraint name="Magento\MultipleWishlist\Test\Constraint\AssertProductInCustomWishlist" />
         </variation>
         <variation name="CopyProductToAnotherWishlistEntityTestVariation2" summary="Copy one downloadable product">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="product" xsi:type="string">downloadableProduct::with_two_separately_links</data>
             <data name="qty" xsi:type="string">-</data>
             <data name="qtyToAction" xsi:type="string">-</data>
@@ -32,7 +32,7 @@
             <constraint name="Magento\MultipleWishlist\Test\Constraint\AssertProductInCustomWishlist" />
         </variation>
         <variation name="CopyProductToAnotherWishlistEntityTestVariation4" summary="Copy one configurable product">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="product" xsi:type="string">configurableProduct::default</data>
             <data name="qty" xsi:type="string">1</data>
             <data name="qtyToAction" xsi:type="string">1</data>
@@ -40,7 +40,7 @@
             <constraint name="Magento\MultipleWishlist\Test\Constraint\AssertProductInCustomWishlist" />
         </variation>
         <variation name="CopyProductToAnotherWishlistEntityTestVariation5" summary="Copy one bundle product from two existed">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="product" xsi:type="string">bundleProduct::bundle_fixed_product</data>
             <data name="qty" xsi:type="string">2</data>
             <data name="qtyToAction" xsi:type="string">1</data>

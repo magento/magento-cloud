@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -13,31 +13,30 @@ use Magento\Mtf\Util\Protocol\CurlTransport;
 use Magento\Mtf\Util\Protocol\CurlTransport\BackendDecorator;
 
 /**
- * Class Curl
  * Curl handler for creating target rule through backend.
  */
 class Curl extends Conditions implements TargetRuleInterface
 {
     /**
-     * Map of type parameter
+     * Map of type parameter.
      *
      * @var array
      */
     protected $mapTypeParams = [
         'Conditions combination' => [
-            'type' => 'Magento\TargetRule\Model\Rule\Condition\Combine',
+            'type' => \Magento\TargetRule\Model\Rule\Condition\Combine::class,
             'aggregator' => 'all',
             'value' => 1,
         ],
         'Attribute Set' => [
-            'type' => 'Magento\TargetRule\Model\Rule\Condition\Product\Attributes',
+            'type' => \Magento\TargetRule\Model\Rule\Condition\Product\Attributes::class,
             'attribute' => 'attribute_set_id',
         ],
         'Price (percentage)' => [
-            'type' => 'Magento\TargetRule\Model\Actions\Condition\Product\Special\Price',
+            'type' => \Magento\TargetRule\Model\Actions\Condition\Product\Special\Price::class,
         ],
         'Category' => [
-            'type' => 'Magento\TargetRule\Model\Rule\Condition\Product\Attributes',
+            'type' => \Magento\TargetRule\Model\Rule\Condition\Product\Attributes::class,
             'attribute' => 'category_ids',
         ],
     ];
@@ -64,7 +63,7 @@ class Curl extends Conditions implements TargetRuleInterface
     ];
 
     /**
-     * Post request for creating target rule in backend
+     * Post request for creating target rule in backend.
      *
      * @param FixtureInterface|null $targetRule
      * @return array
@@ -77,7 +76,27 @@ class Curl extends Conditions implements TargetRuleInterface
             . 'admin/targetrule/save/back/edit/active_tab/magento_targetrule_edit_tab_main/';
         $curl = new BackendDecorator(new CurlTransport(), $this->_configuration);
         $data = $this->replaceMappingData($targetRule->getData());
+        $data = $this->prepareData($data);
 
+        $curl->write($url, $data);
+        $response = $curl->read();
+        $curl->close();
+        if (!strpos($response, 'data-ui-id="messages-message-success"')) {
+            $this->_eventManager->dispatchEvent(['curl_failed'], [$response]);
+            throw new \Exception("Target rule was not created! See curl response in the logs.");
+        }
+
+        return ['rule_id' => $this->getTargetRuleId($response)];
+    }
+
+    /**
+     * Prepare target rule cURL request data.
+     *
+     * @param array $data
+     * @return array
+     */
+    private function prepareData(array $data)
+    {
         if (!isset($data['conditions_serialized'])) {
             $data['rule']['conditions'] = '';
         } else {
@@ -89,18 +108,19 @@ class Curl extends Conditions implements TargetRuleInterface
         }
         $data['rule']['actions'] = $this->prepareCondition($data['actions_serialized']);
         unset($data['actions_serialized']);
-        $curl->write($url, $data);
-        $response = $curl->read();
-        $curl->close();
-        if (!strpos($response, 'data-ui-id="messages-message-success"')) {
-            throw new \Exception("TargetRule entity creating by curl handler was not successful! Response: $response");
+
+        if (!isset($data['from_date'])) {
+            $data['from_date'] = '';
+        }
+        if (!isset($data['to_date'])) {
+            $data['to_date'] = '';
         }
 
-        return ['rule_id' => $this->getTargetRuleId($response)];
+        return $data;
     }
 
     /**
-     * Get target rule id from response
+     * Get target rule id from response.
      *
      * @param string $response
      * @return int|null

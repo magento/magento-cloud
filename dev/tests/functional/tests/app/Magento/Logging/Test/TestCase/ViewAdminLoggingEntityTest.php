@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -17,14 +17,14 @@ use Magento\Backend\Test\Page\Adminhtml\SystemConfig;
  * 3. Click “Save Config” button.
  * 7. Perform all assertion.
  *
- * @group Admin_Logging_(PS)
+ * @group Admin_Logging
  * @ZephyrId MAGETWO-24702, MAGETWO-12411
  */
 class ViewAdminLoggingEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'PS';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**
@@ -40,7 +40,8 @@ class ViewAdminLoggingEntityTest extends Injectable
         $user->persist();
 
         // Steps
-        $this->objectManager->create('Magento\User\Test\TestStep\LoginUserOnBackendStep', ['user' => $user])->run();
+        $this->objectManager->create(\Magento\User\Test\TestStep\LoginUserOnBackendStep::class, ['user' => $user])
+            ->run();
         $systemConfig->open();
         $systemConfig->getPageActions()->save();
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,7 +8,7 @@
 
 /** @var $billingAddress \Magento\Sales\Model\Order\Address */
 $billingAddress = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\Sales\Model\Order\Address',
+    \Magento\Sales\Model\Order\Address::class,
     [
         'data' => [
             'firstname' => 'guest',
@@ -29,11 +29,15 @@ $shippingAddress = clone $billingAddress;
 $shippingAddress->setId(null)->setAddressType('shipping');
 
 /** @var $payment \Magento\Sales\Model\Order\Payment */
-$payment = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Sales\Model\Order\Payment');
+$payment = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Sales\Model\Order\Payment::class
+);
 $payment->setMethod('checkmo');
 
 /** @var $orderItem \Magento\Sales\Model\Order\Item */
-$orderItem = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Sales\Model\Order\Item');
+$orderItem = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Sales\Model\Order\Item::class
+);
 $orderItem->setProductId(
     1
 )->setProductType(
@@ -56,7 +60,7 @@ $orderItem->setProductId(
 );
 
 /** @var $order \Magento\Sales\Model\Order */
-$order = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Sales\Model\Order');
+$order = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Sales\Model\Order::class);
 $order->setCustomerEmail('mail@to.co')
     ->addItem(
     $orderItem
@@ -80,7 +84,7 @@ $order->setCustomerEmail('mail@to.co')
 $order->save();
 
 \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-    'Magento\Framework\App\Config\MutableScopeConfigInterface'
+    \Magento\Framework\App\Config\MutableScopeConfigInterface::class
 )->setValue(
     \Magento\GiftCardAccount\Model\Pool::XML_CONFIG_POOL_SIZE,
     1,
@@ -88,5 +92,5 @@ $order->save();
     'base'
 );
 /** @var $pool \Magento\GiftCardAccount\Model\Pool */
-$pool = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\GiftCardAccount\Model\Pool');
+$pool = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\GiftCardAccount\Model\Pool::class);
 $pool->setWebsiteId(1)->generatePool();

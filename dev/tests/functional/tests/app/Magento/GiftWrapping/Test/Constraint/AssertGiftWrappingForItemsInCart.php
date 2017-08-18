@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,7 +22,6 @@ class AssertGiftWrappingForItemsInCart extends AbstractConstraint
      * @param GiftWrapping $giftWrapping
      * @param string $giftWrappingTotal
      * @param array $products
-     *
      * @return void
      */
     public function processAssert(

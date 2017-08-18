@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerSegment\Test\TestCase\CreateCustomerSegmentEntityWithCustomerConditionsPartTwoTest" summary="Create Customer Segment" ticketId="MAGETWO-25691">
+        <variation name="CreateCustomerSegmentEntityTestGender" summary="Create customer segment with condition based on 'Gender'">
+            <data name="product/dataset" xsi:type="string">simple_10_dollar</data>
+            <data name="customers/0" xsi:type="string">johndoe</data>
+            <data name="customerIndex" xsi:type="number">0</data>
+            <data name="address/dataset" xsi:type="string">US_address</data>
+            <data name="customerSegment/data/name" xsi:type="string">Segment Name %isolation%</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">[Gender|is|Male]</data>
+            <data name="customerSegment/data/apply_to" xsi:type="string">Visitors and Registered Customers</data>
+            <data name="salesRule/name" xsi:type="string">Cart Price Rule %isolation%</data>
+            <data name="salesRule/is_active" xsi:type="string">Yes</data>
+            <data name="salesRule/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="salesRule/customer_group_ids/0" xsi:type="string">General</data>
+            <data name="salesRule/coupon_type" xsi:type="string">No Coupon</data>
+            <data name="salesRule/conditions_serialized" xsi:type="string">[Customer Segment|matches|%customerSegmentName%]</data>
+            <data name="salesRule/simple_action" xsi:type="string">Percent of product price discount</data>
+            <data name="salesRule/discount_amount" xsi:type="string">50</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">10.00</item>
+            </data>
+            <data name="cart/data/discount" xsi:type="string">5.00</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentSuccessSaveMessage" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentForm" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentMatchedCustomer" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentPriceRule" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertDiscountInShoppingCart" />
+        </variation>
+        <variation name="CreateCustomerSegmentEntityTestGroup" summary="Create customer segment with condition based on 'Group'">
+            <data name="product/dataset" xsi:type="string">simple_10_dollar</data>
+            <data name="customers/0" xsi:type="string">johndoe_retailer</data>
+            <data name="customerIndex" xsi:type="number">0</data>
+            <data name="address/dataset" xsi:type="string">US_address</data>
+            <data name="customerSegment/data/name" xsi:type="string">Segment Name %isolation%</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">[Group|is|Retailer]</data>
+            <data name="customerSegment/data/apply_to" xsi:type="string">Visitors and Registered Customers</data>
+            <data name="salesRule/name" xsi:type="string">Cart Price Rule %isolation%</data>
+            <data name="salesRule/is_active" xsi:type="string">Yes</data>
+            <data name="salesRule/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="salesRule/customer_group_ids/0" xsi:type="string">Retailer</data>
+            <data name="salesRule/coupon_type" xsi:type="string">No Coupon</data>
+            <data name="salesRule/conditions_serialized" xsi:type="string">[Customer Segment|matches|%customerSegmentName%]</data>
+            <data name="salesRule/simple_action" xsi:type="string">Percent of product price discount</data>
+            <data name="salesRule/discount_amount" xsi:type="string">50</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">10.00</item>
+            </data>
+            <data name="cart/data/discount" xsi:type="string">5.00</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentSuccessSaveMessage" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentForm" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentMatchedCustomer" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentPriceRule" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertDiscountInShoppingCart" />
+        </variation>
+        <variation name="CreateCustomerSegmentEntityTestSpecificGroup" summary="Creation New Customer Segment for Specific Customer Group" ticketId="MAGETWO-12393">
+            <data name="customers/0" xsi:type="string">backend_retailer_customer</data>
+            <data name="customerIndex" xsi:type="number">0</data>
+            <data name="customerSegment/data/name" xsi:type="string">All Retail Customers %isolation%</data>
+            <data name="customerSegment/data/description" xsi:type="string">Customer Segment test for retailer customers</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegment/data/apply_to" xsi:type="string">Visitors and Registered Customers</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">[Group|is|Retailer]</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentSuccessSaveMessage" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentMatchedCustomer" />
+        </variation>
+        <variation name="CreateCustomerSegmentEntityTestGroupRetailer" summary="Use Customer Segmentation to Apply Shopping Cart Promotion" ticketId="MAGETWO-12397">
+            <data name="tag" xsi:type="string">test_type:acceptance_test, test_type:extended_acceptance_test</data>
+            <data name="product/dataset" xsi:type="string">simple_10_dollar</data>
+            <data name="customers/0" xsi:type="string">backend_retailer_customer</data>
+            <data name="customerIndex" xsi:type="number">0</data>
+            <data name="customerSegment/data/name" xsi:type="string">All Retail Customers %isolation%</data>
+            <data name="customerSegment/data/description" xsi:type="string">Customer Segment test for retailer customers</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegment/data/apply_to" xsi:type="string">Visitors and Registered Customers</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">[Group|is|Retailer]</data>
+            <data name="salesRule/name" xsi:type="string">Cart Price Rule %isolation%</data>
+            <data name="salesRule/is_active" xsi:type="string">Yes</data>
+            <data name="salesRule/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="salesRule/customer_group_ids/0" xsi:type="string">Retailer</data>
+            <data name="salesRule/coupon_type" xsi:type="string">No Coupon</data>
+            <data name="salesRule/conditions_serialized" xsi:type="string">[Customer Segment|matches|%customerSegmentName%]</data>
+            <data name="salesRule/simple_action" xsi:type="string">Percent of product price discount</data>
+            <data name="salesRule/discount_amount" xsi:type="string">50</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">10.00</item>
+            </data>
+            <data name="cart/data/discount" xsi:type="string">5.00</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentSuccessSaveMessage" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentPriceRule" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertDiscountInShoppingCart" />
+        </variation>
+    </testCase>
+</config>

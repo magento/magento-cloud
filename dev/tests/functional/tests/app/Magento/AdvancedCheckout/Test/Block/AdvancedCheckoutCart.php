@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -37,7 +37,7 @@ class AdvancedCheckoutCart extends Cart
             : sprintf($this->failedItem, 'nonExistentSku');
 
         return $this->blockFactory->create(
-            'Magento\AdvancedCheckout\Test\Block\Sku\Products\Info',
+            \Magento\AdvancedCheckout\Test\Block\Sku\Products\Info::class,
             ['element' => $this->_rootElement->find($failedItemBlockSelector, Locator::SELECTOR_XPATH)]
         );
     }

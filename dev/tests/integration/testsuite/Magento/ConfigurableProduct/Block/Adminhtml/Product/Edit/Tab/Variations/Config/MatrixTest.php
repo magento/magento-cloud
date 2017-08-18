@@ -1,12 +1,9 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ConfigurableProduct\Block\Adminhtml\Product\Edit\Tab\Variations\Config;
-
-use Magento\TestFramework\Helper\Bootstrap;
-use Magento\Catalog\Api\ProductRepositoryInterface;
 
 /**
  * @magentoAppArea adminhtml
@@ -22,26 +19,26 @@ class MatrixTest extends \Magento\TestFramework\TestCase\AbstractBackendControll
      */
     public function testGetVariations()
     {
-        $productRepository = Bootstrap::getObjectManager()->create(ProductRepositoryInterface::class);
-        $product = $productRepository->get('configurable');
         $this->_objectManager->get(
-            'Magento\Framework\Registry'
+            \Magento\Framework\Registry::class
         )->register(
             'current_product',
-            $product
+            \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+                \Magento\Catalog\Model\Product::class
+            )->load(1)
         );
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         )->createBlock(
-            'Magento\Framework\View\Element\Text',
+            \Magento\Framework\View\Element\Text::class,
             'head'
         );
         /** @var $usedAttribute \Magento\Catalog\Model\Entity\Attribute */
         $usedAttribute = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Catalog\Model\Entity\Attribute'
+            \Magento\Catalog\Model\Entity\Attribute::class
         )->loadByCode(
             \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-                'Magento\Eav\Model\Config'
+                \Magento\Eav\Model\Config::class
             )->getEntityType(
                 'catalog_product'
             )->getId(),
@@ -50,7 +47,7 @@ class MatrixTest extends \Magento\TestFramework\TestCase\AbstractBackendControll
         $attributeOptions = $usedAttribute->getSource()->getAllOptions(false);
         /** @var $block \Magento\ConfigurableProduct\Block\Adminhtml\Product\Edit\Tab\Variations\Config\Matrix */
         $block = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         )->createBlock(
             preg_replace('/Test$/', '', __CLASS__)
         );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -40,9 +40,6 @@ class Price extends \Magento\Catalog\Test\Block\AbstractPriceBlock
         ],
         'price_including_tax' => [
             'selector' => '.price-including-tax .price'
-        ],
-        'minimal_price' => [
-            'selector' => '.minimal-price-link'
         ]
     ];
 
@@ -114,6 +111,18 @@ class Price extends \Magento\Catalog\Test\Block\AbstractPriceBlock
     }
 
     /**
+     * Get currency symbol from price block on the product page.
+     *
+     * @return string
+     */
+    public function getCurrencySymbol()
+    {
+        $price = $this->getPrice('');
+        preg_match('`(.*?)\d`', $price, $matches);
+        return $matches[1];
+    }
+
+    /**
      * Get price excluding tax.
      *
      * @param string $currency
@@ -163,15 +172,5 @@ class Price extends \Magento\Catalog\Test\Block\AbstractPriceBlock
     public function isOldPriceVisible()
     {
         return $this->getTypePriceElement('old_price')->isVisible();
-    }
-
-    /**
-     * This method returns if the special price is visible.
-     *
-     * @return bool
-     */
-    public function isMinimalPriceVisible()
-    {
-        return $this->getTypePriceElement('minimal_price')->isVisible();
     }
 }

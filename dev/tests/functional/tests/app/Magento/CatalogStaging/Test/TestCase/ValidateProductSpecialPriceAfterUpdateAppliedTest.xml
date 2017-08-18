@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CatalogStaging\Test\TestCase\ValidateProductSpecialPriceAfterUpdateAppliedTest" summary="Validate product special price after update">
+        <variation name="ValidateProductSpecialPriceAfterUpdateTestVariation1" summary="Check product special price after schedule update is active" ticketId="MAGETWO-67766">
+            <data name="firstProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
+            <data name="update/dataset" xsi:type="string">permanent_update_plus_2_minutes_with_simple_product_with special_price</data>
+            <data name="prices" xsi:type="array">
+                <item name="special_price" xsi:type="string">75</item>
+            </data>
+            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertProductSpecialPriceCorrectAfterUpdate" />
+        </variation>
+    </testCase>
+</config>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Catalog\Controller\Adminhtml\Product;
@@ -268,53 +268,6 @@ class AttributeTest extends \Magento\TestFramework\TestCase\AbstractBackendContr
             'used_for_sort_by' => '0',
             'apply_to' => ['simple'],
             'frontend_label' => [\Magento\Store\Model\Store::DEFAULT_STORE_ID => 'string to translate']
-        ];
-    }
-
-    /**
-     * Tests \Magento\Catalog\Controller\Adminhtml\Product\Attribute\Validate.
-     *
-     * @dataProvider dataProviderForTestValidate
-     */
-    public function testValidateAttribute($postData)
-    {
-        $expectedResult = ['error' => false];
-        /** @var \Magento\Catalog\Model\ResourceModel\Eav\Attribute $model */
-        $model = $this->_objectManager->create(\Magento\Catalog\Model\ResourceModel\Eav\Attribute::class);
-        $model->load($postData['attribute_code'], 'attribute_code');
-        $attributeId = $model->getId();
-
-        $postData['attribute_id'] = $attributeId;
-
-        $this->getRequest()->setPostValue($postData);
-        $this->dispatch('backend/catalog/product_attribute/validate');
-        $response = $this->getResponse()->getBody();
-        $this->assertJson($response, 'Validate controller didn\'t return expected result.');
-        $result = \Zend_Json::decode($response);
-        $this->assertEquals($expectedResult, $result, 'Attribute validation didn\'t pass.');
-    }
-
-    /**
-     * Returns data for testValidateAttribute.
-     *
-     * @return array
-     */
-    public function dataProviderForTestValidate()
-    {
-        return [
-            'tax_class_id' => [
-                'postData' => [
-                    'attribute_code' => 'tax_class_id',
-                    'frontend_label' => 'Tax Class',
-                    'option' => [
-                        'delete' => [
-                            0 => '',
-                            2 => ''
-                        ]
-                    ]
-                ]
-            ]
-
         ];
     }
 }

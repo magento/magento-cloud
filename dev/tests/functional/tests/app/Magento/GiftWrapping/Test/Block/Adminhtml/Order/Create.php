@@ -1,36 +1,37 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\GiftWrapping\Test\Block\Adminhtml\Order;
 
-use Magento\GiftWrapping\Test\Fixture\GiftWrapping;
 use Magento\Mtf\Block\Block;
 use Magento\Mtf\Client\Locator;
+use Magento\GiftWrapping\Test\Fixture\GiftWrapping;
 
 /**
- * Adminhtml Gift Wrapping order create block.
+ * Class Create
+ * Adminhtml Gift Wrapping order create block
  */
 class Create extends Block
 {
     /**
-     * Gift Wrapping design block locator.
+     * Gift Wrapping design block locator
      *
      * @var string
      */
     protected $giftWrappingDesignBlock = '#giftwrapping_design';
 
     /**
-     * Page loading mask.
+     * Order Totals Loader.
      *
      * @var string
      */
-    protected $loadingMask = '.loading-mask';
+    private $orderTotalsLoadingMask = '.loading-mask';
 
     /**
-     * Check if Gift Wrapping design is available on order creation page.
+     * Check if Gift Wrapping design is available on order creation page
      *
      * @param string $giftWrappingDesign
      * @return bool
@@ -42,24 +43,17 @@ class Create extends Block
     }
 
     /**
-     * Set Gift Wrapping design.
+     * Select GiftWrapping design from the drop down.
+     * Deselects GiftWrapping design from drop down if $giftWrapping is null.
      *
      * @param GiftWrapping|null $giftWrapping
      * @return void
      */
-    public function setGiftWrappingDesign(GiftWrapping $giftWrapping = null)
+    public function selectGiftWrappingDesign(GiftWrapping $giftWrapping = null)
     {
-        $giftWrappings = $this->_rootElement->find($this->giftWrappingDesignBlock, Locator::SELECTOR_CSS, 'select');
-        $value = is_object($giftWrapping) ? $giftWrapping->getDesign() : $giftWrapping;
-        $giftWrappings->setValue($value);
-        $this->waitPageLoaded();
-    }
-
-    /**
-     * Wait until order page loading mask disappear.
-     */
-    public function waitPageLoaded()
-    {
-        $this->waitForElementNotVisible($this->loadingMask);
+        $giftWrappingDesign = $giftWrapping ? $giftWrapping->getDesign() : null;
+        $select = $this->_rootElement->find($this->giftWrappingDesignBlock, Locator::SELECTOR_CSS, 'select');
+        $select->setValue($giftWrappingDesign);
+        $this->waitForElementNotVisible($this->orderTotalsLoadingMask);
     }
 }

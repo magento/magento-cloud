@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<mapping strict="0">
+    <fields>
+        <website>
+            <selector>[name$="[website_id]"]</selector>
+            <strategy>css selector</strategy>
+            <input>select</input>
+        </website>
+        <customer_group>
+            <selector>[name$="[customer_group_id]"]</selector>
+            <strategy>css selector</strategy>
+            <input>select</input>
+        </customer_group>
+        <browsing_category>
+            <selector>[name$='[grant_catalog_category_view]']</selector>
+            <strategy>css selector</strategy>
+            <input>radiobutton</input>
+        </browsing_category>
+        <display_product_prices>
+            <selector>[name$='[grant_catalog_product_price]']</selector>
+            <strategy>css selector</strategy>
+            <input>radiobutton</input>
+        </display_product_prices>
+        <add_to_cart>
+            <selector>[name$='[grant_checkout_items]']</selector>
+            <strategy>css selector</strategy>
+            <input>radiobutton</input>
+        </add_to_cart>
+    </fields>
+</mapping>

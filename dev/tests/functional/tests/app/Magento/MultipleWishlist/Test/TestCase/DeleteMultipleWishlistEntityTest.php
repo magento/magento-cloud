@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -21,14 +21,13 @@ use Magento\MultipleWishlist\Test\Fixture\MultipleWishlist;
  * 4. Delete wishlist.
  * 5. Perform appropriate assertions.
  *
- * @group Multiple_Wishlists_(CS)
+ * @group Multiple_Wishlists
  * @ZephyrId MAGETWO-27253
  */
 class DeleteMultipleWishlistEntityTest extends AbstractMultipleWishlistEntityTest
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**

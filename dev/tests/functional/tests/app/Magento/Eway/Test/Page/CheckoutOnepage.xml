@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/pages.xsd">
     <page name="CheckoutOnepage" mca="checkout/index">
-        <block name="ewayPaymentBlock" class="Magento\Eway\Test\Block\Onepage\Payment" locator="#checkout-step-payment" strategy="css selector" />
+        <block name="paymentBlock">
+            <render name="eway_direct" class="Magento\Eway\Test\Block\Form\EwayCc" />
+        </block>
         <block name="ewaySharedPagesForm" class="Magento\Eway\Test\Block\Form\EwaySharedPagesCc" locator="#creditcard-form-wrapper" strategy="css selector" />
     </page>
 </config>

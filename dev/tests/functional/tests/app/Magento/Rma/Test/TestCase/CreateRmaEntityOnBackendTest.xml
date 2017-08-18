@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -45,6 +45,7 @@
             <constraint name="Magento\Rma\Test\Constraint\AssertRmaConfigurableOnFrontendForCustomer" />
         </variation>
         <variation name="CreateRmaEntityOnBackendTestVariation3">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="configData" xsi:type="string">rma_enable_on_frontend</data>
             <data name="rma/data/order_id/dataset" xsi:type="string">default</data>
             <data name="rma/data/order_id/data/customer_id/dataset" xsi:type="string">default</data>
@@ -78,6 +79,39 @@
             <data name="rma/data/status" xsi:type="string">Pending</data>
             <constraint name="Magento\Rma\Test\Constraint\AssertRmaInGrid" />
             <constraint name="Magento\Rma\Test\Constraint\AssertRmaOnFrontendForGuest" />
+        </variation>
+        <variation name="CreateRmaEntityOnBackendTestVariation5">
+            <data name="issue" xsi:type="string">MAGETWO-65731: [FT] Magento\Rma\Test\TestCase\CreateRmaEntityOnBackendTest randomly fails on Jenkins</data>
+            <data name="configData" xsi:type="string">rma_enable_on_frontend</data>
+            <data name="rma/data/order_id/dataset" xsi:type="string">guest</data>
+            <data name="rma/data/order_id/data/entity_id/products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="rma/data/items/0/qty_requested" xsi:type="string">1</data>
+            <data name="rma/data/items/0/reason" xsi:type="string">Other</data>
+            <data name="rma/data/items/0/reason_other" xsi:type="string">Other %isolation%</data>
+            <data name="rma/data/items/0/condition" xsi:type="string">Unopened</data>
+            <data name="rma/data/items/0/resolution" xsi:type="string">Refund</data>
+            <data name="rma/data/contact_email" xsi:type="string">test%isolation%@example.com</data>
+            <data name="rma/data/comment/comment" xsi:type="string">comments %isolation%</data>
+            <data name="rma/data/comment/is_visible_on_front" xsi:type="string">Yes</data>
+            <data name="rma/data/status" xsi:type="string">Pending</data>
+            <constraint name="Magento\Rma\Test\Constraint\AssertRmaInGrid" />
+            <constraint name="Magento\Rma\Test\Constraint\AssertRmaOnFrontendForGuest" />
+        </variation>
+        <variation name="CreateRmaEntityOnBackendTestVariation6" summary="Create RMA with additional required attribute" ticketId="MAGETWO-62694">
+            <data name="configData" xsi:type="string">rma_enable_on_frontend</data>
+            <data name="rma/data/order_id/dataset" xsi:type="string">default</data>
+            <data name="rma/data/order_id/data/customer_id/dataset" xsi:type="string">default</data>
+            <data name="rma/data/order_id/data/entity_id/products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="rma/data/items/0/qty_requested" xsi:type="string">1</data>
+            <data name="rma/data/items/0/reason" xsi:type="string">Wrong Size</data>
+            <data name="rma/data/items/0/condition" xsi:type="string">Damaged</data>
+            <data name="rma/data/items/0/resolution" xsi:type="string">Exchange</data>
+            <data name="rma/data/contact_email" xsi:type="string">test%isolation%@example.com</data>
+            <data name="rma/data/comment/comment" xsi:type="string">comments %isolation%</data>
+            <data name="rma/data/comment/is_visible_on_front" xsi:type="string">Yes</data>
+            <data name="rma/data/status" xsi:type="string">Pending</data>
+            <data name="rma/data/attribute_ids/dataset" xsi:type="string">required_attribute</data>
+            <constraint name="Magento\Rma\Test\Constraint\AssertRmaForm" />
         </variation>
     </testCase>
 </config>

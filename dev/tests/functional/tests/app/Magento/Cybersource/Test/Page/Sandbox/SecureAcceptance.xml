@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../vendor/magento/mtf/etc/pages.xsd">
+    <page name="SecureAcceptance" area="Sandbox" mca="https://ebctest.cybersource.com/ebctest/hpa/HPALandingPageLoad.do" module="Magento_Cybersource">
+        <block name="profileBlock" class="Magento\Cybersource\Test\Block\Sandbox\Profile" locator="[name='profiles']" strategy="css selector" />
+        <block name="profileEntryBlock" class="Magento\Cybersource\Test\Block\Sandbox\Profile\Entry" locator="#profile" strategy="css selector" />
+    </page>
+</config>

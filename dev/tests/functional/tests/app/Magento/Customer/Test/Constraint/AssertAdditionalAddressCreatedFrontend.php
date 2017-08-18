@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -11,7 +11,7 @@ use Magento\Customer\Test\Fixture\Address;
 use Magento\Mtf\Constraint\AbstractConstraint;
 
 /**
- * Assert that customers address is preset in Address Book in Customer Account.
+ * Assert that customers address is preset in Address Book in Customer Account
  */
 class AssertAdditionalAddressCreatedFrontend extends AbstractConstraint
 {

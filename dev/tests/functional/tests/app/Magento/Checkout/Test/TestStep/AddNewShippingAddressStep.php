@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,7 +8,6 @@ namespace Magento\Checkout\Test\TestStep;
 
 use Magento\Checkout\Test\Page\CheckoutOnepage;
 use Magento\Customer\Test\Fixture\Address;
-use Magento\Mtf\Fixture\FixtureFactory;
 use Magento\Mtf\TestStep\TestStepInterface;
 
 /**
@@ -22,13 +21,6 @@ class AddNewShippingAddressStep implements TestStepInterface
      * @var CheckoutOnepage
      */
     private $checkoutOnepage;
-
-    /**
-     * Factory responsible for creating fixtures.
-     *
-     * @var FixtureFactory
-     */
-    private $fixtureFactory;
 
     /**
      * Shipping Address fixture.
@@ -66,13 +58,6 @@ class AddNewShippingAddressStep implements TestStepInterface
     {
         $shippingBlock = $this->checkoutOnepage->getShippingBlock();
         $shippingBlock->clickOnNewAddressButton();
-        if (is_string($this->address)) {
-            $this->address = $this->fixtureFactory->create(
-                Address::class,
-                ['dataset' => $this->address]
-            );
-        }
-
         if ($this->address) {
             $shippingBlock->getAddressModalBlock()->fill($this->address);
         }

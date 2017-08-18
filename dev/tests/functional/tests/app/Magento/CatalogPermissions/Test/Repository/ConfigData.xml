@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/Magento/Mtf/Repository/etc/repository.xsd">
+    <repository class="Magento\Config\Test\Repository\ConfigData">
+        <dataset name="enable_category_permissions">
+            <field name="catalog/magento_catalogpermissions/enabled" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="label" xsi:type="string">Yes</item>
+                <item name="value" xsi:type="number">1</item>
+            </field>
+            <field name="catalog/magento_catalogpermissions/grant_catalog_category_view" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="label" xsi:type="string">Yes, for Everyone</item>
+                <item name="value" xsi:type="number">1</item>
+            </field>
+            <field name="catalog/magento_catalogpermissions/grant_catalog_product_price" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="label" xsi:type="string">Yes, for Specified Customer Groups</item>
+                <item name="value" xsi:type="number">2</item>
+            </field>
+            <field name="catalog/magento_catalogpermissions/grant_catalog_product_price_groups" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="value" xsi:type="array">
+                    <item name="General" xsi:type="string">1</item>
+                    <item name="Wholesale" xsi:type="string">2</item>
+                    <item name="Retailer" xsi:type="string">3</item>
+                </item>
+            </field>
+            <field name="catalog/magento_catalogpermissions/grant_checkout_items" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="label" xsi:type="string">Yes, for Specified Customer Groups</item>
+                <item name="value" xsi:type="number">2</item>
+            </field>
+            <field name="catalog/magento_catalogpermissions/grant_checkout_items_groups" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="value" xsi:type="array">
+                    <item name="Retailer" xsi:type="string">3</item>
+                </item>
+            </field>
+            <field name="catalog/magento_catalogpermissions/deny_catalog_search" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="value" xsi:type="array">
+                    <item name="NOT LOGGED IN" xsi:type="string">0</item>
+                </item>
+            </field>
+        </dataset>
+        <dataset name="enable_category_permissions_rollback">
+            <field name="catalog/magento_catalogpermissions/enabled" xsi:type="array">
+                <item name="scope" xsi:type="string">default</item>
+                <item name="scope_id" xsi:type="number">0</item>
+                <item name="label" xsi:type="string">No</item>
+                <item name="value" xsi:type="number">0</item>
+            </field>
+        </dataset>
+    </repository>
+</config>

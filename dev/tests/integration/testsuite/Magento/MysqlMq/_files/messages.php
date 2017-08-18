@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
 /** @var \Magento\MysqlMq\Model\MessageFactory $messageFactory */
-$messageFactory = $objectManager->create('Magento\MysqlMq\Model\MessageFactory');
+$messageFactory = $objectManager->create(\Magento\MysqlMq\Model\MessageFactory::class);
 $message = $messageFactory->create();
 
 $message->setTopicName('topic.updated.use.just.in.tests')

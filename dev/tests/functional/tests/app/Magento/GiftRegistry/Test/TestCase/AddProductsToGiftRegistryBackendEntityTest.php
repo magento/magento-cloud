@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -36,7 +36,7 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Edit data according to DataSet
  * 6. Perform Asserts
  *
- * @group Gift_Registry_(CS)
+ * @group Gift_Registry
  * @ZephyrId MAGETWO-28215
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -45,8 +45,8 @@ class AddProductsToGiftRegistryBackendEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     const TEST_TYPE = 'extended_acceptance_test';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**
@@ -187,13 +187,13 @@ class AddProductsToGiftRegistryBackendEntityTest extends Injectable
         // Preconditions:
         // Creating product
         $createProductsStep = $this->objectManager->create(
-            'Magento\Catalog\Test\TestStep\CreateProductsStep',
+            \Magento\Catalog\Test\TestStep\CreateProductsStep::class,
             ['products' => $product]
         );
         $product = $createProductsStep->run()['products'][0];
         // Creating gift registry
         $loginCustomerStep = $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         );
         $loginCustomerStep->run();

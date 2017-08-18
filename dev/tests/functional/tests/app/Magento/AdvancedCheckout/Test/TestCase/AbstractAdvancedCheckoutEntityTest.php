@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -74,16 +74,16 @@ abstract class AbstractAdvancedCheckoutEntityTest extends Injectable
     /**
      * Create products.
      *
-     * @param string $products
+     * @param array $products
      * @return array
      */
-    protected function createProducts($products)
+    protected function createProducts(array $products)
     {
-        if ($products === '-') {
+        if (empty($products)) {
             return [null];
         }
         $createProductsStep = $this->objectManager->create(
-            'Magento\Catalog\Test\TestStep\CreateProductsStep',
+            \Magento\Catalog\Test\TestStep\CreateProductsStep::class,
             ['products' => $products]
         );
 
@@ -100,18 +100,31 @@ abstract class AbstractAdvancedCheckoutEntityTest extends Injectable
     protected function prepareOrderOptions(array $products, array $orderOptions)
     {
         foreach ($orderOptions as $key => $value) {
-            $options = explode(',', $value);
-            foreach ($options as $item => $option) {
+            $value = is_array($value) ? $value : explode(',', $value);
+            foreach ($value as $item => $option) {
                 $orderOptions[$item][$key] = trim($option);
             }
             unset($orderOptions[$key]);
         }
 
+        return $this->addProductSkuToOrderOptions($products, $orderOptions);
+    }
+
+    /**
+     * Add product SKUs to Order options data.
+     *
+     * @param array $products
+     * @param array $orderOptions
+     * @return array
+     */
+    protected function addProductSkuToOrderOptions(array $products, array $orderOptions)
+    {
         foreach ($products as $key => $product) {
             $productSku = $product === null
-                ? $productSku = $orderOptions[$key]['sku']
+                ? $productSku = (isset($orderOptions[$key]['sku']) ? $orderOptions[$key]['sku'] : '-')
                 : $productSku = $product->getSku();
-            $orderOptions[$key]['sku'] = $orderOptions[$key]['sku'] === 'simpleWithOptionCompoundSku'
+            $orderOptions[$key]['sku'] = (isset($orderOptions[$key]['sku'])
+                && ($orderOptions[$key]['sku'] === 'simpleWithOptionCompoundSku'))
                 ? $productSku . '-' . $product->getCustomOptions()[0]['options'][0]['sku']
                 : $productSku;
         }
@@ -128,7 +141,7 @@ abstract class AbstractAdvancedCheckoutEntityTest extends Injectable
     protected function setupConfiguration($rollback = false)
     {
         $setConfigStep = $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => $this->configuration, 'rollback' => $rollback]
         );
         $setConfigStep->run();
@@ -143,7 +156,7 @@ abstract class AbstractAdvancedCheckoutEntityTest extends Injectable
     protected function loginCustomer(Customer $customer)
     {
         $this->objectManager->create(
-            'Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep',
+            \Magento\Customer\Test\TestStep\LoginCustomerOnFrontendStep::class,
             ['customer' => $customer]
         )->run();
     }

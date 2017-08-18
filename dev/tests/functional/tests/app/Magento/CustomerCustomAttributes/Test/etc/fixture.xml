@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -14,11 +14,4 @@
         </entities>
         <collection>Magento\Customer\Model\ResourceModel\Attribute\Collection</collection>
     </customerCustomAttribute>
-    <customerAddressAttribute module="Magento_CustomerCustomAttributes">
-        <type>composite</type>
-        <entities>
-            <eav_attribute>eav_attribute</eav_attribute>
-            <customer_eav_attribute>customer_eav_attribute</customer_eav_attribute>
-        </entities>
-    </customerAddressAttribute>
 </fixture>

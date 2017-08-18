@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\PricePermissions\Observer;
@@ -8,7 +8,7 @@ namespace Magento\PricePermissions\Observer;
 /**
  * @magentoAppArea adminhtml
  */
-class AdminhtmlBlockHtmlTest extends \PHPUnit_Framework_TestCase
+class AdminhtmlBlockHtmlTest extends \PHPUnit\Framework\TestCase
 {
     /** @var \Magento\Framework\View\LayoutInterface */
     protected $_layout = null;
@@ -17,20 +17,20 @@ class AdminhtmlBlockHtmlTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\Config\ScopeInterface'
+            \Magento\Framework\Config\ScopeInterface::class
         )->setCurrentScope(
             \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE
         );
         $this->_layout = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         );
     }
 
     public function testAdminhtmlBlockHtmlBeforeProductOpt()
     {
-        $parentBlock = $this->_layout->createBlock('Magento\Backend\Block\Template', 'admin.product.options');
+        $parentBlock = $this->_layout->createBlock(\Magento\Backend\Block\Template::class, 'admin.product.options');
         $optionsBlock = $this->_layout->addBlock(
-            'Magento\Backend\Block\Template',
+            \Magento\Backend\Block\Template::class,
             'options_box',
             'admin.product.options'
         );
@@ -54,12 +54,12 @@ class AdminhtmlBlockHtmlTest extends \PHPUnit_Framework_TestCase
         $event->setBlock($block);
 
         $adminControllerPredispatchObserver = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\PricePermissions\Observer\AdminControllerPredispatchObserver'
+            \Magento\PricePermissions\Observer\AdminControllerPredispatchObserver::class
         );
         $adminControllerPredispatchObserver->execute($event);
 
         $adminhtmlBlockHtmlBeforeObserver = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\PricePermissions\Observer\AdminhtmlBlockHtmlBeforeObserver'
+            \Magento\PricePermissions\Observer\AdminhtmlBlockHtmlBeforeObserver::class
         );
         $adminhtmlBlockHtmlBeforeObserver->execute($event);
     }
@@ -69,10 +69,10 @@ class AdminhtmlBlockHtmlTest extends \PHPUnit_Framework_TestCase
      */
     protected function _initSession()
     {
-        $user = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\User\Model\User');
+        $user = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\User\Model\User::class);
         $user->setId(2)->setRole(true);
         $session = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Backend\Model\Auth\Session'
+            \Magento\Backend\Model\Auth\Session::class
         );
         $session->setUpdatedAt(time())->setUser($user);
     }

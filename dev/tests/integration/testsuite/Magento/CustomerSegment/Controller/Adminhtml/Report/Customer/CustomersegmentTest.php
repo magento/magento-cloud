@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerSegment\Controller\Adminhtml\Report\Customer;
@@ -19,7 +19,7 @@ class CustomersegmentTest extends \Magento\TestFramework\TestCase\AbstractBacken
     public function testSegmentAction()
     {
         $segment = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CustomerSegment\Model\Segment'
+            \Magento\CustomerSegment\Model\Segment::class
         );
         $segment->load('Customer Segment 1', 'name');
 

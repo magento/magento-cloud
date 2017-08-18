@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Widget;
@@ -11,7 +11,7 @@ use Magento\TestFramework\Helper\Bootstrap;
 /**
  * @magentoAppArea adminhtml
  */
-class RadioTest extends \PHPUnit_Framework_TestCase
+class RadioTest extends \PHPUnit\Framework\TestCase
 {
     /** @var LayoutInterface */
     protected $layoutMock;
@@ -22,11 +22,11 @@ class RadioTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->layoutMock = $this->getMock('Magento\Framework\View\Layout', [], [], '', false);
+        $this->layoutMock = $this->createMock(\Magento\Framework\View\Layout::class);
         $this->block = Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         )->createBlock(
-            '\Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Widget\Radio'
+            \Magento\VersionsCms\Block\Adminhtml\Cms\Hierarchy\Widget\Radio::class
         );
     }
 
@@ -51,13 +51,8 @@ class RadioTest extends \PHPUnit_Framework_TestCase
         );
 
         if ($widgetOptions) {
-            $widgetInstance = $this->getMock(
-                'Magento\Widget\Model\Widget\Instance',
-                ['getWidgetParameters'],
-                [],
-                '',
-                false
-            );
+            $widgetInstance =
+                $this->createPartialMock(\Magento\Widget\Model\Widget\Instance::class, ['getWidgetParameters']);
             $widgetInstance->expects(
                 $this->once()
             )->method(
@@ -69,8 +64,9 @@ class RadioTest extends \PHPUnit_Framework_TestCase
             /** @var $objectManager \Magento\TestFramework\ObjectManager */
             $objectManager = Bootstrap::getObjectManager();
 
-            $objectManager->get('Magento\Framework\Registry')->unregister('current_widget_instance');
-            $objectManager->get('Magento\Framework\Registry')->register('current_widget_instance', $widgetInstance);
+            $objectManager->get(\Magento\Framework\Registry::class)->unregister('current_widget_instance');
+            $objectManager->get(\Magento\Framework\Registry::class)
+                ->register('current_widget_instance', $widgetInstance);
         }
 
         $this->block->setLayout($this->layoutMock);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,12 +10,12 @@ use Magento\GiftWrapping\Test\Fixture\GiftWrapping;
 use Magento\Mtf\Block\Block;
 
 /**
- * Gift options for items block checkout cart frontend page
+ * Gift options for items block checkout cart frontend page.
  */
 class GiftOptions extends Block
 {
     /**
-     * Allow Gift Options for individual items
+     * Allow Gift Options for individual items.
      *
      * @var string
      */
@@ -29,7 +29,14 @@ class GiftOptions extends Block
     protected $giftWrappingOptions = '.gift-wrapping-item > span';
 
     /**
-     * Gift Wrapping Name
+     * Gift Options Update button.
+     *
+     * @var string
+     */
+    private $updateButton = ".action-update";
+
+    /**
+     * Gift Wrapping Name.
      *
      * @var string
      */
@@ -43,14 +50,7 @@ class GiftOptions extends Block
     private $cartTotalsLoader = '#cart-totals .loading-mask';
 
     /**
-     * Gift Options Update button.
-     *
-     * @var string
-     */
-    private $updateButton = ".action-update";
-
-    /**
-     * Get Gift Wrappings Available on Checkout Cart
+     * Get Gift Wrappings Available on Checkout Cart.
      *
      * @return array
      */
@@ -68,7 +68,7 @@ class GiftOptions extends Block
     }
 
     /**
-     * Selects Gift Wrapping for Item.
+     * Select Gift Wrapping for Item.
      *
      * @param GiftWrapping $giftWrappingDesign
      * @return void

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\TestFramework\ResourceConnections\Db\Adapter;
@@ -21,12 +21,10 @@ class MysqlProxy extends ResourceConnectionsMysqlProxy implements TestFramework\
     protected function getMasterConnection()
     {
         if (!isset($this->masterConnection)) {
-            $this->masterConnection = new TestFramework\Db\Adapter\Mysql(
-                $this->string,
-                $this->dateTime,
-                $this->logger,
-                $this->selectFactory,
-                $this->masterConfig
+            $this->masterConnection = $this->mysqlFactory->create(
+                TestFramework\Db\Adapter\Mysql::class,
+                $this->masterConfig,
+                $this->logger
             );
         }
 

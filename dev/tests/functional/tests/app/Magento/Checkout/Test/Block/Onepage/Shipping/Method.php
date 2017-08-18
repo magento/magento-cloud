@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,51 +10,67 @@ use Magento\Mtf\Block\Block;
 use Magento\Mtf\Client\Locator;
 
 /**
- * One page checkout status shipping method block
+ * One page checkout status shipping method block.
  */
 class Method extends Block
 {
     /**
-     * Shipping method selector
+     * Shipping method selector.
      *
      * @var string
      */
     protected $shippingMethod = './/tbody//tr[td[contains(., "%s")] and td[contains(., "%s")]]//input';
 
     /**
-     * Continue checkout button
+     * Shipping method amount selector.
+     *
+     * @var string
+     */
+    private $shippingMethodAmount = './/tr[td[contains(., "%s")] and td[contains(., "%s")]]//span[@class="price"]';
+
+    /**
+     * Continue checkout button.
      *
      * @var string
      */
     protected $continue = '#shipping-method-buttons-container button';
 
     /**
-     * Wait element
+     * Wait element.
      *
      * @var string
      */
     protected $waitElement = '.loading-mask';
 
     /**
-     * Block wait element
+     * Block wait element.
      *
      * @var string
      */
     protected $blockWaitElement = '._block-content-loading';
 
     /**
-     * Shipping method row locator.
+     * Wait until shipping rates will appear.
      *
-     * @var string
+     * @return void
      */
-    private $shippingMethodRow = '#checkout-step-shipping_method tbody tr.row';
+    private function waitForShippingRates()
+    {
+        // Code under test uses JavaScript setTimeout at this point as well.
+        sleep(3);
+        $this->waitForElementNotVisible($this->blockWaitElement);
+    }
 
     /**
-     * Shipping error row locator.
+     * Retrieve if the shipping methods loader appears.
      *
-     * @var string
+     * @return bool|null
      */
-    private $shippingError = '#checkout-step-shipping_method tbody tr.row-error';
+    public function isLoaderAppeared()
+    {
+        $this->_rootElement->click();
+        return $this->waitForElementVisible($this->waitElement);
+    }
 
     /**
      * Select shipping method.
@@ -70,13 +86,25 @@ class Method extends Block
     }
 
     /**
+     * Check whether shipping method is available in the shipping rates.
+     *
+     * @param array $method
+     * @return bool
+     */
+    public function isShippingMethodAvaiable(array $method)
+    {
+        $this->waitForShippingRates();
+        $selector = sprintf($this->shippingMethod, $method['shipping_method'], $method['shipping_service']);
+        return $this->_rootElement->find($selector, Locator::SELECTOR_XPATH)->isVisible();
+    }
+
+    /**
      * Click continue button.
      *
      * @return void
      */
     public function clickContinue()
     {
-        $this->waitForShippingRates();
         $this->_rootElement->find($this->continue)->click();
         $browser = $this->browser;
         $selector = $this->waitElement;
@@ -89,60 +117,14 @@ class Method extends Block
     }
 
     /**
-     * Wait until shipping rates will appear.
+     * Get shipping method amount.
      *
-     * @return void
+     * @param array $method
+     * @return string
      */
-    public function waitForShippingRates()
+    public function getShippingMethodAmount(array $method)
     {
-        // Code under test uses JavaScript setTimeout at this point as well.
-        sleep(3);
-        $this->waitForElementNotVisible($this->blockWaitElement);
-    }
-
-    /**
-     * Return available shipping methods with prices.
-     *
-     * @return array
-     */
-    public function getAvailableMethods()
-    {
-        $this->waitForShippingRates();
-        $methods = $this->_rootElement->getElements($this->shippingMethodRow);
-        $result = [];
-        foreach ($methods as $method) {
-            $methodName = trim($method->find('td.col-method:not(:first-child)')->getText());
-            $methodPrice = trim($method->find('td.col-price')->getText());
-            $methodPrice = $this->escapeCurrency($methodPrice);
-
-            $result[$methodName] = $methodPrice;
-        }
-
-        return $result;
-    }
-
-    /**
-     * Is shipping rates estimation error present.
-     *
-     * @return bool
-     */
-    public function isErrorPresent()
-    {
-        $this->waitForShippingRates();
-
-        return $this->_rootElement->find($this->shippingError)->isVisible();
-    }
-
-    /**
-     * Escape currency in price.
-     *
-     * @param string $price
-     * @return string|null
-     */
-    private function escapeCurrency($price)
-    {
-        preg_match("/^\\D*\\s*([\\d,\\.]+)\\s*\\D*$/", $price, $matches);
-
-        return (isset($matches[1])) ? $matches[1] : null;
+        $selector = sprintf($this->shippingMethodAmount, $method['shipping_method'], $method['shipping_service']);
+        return $this->_rootElement->find($selector, Locator::SELECTOR_XPATH)->getText();
     }
 }

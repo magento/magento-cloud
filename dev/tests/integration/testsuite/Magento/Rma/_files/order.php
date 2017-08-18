@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 $addressData = include __DIR__ . '/../../../Magento/Sales/_files/address_data.php';
 /** @var $billingAddress \Magento\Sales\Model\Order\Address */
 $billingAddress = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\Sales\Model\Order\Address',
+    \Magento\Sales\Model\Order\Address::class,
     ['data' => $addressData]
 );
 $billingAddress->setAddressType('billing');
@@ -16,11 +16,15 @@ $shippingAddress = clone $billingAddress;
 $shippingAddress->setId(null)->setAddressType('shipping');
 
 /** @var $payment \Magento\Sales\Model\Order\Payment */
-$payment = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Sales\Model\Order\Payment');
+$payment = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Sales\Model\Order\Payment::class
+);
 $payment->setMethod('checkmo');
 
 /** @var $orderItem \Magento\Sales\Model\Order\Item */
-$orderItem = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Sales\Model\Order\Item');
+$orderItem = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+    \Magento\Sales\Model\Order\Item::class
+);
 $orderItem->setProductId(
     1
 )->setProductType(
@@ -40,7 +44,7 @@ $orderItem->setProductId(
 );
 
 /** @var $order \Magento\Sales\Model\Order */
-$order = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Sales\Model\Order');
+$order = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Sales\Model\Order::class);
 $order->addItem(
     $orderItem
 )->setIncrementId(
@@ -59,7 +63,7 @@ $order->addItem(
     $shippingAddress
 )->setStoreId(
     \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-        'Magento\Store\Model\StoreManagerInterface'
+        \Magento\Store\Model\StoreManagerInterface::class
     )->getStore()->getId()
 )->setPayment(
     $payment

@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CustomerBalance\Block\Account;
 
-class WrapperTest extends \PHPUnit_Framework_TestCase
+class WrapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @magentoDataFixture Magento/CustomerBalance/_files/history.php
@@ -14,15 +14,15 @@ class WrapperTest extends \PHPUnit_Framework_TestCase
     {
         \Magento\TestFramework\Helper\Bootstrap::getInstance()
             ->loadArea('frontend');
-        $logger = $this->getMock('Psr\Log\LoggerInterface');
+        $logger = $this->createMock(\Psr\Log\LoggerInterface::class);
         /** @var \Magento\Customer\Model\Session $session */
         $session = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Customer\Model\Session',
+            \Magento\Customer\Model\Session::class,
             [$logger]
         );
         /** @var \Magento\Customer\Api\AccountManagementInterface $service */
         $service = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Customer\Api\AccountManagementInterface'
+            \Magento\Customer\Api\AccountManagementInterface::class
         );
         $customer = $service->authenticate('customer@example.com', 'password');
         $session->setCustomerDataAsLoggedIn($customer);

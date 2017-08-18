@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -55,6 +55,9 @@ class Curl extends AbstractCurl implements RewardInterface
         /** @var \Magento\Customer\Test\Fixture\Customer $customer */
         $data['customer']['entity_id'] = $customer->getId();
         $data['reward']['points_delta'] = $fixture->getPointsDelta();
+        if ($fixture->hasData('store_id')) {
+            $data['reward']['store_id'] = $fixture->getData('store_id');
+        }
 
         return $data;
     }

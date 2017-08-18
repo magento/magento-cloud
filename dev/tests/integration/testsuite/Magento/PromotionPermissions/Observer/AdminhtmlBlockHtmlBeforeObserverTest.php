@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\PromotionPermissions\Observer;
@@ -8,7 +8,7 @@ namespace Magento\PromotionPermissions\Observer;
 /**
  * @magentoAppArea adminhtml
  */
-class AdminhtmlBlockHtmlBeforeObserverTest extends \PHPUnit_Framework_TestCase
+class AdminhtmlBlockHtmlBeforeObserverTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\Framework\View\LayoutInterface
@@ -16,7 +16,7 @@ class AdminhtmlBlockHtmlBeforeObserverTest extends \PHPUnit_Framework_TestCase
     protected $_layout = null;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject_MockObject
      */
     protected $_moduleListMock;
 
@@ -24,12 +24,12 @@ class AdminhtmlBlockHtmlBeforeObserverTest extends \PHPUnit_Framework_TestCase
     {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $objectManager->get(
-            'Magento\Framework\Config\ScopeInterface'
+            \Magento\Framework\Config\ScopeInterface::class
         )->setCurrentScope(
             \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE
         );
         $this->_layout = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         );
     }
 
@@ -39,10 +39,10 @@ class AdminhtmlBlockHtmlBeforeObserverTest extends \PHPUnit_Framework_TestCase
      */
     public function testAdminhtmlBlockHtmlBefore($parentBlock, $childBlock)
     {
-        $block = $this->_layout->createBlock('Magento\Backend\Block\Template', $parentBlock);
-        $this->_layout->addBlock('Magento\Backend\Block\Template', $childBlock, $parentBlock);
+        $block = $this->_layout->createBlock(\Magento\Backend\Block\Template::class, $parentBlock);
+        $this->_layout->addBlock(\Magento\Backend\Block\Template::class, $childBlock, $parentBlock);
         $gridBlock = $this->_layout->addBlock(
-            'Magento\Backend\Block\Template',
+            \Magento\Backend\Block\Template::class,
             'banners_grid_serializer',
             $childBlock
         );
@@ -51,7 +51,7 @@ class AdminhtmlBlockHtmlBeforeObserverTest extends \PHPUnit_Framework_TestCase
         $event = new \Magento\Framework\Event\Observer();
         $event->setBlock($block);
         $observer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\PromotionPermissions\Observer\AdminhtmlBlockHtmlBeforeObserver'
+            \Magento\PromotionPermissions\Observer\AdminhtmlBlockHtmlBeforeObserver::class
         );
         $observer->execute($event);
 

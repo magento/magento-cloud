@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,14 +25,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Save Invitation.
  * 6. Perform all assertions.
  *
- * @group Invitations_(CS)
+ * @group Invitations
  * @ZephyrId MAGETWO-29948
  */
 class CreateCustomerInvitationForExistedEmailBackendTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**

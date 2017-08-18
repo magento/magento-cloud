@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -20,7 +20,7 @@ class NameTab extends Tab
     public function getDataGrid()
     {
         return $this->blockFactory->create(
-            'Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\AddProduct\DataGrid',
+            \Magento\VisualMerchandiser\Test\Block\Adminhtml\Category\AddProduct\DataGrid::class,
             ['element' => $this->_rootElement->find($this->dataGrid)]
         );
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,7 +8,10 @@ namespace Magento\Setup\Test\Unit\Fixtures;
 
 use \Magento\Setup\Fixtures\CustomerSegmentsFixture;
 
-class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
+class CustomerSegmentsFixtureTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Setup\Fixtures\FixtureModel
@@ -20,18 +23,36 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
      */
     private $model;
 
+    /**
+     * @var \Magento\SalesRule\Model\RuleFactory|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $ruleFactoryMock;
+
+    /**
+     * @var \Magento\CustomerSegment\Model\SegmentFactory|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $segmentFactoryMock;
+
     public function setUp()
     {
-        $this->fixtureModelMock = $this->getMock('\Magento\Setup\Fixtures\FixtureModel', [], [], '', false);
-
-        $this->model = new CustomerSegmentsFixture($this->fixtureModelMock);
+        $this->fixtureModelMock = $this->createMock(\Magento\Setup\Fixtures\FixtureModel::class);
+        $this->ruleFactoryMock = $this->createPartialMock(\Magento\SalesRule\Model\RuleFactory::class, ['create']);
+        $this->segmentFactoryMock = $this->createPartialMock(
+            \Magento\CustomerSegment\Model\SegmentFactory::class,
+            ['create']
+        );
+        $this->model = new CustomerSegmentsFixture(
+            $this->fixtureModelMock,
+            $this->ruleFactoryMock,
+            $this->segmentFactoryMock
+        );
     }
 
     public function testExecute()
     {
-        $contextMock = $this->getMock('\Magento\Framework\Model\ResourceModel\Db\Context', [], [], '', false);
+        $contextMock = $this->createMock(\Magento\Framework\Model\ResourceModel\Db\Context::class);
         $abstractDbMock = $this->getMockForAbstractClass(
-            '\Magento\Framework\Model\ResourceModel\Db\AbstractDb',
+            \Magento\Framework\Model\ResourceModel\Db\AbstractDb::class,
             [$contextMock],
             '',
             true,
@@ -43,12 +64,12 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
             ->method('getAllChildren')
             ->will($this->returnValue([1]));
 
-        $storeMock = $this->getMock('\Magento\Store\Model\Store', [], [], '', false);
+        $storeMock = $this->createMock(\Magento\Store\Model\Store::class);
         $storeMock->expects($this->once())
             ->method('getRootCategoryId')
             ->will($this->returnValue(2));
 
-        $websiteMock = $this->getMock('\Magento\Store\Model\Website', [], [], '', false);
+        $websiteMock = $this->createMock(\Magento\Store\Model\Website::class);
         $websiteMock->expects($this->once())
             ->method('getGroups')
             ->will($this->returnValue([$storeMock]));
@@ -56,12 +77,12 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
             ->method('getId')
             ->will($this->returnValue('website_id'));
 
-        $storeManagerMock = $this->getMock('Magento\Store\Model\StoreManager', [], [], '', false);
+        $storeManagerMock = $this->createMock(\Magento\Store\Model\StoreManager::class);
         $storeManagerMock->expects($this->once())
             ->method('getWebsites')
             ->will($this->returnValue([$websiteMock]));
 
-        $categoryMock = $this->getMock('Magento\Catalog\Model\Category', [], [], '', false);
+        $categoryMock = $this->createMock(\Magento\Catalog\Model\Category::class);
         $categoryMock->expects($this->once())
             ->method('getResource')
             ->will($this->returnValue($abstractDbMock));
@@ -72,33 +93,21 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
             ->method('getId')
             ->will($this->returnValue('category_id'));
 
-        $ruleModelMock = $this->getMock('\Magento\SalesRule\Model\Rule', [], [], '', false);
-        $ruleModelFactoryMock = $this->getMock('\Magento\SalesRule\Model\RuleFactory', ['create'], [], '', false);
-        $ruleModelFactoryMock->expects($this->once())
+        $ruleModelMock = $this->createMock(\Magento\SalesRule\Model\Rule::class);
+        $this->ruleFactoryMock->expects($this->once())
             ->method('create')
             ->willReturn($ruleModelMock);
 
-        $segmentModelMock = $this->getMock('Magento\CustomerSegment\Model\Segment', [], [], '', false);
-        $segmentModelFactoryMock = $this->getMock(
-            'Magento\CustomerSegment\Model\SegmentFactory',
-            [
-                'create'
-            ],
-            [],
-            '',
-            false
-        );
-        $segmentModelFactoryMock->expects($this->any())
+        $segmentModelMock = $this->createMock(\Magento\CustomerSegment\Model\Segment::class);
+        $this->segmentFactoryMock->expects($this->any())
             ->method('create')
             ->willReturn($segmentModelMock);
 
         $objectValueMap = [
-            ['Magento\SalesRule\Model\RuleFactory', $ruleModelFactoryMock],
-            ['Magento\CustomerSegment\Model\SegmentFactory', $segmentModelFactoryMock],
-            ['Magento\Catalog\Model\Category', $categoryMock]
+            [\Magento\Catalog\Model\Category::class, $categoryMock]
         ];
 
-        $objectManagerMock = $this->getMock('Magento\Framework\ObjectManager\ObjectManager', [], [], '', false);
+        $objectManagerMock = $this->createMock(\Magento\Framework\ObjectManager\ObjectManager::class);
         $objectManagerMock->expects($this->once())
             ->method('create')
             ->will($this->returnValue($storeManagerMock));
@@ -126,13 +135,13 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
 
     public function testNoFixtureConfigValue()
     {
-        $ruleMock = $this->getMock('\Magento\SalesRule\Model\Rule', [], [], '', false);
+        $ruleMock = $this->createMock(\Magento\SalesRule\Model\Rule::class);
         $ruleMock->expects($this->never())->method('save');
 
-        $objectManagerMock = $this->getMock('Magento\Framework\ObjectManager\ObjectManager', [], [], '', false);
+        $objectManagerMock = $this->createMock(\Magento\Framework\ObjectManager\ObjectManager::class);
         $objectManagerMock->expects($this->never())
             ->method('get')
-            ->with($this->equalTo('Magento\SalesRule\Model\Rule'))
+            ->with($this->equalTo(\Magento\SalesRule\Model\Rule::class))
             ->willReturn($ruleMock);
 
         $this->fixtureModelMock
@@ -149,14 +158,11 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
 
     public function testGenerateCustomerSegments()
     {
-        $segmentModelMock = $this->getMock(
-            'Magento\CustomerSegment\Model\Segment',
+        $segmentModelMock = $this->createPartialMock(
+            \Magento\CustomerSegment\Model\Segment::class,
             [
                 'getSegmentId', 'save', 'getApplyTo', 'matchCustomers', 'loadPost'
-            ],
-            [],
-            '',
-            false
+            ]
         );
 
         $data1 = [
@@ -178,13 +184,13 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
             'is_active'     => '1',
             'conditions'    => [
                 1 => [
-                    'type' => 'Magento\\CustomerSegment\\Model\\Segment\\Condition\\Combine\\Root',
+                    'type' => \Magento\CustomerSegment\Model\Segment\Condition\Combine\Root::class,
                     'aggregator' => 'any',
                     'value' => '1',
                     'new_child' => '',
                 ],
                 '1--1' => [
-                    'type' => 'Magento\\CustomerSegment\\Model\\Segment\\Condition\\Customer\\Attributes',
+                    'type' => \Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes::class,
                     'attribute' => 'email',
                     'operator' => '==',
                     'value' => 'user_1@example.com',
@@ -196,27 +202,9 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
             ->with($data2);
         $segmentModelMock->expects($this->exactly(2))
             ->method('save');
-        $segmentModelFactoryMock = $this->getMock(
-            'Magento\CustomerSegment\Model\SegmentFactory',
-            [
-                'create'
-            ],
-            [],
-            '',
-            false
-        );
-        $segmentModelFactoryMock->expects($this->any())
+        $this->segmentFactoryMock->expects($this->any())
             ->method('create')
             ->willReturn($segmentModelMock);
-
-        $objectValueMap = [
-            ['Magento\CustomerSegment\Model\SegmentFactory', $segmentModelFactoryMock]
-        ];
-
-        $objectManagerMock = $this->getMock('Magento\Framework\ObjectManager\ObjectManager', [], [], '', false);
-        $objectManagerMock->expects($this->any())
-            ->method('get')
-            ->will($this->returnValueMap($objectValueMap));
 
         $valueMap = [
             ['customers', 0, 1]
@@ -226,10 +214,6 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
             ->expects($this->any())
             ->method('getValue')
             ->will($this->returnValueMap($valueMap));
-        $this->fixtureModelMock
-            ->expects($this->any())
-            ->method('getObjectManager')
-            ->will($this->returnValue($objectManagerMock));
 
         $reflection = new \ReflectionClass($this->model);
         $reflectionProperty = $reflection->getProperty('customerSegmentsCount');
@@ -242,34 +226,34 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
     public function testGenerateSegmentCondition()
     {
         $firstCondition = [
-            'type'      => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Product',
+            'type'      => \Magento\SalesRule\Model\Rule\Condition\Product::class,
             'attribute' => 'category_ids',
             'operator'  => '==',
             'value'     => null,
         ];
 
         $secondCondition = [
-            'type'      => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Address',
+            'type'      => \Magento\SalesRule\Model\Rule\Condition\Address::class,
             'attribute' => 'base_subtotal',
             'operator'  => '>=',
             'value'     => 0,
         ];
 
         $thirdCondition = [
-            'type'      => 'Magento\\CustomerSegment\\Model\\Segment\\Condition\\Segment',
+            'type'      => \Magento\CustomerSegment\Model\Segment\Condition\Segment::class,
             'operator'  => '==',
             'value'     => 1,
         ];
         $expected = [
             'conditions' => [
                 1 => [
-                    'type' => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Combine',
+                    'type' => \Magento\SalesRule\Model\Rule\Condition\Combine::class,
                     'aggregator' => 'all',
                     'value' => '1',
                     'new_child' => '',
                 ],
                 '1--1'=> [
-                    'type' => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Product\\Found',
+                    'type' => \Magento\SalesRule\Model\Rule\Condition\Product\Found::class,
                     'aggregator' => 'all',
                     'value' => '1',
                     'new_child' => '',
@@ -280,7 +264,7 @@ class CustomerSegmentsFixtureTest extends \PHPUnit_Framework_TestCase
             ],
             'actions' => [
                 1 => [
-                    'type' => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Product\\Combine',
+                    'type' => \Magento\SalesRule\Model\Rule\Condition\Product\Combine::class,
                     'aggregator' => 'all',
                     'value' => '1',
                     'new_child' => '',

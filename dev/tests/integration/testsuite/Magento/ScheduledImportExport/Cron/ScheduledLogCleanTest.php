@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,7 +8,7 @@
 
 namespace Magento\ScheduledImportExport\Cron;
 
-class ScheduledLogCleanTest extends \PHPUnit_Framework_TestCase
+class ScheduledLogCleanTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @codingStandardsIgnoreStart
@@ -23,7 +23,7 @@ class ScheduledLogCleanTest extends \PHPUnit_Framework_TestCase
         // Set up
         /** @var \Magento\ScheduledImportExport\Model\Scheduled\Operation $operation */
         $operation = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\ScheduledImportExport\Model\Scheduled\Operation'
+            \Magento\ScheduledImportExport\Model\Scheduled\Operation::class
         );
 
         $operation->load('export', 'operation_type');
@@ -33,8 +33,7 @@ class ScheduledLogCleanTest extends \PHPUnit_Framework_TestCase
 
         // Create export directory if not exist
         /** @var \Magento\Framework\Filesystem\Directory\Write $varDir */
-        $varDir = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\Filesystem'
+        $varDir = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(\Magento\Framework\Filesystem::class
         )->getDirectoryWrite(
             'var'
         );
@@ -52,7 +51,7 @@ class ScheduledLogCleanTest extends \PHPUnit_Framework_TestCase
         chdir($cwd);
 
         $observer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-            ->get('Magento\ScheduledImportExport\Cron\ScheduledLogClean');
+            ->get(\Magento\ScheduledImportExport\Cron\ScheduledLogClean::class);
         $observer->execute(true);
 
         // Verify

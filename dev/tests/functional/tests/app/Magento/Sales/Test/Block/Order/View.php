@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -132,14 +132,14 @@ class View extends Block
     // @codingStandardsIgnoreEnd
 
     /**
-     * Order items top pager selector.
+     * Order items top pager selector
      *
      * @var string
      */
     private $itemTopPagerSelector = '[data-block=order-items-pager-top]';
 
     /**
-     * Order items bottom pager selector.
+     * Order items bottom pager selector
      *
      * @var string
      */
@@ -155,7 +155,7 @@ class View extends Block
     {
         $selector = ($id === null) ? $this->content : sprintf($this->itemBlock, $id) . $this->content;
         return $this->blockFactory->create(
-            'Magento\Sales\Test\Block\Order\Items',
+            \Magento\Sales\Test\Block\Order\Items::class,
             ['element' => $this->_rootElement->find($selector, Locator::SELECTOR_XPATH)]
         );
     }
@@ -336,7 +336,7 @@ class View extends Block
     }
 
     /**
-     * Is order items top pager displayed.
+     * Is order items top pager displayed
      *
      * @return bool
      */
@@ -346,7 +346,7 @@ class View extends Block
     }
 
     /**
-     * Is order items bottom pager displayed.
+     * Is order items bottom pager displayed
      *
      * @return bool
      */

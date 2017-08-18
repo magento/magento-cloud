@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -72,7 +72,9 @@
             <data name="category/data/layout" xsi:type="string">2 columns with right bar</data>
             <data name="category/data/layout_update_xml" xsi:type="string">&#60;referenceContainer name=&quot;content.aside&quot; remove=&quot;true&quot;/&#62;</data>
             <data name="category/data/apply_design_to_products" xsi:type="string">Yes</data>
+            <data name="filterByPath" xsi:type="string">request_path</data>
             <constraint name="Magento\Catalog\Test\Constraint\AssertCategorySaveMessage" />
+            <constraint name="Magento\UrlRewrite\Test\Constraint\AssertUrlRewriteCategoryInGrid" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertCategoryForm" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertCategoryPage" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertCategoryForAssignedProducts" />

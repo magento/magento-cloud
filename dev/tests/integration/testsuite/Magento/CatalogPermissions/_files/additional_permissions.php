@@ -1,18 +1,18 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 /** @var $permission \Magento\CatalogPermissions\Model\Permission */
 $permission = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\CatalogPermissions\Model\Permission'
+    \Magento\CatalogPermissions\Model\Permission::class
 );
 $permission->setEntityId(
     1
 )->setWebsiteId(
     \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-        'Magento\Store\Model\StoreManagerInterface'
+        \Magento\Store\Model\StoreManagerInterface::class
     )->getWebsite()->getId()
 )->setCategoryId(
     3

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -16,7 +16,7 @@
         <step name="selectCheckoutMethod" module="Magento_Checkout" next="fillShippingAddress" />
         <step name="fillShippingAddress" module="Magento_Checkout" next="fillShippingMethod" />
         <step name="fillShippingMethod" module="Magento_Checkout" next="selectPaymentMethod" />
-        <step name="selectPaymentMethod" module="Magento_Eway" next="placeOrderWithSharedPages" />
+        <step name="selectPaymentMethod" module="Magento_Checkout" next="placeOrderWithSharedPages" />
         <step name="placeOrderWithSharedPages" module="Magento_Eway" />
     </scenario>
 </config>

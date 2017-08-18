@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -69,10 +69,6 @@ class Curl extends Conditions implements SalesRuleInterface
         'Shipping Postcode' => [
             'type' => \Magento\SalesRule\Model\Rule\Condition\Address::class,
             'attribute' => 'postcode',
-        ],
-        'Shipping Method' => [
-            'type' => \Magento\SalesRule\Model\Rule\Condition\Address::class,
-            'attribute' => 'shipping_method',
         ],
         'Total Weight' => [
             'type' => \Magento\SalesRule\Model\Rule\Condition\Address::class,

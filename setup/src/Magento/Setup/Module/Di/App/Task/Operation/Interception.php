@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Setup\Module\Di\App\Task\Operation;
@@ -12,6 +12,10 @@ use Magento\Framework\App;
 use Magento\Setup\Module\Di\Code\GeneratorFactory;
 use Magento\Setup\Module\Di\Code\Reader\ClassesScanner;
 
+/**
+ * Class \Magento\Setup\Module\Di\App\Task\Operation\Interception
+ *
+ */
 class Interception implements OperationInterface
 {
     /**
@@ -92,7 +96,7 @@ class Interception implements OperationInterface
             [
                 'ioObject' => $generatorIo,
                 'generatedEntities' => [
-                    Interceptor::ENTITY_TYPE => 'Magento\Setup\Module\Di\Code\Generator\Interceptor',
+                    Interceptor::ENTITY_TYPE => \Magento\Setup\Module\Di\Code\Generator\Interceptor::class,
                 ]
             ]
         );

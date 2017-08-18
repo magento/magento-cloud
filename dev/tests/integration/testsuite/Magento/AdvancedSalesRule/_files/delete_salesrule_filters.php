@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 /** @var \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter $filter */
 $filter = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-    'Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter'
+    \Magento\AdvancedSalesRule\Model\ResourceModel\Rule\Condition\Filter::class
 );
 
 $connection = $filter->getConnection();

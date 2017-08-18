@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,15 +25,15 @@ use Magento\Customer\Test\Page\CustomerAccountIndex;
  * 3. Click Remove button in Product Requiring Section.
  * 4. Perform all asserts.
  *
- * @group Add_by_SKU_(CS)
+ * @group Add_by_SKU
  * @ZephyrId MAGETWO-29906
  */
 class DeleteProductsFromCartOfAdvancedCheckoutEntityTest extends AbstractAdvancedCheckoutEntityTest
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     const TEST_TYPE = 'extended_acceptance_test';
+    const SEVERITY = 'S3';
     /* end tags */
 
     /**
@@ -74,11 +74,11 @@ class DeleteProductsFromCartOfAdvancedCheckoutEntityTest extends AbstractAdvance
      * Delete products from AdvancedCheckout.
      *
      * @param Customer $customer
-     * @param string $products
      * @param string $orderOptions
+     * @param array $products
      * @return array
      */
-    public function test(Customer $customer, $products, $orderOptions)
+    public function test(Customer $customer, $orderOptions, array $products = [])
     {
         // Preconditions
         $products = $this->createProducts($products);

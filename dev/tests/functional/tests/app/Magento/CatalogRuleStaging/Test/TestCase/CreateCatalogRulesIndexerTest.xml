@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Indexer\Test\TestCase\CreateCatalogRulesIndexerTest" summary="Create catalog rules indexer test" ticketId="MAGETWO-39072">
+        <variation name="CreateCatalogRulesIndexerTestVariation1" summary="Testing indexer in several conditions with creation, applying and deleting catalog price rule">
+            <data name="issue" xsi:type="string">MAGETWO-63776: [FT] Update CreateCatalogRulesIndexerTest to consider staging functionality</data>
+            <data name="tag" xsi:type="string">to_maintain:yes</data>
+        </variation>
+    </testCase>
+</config>

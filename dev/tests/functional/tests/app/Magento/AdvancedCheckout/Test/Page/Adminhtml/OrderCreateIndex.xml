@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../vendor/magento/mtf/etc/pages.xsd">
+    <page name="OrderCreateIndex" area="Adminhtml" mca="sales/order_create/index" module="Magento_Sales">
+        <block name="createBlock" class="Magento\AdvancedCheckout\Test\Block\Adminhtml\Order\Create" locator="[id='page:main-container']" strategy="css selector" />
+        <block name="itemsOrderedMessagesBlock" class="Magento\AdvancedCheckout\Test\Block\Adminhtml\Order\Messages" locator=".row-messages-error" strategy="css selector" />
+        <block name="orderErrorMessagesBlock" class="Magento\AdvancedCheckout\Test\Block\Adminhtml\Order\Messages" locator="#order-errors" strategy="css selector" />
+    </page>
+</config>

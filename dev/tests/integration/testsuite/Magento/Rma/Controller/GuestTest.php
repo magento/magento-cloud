@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Rma\Controller;
@@ -17,7 +17,7 @@ class GuestTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testIsResponseContain($uri, $content)
     {
         /** @var $rma \Magento\Rma\Model\Rma */
-        $rma = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Rma\Model\Rma');
+        $rma = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Rma\Model\Rma::class);
         $rma->load(1, 'increment_id');
 
         $this->getRequest()->setParam('entity_id', $rma->getEntityId());

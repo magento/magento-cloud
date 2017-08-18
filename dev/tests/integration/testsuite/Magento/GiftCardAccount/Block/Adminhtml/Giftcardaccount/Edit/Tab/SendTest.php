@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftCardAccount\Block\Adminhtml\Giftcardaccount\Edit\Tab;
@@ -8,7 +8,7 @@ namespace Magento\GiftCardAccount\Block\Adminhtml\Giftcardaccount\Edit\Tab;
 /**
  * @magentoAppArea adminhtml
  */
-class SendTest extends \PHPUnit_Framework_TestCase
+class SendTest extends \PHPUnit\Framework\TestCase
 {
     /** @var \Magento\GiftCardAccount\Block\Adminhtml\Giftcardaccount\Edit\Tab\Send */
     protected $_block;
@@ -18,24 +18,26 @@ class SendTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
 
         $model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\GiftCardAccount\Model\Giftcardaccount'
+            \Magento\GiftCardAccount\Model\Giftcardaccount::class
         );
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $objectManager->get('Magento\Framework\Registry')->register('current_giftcardaccount', $model);
+        $objectManager->get(\Magento\Framework\Registry::class)->register('current_giftcardaccount', $model);
 
         $layout = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         );
 
-        $this->_block = $layout->createBlock('Magento\GiftCardAccount\Block\Adminhtml\Giftcardaccount\Edit\Tab\Send');
+        $this->_block = $layout->createBlock(
+            \Magento\GiftCardAccount\Block\Adminhtml\Giftcardaccount\Edit\Tab\Send::class
+        );
     }
 
     protected function tearDown()
     {
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $objectManager->get('Magento\Framework\Registry')->unregister('current_giftcardaccount');
+        $objectManager->get(\Magento\Framework\Registry::class)->unregister('current_giftcardaccount');
         parent::tearDown();
     }
 
@@ -65,7 +67,7 @@ class SendTest extends \PHPUnit_Framework_TestCase
 
         $element = $form->getElement('store_id');
         $this->assertNotNull($element);
-        $this->assertInstanceOf('Magento\Framework\Data\Form\Element\Select', $element);
+        $this->assertInstanceOf(\Magento\Framework\Data\Form\Element\Select::class, $element);
         $this->assertEquals('store_id', $element->getId());
     }
 }

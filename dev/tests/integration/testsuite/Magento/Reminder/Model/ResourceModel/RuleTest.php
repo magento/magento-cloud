@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -11,7 +11,10 @@ namespace Magento\Reminder\Model\ResourceModel;
 use Magento\Reminder\Model\Rule;
 use Magento\TestFramework\Helper\Bootstrap;
 
-class RuleTest extends \PHPUnit_Framework_TestCase
+/**
+ * RuleTest class.
+ */
+class RuleTest extends \Magento\TestFramework\Indexer\TestCase
 {
     /**
      * @magentoDataFixture Magento/Reminder/_files/customersForNotification.php
@@ -23,13 +26,15 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $customersForNotification = [['customer_id' => '1', 'coupon_id' => null, 'rule_id' => null, 'schedule' => '2',
                 'log_sent_at_max' => $beforeYesterday, 'log_sent_at_min' => $beforeYesterday, ]];
         /** @var \Magento\Framework\App\ResourceConnection $resource */
-        $resource = Bootstrap::getObjectManager()->get('Magento\Framework\App\ResourceConnection');
+        $resource = Bootstrap::getObjectManager()->get(\Magento\Framework\App\ResourceConnection::class);
         $connection = $resource->getConnection();
         $connection->query("UPDATE {$resource->getTableName('quote')} SET updated_at = '{$beforeYesterday}'");
 
-        $collection = Bootstrap::getObjectManager()->create('Magento\Reminder\Model\ResourceModel\Rule\Collection');
+        $collection = Bootstrap::getObjectManager()->create(
+            \Magento\Reminder\Model\ResourceModel\Rule\Collection::class
+        );
         $rules = $collection->addIsActiveFilter(1);
-        $ruleResource = Bootstrap::getObjectManager()->create('Magento\Reminder\Model\ResourceModel\Rule');
+        $ruleResource = Bootstrap::getObjectManager()->create(\Magento\Reminder\Model\ResourceModel\Rule::class);
         foreach ($rules as $rule) {
             $customersForNotification[0]['rule_id'] = $rule->getId();
             $connection->query("INSERT INTO {$resource->getTableName('magento_reminder_rule_log')} " .

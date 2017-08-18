@@ -1,20 +1,19 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 namespace Magento\Eway\Test\Block\Form;
 
-use Magento\Mtf\Block\Form;
 use Magento\Mtf\Client\Element\SimpleElement;
 use Magento\Mtf\Client\ElementInterface;
 use Magento\Mtf\Fixture\FixtureInterface;
+use Magento\Payment\Test\Block\Form\PaymentCc;
 
 /**
  * Form for filling credit card data for eWay Shared Pages.
  */
-class EwaySharedPagesCc extends Form
+class EwaySharedPagesCc extends PaymentCc
 {
     /**
      * Eway frame selector.
@@ -31,12 +30,11 @@ class EwaySharedPagesCc extends Form
     private $payNowButton = '#EWAYPayNowButton';
 
     /**
-     * Switch to the form frame, fill form and switch back.
+     * Switch to the form frame, fill form and switch back. {@inheritdoc}
      *
      * @param FixtureInterface $creditCard
      * @param SimpleElement|null $element
      * @return $this
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function fill(FixtureInterface $creditCard, SimpleElement $element = null)
     {

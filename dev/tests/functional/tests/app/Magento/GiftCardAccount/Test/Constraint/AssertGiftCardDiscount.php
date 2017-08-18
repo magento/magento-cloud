@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -31,6 +31,7 @@ class AssertGiftCardDiscount extends AbstractConstraint
         $discount
     ) {
         $checkoutCart->open();
+        $checkoutCart->getTotalsBlock()->waitForUpdatedTotals();
         $actualDiscount = $checkoutCart->getGiftCardDiscountBlock()->getGiftCardDiscount();
         \PHPUnit_Framework_Assert::assertEquals(
             $discount,

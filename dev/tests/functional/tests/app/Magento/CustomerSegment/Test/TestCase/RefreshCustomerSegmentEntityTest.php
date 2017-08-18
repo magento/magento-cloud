@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -26,14 +26,13 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click the "Refresh Segment Data" button.
  * 5. Perform assertions.
  *
- * @group Customer_Segments_(CS)
+ * @group Customer_Segments
  * @ZephyrId MAGETWO-26786
  */
 class RefreshCustomerSegmentEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -101,6 +100,7 @@ class RefreshCustomerSegmentEntityTest extends Injectable
      */
     public function tearDown()
     {
-        $this->objectManager->create('Magento\CustomerSegment\Test\TestStep\DeleteAllCustomerSegmentsStep')->run();
+        $this->objectManager->create(\Magento\CustomerSegment\Test\TestStep\DeleteAllCustomerSegmentsStep::class)
+            ->run();
     }
 }

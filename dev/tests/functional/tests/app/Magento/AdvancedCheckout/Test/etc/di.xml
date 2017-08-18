@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertWidgetOrderBySkuOnCategoryPage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertRequiringAttentionProductSuccessDeleteMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S3</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAbsentInRequiringAttention">
+        <arguments>
+            <argument name="severity" xsi:type="string">S3</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuSuccessMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertProductRequiredAttentionFailMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertProductIsOutOfStockFailMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertQtyIsNotEnoughFailMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S1</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertMaxRequestedQtyFailMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertSpecifyProductOptionsLink">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertProductConfiguringFromRequiringAttention">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertSkuNotFoundFailMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertMinRequestedQtyFailMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertQtyIncrementsFailMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertProductTierPriceMessage">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AdvancedCheckout\Test\Constraint\AssertMsrpNotice">
+        <arguments>
+            <argument name="severity" xsi:type="string">S2</argument>
+        </arguments>
+    </type>
+</config>

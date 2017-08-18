@@ -1,15 +1,15 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 // @codingStandardsIgnoreFile
 
-$conditions = serialize([]);
+$conditions = json_encode([]);
 
 /** @var $rule \Magento\Reminder\Model\Rule */
-$rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reminder\Model\Rule');
+$rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Reminder\Model\Rule::class);
 $rule->setData(
     [
         'name' => 'Rule 1',
@@ -26,7 +26,7 @@ $rule->setData(
     ]
 )->save();
 
-$rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\Reminder\Model\Rule');
+$rule = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\Reminder\Model\Rule::class);
 $rule->setData(
     [
         'name' => 'Rule 2',
@@ -47,6 +47,3 @@ $rule->setData(
          */
         'to_date' => date('Y-m-d', time() + 172800),
     ])->save();
-
-//$adapter = $rule->getResource()->getConnection();
-//print_r($adapter->fetchAll('SELECT * FROM magento_reminder_rule'));

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -24,7 +24,7 @@ class View extends \Magento\Sales\Test\Block\Order\View
     {
         $selector = ($id === null) ? $this->content : sprintf($this->itemBlock, $id) . $this->content;
         return $this->blockFactory->create(
-            'Magento\GiftCardAccount\Test\Block\Order\Items',
+            \Magento\GiftCardAccount\Test\Block\Order\Items::class,
             ['element' => $this->_rootElement->find($selector, Locator::SELECTOR_XPATH)]
         );
     }

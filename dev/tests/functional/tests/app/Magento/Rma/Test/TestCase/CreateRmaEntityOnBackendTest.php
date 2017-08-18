@@ -1,11 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Rma\Test\TestCase;
 
+use Magento\Mtf\TestStep\TestStepFactory;
 use Magento\Rma\Test\Constraint\AssertRmaSuccessSaveMessage;
 use Magento\Rma\Test\Fixture\Rma;
 use Magento\Rma\Test\Page\Adminhtml\RmaChooseOrder;
@@ -27,14 +28,13 @@ use Magento\Sales\Test\Fixture\OrderInjectable;
  * 5. Submit returns.
  * 6. Perform all assertions.
  *
- * @group RMA_(CS)
+ * @group RMA
  * @ZephyrId MAGETWO-28571
  */
 class CreateRmaEntityOnBackendTest extends AbstractRmaEntityTest
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     const TEST_TYPE = 'extended_acceptance_test';
     /* end tags */
 
@@ -53,16 +53,36 @@ class CreateRmaEntityOnBackendTest extends AbstractRmaEntityTest
     protected $rmaNew;
 
     /**
+     * Test step factory.
+     *
+     * @var TestStepFactory
+     */
+    protected $testStepFactory;
+
+    /**
+     * Additional Rma attributes.
+     *
+     * @var array
+     */
+    protected $rmaAttributes = [];
+
+    /**
      * Inject data.
      *
      * @param RmaChooseOrder $rmaChooseOrder
      * @param RmaNew $rmaNew
+     * @param TestStepFactory $testStepFactory
+     *
      * @return void
      */
-    public function __inject(RmaChooseOrder $rmaChooseOrder, RmaNew $rmaNew)
-    {
+    public function __inject(
+        RmaChooseOrder $rmaChooseOrder,
+        RmaNew $rmaNew,
+        TestStepFactory $testStepFactory
+    ) {
         $this->rmaChooseOrder = $rmaChooseOrder;
         $this->rmaNew = $rmaNew;
+        $this->testStepFactory = $testStepFactory;
     }
 
     /**
@@ -71,23 +91,30 @@ class CreateRmaEntityOnBackendTest extends AbstractRmaEntityTest
      * @param string $configData
      * @param Rma $rma
      * @param AssertRmaSuccessSaveMessage $assertRmaSuccessSaveMessage
+     *
      * @return array
      */
     public function test($configData, Rma $rma, AssertRmaSuccessSaveMessage $assertRmaSuccessSaveMessage)
     {
+        if ($rma->hasData('attribute_ids')) {
+            $this->rmaAttributes = $rma->getDataFieldConfig('attribute_ids')['source']->getRmaAttributes();
+        }
         // Preconditions
-        $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+        $this->testStepFactory->create(
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => $configData]
         )->run();
         /** @var OrderInjectable $order */
         $order = $rma->getDataFieldConfig('order_id')['source']->getOrder();
-        $this->objectManager->create(
-            'Magento\Sales\Test\TestStep\CreateInvoiceStep',
-            ['order' => $order]
+        $products = $order->getEntityId()['products'];
+        $cart['data']['items'] = ['products' => $products];
+        $cart = $this->fixtureFactory->createByCode('cart', $cart);
+        $this->testStepFactory->create(
+            \Magento\Sales\Test\TestStep\CreateInvoiceStep::class,
+            ['order' => $order, 'cart' => $cart]
         )->run();
-        $this->objectManager->create(
-            'Magento\Sales\Test\TestStep\CreateShipmentStep',
+        $this->testStepFactory->create(
+            \Magento\Sales\Test\TestStep\CreateShipmentStep::class,
             ['order' => $order]
         )->run();
 
@@ -95,7 +122,7 @@ class CreateRmaEntityOnBackendTest extends AbstractRmaEntityTest
         $this->rmaIndex->open();
         $this->rmaIndex->getGridPageActions()->addNew();
         $this->rmaChooseOrder->getOrderGrid()->searchAndOpen(['id' => $rma->getOrderId()]);
-        $this->rmaNew->getRmaForm()->fill($rma);
+        $this->rmaNew->getRmaForm()->fill($rma, null);
         $this->rmaNew->getPageActions()->save();
 
         $assertRmaSuccessSaveMessage->processAssert($this->rmaIndex);
@@ -103,5 +130,20 @@ class CreateRmaEntityOnBackendTest extends AbstractRmaEntityTest
         $rmaId = $this->getRmaId($rma);
         $rma = $this->createRma($rma, ['entity_id' => $rmaId]);
         return ['rma' => $rma];
+    }
+
+    /**
+     * Remove rma attributes.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        foreach ($this->rmaAttributes as $rmaAttribute) {
+            $this->testStepFactory->create(
+                \Magento\Rma\Test\TestStep\DeleteAttributeStep::class,
+                ['attribute' => $rmaAttribute]
+            )->run();
+        }
     }
 }

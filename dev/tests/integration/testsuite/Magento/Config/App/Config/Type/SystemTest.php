@@ -1,18 +1,18 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Config\App\Config\Type;
 
-use Magento\TestFramework\Helper\Bootstrap;
 use Magento\Framework\ObjectManagerInterface;
+use Magento\TestFramework\Helper\Bootstrap;
 
 /**
  * @magentoDataFixture Magento/Config/_files/config_data.php
  * @magentoAppIsolation enabled
  */
-class SystemTest extends \PHPUnit_Framework_TestCase
+class SystemTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var System

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Worldpay\Test\TestCase\CancelWorldpayCheckoutTest" summary="Cancel checkout with Worldpay">
+        <variation name="CancelWorldpayCheckoutTestVariation1" summary="Cancel checkout with Worldpay" ticketId="MAGETWO-49392">
+            <data name="tag" xsi:type="string">test_type:3rd_party_test, severity:S0</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::product_10_dollar</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="shippingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="checkoutMethod" xsi:type="string">guest</data>
+            <data name="payment/method" xsi:type="string">worldpay</data>
+            <data name="paymentForm" xsi:type="string">worldpay</data>
+            <data name="configData" xsi:type="string">worldpay</data>
+            <data name="fillCreditCardOn3rdParty" xsi:type="boolean">true</data>
+            <data name="creditCardType" xsi:type="string">VISA</data>
+            <data name="status" xsi:type="string">Canceled</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertCancelSuccessMessageInShoppingCart" />
+            <constraint name="Magento\Checkout\Test\Constraint\AssertProductPresentInShoppingCart" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCanceled" />
+        </variation>
+    </testCase>
+</config>

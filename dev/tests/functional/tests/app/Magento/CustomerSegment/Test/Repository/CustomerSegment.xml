@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -35,6 +35,26 @@
             </field>
             <field name="is_active" xsi:type="string">Inactive</field>
             <field name="apply_to" xsi:type="string">Registered Customers</field>
+        </dataset>
+
+        <dataset name="active_customer_segment_registered">
+            <field name="name" xsi:type="string">Test Customer Segment %isolation%</field>
+            <field name="description" xsi:type="string">Test Customer Segment Description %isolation%</field>
+            <field name="website_ids" xsi:type="array">
+                <item name="0" xsi:type="string">Main Website</item>
+            </field>
+            <field name="is_active" xsi:type="string">Active</field>
+            <field name="apply_to" xsi:type="string">Registered Customers</field>
+        </dataset>
+
+        <dataset name="active_customer_segment_visitors">
+            <field name="name" xsi:type="string">Test Customer Segment %isolation%</field>
+            <field name="description" xsi:type="string">Test Customer Segment Description %isolation%</field>
+            <field name="website_ids" xsi:type="array">
+                <item name="0" xsi:type="string">Main Website</item>
+            </field>
+            <field name="is_active" xsi:type="string">Active</field>
+            <field name="apply_to" xsi:type="string">Visitors</field>
         </dataset>
 
         <dataset name="active_customer_segment_with_billing_address">

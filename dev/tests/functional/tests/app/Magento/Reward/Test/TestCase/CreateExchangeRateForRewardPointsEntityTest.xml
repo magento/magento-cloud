@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Reward\Test\TestCase\CreateExchangeRateForRewardPointsEntityTest" summary="Create Exchange Rate for Reward Points" ticketId="MAGETWO-24808">
         <variation name="CreateExchangeRateForRewardPointsEntityTestVariation1">
-            <data name="tag" xsi:type="string">test_type:extended_acceptance_test</data>
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, severity:S2</data>
             <data name="config/dataset" xsi:type="string">reward_points_with_registration_reward</data>
             <data name="configRollback/dataset" xsi:type="string">reward_points_with_registration_reward_rollback</data>
             <data name="customer/dataset" xsi:type="string">register_customer</data>
@@ -24,6 +24,7 @@
             <constraint name="Magento\Reward\Test\Constraint\AssertRewardPointsBalance" />
         </variation>
         <variation name="CreateExchangeRateForRewardPointsEntityTestVariation2">
+            <data name="tag" xsi:type="string">stable:no, severity:S2</data>
             <data name="config/dataset" xsi:type="string">reward_purchase</data>
             <data name="configRollback/dataset" xsi:type="string">reward_purchase_rollback</data>
             <data name="customer/dataset" xsi:type="string">register_customer</data>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -220,9 +220,13 @@ class GiftCard extends Form
         $checkoutData = $product->getCheckoutData();
         if (isset($checkoutData['options']['giftcard_options'])) {
             $checkoutGiftCardOptions = $checkoutData['options']['giftcard_options'];
-            // Replace option key to value
-            $amountOptionKey = str_replace('option_key_', '', $checkoutGiftCardOptions['giftcard_amount']);
-            $checkoutGiftCardOptions['giftcard_amount'] = $giftcardAmounts[$amountOptionKey]['value'];
+
+            if (!$product->getData('allow_open_amount') || $product->getData('allow_open_amount') != 'Yes') {
+                // Replace option key to value
+                $amountOptionKey = str_replace('option_key_', '', $checkoutGiftCardOptions['giftcard_amount']);
+                $checkoutGiftCardOptions['giftcard_amount'] = $giftcardAmounts[$amountOptionKey]['value'];
+            }
+
             $mapping = $this->dataMapping($checkoutGiftCardOptions);
             $this->_fill($mapping, $element);
         }

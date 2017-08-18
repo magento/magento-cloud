@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Eway\Test\TestCase\OnePageCheckoutSharedPagesTest" summary="Place order via eWay Shared Pages.">
-        <variation name="OnePageCheckoutTestVariationWithEwaySharedPages" summary="Place order via eWAY Responsive Shared Pages with Payment Action = Authorize Only" ticketId="MAGETWO-67461">
+        <variation name="OnePageCheckoutTestVariationWithEwaySharedPages" summary="Place order via eWAY Responsive Shared Pages with Payment Action = Authorize Only" ticketId="MAGETWO-41667">
             <data name="products/0" xsi:type="string">catalogProductSimple::product_100_dollar</data>
             <data name="customer/dataset" xsi:type="string">default</data>
             <data name="taxRule" xsi:type="string">us_ca_ny_rule</data>
@@ -19,6 +19,7 @@
                 <item name="grandTotal" xsi:type="string">226.50</item>
             </data>
             <data name="payment/method" xsi:type="string">eway</data>
+            <data name="paymentForm" xsi:type="string">eway_shared_pages</data>
             <data name="creditCard/dataset" xsi:type="string">visa_eway_shared_pages</data>
             <data name="flushCache" xsi:type="boolean">true</data>
             <data name="configData" xsi:type="string">config_base_currency_aud, eway, eway_shared_pages</data>
@@ -31,13 +32,14 @@
                 <item name="Response Code" xsi:type="string">00</item>
                 <item name="Approve Message" xsi:type="string">A2000 - Transaction Approved</item>
             </data>
-            <data name="tag" xsi:type="string">test_type:3rd_party_test</data>
+            <data name="fillCreditCardOn3rdParty" xsi:type="boolean">true</data>
+            <data name="tag" xsi:type="string">test_type:3rd_party_test, severity:S1</data>
             <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
             <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
-            <constraint name="Magento\Eway\Test\Constraint\AssertAuthorizationInCommentsHistory" />
-            <constraint name="Magento\Eway\Test\Constraint\AssertTransactionStatus" />
-            <constraint name="Magento\Eway\Test\Constraint\AssertOrderPaymentInformation" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertAuthorizationInCommentsHistory" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertTransactionStatus" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderPaymentInformation" />
         </variation>
     </testCase>
 </config>

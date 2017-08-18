@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -134,7 +134,7 @@ class CheckExpressConfigStep implements TestStepInterface
         );
         $this->expressCheckoutConfigBlock->specifyMerchantAccountId();
         $this->systemConfigEditSectionPayment->getPageActions()->save();
-        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessageAndRefreshPage();
+        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessage();
     }
 
     /**
@@ -154,6 +154,6 @@ class CheckExpressConfigStep implements TestStepInterface
             [$enablers['Enable In-Context Checkout Experience'], $enablers['Enable PayPal Credit']]
         );
         $this->systemConfigEditSectionPayment->getPageActions()->save();
-        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessageAndRefreshPage();
+        $this->systemConfigEditSectionPayment->getMessagesBlock()->waitSuccessMessage();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,14 +22,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 5. Click Submit.
  * 6. Perform all assertions.
  *
- * @group Invitations_(CS)
+ * @group Invitations
  * @ZephyrId MAGETWO-29791
  */
 class MassActionCustomerInvitationBackendTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
+    const STABLE = 'no';
     /* end tags */
 
     /**

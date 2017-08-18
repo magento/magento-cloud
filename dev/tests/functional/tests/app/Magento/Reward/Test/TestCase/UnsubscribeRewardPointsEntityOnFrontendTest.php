@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,14 +22,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 3. Fill data according to dataset.
  * 4. Perform all asserts.
  *
- * @group Product_Attributes_(MX), Reward_Points_(CS)
+ * @group Product_Attributes, Reward_Points
  * @ZephyrId MAGETWO-26381
  */
 class UnsubscribeRewardPointsEntityOnFrontendTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**
@@ -44,7 +44,7 @@ class UnsubscribeRewardPointsEntityOnFrontendTest extends Injectable
      */
     public function __prepare()
     {
-        $this->objectManager->create('Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep')->run();
+        $this->objectManager->create(\Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep::class)->run();
     }
 
     /**
@@ -83,6 +83,6 @@ class UnsubscribeRewardPointsEntityOnFrontendTest extends Injectable
      */
     public function tearDown()
     {
-        $this->objectManager->create('Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep')->run();
+        $this->objectManager->create(\Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep::class)->run();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogEvent\Controller;
@@ -45,7 +45,7 @@ class CategoryTest extends \Magento\TestFramework\TestCase\AbstractBackendContro
     {
         /** @var $event \Magento\CatalogEvent\Model\Event */
         $event = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\CatalogEvent\Model\Event'
+            \Magento\CatalogEvent\Model\Event::class
         );
         $event->setStoreId(0);
         $event->setCategoryId('3');

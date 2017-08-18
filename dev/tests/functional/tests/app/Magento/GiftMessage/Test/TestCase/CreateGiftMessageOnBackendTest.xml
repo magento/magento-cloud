@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\GiftMessage\Test\TestCase\CreateGiftMessageOnBackendTest" summary="Create Gift Message On Backend" ticketId="MAGETWO-29642">
         <variation name="CreateGiftMessageOnBackendTestVariation1">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="configData" xsi:type="string">cashondelivery, enable_gift_messages</data>
-            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/1" xsi:type="string">catalogProductVirtual::default</data>
             <data name="customer/dataset" xsi:type="string">johndoe_with_addresses</data>
             <data name="billingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
             <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
@@ -26,8 +28,10 @@
             <constraint name="Magento\GiftMessage\Test\Constraint\AssertGiftMessageInFrontendOrderItems" />
         </variation>
         <variation name="CreateGiftMessageOnBackendTestVariation2">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="configData" xsi:type="string">cashondelivery, enable_gift_messages</data>
-            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/1" xsi:type="string">catalogProductVirtual::default</data>
             <data name="customer/dataset" xsi:type="string">johndoe_with_addresses</data>
             <data name="billingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
             <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
@@ -44,8 +48,10 @@
             <constraint name="Magento\GiftMessage\Test\Constraint\AssertGiftMessageInFrontendOrder" />
         </variation>
         <variation name="CreateGiftMessageOnBackendTestVariation3">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="configData" xsi:type="string">cashondelivery, enable_gift_messages</data>
-            <data name="products" xsi:type="string">catalogProductSimple::default, catalogProductVirtual::default</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::default</data>
+            <data name="products/1" xsi:type="string">catalogProductVirtual::default</data>
             <data name="customer/dataset" xsi:type="string">johndoe_with_addresses</data>
             <data name="billingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
             <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>

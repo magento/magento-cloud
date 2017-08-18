@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Setup\Controller;
@@ -13,6 +13,10 @@ use Zend\Json\Json;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 
+/**
+ * Class \Magento\Setup\Controller\BackupActionItems
+ *
+ */
 class BackupActionItems extends AbstractActionController
 {
 
@@ -52,7 +56,10 @@ class BackupActionItems extends AbstractActionController
         \Magento\Framework\Backup\Filesystem $fileSystem
     ) {
         $objectManager = $objectManagerProvider->get();
-        $this->backupHandler = $objectManager->create('Magento\Framework\Setup\BackupRollback', ['log' => $logger]);
+        $this->backupHandler = $objectManager->create(
+            \Magento\Framework\Setup\BackupRollback::class,
+            ['log' => $logger]
+        );
         $this->directoryList = $directoryList;
         $this->fileSystem = $fileSystem;
     }

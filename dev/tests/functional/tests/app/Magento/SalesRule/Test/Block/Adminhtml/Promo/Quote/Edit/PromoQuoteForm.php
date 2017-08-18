@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\SalesRule\Test\Block\Adminhtml\Promo\Quote\Edit;
@@ -8,7 +8,6 @@ namespace Magento\SalesRule\Test\Block\Adminhtml\Promo\Quote\Edit;
 use Magento\Ui\Test\Block\Adminhtml\FormSections;
 use Magento\Mtf\Client\Element\SimpleElement;
 use Magento\Mtf\Fixture\FixtureInterface;
-use Magento\SalesRule\Test\Block\Adminhtml\Promo\Quote\Edit\Section\BlockPromoSalesRuleEditTabCoupons;
 
 /**
  * Sales rule edit form.
@@ -44,24 +43,6 @@ class PromoQuoteForm extends FormSections
             $sections = $this->prepareData($sections, $replace);
         }
         $this->fillContainers($sections, $element);
-    }
-
-    /**
-     * Generate coupons for Cart Rule.
-     *
-     * @param array $generateSettings
-     *
-     * @return void
-     */
-    public function generateCoupons(array $generateSettings)
-    {
-        $this->fillContainers([
-            'block_promo_sales_rule_edit_tab_coupons' => $generateSettings
-        ]);
-
-        /** @var BlockPromoSalesRuleEditTabCoupons $couponSection */
-        $couponSection = $this->getSection('block_promo_sales_rule_edit_tab_coupons');
-        $couponSection->pressGenerateButton();
     }
 
     /**

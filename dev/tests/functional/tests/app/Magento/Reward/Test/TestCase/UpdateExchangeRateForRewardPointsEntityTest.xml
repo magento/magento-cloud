@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Reward\Test\TestCase\UpdateExchangeRateForRewardPointsEntityTest" summary="Update Exchange Rate for Reward Points" ticketId="MAGETWO-26628">
         <variation name="UpdateExchangeRateForRewardPointsEntityTestVariation1">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="registrationReward" xsi:type="string">10</data>
             <data name="checkoutReward" xsi:type="string">10</data>
             <data name="configRollback/dataset" xsi:type="string">reward_points_with_registration_reward_rollback</data>
@@ -25,6 +26,7 @@
             <constraint name="Magento\Reward\Test\Constraint\AssertRewardPointsBalance" />
         </variation>
         <variation name="UpdateExchangeRateForRewardPointsEntityTestVariation2">
+            <data name="tag" xsi:type="string">stable:no, severity:S2</data>
             <data name="registrationReward" xsi:type="string">10</data>
             <data name="checkoutReward" xsi:type="string">74</data>
             <data name="configRollback/dataset" xsi:type="string">reward_purchase_rollback</data>

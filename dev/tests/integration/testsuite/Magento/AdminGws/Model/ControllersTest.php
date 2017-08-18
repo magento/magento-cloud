@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\AdminGws\Model;
@@ -39,13 +39,13 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         parent::setUp();
 
-        $this->roleMock = $this->getMock('Magento\AdminGws\Model\Role', [], [], '', false);
-        $this->registryMock = $this->getMock('Magento\Framework\Registry', [], [], '', false);
-        $this->storeManagerMock = $this->getMock('Magento\Store\Model\StoreManager', [], [], '', false);
-        $this->requestMock = $this->getMock('Magento\Framework\App\Request\Http', [], [], '', false);
+        $this->roleMock = $this->createMock(\Magento\AdminGws\Model\Role::class);
+        $this->registryMock = $this->createMock(\Magento\Framework\Registry::class);
+        $this->storeManagerMock = $this->createMock(\Magento\Store\Model\StoreManager::class);
+        $this->requestMock = $this->createMock(\Magento\Framework\App\Request\Http::class);
 
         $this->model = $this->_objectManager->create(
-            'Magento\AdminGws\Model\Controllers',
+            \Magento\AdminGws\Model\Controllers::class,
             [
                 'role' => $this->roleMock,
                 'registry' => $this->registryMock,
@@ -57,11 +57,11 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
 
     protected function tearDown()
     {
-        unset($this->roleMock);
-        unset($this->registryMock);
-        unset($this->storeManagerMock);
-        unset($this->requestMock);
-        unset($this->model);
+        $this->roleMock = null;
+        $this->registryMock = null;
+        $this->storeManagerMock = null;
+        $this->requestMock = null;
+        $this->model = null;
         parent::tearDown();
     }
 
@@ -74,7 +74,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
             $this->returnValue('testStore')
         );
 
-        $storeMock = $this->getMockBuilder('Magento\Store\Model\Store')
+        $storeMock = $this->getMockBuilder(\Magento\Store\Model\Store::class)
             ->disableOriginalConstructor()
             ->setMethods(['getId'])
             ->getMock();
@@ -106,7 +106,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
             $this->returnValue('testWebsite')
         );
 
-        $websiteMock = $this->getMockBuilder('Magento\Store\Model\Website')
+        $websiteMock = $this->getMockBuilder(\Magento\Store\Model\Website::class)
             ->disableOriginalConstructor()
             ->setMethods(['getId'])
             ->getMock();
@@ -134,7 +134,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
             $this->returnValue(null)
         );
 
-        $websiteMock = $this->getMockBuilder('Magento\Store\Model\Website')
+        $websiteMock = $this->getMockBuilder(\Magento\Store\Model\Website::class)
             ->disableOriginalConstructor()
             ->setMethods(['getCode'])
             ->getMock();
@@ -142,7 +142,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
             ->method('getCode')
             ->will($this->returnValue('default'));
 
-        $storeMock = $this->getMockBuilder('Magento\Store\Model\Store')
+        $storeMock = $this->getMockBuilder(\Magento\Store\Model\Store::class)
             ->disableOriginalConstructor()
             ->setMethods(['getWebsite'])
             ->getMock();
@@ -171,7 +171,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
             $this->returnValue(null)
         );
 
-        $websiteMock = $this->getMockBuilder('Magento\Store\Model\Website')
+        $websiteMock = $this->getMockBuilder(\Magento\Store\Model\Website::class)
             ->disableOriginalConstructor()
             ->setMethods(['getCode'])
             ->getMock();
@@ -179,7 +179,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
             ->method('getCode')
             ->will($this->returnValue('default'));
 
-        $storeMock = $this->getMockBuilder('Magento\Store\Model\Store')
+        $storeMock = $this->getMockBuilder(\Magento\Store\Model\Store::class)
             ->disableOriginalConstructor()
             ->setMethods(['getWebsite', 'getCode'])
             ->getMock();
@@ -435,7 +435,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->requestMock->expects($this->any())
             ->method('getActionName')
             ->will($this->returnValue('deleteGroupPost'));
-        $groupMock = $this->getMockBuilder('Magento\Store\Model\Group')
+        $groupMock = $this->getMockBuilder(\Magento\Store\Model\Group::class)
             ->disableOriginalConstructor()
             ->setMethods(['getWebsiteId'])
             ->getMock();
@@ -462,7 +462,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->requestMock->expects($this->any())
             ->method('getActionName')
             ->will($this->returnValue('deleteGroupPost'));
-        $groupMock = $this->getMockBuilder('Magento\Store\Model\Group')
+        $groupMock = $this->getMockBuilder(\Magento\Store\Model\Group::class)
             ->disableOriginalConstructor()
             ->setMethods(['getWebsiteId'])
             ->getMock();
@@ -512,7 +512,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->requestMock->expects($this->any())
             ->method('getActionName')
             ->will($this->returnValue('deleteStorePost'));
-        $storeMock = $this->getMockBuilder('Magento\Store\Model\Store')
+        $storeMock = $this->getMockBuilder(\Magento\Store\Model\Store::class)
             ->disableOriginalConstructor()
             ->setMethods(['getWebsiteId'])
             ->getMock();
@@ -539,7 +539,7 @@ class ControllersTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->requestMock->expects($this->any())
             ->method('getActionName')
             ->will($this->returnValue('deleteStorePost'));
-        $storeMock = $this->getMockBuilder('Magento\Store\Model\Store')
+        $storeMock = $this->getMockBuilder(\Magento\Store\Model\Store::class)
             ->disableOriginalConstructor()
             ->setMethods(['getWebsiteId'])
             ->getMock();

@@ -1,11 +1,11 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Reward\Block\Customer;
 
-class RewardTest extends \PHPUnit_Framework_TestCase
+class RewardTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @magentoAppArea frontend
@@ -14,12 +14,12 @@ class RewardTest extends \PHPUnit_Framework_TestCase
     public function testToHtml()
     {
         $customer = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Customer\Model\Customer'
+            \Magento\Customer\Model\Customer::class
         );
         $customer->load(1);
 
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Customer\Model\Session'
+            \Magento\Customer\Model\Session::class
         )->setCustomer(
             $customer
         );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Test\Integrity\Magento\GiftRegistry;
@@ -8,7 +8,7 @@ namespace Magento\Test\Integrity\Magento\GiftRegistry;
 /**
  * Test for validation check of the giftregistry.xml and xsd for this file
  */
-class ConfigFileTest extends \PHPUnit_Framework_TestCase
+class ConfigFileTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Schema for gift registry
@@ -28,7 +28,9 @@ class ConfigFileTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $this->_schemaFile = $this->objectManager->get('Magento\GiftRegistry\Model\Config\SchemaLocator')->getSchema();
+        $this->_schemaFile = $this->objectManager->get(
+            \Magento\GiftRegistry\Model\Config\SchemaLocator::class
+        )->getSchema();
     }
 
     /**
@@ -41,7 +43,7 @@ class ConfigFileTest extends \PHPUnit_Framework_TestCase
     public function testGiftRegistryConfigValidation($file)
     {
         $validationState = $this->objectManager->get(
-            'Magento\Framework\App\Arguments\ValidationState',
+            \Magento\Framework\App\Arguments\ValidationState::class,
             ['appMode' => 'developer']
         );
         $errors = [];

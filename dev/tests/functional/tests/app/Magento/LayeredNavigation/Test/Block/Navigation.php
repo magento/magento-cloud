@@ -1,11 +1,12 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\LayeredNavigation\Test\Block;
 
+use Magento\Catalog\Test\Fixture\Category;
 use Magento\Mtf\Block\Block;
 use Magento\Mtf\Client\Locator;
 
@@ -49,14 +50,19 @@ class Navigation extends Block
      */
     protected $expandFilterButton = '[data]';
 
-    // @codingStandardsIgnoreStart
     /**
-     * Locator value for correspondent Attribute filter option contents.
+     * Locator for category name.
      *
      * @var string
      */
-     protected $optionContent = './/*[@id="narrow-by-list"]/div[contains(@class,"filter-options-item") and contains(@class,"active")]//li[@class="item"]/a';
-    // @codingStandardsIgnoreEnd
+    private $categoryName = './/li[@class="item"]//a[contains(text(),"%s")]';
+
+    /**
+     * Locator for element with product quantity.
+     *
+     * @var string
+     */
+    private $productQty = '/following-sibling::span[contains(text(), "%s")]';
 
     /**
      * Remove all applied filters.
@@ -87,7 +93,7 @@ class Navigation extends Block
     }
 
     /**
-     * Apply Layerd Navigation filter.
+     * Apply Layered Navigation filter.
      *
      * @param string $filter
      * @param string $linkPattern
@@ -115,27 +121,17 @@ class Navigation extends Block
     }
 
     /**
-     * Gets all available filters with options.
+     * Check that category with product quantity can be displayed on layered navigation.
      *
-     * @param $attributeName
-     * @return array
+     * @param Category $category
+     * @param int $qty
+     * @return bool
      */
-    public function getOptionsContentForAttribute($attributeName)
+    public function isCategoryVisible(Category $category, $qty)
     {
-        $this->waitForElementVisible($this->loadedNarrowByList);
-
-        $this->_rootElement->find(
-            sprintf($this->optionTitle, $attributeName),
+        return $this->_rootElement->find(
+            sprintf($this->categoryName, $category->getName()) . sprintf($this->productQty, $qty),
             Locator::SELECTOR_XPATH
-        )->click();
-
-        $options = $this->_rootElement->getElements($this->optionContent, Locator::SELECTOR_XPATH);
-        $data = [];
-
-        foreach ($options as $option) {
-            $data[] = explode(' ', $option->getText())[0];
-        }
-
-        return $data;
+        )->isVisible();
     }
 }

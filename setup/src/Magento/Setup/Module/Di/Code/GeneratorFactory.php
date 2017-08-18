@@ -1,12 +1,16 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Setup\Module\Di\Code;
 
 use Magento\Framework\ObjectManagerInterface;
 
+/**
+ * Class \Magento\Setup\Module\Di\Code\GeneratorFactory
+ *
+ */
 class GeneratorFactory
 {
     /**
@@ -30,6 +34,6 @@ class GeneratorFactory
      */
     public function create($arguments = [])
     {
-        return $this->objectManager->create('Magento\Setup\Module\Di\Code\Generator', $arguments);
+        return $this->objectManager->create(\Magento\Setup\Module\Di\Code\Generator::class, $arguments);
     }
 }

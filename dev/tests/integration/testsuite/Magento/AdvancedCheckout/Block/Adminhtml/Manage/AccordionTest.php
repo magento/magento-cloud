@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\AdvancedCheckout\Block\Adminhtml\Manage;
@@ -8,7 +8,7 @@ namespace Magento\AdvancedCheckout\Block\Adminhtml\Manage;
 /**
  * @magentoAppArea adminhtml
  */
-class AccordionTest extends \PHPUnit_Framework_TestCase
+class AccordionTest extends \PHPUnit\Framework\TestCase
 {
     /** @var \Magento\Framework\View\LayoutInterface */
     protected $_layout = null;
@@ -20,14 +20,14 @@ class AccordionTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\Config\ScopeInterface'
+            \Magento\Framework\Config\ScopeInterface::class
         )->setCurrentScope(
             \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE
         );
         $this->_layout = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\View\LayoutInterface'
+            \Magento\Framework\View\LayoutInterface::class
         );
-        $this->_block = $this->_layout->createBlock('Magento\AdvancedCheckout\Block\Adminhtml\Manage\Accordion');
+        $this->_block = $this->_layout->createBlock(\Magento\AdvancedCheckout\Block\Adminhtml\Manage\Accordion::class);
     }
 
     protected function tearDown()
@@ -35,7 +35,7 @@ class AccordionTest extends \PHPUnit_Framework_TestCase
         $this->_block = null;
         $this->_layout = null;
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\Config\ScopeInterface'
+            \Magento\Framework\Config\ScopeInterface::class
         )->setCurrentScope(
             null
         );
@@ -51,7 +51,7 @@ class AccordionTest extends \PHPUnit_Framework_TestCase
         $title = 'Block 1';
         $url = 'http://content.url.1/';
         $this->_layout->addBlock(
-            'Magento\Framework\View\Element\Text',
+            \Magento\Framework\View\Element\Text::class,
             'block1',
             $parentName
         )->setHeaderText(
@@ -66,7 +66,7 @@ class AccordionTest extends \PHPUnit_Framework_TestCase
         $this->_layout->addContainer($containerName, 'Container', [], $parentName);
         $containerText = 'Block in container';
         $this->_layout->addBlock(
-            'Magento\Framework\View\Element\Text',
+            \Magento\Framework\View\Element\Text::class,
             'container_block',
             $containerName
         )->setText(
@@ -77,7 +77,7 @@ class AccordionTest extends \PHPUnit_Framework_TestCase
         $titleOne = 'Block 2';
         $blockContent = 'Block 2 Text';
         $this->_layout->addBlock(
-            'Magento\Framework\View\Element\Text',
+            \Magento\Framework\View\Element\Text::class,
             'block2',
             $parentName
         )->setHeaderText(
@@ -99,17 +99,17 @@ class AccordionTest extends \PHPUnit_Framework_TestCase
      */
     protected function _initAcl()
     {
-        $user = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create('Magento\User\Model\User');
+        $user = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(\Magento\User\Model\User::class);
         $user->setId(1)->setRole(true);
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Backend\Model\Auth\Session'
+            \Magento\Backend\Model\Auth\Session::class
         )->setUpdatedAt(
             time()
         )->setUser(
             $user
         );
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\Framework\AuthorizationInterface',
+            \Magento\Framework\AuthorizationInterface::class,
             ['data' => ['policy' => new \Magento\Framework\Authorization\Policy\DefaultPolicy()]]
         );
     }

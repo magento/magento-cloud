@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -18,7 +18,7 @@ class Curl extends \Magento\SalesRule\Test\Handler\SalesRule\Curl
      */
     protected $additionalMapTypeParams = [
         'Customer Segment' => [
-            'type' => 'Magento\CustomerSegment\Model\Segment\Condition\Segment',
+            'type' => \Magento\CustomerSegment\Model\Segment\Condition\Segment::class,
         ],
     ];
 }

@@ -1,25 +1,24 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Store\Test\Handler\Website;
 
+use Magento\Mtf\Fixture\FixtureFactory;
 use Magento\Mtf\Fixture\FixtureInterface;
 use Magento\Mtf\Handler\Curl as AbstractCurl;
 use Magento\Mtf\Util\Protocol\CurlInterface;
 use Magento\Mtf\Util\Protocol\CurlTransport;
 use Magento\Mtf\Util\Protocol\CurlTransport\BackendDecorator;
-use Magento\Store\Test\Fixture\Website as WebsiteFixture;
-use Magento\Mtf\Fixture\FixtureFactory;
 use Magento\Mtf\Config\DataInterface;
 use Magento\Mtf\System\Event\EventManagerInterface;
 use Magento\Mtf\Util\Command\Website;
+use Magento\Store\Test\Fixture\Website as WebsiteFixture;
 
 /**
- * Class Curl
- * Curl handler for creating Website
+ * Curl handler for creating Website.
  */
 class Curl extends AbstractCurl implements WebsiteInterface
 {
@@ -63,7 +62,7 @@ class Curl extends AbstractCurl implements WebsiteInterface
     }
 
     /**
-     * POST request for creating Website
+     * POST request for creating Website.
      *
      * @param FixtureInterface|null $fixture [optional]
      * @return array
@@ -88,7 +87,6 @@ class Curl extends AbstractCurl implements WebsiteInterface
             'website',
             ['data' => array_merge($fixture->getData(), ['website_id' => $websiteId])]
         );
-        $data['website']['website_id'] = $websiteId;
         // Creates Website folder in root directory.
         $this->website->create($data['website']['code']);
         $this->setConfiguration($data);
@@ -97,7 +95,7 @@ class Curl extends AbstractCurl implements WebsiteInterface
     }
 
     /**
-     * Get website id by website name
+     * Get website id by website name.
      *
      * @param string $websiteName
      * @return int
@@ -105,7 +103,7 @@ class Curl extends AbstractCurl implements WebsiteInterface
      */
     protected function getWebSiteIdByWebsiteName($websiteName)
     {
-        //Set pager limit to 2000 in order to find created website by name
+        // Set pager limit to 2000 in order to find created website by name
         $url = $_ENV['app_backend_url'] . 'admin/system_store/index/sort/group_title/dir/asc/limit/2000';
         $curl = new BackendDecorator(new CurlTransport(), $this->_configuration);
         $curl->addOption(CURLOPT_HEADER, 1);
@@ -125,7 +123,7 @@ class Curl extends AbstractCurl implements WebsiteInterface
     }
 
     /**
-     * Prepare data from text to values
+     * Prepare data from text to values.
      *
      * @param FixtureInterface $fixture
      * @return array
@@ -153,7 +151,7 @@ class Curl extends AbstractCurl implements WebsiteInterface
     {
         $configData = [
             'web/unsecure/base_link_url' => [
-                'value' => '{{unsecure_base_url}}websites/' . $data['website']['code'] . '/',
+                'value' => '{{unsecure_base_url}}websites/' . $data['website']['code'] . '/'
             ],
             'scope' => ['fixture' => $this->fixture, 'scope_type' => 'website', 'set_level' => 'website']
         ];

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Invitation\Block\Adminhtml\Invitation\Add;
@@ -10,7 +10,7 @@ namespace Magento\Invitation\Block\Adminhtml\Invitation\Add;
  *
  * @magentoAppArea adminhtml
  */
-class FormTest extends \PHPUnit_Framework_TestCase
+class FormTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @magentoAppIsolation enabled
@@ -20,15 +20,15 @@ class FormTest extends \PHPUnit_Framework_TestCase
         /** @var $objectManager \Magento\TestFramework\ObjectManager */
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $objectManager->get(
-            'Magento\Framework\View\DesignInterface'
+            \Magento\Framework\View\DesignInterface::class
         )->setArea(
             \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE
         )->setDefaultDesignTheme();
 
-        $block = $objectManager->create('Magento\Invitation\Block\Adminhtml\Invitation\Add\Form');
-        $block->setLayout($objectManager->create('Magento\Framework\View\Layout'));
+        $block = $objectManager->create(\Magento\Invitation\Block\Adminhtml\Invitation\Add\Form::class);
+        $block->setLayout($objectManager->create(\Magento\Framework\View\Layout::class));
         $prepareFormMethod = new \ReflectionMethod(
-            'Magento\Invitation\Block\Adminhtml\Invitation\Add\Form',
+            \Magento\Invitation\Block\Adminhtml\Invitation\Add\Form::class,
             '_prepareForm'
         );
         $prepareFormMethod->setAccessible(true);
@@ -37,8 +37,30 @@ class FormTest extends \PHPUnit_Framework_TestCase
         $form = $block->getForm();
 
         $element = $form->getElement('group_id');
-        $this->assertContains("General", $element->getValues());
-        $this->assertContains("Wholesale", $element->getValues());
-        $this->assertContains("Retailer", $element->getValues());
+        $this->assertContainsOptionLabelRecursive(__('General'), $element->getValues());
+        $this->assertContainsOptionLabelRecursive(__('Wholesale'), $element->getValues());
+        $this->assertContainsOptionLabelRecursive(__('Retailer'), $element->getValues());
+    }
+
+    private function assertContainsOptionLabelRecursive($label, array $values)
+    {
+        $this->assertTrue($this->hasOptionLabelRecursive($label, $values), 'Label ' . $label . ' not found');
+    }
+
+    private function hasOptionLabelRecursive($label, array $values)
+    {
+        $hasLabel = false;
+        foreach ($values as $option) {
+            $this->assertArrayHasKey('label', $option);
+            $this->assertArrayHasKey('value', $option);
+            if (strpos((string)$option['label'], (string)$label) !== false) {
+                $hasLabel = true;
+                break;
+            } elseif (is_array($option['value'])) {
+                $hasLabel |= $this->hasOptionLabelRecursive($label, $option['value']);
+            }
+        }
+
+        return (bool)$hasLabel;
     }
 }

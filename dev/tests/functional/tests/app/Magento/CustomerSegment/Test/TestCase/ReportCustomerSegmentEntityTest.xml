@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\CustomerSegment\Test\TestCase\ReportCustomerSegmentEntityTest" summary="Generate &quot;Customer Segment&quot; Report" ticketId="MAGETWO-26675">
         <variation name="ReportCustomerSegmentEntityTestVariation1">
+            <data name="tag" xsi:type="string">stable:no</data>
             <data name="notFoundCustomers" xsi:type="string">-</data>
             <data name="foundCustomers" xsi:type="string">0,1,2</data>
             <data name="customers" xsi:type="string">default::US_address,default::US_address_default_billing,default::US_address_default_shipping</data>

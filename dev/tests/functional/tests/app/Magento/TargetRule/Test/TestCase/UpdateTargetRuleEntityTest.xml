@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
@@ -11,6 +11,7 @@
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_related_products</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
+            <data name="conditionEntity" xsi:type="string">category</data>
             <data name="customerSegment/dataset" xsi:type="string">-</data>
             <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
             <data name="targetRule/data/is_active" xsi:type="string">Active</data>
@@ -28,10 +29,10 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductCrossSells" />
         </variation>
         <variation name="TargetRule_Update_2">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_up_sells</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
+            <data name="conditionEntity" xsi:type="string">category</data>
             <data name="customerSegment/dataset" xsi:type="string">-</data>
             <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
             <data name="targetRule/data/is_active" xsi:type="string">Active</data>
@@ -52,6 +53,7 @@
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_cross_sells</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
+            <data name="conditionEntity" xsi:type="string">category</data>
             <data name="customerSegment/dataset" xsi:type="string">-</data>
             <data name="targetRule/data/name" xsi:type="string">-</data>
             <data name="targetRule/data/is_active" xsi:type="string">Active</data>
@@ -69,10 +71,10 @@
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentCrossSells" />
         </variation>
         <variation name="TargetRule_Update_4">
-            <data name="tag" xsi:type="string">to_maintain:yes</data>
             <data name="initialTargetRule/dataset" xsi:type="string">target_rule_cross_sells</data>
             <data name="product/dataset" xsi:type="string">product_with_category</data>
             <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
+            <data name="conditionEntity" xsi:type="string">category</data>
             <data name="customerSegment/dataset" xsi:type="string">active_customer_segment</data>
             <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
             <data name="targetRule/data/is_active" xsi:type="string">Inactive</data>
@@ -87,6 +89,21 @@
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleInGrid" />
             <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleForm" />
             <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentCrossSells" />
+        </variation>
+        <variation name="TargetRule_Update_5" summary="Update Up-sells Target Rule to Inactive Up-sells Target Rule">
+            <data name="initialTargetRule/dataset" xsi:type="string">target_rule_up_sells</data>
+            <data name="conditionEntity" xsi:type="string">category</data>
+            <data name="product/dataset" xsi:type="string">product_with_category</data>
+            <data name="promotedProduct/dataset" xsi:type="string">product_with_special_price_and_category</data>
+            <data name="targetRule/data/name" xsi:type="string">TargetRule%isolation%</data>
+            <data name="targetRule/data/is_active" xsi:type="string">Inactive</data>
+            <data name="targetRule/data/apply_to" xsi:type="string">Up-sells</data>
+            <data name="targetRule/data/use_customer_segment" xsi:type="string">All</data>
+            <data name="targetRule/data/conditions_serialized" xsi:type="string">[Category|is|%category_1%]</data>
+            <data name="targetRule/data/actions_serialized" xsi:type="string">[Category|is|Constant Value|%category_2%]</data>
+            <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleSuccessSaveMessage" />
+            <constraint name="Magento\TargetRule\Test\Constraint\AssertTargetRuleInGrid" />
+            <constraint name="Magento\Catalog\Test\Constraint\AssertProductAbsentUpSells" />
         </variation>
     </testCase>
 </config>

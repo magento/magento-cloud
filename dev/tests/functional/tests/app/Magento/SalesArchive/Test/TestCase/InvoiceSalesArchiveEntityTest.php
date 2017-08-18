@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -12,6 +12,7 @@ use Magento\Sales\Test\Page\Adminhtml\OrderInvoiceNew;
 use Magento\Sales\Test\Page\Adminhtml\SalesOrderView;
 use Magento\SalesArchive\Test\Page\Adminhtml\ArchiveOrders;
 use Magento\Mtf\TestCase\Injectable;
+use Magento\Mtf\Fixture\FixtureFactory;
 
 /**
  * Preconditions:
@@ -28,14 +29,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click 'Submit' button
  * 5. Perform all assertions
  *
- * @group Sales_Archive_(CS)
+ * @group Sales_Archive
  * @ZephyrId MAGETWO-28947
  */
 class InvoiceSalesArchiveEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
+    const TO_MAINTAIN = 'yes';
     /* end tags */
 
     /**
@@ -67,6 +68,13 @@ class InvoiceSalesArchiveEntityTest extends Injectable
     protected $orderInvoiceNew;
 
     /**
+     * Fixture factory.
+     *
+     * @var FixtureFactory
+     */
+    private $fixtureFactory;
+
+    /**
      * Enable "Check/Money Order", "Flat Rate" and archiving for all statuses in configuration.
      *
      * @return void
@@ -74,7 +82,7 @@ class InvoiceSalesArchiveEntityTest extends Injectable
     public function __prepare()
     {
         $setupConfig = $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => 'salesarchive_all_statuses, checkmo, flatrate']
         );
         $setupConfig->run();
@@ -83,6 +91,7 @@ class InvoiceSalesArchiveEntityTest extends Injectable
     /**
      * Injection data.
      *
+     * @param FixtureFactory $fixtureFactory
      * @param OrderIndex $orderIndex
      * @param ArchiveOrders $archiveOrders
      * @param SalesOrderView $salesOrderView
@@ -90,6 +99,7 @@ class InvoiceSalesArchiveEntityTest extends Injectable
      * @return void
      */
     public function __inject(
+        FixtureFactory $fixtureFactory,
         OrderIndex $orderIndex,
         ArchiveOrders $archiveOrders,
         SalesOrderView $salesOrderView,
@@ -99,16 +109,16 @@ class InvoiceSalesArchiveEntityTest extends Injectable
         $this->archiveOrders = $archiveOrders;
         $this->salesOrderView = $salesOrderView;
         $this->orderInvoiceNew = $orderInvoiceNew;
+        $this->fixtureFactory = $fixtureFactory;
     }
 
     /**
      * Create Invoice SalesArchive Entity.
      *
      * @param OrderInjectable $order
-     * @param array $data
      * @return array
      */
-    public function test(OrderInjectable $order, array $data)
+    public function test(OrderInjectable $order)
     {
         // Preconditions
         $order->persist();
@@ -118,11 +128,20 @@ class InvoiceSalesArchiveEntityTest extends Injectable
         // Steps
         $this->archiveOrders->open();
         $this->archiveOrders->getSalesArchiveOrderGrid()->searchAndOpen(['id' => $order->getId()]);
-        $this->salesOrderView->getPageActions()->invoice();
-        $this->orderInvoiceNew->getFormBlock()->fillProductData($data, $order->getEntityId()['products']);
-        $this->orderInvoiceNew->getFormBlock()->updateQty();
-        $this->orderInvoiceNew->getFormBlock()->fillFormData($this->data);
-        $this->orderInvoiceNew->getFormBlock()->submit();
+        $invoicesData = $order->getInvoice() !== null ? $order->getInvoice() : ['invoiceData' => []];
+        $products = $order->getEntityId()['products'];
+        $cart['data']['items'] = ['products' => $products];
+        $cart = $this->fixtureFactory->createByCode('cart', $cart);
+        foreach ($invoicesData as $invoiceData) {
+            $this->salesOrderView->getPageActions()->invoice();
+            $this->orderInvoiceNew->getFormBlock()->fillProductData(
+                $invoiceData,
+                $cart->getItems()
+            );
+            $this->orderInvoiceNew->getFormBlock()->updateQty();
+            $this->orderInvoiceNew->getFormBlock()->fillFormData($invoiceData);
+            $this->orderInvoiceNew->getFormBlock()->submit();
+        }
 
         $this->salesOrderView->getOrderForm()->openTab('invoices');
         $invoiceIds = $this->salesOrderView->getOrderForm()->getTab('invoices')->getGridBlock()->getIds();

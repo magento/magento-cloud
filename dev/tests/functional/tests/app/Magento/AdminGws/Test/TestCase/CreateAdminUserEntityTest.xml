@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\User\Test\TestCase\CreateAdminUserEntityTest" summary="Create Admin User" ticketId="MAGETWO-25699">
+        <variation name="CreateAdminUserWithGwsAccess" summary="Admin user without restricted privileges cannot access restricted categories" ticketId="MAGETWO-50042">
+            <data name="user/data/username" xsi:type="string">AdminUser%isolation%</data>
+            <data name="user/data/firstname" xsi:type="string">FirstName%isolation%</data>
+            <data name="user/data/lastname" xsi:type="string">LastName%isolation%</data>
+            <data name="user/data/email" xsi:type="string">email%isolation%@example.com</data>
+            <data name="user/data/password" xsi:type="string">123123q</data>
+            <data name="user/data/password_confirmation" xsi:type="string">123123q</data>
+            <data name="user/data/role_id/dataset" xsi:type="string">adminGwsRole::gws_role_custom_website_all</data>
+            <data name="user/data/current_password" xsi:type="string">%current_password%</data>
+            <data name="isDuplicated" xsi:type="string">No</data>
+            <constraint name="Magento\User\Test\Constraint\AssertUserSuccessSaveMessage" />
+            <constraint name="Magento\AdminGws\Test\Constraint\AssertAdminGwsCategoryAccess" />
+        </variation>
+        <variation name="CreateAdminUserWithGwsAccess_Variation2" summary="Restricted Admin User can see sales info related to another store" ticketId="MAGETWO-51326">
+            <data name="user/dataset" xsi:type="string">custom_admin_with_gws_role_custom_website</data>
+            <data name="product/dataset" xsi:type="string">default_in_custom_website</data>
+            <data name="visibleProduct" xsi:type="string">default</data>
+            <data name="customer/dataset" xsi:type="string">default_in_custom_website</data>
+            <data name="visibleCustomer" xsi:type="string">default_in_custom_website</data>
+            <data name="invisibleOrder/dataset" xsi:type="string">custom_store_order</data>
+            <data name="visibleOrder" xsi:type="string">custom_store_order</data>
+            <data name="isDuplicated" xsi:type="string">No</data>
+            <constraint name="Magento\User\Test\Constraint\AssertUserSuccessSaveMessage" />
+            <constraint name="Magento\AdminGws\Test\Constraint\AssertAdminGwsSales" />
+            <constraint name="Magento\AdminGws\Test\Constraint\AssertAdminGwsCustomers" />
+            <constraint name="Magento\AdminGws\Test\Constraint\AssertAdminGwsProducts" />
+        </variation>
+    </testCase>
+</config>

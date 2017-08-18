@@ -1,20 +1,20 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
 /** @var \Magento\MysqlMq\Model\MessageFactory $messageFactory */
-$messageFactory = $objectManager->create('Magento\MysqlMq\Model\MessageFactory');
+$messageFactory = $objectManager->create(\Magento\MysqlMq\Model\MessageFactory::class);
 $message1 = $messageFactory->create()
     ->load('topic.updated.use.just.in.tests', 'topic_name');
 
 $messageId1 = $message1->getId();
 
 /** @var \Magento\MysqlMq\Model\MessageStatusFactory $messageStatusFactory */
-$queueFactory = $objectManager->create('Magento\MysqlMq\Model\QueueFactory');
+$queueFactory = $objectManager->create(\Magento\MysqlMq\Model\QueueFactory::class);
 $queueId1 = $queueFactory->create()
     ->load('queue1', Magento\MysqlMq\Model\Queue::KEY_NAME)
     ->getId();
@@ -27,7 +27,6 @@ $queueId3 = $queueFactory->create()
 $queueId4 = $queueFactory->create()
     ->load('queue4', Magento\MysqlMq\Model\Queue::KEY_NAME)
     ->getId();
-
 
 $plan = [
     [
@@ -47,9 +46,8 @@ $plan = [
     ],
 ];
 
-
 /** @var \Magento\MysqlMq\Model\MessageStatusFactory $messageStatusFactory */
-$messageStatusFactory = $objectManager->create('Magento\MysqlMq\Model\MessageStatusFactory');
+$messageStatusFactory = $objectManager->create(\Magento\MysqlMq\Model\MessageStatusFactory::class);
 foreach ($plan as $instruction) {
     $messageStatus = $messageStatusFactory->create();
 

@@ -1,22 +1,21 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magento\Eav\Model\ResourceModel;
 
 use Magento\TestFramework\Helper\Bootstrap;
 
 /**
- * Class for testing update handler.
- *
  * @magentoAppArea adminhtml
  * @magentoAppIsolation enabled
  */
 class UpdateHandlerTest extends \Magento\TestFramework\Indexer\TestCase
 {
     /**
-     * @covers \Magento\Eav\Model\ResourceModel\UpdateHandler::execute
+     * @covers       \Magento\Eav\Model\ResourceModel\UpdateHandler::execute
      * @magentoDataFixture Magento/Catalog/_files/product_simple.php
      * @dataProvider getAllStoresDataProvider
      * @param $code
@@ -50,7 +49,7 @@ class UpdateHandlerTest extends \Magento\TestFramework\Indexer\TestCase
     }
 
     /**
-     * @covers \Magento\Eav\Model\ResourceModel\UpdateHandlerTest::execute
+     * @covers       \Magento\Eav\Model\ResourceModel\UpdateHandlerTest::execute
      * @magentoDataFixture Magento/Catalog/_files/product_simple.php
      * @magentoDataFixture Magento/Store/_files/second_store.php
      * @dataProvider getCustomStoreDataProvider
@@ -92,7 +91,7 @@ class UpdateHandlerTest extends \Magento\TestFramework\Indexer\TestCase
     }
 
     /**
-     * @covers \Magento\Eav\Model\ResourceModel\UpdateHandlerTest::execute
+     * @covers       \Magento\Eav\Model\ResourceModel\UpdateHandlerTest::execute
      * @magentoDataFixture Magento/Catalog/_files/product_simple.php
      * @magentoDataFixture Magento/Catalog/_files/dropdown_attribute.php
      * @magentoDataFixture Magento/Store/_files/second_store.php
@@ -204,29 +203,27 @@ class UpdateHandlerTest extends \Magento\TestFramework\Indexer\TestCase
     public function getCustomStoreDataProvider()
     {
         return [
-            ['description', '', 'not_empty_value', 'not_empty_value'],                     //0
-            ['description', '', '', null],                                                 //1
-            ['description', '', null, 'Description with <b>html tag</b>'],                 //2
-            ['description', '', false, 'Description with <b>html tag</b>'],                //3
+            ['description', '', 'not_empty_value', 'not_empty_value'],                  //0
+            ['description', '', '', null],                                              //1
+            ['description', '', null, 'Description with <b>html tag</b>'],              //2
+            ['description', '', false, 'Description with <b>html tag</b>'],             //3
 
-            ['description', 'not_empty_value', 'not_empty_value2', 'not_empty_value2'],    //4
-            ['description', 'not_empty_value', '', null],                                  //5
-            ['description', 'not_empty_value', null, 'Description with <b>html tag</b>'],  //6
+            ['description', 'not_empty_value', 'not_empty_value2', 'not_empty_value2'], //4
+            ['description', 'not_empty_value', '', null],                               //5
+            ['description', 'not_empty_value', null, 'Description with <b>html tag</b>'], //6
             ['description', 'not_empty_value', false, 'Description with <b>html tag</b>'], //7
 
-            ['description', null, 'not_empty_value', 'not_empty_value'],                   //8
-            ['description', null, '', null],                                               //9
-            ['description', null, false, 'Description with <b>html tag</b>'],              //10
+            ['description', null, 'not_empty_value', 'not_empty_value'],                 //8
+            ['description', null, '', null],                                             //9
+            ['description', null, false, 'Description with <b>html tag</b>'],            //10
 
-            ['description', false, 'not_empty_value', 'not_empty_value'],                  //11
-            ['description', false, '', null],                                              //12
-            ['description', false, null, 'Description with <b>html tag</b>'],              //13
+            ['description', false, 'not_empty_value', 'not_empty_value'],                //11
+            ['description', false, '', null],                                            //12
+            ['description', false, null, 'Description with <b>html tag</b>'],            //13
         ];
     }
 
     /**
-     * Get custom attribute data provider.
-     *
      * @return array
      */
     public function getCustomAttributeDataProvider()

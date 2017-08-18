@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -25,11 +25,11 @@ class AppConfig
      * Assumption: this is done once right before executing very first test suite.
      * It is assumed that deployment configuration is valid at this point
      *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     * @param \PHPUnit_Framework_TestCase $test
+     * @param \PHPUnit\Framework\TestCase $test
      * @return void
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function startTest(\PHPUnit_Framework_TestCase $test)
+    public function startTest(\PHPUnit\Framework\TestCase $test)
     {
         $this->getTestAppConfig()->clean();
     }
@@ -46,17 +46,5 @@ class AppConfig
         }
 
         return $this->testAppConfig;
-    }
-
-    /**Clean memorized and cached setting values
-     * Checks if deployment configuration has been changed by a test
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     * @param \PHPUnit_Framework_TestCase $test
-     * @return void
-     */
-    public function endTest(\PHPUnit_Framework_TestCase $test)
-    {
-        $this->getTestAppConfig()->clean();
     }
 }

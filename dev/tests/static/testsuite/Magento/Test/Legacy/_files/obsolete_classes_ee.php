@@ -2,7 +2,7 @@
 /**
  * Same as obsolete_classes.php, but specific to Magento EE
  *
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -321,6 +321,7 @@ return [
     ['Magento\VersionsCms\Model\ResourceModel\Page\Version\Collection'],
     ['Magento\VersionsCms\Model\Source\Versioning'],
     ['Magento\VersionsCms\Observer\Backend\AdminUserDeleteAfterObserver'],
+    ['Magento\Framework\MessageQueue\Config\Reader\Xml\Converter\DeprecatedFormat'],
     ['Magento\VersionsCms\Observer\Backend\PrepareFormObserver'],
     ['Magento\VersionsCms\Observer\Backend\RemoveVersionCallback'],
     ['Magento\VersionsCms\Setup\InstallData'],
@@ -338,4 +339,5 @@ return [
     ],
     ['Magento\Staging\Controller\Adminhtml\Entity\DeleteAbstract'],
     ['Magento\Staging\Controller\Adminhtml\Entity\SaveAbstract'],
+    ['Magento\SalesArchive\Observer\SalesUpdateGridRecordsObserver']
 ];

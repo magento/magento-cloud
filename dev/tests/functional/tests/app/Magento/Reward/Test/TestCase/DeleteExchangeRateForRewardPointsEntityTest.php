@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -26,14 +26,14 @@ use Magento\Mtf\TestCase\Injectable;
  * 4. Click on the "Delete" button
  * 5. Perform appropriate assertions.
  *
- * @group Reward_Points_(CS)
+ * @group Reward_Points
  * @ZephyrId MAGETWO-26344
  */
 class DeleteExchangeRateForRewardPointsEntityTest extends Injectable
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
+    const SEVERITY = 'S2';
     /* end tags */
 
     /**
@@ -61,12 +61,12 @@ class DeleteExchangeRateForRewardPointsEntityTest extends Injectable
     {
         $configuration = $fixtureFactory->createByCode('configData', ['dataset' => 'reward_purchase']);
         $customer = $fixtureFactory->create(
-            'Magento\Customer\Test\Fixture\Customer',
+            \Magento\Customer\Test\Fixture\Customer::class,
             ['dataset' => 'register_customer']
         );
 
         $configuration->persist();
-        $this->objectManager->create('Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep')->run();
+        $this->objectManager->create(\Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep::class)->run();
         $customerAccountCreate->open()->getRegisterForm()->registerCustomer($customer);
 
         return ['customer' => $customer];
@@ -111,6 +111,6 @@ class DeleteExchangeRateForRewardPointsEntityTest extends Injectable
      */
     public function tearDown()
     {
-        $this->objectManager->create('Magento\Reward\Test\TestStep\DeleteAllRewardRatesStep')->run();
+        $this->objectManager->create(\Magento\Reward\Test\TestStep\DeleteAllRewardRatesStep::class)->run();
     }
 }

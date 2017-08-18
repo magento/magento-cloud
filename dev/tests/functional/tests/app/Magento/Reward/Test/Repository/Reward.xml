@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -12,6 +12,14 @@
             <field name="customer_id" xsi:type="array">
                 <item name="dataset" xsi:type="string">default</item>
             </field>
+        </dataset>
+
+        <dataset name="reward_points_5">
+            <field name="points_delta" xsi:type="string">5</field>
+        </dataset>
+
+        <dataset name="reward_points_10">
+            <field name="points_delta" xsi:type="string">10</field>
         </dataset>
 
         <dataset name="reward_points_50">

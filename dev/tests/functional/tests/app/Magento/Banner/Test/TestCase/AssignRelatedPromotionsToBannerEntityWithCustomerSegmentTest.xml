@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\Banner\Test\TestCase\AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTest" summary="Assign Related Promotions to Banner" ticketId="MAGETWO-27159">
         <variation name="AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTestVariation1">
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="widget" xsi:type="string">banner_rotator_non_anchor_categories</data>
             <data name="customer" xsi:type="string">-</data>
             <data name="customerSegment" xsi:type="string">-</data>
@@ -16,12 +17,11 @@
             <data name="cartPriceRule" xsi:type="string">-</data>
             <data name="banner/dataset" xsi:type="string">default</data>
             <constraint name="Magento\Banner\Test\Constraint\AssertBannerSuccessSaveMessage" />
-            <constraint name="Magento\Banner\Test\Constraint\AssertBannerInGrid" />
             <constraint name="Magento\Banner\Test\Constraint\AssertBannerNotInShoppingCart" />
             <constraint name="Magento\Banner\Test\Constraint\AssertBannerOnCategoryPage" />
         </variation>
         <variation name="AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTestVariation2">
-            <data name="tag" xsi:type="string">stable:no</data>
+            <data name="tag" xsi:type="string">severity:S2</data>
             <data name="widget" xsi:type="string">banner_rotator_shoping_cart</data>
             <data name="customer" xsi:type="string">-</data>
             <data name="customerSegment" xsi:type="string">-</data>
@@ -30,12 +30,11 @@
             <data name="cartPriceRule" xsi:type="string">active_sales_rule_with_address</data>
             <data name="banner/dataset" xsi:type="string">default</data>
             <constraint name="Magento\Banner\Test\Constraint\AssertBannerSuccessSaveMessage" />
-            <constraint name="Magento\Banner\Test\Constraint\AssertBannerInGrid" />
             <constraint name="Magento\Banner\Test\Constraint\AssertBannerInShoppingCart" />
             <constraint name="Magento\Banner\Test\Constraint\AssertBannerNotOnCategoryPage" />
         </variation>
         <variation name="AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTestVariation3">
-            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, stable:no</data>
+            <data name="tag" xsi:type="string">test_type:extended_acceptance_test, severity:S1</data>
             <data name="widget" xsi:type="string">banner_rotator_non_anchor_categories</data>
             <data name="customer" xsi:type="string">default</data>
             <data name="customerSegment" xsi:type="string">active_customer_segment</data>

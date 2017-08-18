@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\Checkout\Test\TestCase\OnePageCheckoutTest" summary="One page check out with Cybersource payment method.">
+        <variation name="OnePageCheckoutTestVariationWithCybersourceAuthorizeOnly" summary="Place order via Cybersource with Payment Action = Authorize Only" ticketId="MAGETWO-38756">
+            <data name="products/0" xsi:type="string">catalogProductSimple::product_100_dollar</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="taxRule" xsi:type="string">us_ca_ny_rule</data>
+            <data name="shippingAddress/dataset" xsi:type="string">US_address_1</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="checkoutMethod" xsi:type="string">guest</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">226.50</item>
+            </data>
+            <data name="payment/method" xsi:type="string">cybersource</data>
+            <data name="creditCard/dataset" xsi:type="string">visa_default</data>
+            <data name="sandboxCustomer/dataset" xsi:type="string">sandbox_default</data>
+            <data name="flushCache" xsi:type="boolean">true</data>
+            <data name="configData" xsi:type="string">cybersource</data>
+            <data name="status" xsi:type="string">Processing</data>
+            <data name="tag" xsi:type="string">test_type:3rd_party_test_single_flow, severity:S0</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertAuthorizationInCommentsHistory" />
+        </variation>
+        <variation name="OnePageCheckoutTestVariationWithCybersourceAuthorizeOnlyAndFraudFilters" summary="Place order via Cybersource with Payment Action = Authorize Only and Fraud Filters Triggered" ticketId="MAGETWO-40682">
+            <data name="tag" xsi:type="string">test_type:3rd_party_test_single_flow, severity:S1</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::product_10_dollar</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="shippingAddress/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="checkoutMethod" xsi:type="string">guest</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">15.00</item>
+            </data>
+            <data name="paymentInfo" xsi:type="array">
+                <item name="AVS result code" xsi:type="string">1</item>
+                <item name="CVV Response" xsi:type="string">X</item>
+                <item name="Card expiry date" xsi:type="string">01-2020</item>
+                <item name="Decision" xsi:type="string">REVIEW</item>
+            </data>
+            <data name="payment/method" xsi:type="string">cybersource</data>
+            <data name="creditCard/dataset" xsi:type="string">visa_default</data>
+            <data name="sandboxCustomer/dataset" xsi:type="string">sandbox_default</data>
+            <data name="flushCache" xsi:type="boolean">true</data>
+            <data name="configData" xsi:type="string">cybersource</data>
+            <data name="status" xsi:type="string">Suspected Fraud</data>
+            <data name="orderButtonsAvailable" xsi:type="string">Back, Accept Payment, Deny Payment, Send Email</data>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderGrandTotal" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderStatusIsCorrect" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertAuthorizationInCommentsHistory" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderButtonsAvailable" />
+            <constraint name="Magento\Sales\Test\Constraint\AssertOrderPaymentInformation" />
+        </variation>
+    </testCase>
+</config>

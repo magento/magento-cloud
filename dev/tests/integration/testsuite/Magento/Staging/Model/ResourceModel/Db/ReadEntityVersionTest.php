@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\Staging\Model\ResourceModel\Db;
@@ -8,7 +8,7 @@ namespace Magento\Staging\Model\ResourceModel\Db;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\Staging\Model\VersionManager;
 
-class ReadEntityVersionTest extends \PHPUnit_Framework_TestCase
+class ReadEntityVersionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ReadEntityVersion
@@ -18,7 +18,7 @@ class ReadEntityVersionTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->model = Bootstrap::getObjectManager()
-            ->create('Magento\Staging\Model\ResourceModel\Db\ReadEntityVersion');
+            ->create(\Magento\Staging\Model\ResourceModel\Db\ReadEntityVersion::class);
     }
 
     /**
@@ -29,11 +29,11 @@ class ReadEntityVersionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             400,
-            $this->model->getNextVersionId('Magento\CatalogRule\Api\Data\RuleInterface', 300)
+            $this->model->getNextVersionId(\Magento\CatalogRule\Api\Data\RuleInterface::class, 300)
         );
         $this->assertEquals(
             VersionManager::MAX_VERSION,
-            $this->model->getNextVersionId('Magento\CatalogRule\Api\Data\RuleInterface', 600)
+            $this->model->getNextVersionId(\Magento\CatalogRule\Api\Data\RuleInterface::class, 600)
         );
     }
 
@@ -46,11 +46,11 @@ class ReadEntityVersionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             400,
-            $this->model->getNextPermanentVersionId('Magento\CatalogRule\Api\Data\RuleInterface', 100, 1)
+            $this->model->getNextPermanentVersionId(\Magento\CatalogRule\Api\Data\RuleInterface::class, 100, 1)
         );
         $this->assertEquals(
             400,
-            $this->model->getNextPermanentVersionId('Magento\CatalogRule\Api\Data\RuleInterface', 200, 1)
+            $this->model->getNextPermanentVersionId(\Magento\CatalogRule\Api\Data\RuleInterface::class, 200, 1)
         );
     }
 
@@ -62,11 +62,11 @@ class ReadEntityVersionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             200,
-            $this->model->getPreviousVersionId('Magento\CatalogRule\Api\Data\RuleInterface', 300)
+            $this->model->getPreviousVersionId(\Magento\CatalogRule\Api\Data\RuleInterface::class, 300)
         );
         $this->assertEquals(
             1,
-            $this->model->getPreviousVersionId('Magento\CatalogRule\Api\Data\RuleInterface', 100)
+            $this->model->getPreviousVersionId(\Magento\CatalogRule\Api\Data\RuleInterface::class, 100)
         );
     }
 
@@ -79,15 +79,15 @@ class ReadEntityVersionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             [300],
-            $this->model->getRollbackVersionIds('Magento\CatalogRule\Api\Data\RuleInterface', 1, 400, 1)
+            $this->model->getRollbackVersionIds(\Magento\CatalogRule\Api\Data\RuleInterface::class, 1, 400, 1)
         );
         $this->assertEquals(
             [300, 600],
-            $this->model->getRollbackVersionIds('Magento\CatalogRule\Api\Data\RuleInterface', 1, 700, 1)
+            $this->model->getRollbackVersionIds(\Magento\CatalogRule\Api\Data\RuleInterface::class, 1, 700, 1)
         );
         $this->assertEquals(
             [],
-            $this->model->getRollbackVersionIds('Magento\CatalogRule\Api\Data\RuleInterface', 1, 200, 1)
+            $this->model->getRollbackVersionIds(\Magento\CatalogRule\Api\Data\RuleInterface::class, 1, 200, 1)
         );
     }
 }

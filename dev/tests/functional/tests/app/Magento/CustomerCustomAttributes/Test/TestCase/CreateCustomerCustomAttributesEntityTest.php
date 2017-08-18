@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -17,14 +17,13 @@ use Magento\CustomerCustomAttributes\Test\Fixture\CustomerCustomAttribute;
  * 5. Save attribute
  * 6. Perform all assertions
  *
- * @group Customer_Attributes_(CS)
- * @ZephyrId MAGETWO-25963
+ * @group Customer_Attributes
+ * @ZephyrId MAGETWO-25963, MAGETWO-47711
  */
 class CreateCustomerCustomAttributesEntityTest extends AbstractCustomerCustomAttributesEntityTest
 {
     /* tags */
     const MVP = 'yes';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -33,8 +32,9 @@ class CreateCustomerCustomAttributesEntityTest extends AbstractCustomerCustomAtt
      * @param CustomerCustomAttribute $customerAttribute
      * @return array
      */
-    public function test(CustomerCustomAttribute $customerAttribute)
-    {
+    public function test(
+        CustomerCustomAttribute $customerAttribute
+    ) {
         // Steps
         $this->customerAttributeIndex->open();
         $this->customerAttributeIndex->getGridPageActions()->addNew();
@@ -44,6 +44,8 @@ class CreateCustomerCustomAttributesEntityTest extends AbstractCustomerCustomAtt
         // Prepare data for tear down
         $this->customerCustomAttribute = $customerAttribute;
 
-        return ['customerAttribute' => $customerAttribute];
+        return [
+            'customerAttribute' => $customerAttribute
+        ];
     }
 }

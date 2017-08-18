@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\GiftCardAccount\Model\Backend;
@@ -10,7 +10,7 @@ namespace Magento\GiftCardAccount\Model\Backend;
  * @magentoAppArea adminhtml
  * @magentoDataFixture Magento/GiftCardAccount/_files/giftcardaccount.php
  */
-class HistoryTest extends \PHPUnit_Framework_TestCase
+class HistoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var History
@@ -25,16 +25,16 @@ class HistoryTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Backend\Model\Auth\Session'
+            \Magento\Backend\Model\Auth\Session::class
         )->setUser(
             new \Magento\Framework\DataObject(['id' => 1, 'username' => 'Admin user'])
         );
         $this->_giftcardAccount = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\GiftCardAccount\Model\Giftcardaccount'
+            \Magento\GiftCardAccount\Model\Giftcardaccount::class
         );
         $this->_giftcardAccount->loadByCode('giftcardaccount_fixture');
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\GiftCardAccount\Model\History'
+            \Magento\GiftCardAccount\Model\History::class
         );
         $this->_model->setGiftcardaccount($this->_giftcardAccount);
     }

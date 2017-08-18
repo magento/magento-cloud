@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\CustomerSegment\Test\TestCase\CreateCustomerSegmentEntityWithProductsConditionsTest" summary="Create Customer Segment with products conditions" ticketId="MAGETWO-35446">
+        <variation name="CreateCustomerSegmentEntityWithProductsConditionsTestVariation1" summary="Customer segment with condition based on product that found in customer's wishlist">
+            <data name="product/dataset" xsi:type="string">simple_10_dollar</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="customer/data/address/dataset" xsi:type="string">US_address</data>
+            <data name="customerSegment/data/name" xsi:type="string">Segment Name %isolation%</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">{Product List|found|Wish List|ALL:[[Category|is|%category%]]}</data>
+            <data name="customerSegment/data/apply_to" xsi:type="string">Visitors and Registered Customers</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentSuccessSaveMessage" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentMatchedCustomer" />
+        </variation>
+        <variation name="CreateCustomerSegmentEntityWithProductsConditionsTestVariation2" summary="Customer segment with condition based on product that not found in customer's wishlist">
+            <data name="product/dataset" xsi:type="string">simple_10_dollar</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="customer/data/address/dataset" xsi:type="string">US_address</data>
+            <data name="customerSegment/data/name" xsi:type="string">Segment Name %isolation%</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">{Product List|not found|Wish List|ALL:[[Category|is|%category%]]}</data>
+            <data name="customerSegment/data/apply_to" xsi:type="string">Visitors and Registered Customers</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentSuccessSaveMessage" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentNotMatchedCustomer" />
+        </variation>
+        <variation name="CreateCustomerSegmentEntityWithProductsConditionsTestVariation3" summary="Customer segment with condition based on products not found in customer's wishlist and false top level condition">
+            <data name="product/dataset" xsi:type="string">simple_10_dollar</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="customer/data/address/dataset" xsi:type="string">US_address</data>
+            <data name="customerSegment/data/name" xsi:type="string">Segment Name %isolation%</data>
+            <data name="customerSegment/data/website_ids/0" xsi:type="string">Main Website</data>
+            <data name="customerSegment/data/is_active" xsi:type="string">Active</data>
+            <data name="customerSegmentConditions/data/conditions_serialized" xsi:type="string">{TopLevelCondition:[ALL|FALSE]}{Product List|not found|Wish List|ALL:[[Category|is|%category%]]}</data>
+            <data name="customerSegment/data/apply_to" xsi:type="string">Visitors and Registered Customers</data>
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentSuccessSaveMessage" />
+            <constraint name="Magento\CustomerSegment\Test\Constraint\AssertCustomerSegmentMatchedCustomer" />
+        </variation>
+    </testCase>
+</config>

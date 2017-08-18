@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\CatalogStaging\Model\ResourceModel;
@@ -9,7 +9,7 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Model\CategoryFactory;
 use Magento\Store\Model\Store;
 
-class CatalogCreateHandlerTest extends \PHPUnit_Framework_TestCase
+class CatalogCreateHandlerTest extends \PHPUnit\Framework\TestCase
 {
     /** @var CategoryFactory */
     private $categoryFactory;
@@ -29,7 +29,14 @@ class CatalogCreateHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecute()
     {
-        $category = $this->getStagingCategory();
+        /** @var \Magento\Catalog\Model\Category $category */
+        $category = $this->categoryFactory->create();
+        $category->setPath('1');
+        $category->setParentId(1);
+        $category->setName('Staging Category');
+        $category->setIsActive(false);
+        $category->setIncludeInMenu(false);
+        $category->setAttributeSetId($category->getDefaultAttributeSetId());
         $category->save();
 
         $categoryOnAllStores = $this->categoryFactory->create();
@@ -45,21 +52,6 @@ class CatalogCreateHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecuteUsingRepository()
     {
-        $category = $this->getStagingCategory();
-        $this->objectManager->get(CategoryRepositoryInterface::class)->save($category);
-
-        $categoryOnAllStores = $this->objectManager->create(CategoryRepositoryInterface::class)
-            ->get($category->getId(), Store::DEFAULT_STORE_ID);
-        $this->assertEquals($category->getName(), $categoryOnAllStores->getName());
-    }
-
-    /**
-     * Retrieve category for test.
-     *
-     * @return \Magento\Catalog\Model\Category
-     */
-    private function getStagingCategory()
-    {
         /** @var \Magento\Catalog\Model\Category $category */
         $category = $this->categoryFactory->create();
         $category->setPath('1');
@@ -68,7 +60,10 @@ class CatalogCreateHandlerTest extends \PHPUnit_Framework_TestCase
         $category->setIsActive(false);
         $category->setIncludeInMenu(false);
         $category->setAttributeSetId($category->getDefaultAttributeSetId());
+        $this->objectManager->get(CategoryRepositoryInterface::class)->save($category);
 
-        return $category;
+        $categoryOnAllStores = $this->objectManager->create(CategoryRepositoryInterface::class)
+            ->get($category->getId(), Store::DEFAULT_STORE_ID);
+        $this->assertEquals($category->getName(), $categoryOnAllStores->getName());
     }
 }

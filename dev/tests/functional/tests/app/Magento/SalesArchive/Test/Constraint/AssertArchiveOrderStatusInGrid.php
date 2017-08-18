@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -12,12 +12,12 @@ use Magento\SalesArchive\Test\Page\Adminhtml\ArchiveOrders;
 use Magento\Mtf\Constraint\AbstractConstraint;
 
 /**
- * Assert that status is correct on order page in backend
+ * Assert that status is correct on order page in admin panel.
  */
 class AssertArchiveOrderStatusInGrid extends AbstractConstraint
 {
     /**
-     * Assert that status is correct on order page in backend (same with value of orderStatus variable)
+     * Assert that status is correct on order page in admin panel (same with value of orderStatus variable).
      *
      * @param OrderInjectable $order
      * @param ArchiveOrders $archiveOrders
@@ -37,11 +37,13 @@ class AssertArchiveOrderStatusInGrid extends AbstractConstraint
         ];
         $archiveOrders->open();
         $archiveOrders->getSalesArchiveOrderGrid()->searchAndOpen($filter);
-        $actualOrderStatus = $salesOrderView->getOrderInfoBlock()->getOrderStatus();
+        /** @var \Magento\Sales\Test\Block\Adminhtml\Order\View\Tab\Info $infoTab */
+        $infoTab = $salesOrderView->getOrderForm()->openTab('info')->getTab('info');
+        $actualOrderStatus = $infoTab->getOrderStatus();
         \PHPUnit_Framework_Assert::assertEquals(
             $orderStatus,
             $actualOrderStatus,
-            "Order status is not correct on archive orders page backend."
+            "Order status is not correct on archived order's page."
         );
     }
 
@@ -52,6 +54,6 @@ class AssertArchiveOrderStatusInGrid extends AbstractConstraint
      */
     public function toString()
     {
-        return 'Order status is correct on archive orders page backend.';
+        return "Order status is correct on archived order's page.";
     }
 }

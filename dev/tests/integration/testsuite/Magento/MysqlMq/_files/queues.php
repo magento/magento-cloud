@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,7 +22,7 @@ $queues = [
 ];
 foreach ($queues as $queueName) {
     /** @var \Magento\MysqlMq\Model\Queue $queue */
-    $queue = $objectManager->create('Magento\MysqlMq\Model\Queue');
+    $queue = $objectManager->create(\Magento\MysqlMq\Model\Queue::class);
     $queue->load($queueName, 'name');
     if (!$queue->getId()) {
         $queue->setName($queueName)->save();

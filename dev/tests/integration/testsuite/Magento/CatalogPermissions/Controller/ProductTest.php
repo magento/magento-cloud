@@ -1,13 +1,13 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\CatalogPermissions\Controller;
 
 /**
- * @magentoDbIsolation enabled
+ * @magentoDbIsolation disabled
  */
 class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
 {
@@ -23,7 +23,7 @@ class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testViewActionWithoutPriceAndCart()
     {
         /** @var \Magento\Catalog\Model\ResourceModel\Product $resource */
-        $resource = $this->_objectManager->get('Magento\Catalog\Model\ResourceModel\Product');
+        $resource = $this->_objectManager->get(\Magento\Catalog\Model\ResourceModel\Product::class);
         $productId = $resource->getConnection()->fetchOne(
             $resource->getConnection()->select()
             ->from(['p' => $resource->getTable('catalog_product_entity')], ['entity_id'])
@@ -32,20 +32,24 @@ class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->dispatch('catalog/product/view/id/' . $productId);
 
         /** @var $currentProduct \Magento\Catalog\Model\Product */
-        $currentProduct = $this->_objectManager->get('Magento\Framework\Registry')->registry('current_product');
-        $this->assertInstanceOf('Magento\Catalog\Model\Product', $currentProduct);
+        $currentProduct = $this->_objectManager->get(\Magento\Framework\Registry::class)->registry('current_product');
+        $this->assertInstanceOf(\Magento\Catalog\Model\Product::class, $currentProduct);
         $this->assertEquals($productId, $currentProduct->getId());
 
-        $lastViewedProductId = $this->_objectManager->get('Magento\Catalog\Model\Session')->getLastViewedProductId();
+        $lastViewedProductId = $this->_objectManager->get(
+            \Magento\Catalog\Model\Session::class
+        )->getLastViewedProductId();
         $this->assertEquals($productId, $lastViewedProductId);
 
         $responseBody = $this->getResponse()->getBody();
+        //Escape
+        preg_replace('/<script\b[^>]*>\b(?:)<\\/script>/s', '', $responseBody);
         /* Product info */
         $this->assertContains('Simple Product 1 Name', $responseBody);
         $this->assertContains('Simple Product 1 Full Description', $responseBody);
         $this->assertContains('Simple Product 1 Short Description', $responseBody);
+        $responseBody = preg_replace("/<script.*<\\/script>/", "", $responseBody);
         /* Stock info */
-        $this->assertNotContains('$1,234.56', $responseBody);
         $this->assertContains('In stock', $responseBody);
         $this->assertNotContains('Add to Cart', $responseBody);
     }

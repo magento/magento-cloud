@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,14 +22,13 @@ use Magento\MultipleWishlist\Test\Fixture\MultipleWishlist;
  * 3. Edit wishlist by clicking "Edit" link and according to attached data set.
  * 4. Perform appropriate assertions.
  *
- * @group Multiple_Wishlists_(CS)
+ * @group Multiple_Wishlists
  * @ZephyrId MAGETWO-27599
  */
 class UpdateMultipleWishlistEntityTest extends AbstractMultipleWishlistEntityTest
 {
     /* tags */
     const MVP = 'no';
-    const DOMAIN = 'CS';
     /* end tags */
 
     /**
@@ -67,7 +66,7 @@ class UpdateMultipleWishlistEntityTest extends AbstractMultipleWishlistEntityTes
     public function tearDown()
     {
         parent::tearDown();
-        $this->objectManager->create('Magento\Widget\Test\TestStep\DeleteAllWidgetsStep')->run();
+        $this->objectManager->create(\Magento\Widget\Test\TestStep\DeleteAllWidgetsStep::class)->run();
         $this->cachePage->open()->getActionsBlock()->flushMagentoCache();
     }
 }

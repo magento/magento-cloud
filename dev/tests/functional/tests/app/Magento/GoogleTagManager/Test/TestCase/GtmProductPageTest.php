@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,13 +22,12 @@ use Magento\Mtf\TestCase\Injectable;
  * 2. Create product with created category.
  * 3. Perform all assertions.
  *
- * @group Google_Tag_Manager_(MX)
+ * @group Google_Tag_Manager
  * @ZephyrId MAGETWO-39521, MAGETWO-39522
  */
 class GtmProductPageTest extends Injectable
 {
     /* tags */
-    const DOMAIN = 'MX';
     /* end tags */
 
     /**
@@ -107,7 +106,7 @@ class GtmProductPageTest extends Injectable
     ) {
         // Preconditions
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => $configData]
         )->run();
         $this->prepareProducts($productsData);
@@ -165,7 +164,7 @@ class GtmProductPageTest extends Injectable
     public function tearDown()
     {
         $this->objectManager->create(
-            'Magento\Config\Test\TestStep\SetupConfigurationStep',
+            \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => $this->configData, 'rollback' => true]
         )->run();
     }

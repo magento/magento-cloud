@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ScheduledImportExport\Controller\Adminhtml\Scheduled;
@@ -86,7 +86,7 @@ class OperationTest extends \Magento\TestFramework\TestCase\AbstractBackendContr
     {
         /** @var $collection \Magento\ScheduledImportExport\Model\ResourceModel\Scheduled\Operation\Collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\ScheduledImportExport\Model\ResourceModel\Scheduled\Operation\Collection'
+            \Magento\ScheduledImportExport\Model\ResourceModel\Scheduled\Operation\Collection::class
         );
         $this->assertCount(1, $collection->getItems());
         $operation = $collection->getFirstItem();
@@ -109,7 +109,7 @@ class OperationTest extends \Magento\TestFramework\TestCase\AbstractBackendContr
         $this->markTestSkipped('This test failed on incorrect getcwd, and this is not a functionality problem');
         /** @var $collection \Magento\ScheduledImportExport\Model\ResourceModel\Scheduled\Operation\Collection */
         $collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            'Magento\ScheduledImportExport\Model\ResourceModel\Scheduled\Operation\Collection'
+            \Magento\ScheduledImportExport\Model\ResourceModel\Scheduled\Operation\Collection::class
         );
         $this->assertCount(1, $collection->getItems());
         $operation = $collection->getFirstItem();
@@ -117,7 +117,7 @@ class OperationTest extends \Magento\TestFramework\TestCase\AbstractBackendContr
         // Create export directory if not exist
         /** @var \Magento\Framework\Filesystem\Directory\Write $varDir */
         $varDir = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            'Magento\Framework\Filesystem'
+            \Magento\Framework\Filesystem::class
         )->getDirectoryWrite(
             'var'
         );
