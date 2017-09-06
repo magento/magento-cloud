@@ -83,3 +83,8 @@ crons:
     cronrun:
         spec: "*/5 * * * *"
         cmd: "php bin/magento cron:run && php bin/magento cron:run"
+
+# Environment variables
+variables:
+    env:
+        CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
