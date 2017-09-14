@@ -1,6 +1,6 @@
-# Magento 2.0.15 Enterprise Cloud Edition
+# Magento 2.0.16 Enterprise Cloud Edition
 
-This sample repository helps you deploy a Magento 2.0.15 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Enterprise Cloud Edition to use the example in this repository.
+This sample repository helps you deploy a Magento 2.0.16 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Enterprise Cloud Edition to use the example in this repository.
 
 This example is based on using composer to load dependencies and download Magento packages.
 
@@ -83,7 +83,7 @@ Exmaple:
 ```
  ...
     "require": {
-        "magento/magento-cloud-metapackage": "2.0.15",
+        "magento/magento-cloud-metapackage": "2.0.16",
     },
  ...
 ```
