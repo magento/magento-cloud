@@ -8,28 +8,13 @@
         "AFL-3.0"
     ],
     "repositories": {
-        "fastly-magento2": {
-            "type": "git",
-            "url": "https://github.com/fastly/fastly-magento2.git"
-        },
-        "sandbox": {
+        "repo": {
             "type": "composer",
-            "url": "https://connect20-qa01.magedevteam.com"
-        },
-        "magento-ece-tools": {
-            "type": "vcs",
-            "url": "git@github.com:magento/ece-tools.git"
-        },
-        "magento-ece-patches": {
-            "type": "vcs",
-            "url": "git@github.com:magento/ece-patches.git"
+            "url": "https://repo.magento.com"
         }
     },
     "require": {
-        "magento/product-enterprise-edition": "2.2.*",
-        "magento/ece-patches": "dev-master",
-        "magento/ece-tools": "dev-master",
-        "fastly/magento2": "^1.2"
+        "magento/magento-cloud-metapackage": "2.2.0"
     },
     "config": {
         "use-include-path": true
