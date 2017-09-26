@@ -1,17 +1,15 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magento\Setup\Test\Unit\Module;
 
 use Magento\Framework\App\ResourceConnection;
 use Magento\Setup\Module\Setup;
 
-/**
- * Class SetupTest
- */
-class SetupTest extends \PHPUnit_Framework_TestCase
+class SetupTest extends \PHPUnit\Framework\TestCase
 {
     const CONNECTION_NAME = 'connection';
 
@@ -32,11 +30,15 @@ class SetupTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->resourceModelMock = $this->getMock('\Magento\Framework\App\ResourceConnection', [], [], '', false);
-        $this->connection = $this->getMockForAbstractClass('\Magento\Framework\DB\Adapter\AdapterInterface');
+        $this->resourceModelMock = $this->createMock(ResourceConnection::class);
+        $this->connection = $this->getMockForAbstractClass(\Magento\Framework\DB\Adapter\AdapterInterface::class);
+        $this->resourceModelMock->expects($this->any())
+            ->method('getConnection')
+            ->with(self::CONNECTION_NAME)
+            ->will($this->returnValue($this->connection));
         $this->resourceModelMock->expects($this->any())
             ->method('getConnectionByName')
-            ->with(\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION)
+            ->with(ResourceConnection::DEFAULT_CONNECTION)
             ->willReturn($this->connection);
         $this->setup = new Setup($this->resourceModelMock, self::CONNECTION_NAME);
     }

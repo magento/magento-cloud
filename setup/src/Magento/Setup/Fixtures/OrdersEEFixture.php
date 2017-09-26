@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -22,6 +22,7 @@ class OrdersEEFixture extends Fixture
      * Order resource.
      *
      * @var \Magento\Sales\Model\ResourceModel\Order
+     * @since 2.2.0
      */
     private $order;
 
@@ -29,6 +30,7 @@ class OrdersEEFixture extends Fixture
      * Order Address resource.
      *
      * @var \Magento\Sales\Model\ResourceModel\Order\Address
+     * @since 2.2.0
      */
     private $orderAddress;
 
@@ -36,6 +38,7 @@ class OrdersEEFixture extends Fixture
      * Order Customer Custom Attributes resource.
      *
      * @var \Magento\CustomerCustomAttributes\Model\ResourceModel\Sales\Order
+     * @since 2.2.0
      */
     private $orderCustomAttributes;
 
@@ -43,6 +46,7 @@ class OrdersEEFixture extends Fixture
      * Order Address Customer Custom Attributes resource.
      *
      * @var \Magento\CustomerCustomAttributes\Model\ResourceModel\Sales\Order\Address
+     * @since 2.2.0
      */
     private $orderAddressCustomAttributes;
 
@@ -53,6 +57,7 @@ class OrdersEEFixture extends Fixture
      * @param \Magento\Sales\Model\ResourceModel\Order\Address $orderAddress
      * @param \Magento\CustomerCustomAttributes\Model\ResourceModel\Sales\Order $orderCustomAttributes
      * @param \Magento\CustomerCustomAttributes\Model\ResourceModel\Sales\Order\Address $orderAddressCustomAttributes
+     * @since 2.2.0
      */
     public function __construct(
         FixtureModel $fixtureModel,

@@ -1,45 +1,82 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 namespace Magento\Setup\Fixtures;
 
 /**
- * Class CustomerSegmentsFixture
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @since 2.1.0
  */
 class CustomerSegmentsFixture extends Fixture
 {
     /**
      * @var int
+     * @since 2.1.0
      */
     protected $priority = 75;
 
     /**
      * @var float
+     * @since 2.1.0
      */
     protected $customerSegmentsCount = 0;
 
     /**
      * @var float
+     * @since 2.1.0
      */
     protected $customerSegmentRulesCount = 0;
 
     /**
      * @var float
+     * @since 2.1.0
      */
     protected $cartPriceRulesCount = 0;
 
     /**
      * @var bool
+     * @since 2.1.0
      */
     protected $cartRulesAdvancedType = false;
 
+    /**
+     * @var \Magento\SalesRule\Model\RuleFactory
+     * @since 2.2.0
+     */
+    private $ruleFactory;
+
+    /**
+     * @var \Magento\CustomerSegment\Model\SegmentFactory
+     * @since 2.2.0
+     */
+    private $segmentFactory;
+
+    /**
+     * Constructor
+     *
+     * @param FixtureModel $fixtureModel
+     * @param \Magento\SalesRule\Model\RuleFactory|null $ruleFactory
+     * @param \Magento\CustomerSegment\Model\SegmentFactory|null $segmentFactory
+     * @since 2.2.0
+     */
+    public function __construct(
+        FixtureModel $fixtureModel,
+        \Magento\SalesRule\Model\RuleFactory $ruleFactory = null,
+        \Magento\CustomerSegment\Model\SegmentFactory $segmentFactory = null
+    ) {
+        parent::__construct($fixtureModel);
+        $this->ruleFactory = $ruleFactory ?: $this->fixtureModel->getObjectManager()
+            ->get(\Magento\SalesRule\Model\RuleFactory::class);
+        $this->segmentFactory = $segmentFactory ?: $this->fixtureModel->getObjectManager()
+            ->get(\Magento\CustomerSegment\Model\SegmentFactory::class);
+    }
 
     /**
      * {@inheritdoc}
      * @SuppressWarnings(PHPMD)
+     * @since 2.1.0
      */
     public function execute()
     {
@@ -52,11 +89,9 @@ class CustomerSegmentsFixture extends Fixture
         $this->customerSegmentsCount = $this->fixtureModel->getValue('customer_segments', 1);
 
         /** @var \Magento\Store\Model\StoreManager $storeManager */
-        $storeManager = $this->fixtureModel->getObjectManager()->create('Magento\Store\Model\StoreManager');
+        $storeManager = $this->fixtureModel->getObjectManager()->create(\Magento\Store\Model\StoreManager::class);
         /** @var $category \Magento\Catalog\Model\Category */
-        $category = $this->fixtureModel->getObjectManager()->get('Magento\Catalog\Model\Category');
-        /** @var $model  \Magento\SalesRule\Model\RuleFactory */
-        $modelFactory = $this->fixtureModel->getObjectManager()->get('Magento\SalesRule\Model\RuleFactory');
+        $category = $this->fixtureModel->getObjectManager()->get(\Magento\Catalog\Model\Category::class);
 
         //Get all websites
         $categoriesArray = [];
@@ -85,18 +120,18 @@ class CustomerSegmentsFixture extends Fixture
 
         // create customer segments
         $this->generateCustomerSegments();
-        $this->generateCustomerSegmentRules($modelFactory, $categoriesArray);
+        $this->generateCustomerSegmentRules($this->ruleFactory, $categoriesArray);
     }
 
     /**
      * Creates customer segments and conditions
      * @return void
+     * @since 2.1.0
      */
     public function generateCustomerSegments()
     {
         // Map x customers to y segments
         $numCustomers = $this->fixtureModel->getValue('customers', 0);
-        $segmentFactory = $this->fixtureModel->getObjectManager()->get('Magento\CustomerSegment\Model\SegmentFactory');
 
         // Create Segments
         $total = 1;
@@ -110,7 +145,7 @@ class CustomerSegmentsFixture extends Fixture
                 'apply_to'      => 0,
             ];
 
-            $segment = $segmentFactory->create();
+            $segment = $this->segmentFactory->create();
             $segment->loadPost($data);
             $segment->save();
             $segmentId = $segment->getSegmentId();
@@ -118,7 +153,7 @@ class CustomerSegmentsFixture extends Fixture
             // Add Conditions
             $conditions = [
                 1 => [
-                    'type' => 'Magento\\CustomerSegment\\Model\\Segment\\Condition\\Combine\\Root',
+                    'type' => \Magento\CustomerSegment\Model\Segment\Condition\Combine\Root::class,
                     'aggregator' => 'any',
                     'value' => '1',
                     'new_child' => '',
@@ -128,7 +163,7 @@ class CustomerSegmentsFixture extends Fixture
                 $conditionId = sprintf('1--%1$d', $j);
                 $value = sprintf('user_%1$d@example.com', $total);
                 $condition = [
-                    'type' => 'Magento\\CustomerSegment\\Model\\Segment\\Condition\\Customer\\Attributes',
+                    'type' => \Magento\CustomerSegment\Model\Segment\Condition\Customer\Attributes::class,
                     'attribute' => 'email',
                     'operator' => '==',
                     'value' => $value,
@@ -158,12 +193,13 @@ class CustomerSegmentsFixture extends Fixture
      * @param int $ruleId
      * @param array $categoriesArray
      * @return array
+     * @since 2.1.0
      */
     public function generateSegmentCondition($ruleId, $categoriesArray)
     {
         // Category
         $firstCondition = [
-            'type'      => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Product',
+            'type'      => \Magento\SalesRule\Model\Rule\Condition\Product::class,
             'attribute' => 'category_ids',
             'operator'  => '==',
             'value'     => $categoriesArray[(($ruleId - $this->cartPriceRulesCount) / 4 ) % count($categoriesArray)][0],
@@ -172,7 +208,7 @@ class CustomerSegmentsFixture extends Fixture
         $subtotal = [0, 5, 10, 15];
         // Subtotal
         $secondCondition = [
-            'type'      => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Address',
+            'type'      => \Magento\SalesRule\Model\Rule\Condition\Address::class,
             'attribute' => 'base_subtotal',
             'operator'  => '>=',
             'value'     => $subtotal[$ruleId % 4],
@@ -180,7 +216,7 @@ class CustomerSegmentsFixture extends Fixture
 
         // Customer Segment
         $thirdCondition = [
-            'type'      => 'Magento\\CustomerSegment\\Model\\Segment\\Condition\\Segment',
+            'type'      => \Magento\CustomerSegment\Model\Segment\Condition\Segment::class,
             'operator'  => '==',
             'value'     =>  ((($ruleId - $this->cartPriceRulesCount) / 4) % $this->customerSegmentsCount) + 1,
         ];
@@ -188,13 +224,13 @@ class CustomerSegmentsFixture extends Fixture
         return [
             'conditions' => [
                 1 => [
-                    'type' => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Combine',
+                    'type' => \Magento\SalesRule\Model\Rule\Condition\Combine::class,
                     'aggregator' => 'all',
                     'value' => '1',
                     'new_child' => '',
                 ],
                 '1--1'=> [
-                    'type' => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Product\\Found',
+                    'type' => \Magento\SalesRule\Model\Rule\Condition\Product\Found::class,
                     'aggregator' => 'all',
                     'value' => '1',
                     'new_child' => '',
@@ -205,7 +241,7 @@ class CustomerSegmentsFixture extends Fixture
             ],
             'actions' => [
                 1 => [
-                    'type' => 'Magento\\SalesRule\\Model\\Rule\\Condition\\Product\\Combine',
+                    'type' => \Magento\SalesRule\Model\Rule\Condition\Product\Combine::class,
                     'aggregator' => 'all',
                     'value' => '1',
                     'new_child' => '',
@@ -215,11 +251,12 @@ class CustomerSegmentsFixture extends Fixture
     }
 
     /**
-     * @param \Magento\SalesRule\Model\RuleFactory $modelFactory
+     * @param \Magento\SalesRule\Model\RuleFactory $ruleFactory
      * @param array $categoriesArray
      * @return void
+     * @since 2.1.0
      */
-    public function generateCustomerSegmentRules($modelFactory, $categoriesArray)
+    public function generateCustomerSegmentRules($ruleFactory, $categoriesArray)
     {
         for ($i = $this->cartPriceRulesCount;
             $i < ($this->customerSegmentRulesCount + $this->cartPriceRulesCount); $i++) {
@@ -292,16 +329,17 @@ class CustomerSegmentsFixture extends Fixture
             }
             unset($data['rule']);
 
-            $model = $modelFactory->create();
-            $model->loadPost($data);
+            $rule = $ruleFactory->create();
+            $rule->loadPost($data);
             $useAutoGeneration = (int)!empty($data['use_auto_generation']);
-            $model->setUseAutoGeneration($useAutoGeneration);
-            $model->save();
+            $rule->setUseAutoGeneration($useAutoGeneration);
+            $rule->save();
         }
     }
 
     /**
      * {@inheritdoc}
+     * @since 2.1.0
      */
     public function getActionTitle()
     {
@@ -310,6 +348,7 @@ class CustomerSegmentsFixture extends Fixture
 
     /**
      * {@inheritdoc}
+     * @since 2.1.0
      */
     public function introduceParamLabels()
     {
