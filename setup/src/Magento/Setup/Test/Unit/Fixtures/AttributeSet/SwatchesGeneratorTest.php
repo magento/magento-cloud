@@ -1,22 +1,18 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Magento\Setup\Test\Unit\Fixtures\AttributeSet;
 
-use Magento\Setup\Fixtures\ImagesGenerator\ImagesGeneratorFactory;
-use Magento\Setup\Fixtures\ImagesGenerator\ImagesGenerator;
 use Magento\Setup\Fixtures\AttributeSet\SwatchesGenerator;
+use Magento\Setup\Fixtures\ImagesGenerator\ImagesGenerator;
+use Magento\Setup\Fixtures\ImagesGenerator\ImagesGeneratorFactory;
 use Magento\Swatches\Helper\Media;
 use Magento\Swatches\Model\Swatch;
 
-/**
- * Class SwatchesGeneratorTest
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
- */
-class SwatchesGeneratorTest extends \PHPUnit_Framework_TestCase
+class SwatchesGeneratorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var SwatchesGenerator
@@ -72,7 +68,6 @@ class SwatchesGeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testGenerateSwatchData()
     {
-
         $attributeColorType['swatch_input_type'] = Swatch::SWATCH_INPUT_TYPE_VISUAL;
         $attributeColorType['swatchvisual']['value'] = array_reduce(
             range(1, 3),

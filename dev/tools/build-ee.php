@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 $options = getopt('', ['command:', 'ce-source:', 'ee-source:', 'help', 'exclude:']);
@@ -55,7 +55,7 @@ switch ($command) {
             if (!file_exists(dirname($ce . $target))) {
                 @symlink(dirname($filename), dirname($ce . $target));
                 $excludePaths[] = resolvePath(dirname($target));
-            } else if (!file_exists($ce . $target)) {
+            } elseif (!file_exists($ce . $target)) {
                 if (is_link(dirname($ce . $target))) {
                     continue;
                 }
@@ -82,7 +82,6 @@ switch ($command) {
 
     case 'unlink':
         foreach (scanFiles($ce) as $filename) {
-
             if (is_link($filename)) {
                 $unusedPaths[] = resolvePath(preg_replace('#^' . preg_quote($ce) . "#", '', $filename));
                 unlinkFile($filename);
@@ -105,7 +104,6 @@ function setExcludePaths($newPaths, $oldPaths, $writeToFile = false)
     if (false != $writeToFile && file_exists($writeToFile)) {
         $content = file($writeToFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         foreach ($content as $lineNum => $line) {
-
             $newKey = array_search($line, $newPaths);
             if (false !== $newKey) {
                 unset($newPaths[$newKey]);

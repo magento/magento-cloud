@@ -61,7 +61,7 @@ web:
 
 
 # The size of the persistent disk of the application (in MB).
-disk: 2048 
+disk: 2048
 
 # The mounts that will be performed when the package is deployed.
 mounts:
@@ -74,11 +74,10 @@ mounts:
 hooks:
     # We run build hooks before your application has been packaged.
     build: |
-        php ./bin/magento magento-cloud:build
+        php ./vendor/bin/m2-ece-build
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        php ./vendor/magento/magento-cloud-configuration/pre-deploy.php
-        php ./bin/magento magento-cloud:deploy
+        php ./vendor/bin/m2-ece-deploy
 
 # Default Magento 2 cron jobs
 crons:
@@ -90,3 +89,5 @@ crons:
 variables:
     env:
         CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
+        CONFIG__STORES__DEFAULT__PAYMENT__BRAINTREE__CHANNEL: 'Magento_Enterprise_Cloud_BT'
+        CONFIG__STORES__DEFAULT__PAYPAL__NOTATION_CODE: 'Magento_Enterprise_Cloud'
