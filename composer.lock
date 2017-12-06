@@ -490,6 +490,73 @@
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
+            "name": "doctrine/inflector",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/inflector.git",
+                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e11d84c6e018beedd929cff5220969a3c6d1d462",
+                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Common String Manipulations with regard to casing and singular/plural rules.",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "inflection",
+                "pluralize",
+                "singularize",
+                "string"
+            ],
+            "time": "2017-07-22T12:18:28+00:00"
+        },
+        {
             "name": "elasticsearch/elasticsearch",
             "version": "v2.3.2",
             "source": {
@@ -645,6 +712,50 @@
             "time": "2014-10-12T19:18:40+00:00"
         },
         {
+            "name": "illuminate/config",
+            "version": "v5.5.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/config.git",
+                "reference": "09bb7534fb6c33c2bf5a4157a539c8e2c876a1fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/config/zipball/09bb7534fb6c33c2bf5a4157a539c8e2c876a1fa",
+                "reference": "09bb7534fb6c33c2bf5a4157a539c8e2c876a1fa",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.5.*",
+                "illuminate/support": "5.5.*",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Config\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Config package.",
+            "homepage": "https://laravel.com",
+            "time": "2017-06-26T13:15:04+00:00"
+        },
+        {
             "name": "illuminate/container",
             "version": "v5.5.17",
             "source": {
@@ -731,6 +842,63 @@
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
             "time": "2017-09-19T13:09:37+00:00"
+        },
+        {
+            "name": "illuminate/support",
+            "version": "v5.5.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/support.git",
+                "reference": "132b06edaab3808f63943004911d58785f164ab4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/132b06edaab3808f63943004911d58785f164ab4",
+                "reference": "132b06edaab3808f63943004911d58785f164ab4",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "~1.1",
+                "ext-mbstring": "*",
+                "illuminate/contracts": "5.5.*",
+                "nesbot/carbon": "^1.20",
+                "php": ">=7.0"
+            },
+            "replace": {
+                "tightenco/collect": "self.version"
+            },
+            "suggest": {
+                "illuminate/filesystem": "Required to use the composer class (5.2.*).",
+                "symfony/process": "Required to use the composer class (~3.3).",
+                "symfony/var-dumper": "Required to use the dd function (~3.3)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Support\\": ""
+                },
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Support package.",
+            "homepage": "https://laravel.com",
+            "time": "2017-10-17T12:18:29+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -878,27 +1046,54 @@
         },
         {
             "name": "magento/ece-patches",
-            "version": "102.0.1",
+            "version": "102.0.2",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-patches/magento-ece-patches-102.0.1.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-patches/magento-ece-patches-102.0.2.0.zip",
                 "reference": null,
-                "shasum": "2ff72d641260c0bc5c5584c4078d3329d5a403c9"
+                "shasum": "e3db71e53f87d40705430da51e3e1439fb61bce1"
             },
             "require": {
-                "composer/composer": "@stable",
+                "composer/composer": "~1.0",
                 "composer/semver": "^1.4",
-                "php": "^7.0"
+                "illuminate/container": "^5.5",
+                "monolog/monolog": "^1.17",
+                "php": "^7.0",
+                "psr/container": "^1.0",
+                "psr/log": "^1.0",
+                "symfony/console": "^2.6"
             },
             "bin": [
+                "bin/ece-patches",
                 "m2-apply-patches"
             ],
             "type": "library",
+            "extra": {
+                "enable-patching": true,
+                "patches": {
+                    "colinmollenhour/credis": {
+                        "Fix Redis issue": {
+                            "1.6": "patches/redis-pipeline.patch"
+                        }
+                    },
+                    "magento/framework": {
+                        "Fix locker process": {
+                            "101.0.*": "patches/locker-process.patch"
+                        },
+                        "Remove permissions check": {
+                            "101.0.*": "patches/remove-permission-checks.patch"
+                        }
+                    },
+                    "magento/module-customer-import-export": {
+                        "Fix out of memory during import of customers and addresses": {
+                            ">=100.2.0": "patches/fix-oom-during-import-customers-and-addresses.patch"
+                        }
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "Magento\\Command\\": [
-                        "src/Magento/Command"
-                    ]
+                    "Magento\\CloudPatches\\": "src"
                 }
             },
             "license": [
@@ -909,25 +1104,26 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.4",
+            "version": "2002.0.5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.4.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.5.0.zip",
                 "reference": null,
-                "shasum": "f1c445062c86e826aaf96372cf2606b8a5c9ef2f"
+                "shasum": "aab105f1a16be945b95f5eb215efeb9ae2efcc68"
             },
             "require": {
                 "composer/composer": "@stable",
                 "composer/semver": "^1.4",
+                "illuminate/config": "^5.5",
                 "illuminate/container": "^5.5",
                 "monolog/monolog": "^1.17",
                 "php": "^7.0",
                 "psr/container": "^1.0",
                 "psr/log": "^1.0",
-                "symfony/console": "^2.6"
+                "symfony/console": "^2.6",
+                "symfony/yaml": "^3.3"
             },
             "require-dev": {
-                "illuminate/config": "^5.5",
                 "php-mock/php-mock-phpunit": "^2.0",
                 "phpmd/phpmd": "@stable",
                 "phpunit/php-code-coverage": "^5.2",
@@ -935,10 +1131,10 @@
                 "squizlabs/php_codesniffer": " ^3.0"
             },
             "bin": [
+                "bin/ece-tools",
                 "m2-ece-build",
                 "m2-ece-deploy",
-                "m2-ece-scd-dump",
-                "bin/ece-tools"
+                "m2-ece-scd-dump"
             ],
             "type": "library",
             "autoload": {
@@ -9333,6 +9529,59 @@
             "time": "2017-06-19T01:22:40+00:00"
         },
         {
+            "name": "nesbot/carbon",
+            "version": "1.22.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/briannesbitt/Carbon.git",
+                "reference": "7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc",
+                "reference": "7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/translation": "~2.6 || ~3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2",
+                "phpunit/phpunit": "~4.0 || ~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.23-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Carbon\\": "src/Carbon/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Nesbitt",
+                    "email": "brian@nesbot.com",
+                    "homepage": "http://nesbot.com"
+                }
+            ],
+            "description": "A simple API extension for DateTime.",
+            "homepage": "http://carbon.nesbot.com",
+            "keywords": [
+                "date",
+                "datetime",
+                "time"
+            ],
+            "time": "2017-01-16T07:55:07+00:00"
+        },
+        {
             "name": "oyejorge/less.php",
             "version": "v1.7.0.14",
             "source": {
@@ -10578,6 +10827,126 @@
             "time": "2017-11-05T15:25:56+00:00"
         },
         {
+            "name": "symfony/translation",
+            "version": "v3.3.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/translation.git",
+                "reference": "373e553477e55cd08f8b86b74db766c75b987fdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/373e553477e55cd08f8b86b74db766c75b987fdb",
+                "reference": "373e553477e55cd08f8b86b74db766c75b987fdb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/config": "<2.8",
+                "symfony/yaml": "<3.3"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/intl": "^2.8.18|^3.2.5",
+                "symfony/yaml": "~3.3"
+            },
+            "suggest": {
+                "psr/log": "To use logging capability in translator",
+                "symfony/config": "",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Translation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Translation Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-11-07T14:12:55+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v3.3.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "36353762fdca3a0ecdce4640764efc885df979f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/36353762fdca3a0ecdce4640764efc885df979f6",
+                "reference": "36353762fdca3a0ecdce4640764efc885df979f6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "require-dev": {
+                "symfony/console": "~2.8|~3.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-12-04T14:51:35+00:00"
+        },
+        {
             "name": "tedivm/jshrink",
             "version": "v1.1.0",
             "source": {
@@ -10946,25 +11315,25 @@
         },
         {
             "name": "zendframework/zend-db",
-            "version": "2.8.2",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-db.git",
-                "reference": "5926a1a2e7e035546b690cb7d4c11a3c47db2c98"
+                "reference": "b67f2d13c6cf76032db67e58ef1a2983a7b782b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-db/zipball/5926a1a2e7e035546b690cb7d4c11a3c47db2c98",
-                "reference": "5926a1a2e7e035546b690cb7d4c11a3c47db2c98",
+                "url": "https://api.github.com/repos/zendframework/zend-db/zipball/b67f2d13c6cf76032db67e58ef1a2983a7b782b6",
+                "reference": "b67f2d13c6cf76032db67e58ef1a2983a7b782b6",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5 || ^7.0",
+                "php": "^5.6 || ^7.0",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit": "^5.7.25 || ^6.4.4",
+                "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
                 "zendframework/zend-hydrator": "^1.1 || ^2.1",
                 "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3"
@@ -10977,8 +11346,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev",
-                    "dev-develop": "2.9-dev"
+                    "dev-master": "2.9-dev",
+                    "dev-develop": "2.10-dev"
                 },
                 "zf": {
                     "component": "Zend\\Db",
@@ -10994,12 +11363,13 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-db",
+            "description": "Database abstraction layer, SQL abstraction, result set abstraction, and RowDataGateway and TableDataGateway implementations",
             "keywords": [
+                "ZendFramework",
                 "db",
-                "zf2"
+                "zf"
             ],
-            "time": "2016-08-09T19:28:55+00:00"
+            "time": "2017-12-06T09:52:17+00:00"
         },
         {
             "name": "zendframework/zend-di",
@@ -11983,16 +12353,16 @@
         },
         {
             "name": "zendframework/zend-servicemanager",
-            "version": "2.7.9",
+            "version": "2.7.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-servicemanager.git",
-                "reference": "aa5a09f814ba0d1873670d0589a3b5638c4371cb"
+                "reference": "ba7069c94c9af93122be9fa31cddd37f7707d5b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/aa5a09f814ba0d1873670d0589a3b5638c4371cb",
-                "reference": "aa5a09f814ba0d1873670d0589a3b5638c4371cb",
+                "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/ba7069c94c9af93122be9fa31cddd37f7707d5b4",
+                "reference": "ba7069c94c9af93122be9fa31cddd37f7707d5b4",
                 "shasum": ""
             },
             "require": {
@@ -12031,7 +12401,7 @@
                 "servicemanager",
                 "zf2"
             ],
-            "time": "2017-11-27T22:34:18+00:00"
+            "time": "2017-12-05T16:27:36+00:00"
         },
         {
             "name": "zendframework/zend-session",
