@@ -49,8 +49,8 @@ deploy: |
 ```
 crons:
         cronrun:
-            spec: "*/5 * * * *"
-            cmd: "php bin/magento cron:run && php bin/magento cron:run"
+            spec: "* * * * *"
+            cmd: "php bin/magento cron:run"
 ```
 
 ### `composer.json`
