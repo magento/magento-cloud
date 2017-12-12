@@ -1,6 +1,6 @@
-# Magento 2.1.9 Magento Commerce (Cloud)
+# Magento 2.1.11 Magento Commerce (Cloud)
 
-This sample repository helps you deploy a Magento 2.1.9 Magento Commerce (Cloud)) instance in the cloud. You must be a licensed user of Magento Magento Commerce (Cloud) to use the example in this repository.
+This sample repository helps you deploy a Magento 2.1.11 Magento Commerce (Cloud)) instance in the cloud. You must be a licensed user of Magento Magento Commerce (Cloud) to use the example in this repository.
 
 This example is based on using the Composer to load dependencies and get the Magento vendor folders.
 
@@ -86,7 +86,7 @@ Update the `require` section as follows to:
 ```
  },
     "require": {
-        "magento/magento-cloud-metapackage": "2.1.9",
+        "magento/magento-cloud-metapackage": "2.1.11",
         "composer/composer": "@alpha",
         "colinmollenhour/credis": "1.6",
         "colinmollenhour/php-redis-session-abstract": "1.1",
