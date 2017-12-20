@@ -1046,12 +1046,12 @@
         },
         {
             "name": "magento/ece-patches",
-            "version": "102.0.2",
+            "version": "102.0.3",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-patches/magento-ece-patches-102.0.2.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-patches/magento-ece-patches-102.0.3.0.zip",
                 "reference": null,
-                "shasum": "e3db71e53f87d40705430da51e3e1439fb61bce1"
+                "shasum": "72dfacf8b223cafa75d8c8f3f449f2b99bf8d041"
             },
             "require": {
                 "composer/composer": "~1.0",
@@ -1063,6 +1063,12 @@
                 "psr/log": "^1.0",
                 "symfony/console": "^2.6"
             },
+            "require-dev": {
+                "php-mock/php-mock-phpunit": "^2.0",
+                "phpmd/phpmd": "@stable",
+                "phpunit/phpunit": "~6.2.0",
+                "squizlabs/php_codesniffer": " ^3.0"
+            },
             "bin": [
                 "bin/ece-patches",
                 "m2-apply-patches"
@@ -1070,7 +1076,7 @@
             "type": "library",
             "extra": {
                 "enable-patching": true,
-                "patches": {
+                "ece-patches": {
                     "colinmollenhour/credis": {
                         "Fix Redis issue": {
                             "1.6": "patches/redis-pipeline.patch"
@@ -1104,12 +1110,12 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.6",
+            "version": "2002.0.7",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.6.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.7.0.zip",
                 "reference": null,
-                "shasum": "d1cf377088237366dab768973f73ff5738bce090"
+                "shasum": "e33f358d34c752706d76c18484a0f54909e94ef8"
             },
             "require": {
                 "composer/composer": "@stable",
