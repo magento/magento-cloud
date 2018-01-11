@@ -14,19 +14,7 @@
         }
     ],
     "require": {
-        "magento/magento-cloud-metapackage": "2.1.0",
-        "composer/composer": "@alpha",
-        "colinmollenhour/credis": "1.6",
-        "colinmollenhour/php-redis-session-abstract": "1.1"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "4.1.0",
-        "squizlabs/php_codesniffer": "1.5.3",
-        "phpmd/phpmd": "@stable",
-        "pdepend/pdepend": "2.0.6",
-        "sjparkinson/static-review": "~4.1",
-        "fabpot/php-cs-fixer": "~1.2",
-        "lusitanian/oauth": "~0.3 <=0.7.0"
+        "magento/magento-cloud-metapackage": "2.1.0"
     },
     "config": {
         "use-include-path": true
@@ -56,6 +44,7 @@
     "minimum-stability": "alpha",
     "prefer-stable": true,
     "extra": {
-        "magento-force": "override"
+        "magento-force": "true",
+        "magento-deploystrategy": "copy"
     }
 }

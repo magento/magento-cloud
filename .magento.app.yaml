@@ -1,7 +1,6 @@
 # This file describes an application. You can have multiple applications
 # in the same project.
 
-
 # The name of this app. Must be unique within a project.
 name: mymagento
 
@@ -17,6 +16,7 @@ runtime:
         - redis
         - xsl
         - json
+        - blackfire
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -24,7 +24,6 @@ runtime:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
     database: "mysql:mysql"
-    solr: "solr:solr"
     redis: "redis:redis"
 
 # The configuration of app when it is exposed to the web.
