@@ -17,6 +17,7 @@ runtime:
         - redis
         - xsl
         - json
+        - blackfire
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -24,7 +25,6 @@ runtime:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
     database: "mysql:mysql"
-    solr: "solr:solr"
     redis: "redis:redis"
 
 # The configuration of app when it is exposed to the web.
