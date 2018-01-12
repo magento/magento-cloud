@@ -1,0 +1,27 @@
+tests:
+    Pages should be fast enough:
+        path: /.*
+        assertions:
+            - main.wall_time < 850ms
+            - main.io < 500ms
+            - main.cpu_time < 500ms
+    Pages should not consume too much memory:
+        path: /.*
+        assertions:
+            - main.memory < 50M
+            - main.peak_memory < 75M
+    Homepage should not do too many SQL queries:
+        path: /
+        assertions:
+            - metrics.sql.queries.count <= 12
+    Checkout pages should be light:
+        path: /checkout/.*
+        assertions:
+            - metrics.output.network_out < 100KB
+
+scenarios:
+    Home:
+        - /
+
+    Cart:
+        - /checkout/cart/
