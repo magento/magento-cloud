@@ -1115,12 +1115,12 @@
         },
         {
             "name": "magento/ece-patches",
-            "version": "102.0.3",
+            "version": "102.0.4",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-patches/magento-ece-patches-102.0.3.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-patches/magento-ece-patches-102.0.4.0.zip",
                 "reference": null,
-                "shasum": "72dfacf8b223cafa75d8c8f3f449f2b99bf8d041"
+                "shasum": "4b8fcdc97dd22d433bb0256abe7fdb8949a5aeda"
             },
             "require": {
                 "composer/composer": "~1.0",
@@ -1157,11 +1157,19 @@
                         },
                         "Remove permissions check": {
                             "101.0.*": "patches/remove-permission-checks.patch"
+                        },
+                        "Fix redis session locking for 2.2.0 and 2.2.1": {
+                            "101.0.0||101.0.1": "patches/fix-redis-session-manager-locking.patch"
                         }
                     },
                     "magento/module-customer-import-export": {
                         "Fix out of memory during import of customers and addresses": {
                             ">=100.2.0": "patches/fix-oom-during-import-customers-and-addresses.patch"
+                        }
+                    },
+                    "magento/module-config": {
+                        "Fix app:config:import for Magento 2.2.2": {
+                            "=101.0.2": "patches/fix-app-config-import.patch"
                         }
                     }
                 }
@@ -1179,18 +1187,19 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.7",
+            "version": "2002.0.8",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.7.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.8.0.zip",
                 "reference": null,
-                "shasum": "e33f358d34c752706d76c18484a0f54909e94ef8"
+                "shasum": "8cb3772753d1b7fd4731119bfb73ad4453b34df5"
             },
             "require": {
                 "composer/composer": "@stable",
                 "composer/semver": "^1.4",
                 "illuminate/config": "^5.5",
                 "illuminate/container": "^5.5",
+                "illuminate/contracts": "^5.5",
                 "monolog/monolog": "^1.17",
                 "php": "^7.0",
                 "psr/container": "^1.0",
@@ -10057,12 +10066,12 @@
             "version": "V1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jjriv/emogrifier.git",
+                "url": "https://github.com/MyIntervals/emogrifier.git",
                 "reference": "a1db453bb504597d821efcc04b21c79a6021e00c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jjriv/emogrifier/zipball/a1db453bb504597d821efcc04b21c79a6021e00c",
+                "url": "https://api.github.com/repos/MyIntervals/emogrifier/zipball/a1db453bb504597d821efcc04b21c79a6021e00c",
                 "reference": "a1db453bb504597d821efcc04b21c79a6021e00c",
                 "shasum": ""
             },
