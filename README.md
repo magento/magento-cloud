@@ -1,6 +1,6 @@
-# Magento 2.1.5 Enterprise Cloud Edition
+# Magento 2.1.5 Magento Commerce (Cloud)
 
-This sample repository helps you deploy a Magento 2.1.5 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Enterprise Cloud Edition to use the example in this repository.
+This sample repository helps you deploy a Magento 2.1.5 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Magento Commerce (Cloud) to use the example in this repository.
 
 This example is based on using the Composer to load dependencies and get the Magento vendor folders.
 
@@ -27,78 +27,8 @@ To create a new `auth.json` in the event you don't have one:
         }
 3.  Save your changes to `auth.json` and exit the text editor.
 
-## Required changes for release 101.0.2
-The 101.0.2 release on August 5, 2016 requires you to make some manual changes to the following files, which are both located in your project root directory:
-
-*   `.magento.app.yaml`, the main project configuration file.
-*   `composer.json`, which specifies project dependencies.
-
-Changes are discussed in the sections that follow.
-
-### `.magento.app.yaml`
-Open `.magento.app.yaml` in a text editor and update the `build` section (which is nested in the `deploy` section) and `crons` sections as follows:
-
-#### deploy section
-```
-deploy: |
-    php ./vendor/magento/magento-cloud-configuration/pre-deploy.php
-    php ./bin/magento magento-cloud:deploy
-```
-
-#### crons section
-```
-crons:
-        cronrun:
-            spec: "* * * * *"
-            cmd: "php bin/magento cron:run"
-```
-
-### `composer.json`
-Open `composer.json` and update the `"files"` directive in the `autoload` section as follows:
-
-```
-"autoload": {
-        "psr-4": {
-            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
-            "Magento\\Setup\\": "setup/src/Magento/Setup/",
-            "Magento\\": "app/code/Magento/"
-        },
-        "psr-0": {
-            "": "app/code/"
-        },
-        "files": [
-            "app/etc/NonComposerComponentRegistration.php"
-        ]
-    }
-```
-
-Move `app/NonComposerComponentRegistration.php` to `app/etc/NonComposerComponentRegistration.php`.
-Make sure the relative paths that point to locations in the app and lib directories reflect the 
-new location of the file. For an example that can be copied, see the [copy in this project](app/etc/NonComposerComponentRegistration.php).
-
-Update the `require` section as follows to:
-
-*   Replace `"magento/product-enterprise-edition": "<current version>",` with `"magento/magento-cloud-metapackage": "<upgrade version>",`
-*   Remove `"magento/magento-cloud-configuration": "1.0.*",`
-
-(In some cases, your `composer.json` might already be correct.)
-
-```
- },
-    "require": {
-        "magento/magento-cloud-metapackage": "2.1.5",
-        "composer/composer": "@alpha",
-        "colinmollenhour/credis": "1.6",
-        "colinmollenhour/php-redis-session-abstract": "1.1",
-        "fastly/magento2": "^1.0"
-    },
-```
-
-Run `composer update`, and make sure the updated composer.lock and other changed files are
-checked in to git.
-
 ## Repository structure
-Here are the specific files for this example to work on Magento Enterprise Cloud Edition:
+Here are the specific files for this example to work on Magento Magento Commerce (Cloud):
 
 ```
 .magento/
@@ -120,4 +50,4 @@ php.ini
 ## Documentation
 For more details, see our [Magento Enterprise Cloud Guide](http://devdocs.magento.com/guides/v2.1/cloud/bk-cloud.html). 
 
-Get started [here](http://devdocs.magento.com/guides/v2.1/cloud/before/before.html).
+
