@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "80b922bbb4fc389b462271d2d5207e2c",
+    "content-hash": "b3623bbd141cfb7298c9587ec97b37bb",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -713,7 +713,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v5.6.3",
+            "version": "v5.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -757,7 +757,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v5.6.3",
+            "version": "v5.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -801,16 +801,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.6.3",
+            "version": "v5.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "f5d3ca46ec931e78fe961e52940e56fb7a0e6707"
+                "reference": "00a8296c63b6429eb8705d2700c2436ea193c553"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/f5d3ca46ec931e78fe961e52940e56fb7a0e6707",
-                "reference": "f5d3ca46ec931e78fe961e52940e56fb7a0e6707",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/00a8296c63b6429eb8705d2700c2436ea193c553",
+                "reference": "00a8296c63b6429eb8705d2700c2436ea193c553",
                 "shasum": ""
             },
             "require": {
@@ -841,20 +841,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2018-01-30T14:30:39+00:00"
+            "time": "2018-02-20T16:46:51+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "v5.6.3",
+            "version": "v5.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "08f8b351a77efebfe3650e069ffa3f21a9a308d7"
+                "reference": "777665c3de5bf4260bd36acfeeeb67887a09a78b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/08f8b351a77efebfe3650e069ffa3f21a9a308d7",
-                "reference": "08f8b351a77efebfe3650e069ffa3f21a9a308d7",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/777665c3de5bf4260bd36acfeeeb67887a09a78b",
+                "reference": "777665c3de5bf4260bd36acfeeeb67887a09a78b",
                 "shasum": ""
             },
             "require": {
@@ -865,7 +865,7 @@
                 "php": "^7.1.3"
             },
             "replace": {
-                "tightenco/collect": "self.version"
+                "tightenco/collect": "<5.5.33"
             },
             "suggest": {
                 "illuminate/filesystem": "Required to use the composer class (5.2.*).",
@@ -898,7 +898,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2018-02-04T20:30:42+00:00"
+            "time": "2018-02-20T21:40:53+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -1045,85 +1045,13 @@
             "description": "Magento composer library helps to instantiate Composer application and run composer commands."
         },
         {
-            "name": "magento/ece-patches",
-            "version": "102.0.4",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-patches/magento-ece-patches-102.0.4.0.zip",
-                "reference": null,
-                "shasum": "4b8fcdc97dd22d433bb0256abe7fdb8949a5aeda"
-            },
-            "require": {
-                "composer/composer": "~1.0",
-                "composer/semver": "^1.4",
-                "illuminate/container": "^5.5",
-                "monolog/monolog": "^1.17",
-                "php": "^7.0",
-                "psr/container": "^1.0",
-                "psr/log": "^1.0",
-                "symfony/console": "^2.6"
-            },
-            "require-dev": {
-                "php-mock/php-mock-phpunit": "^2.0",
-                "phpmd/phpmd": "@stable",
-                "phpunit/phpunit": "~6.2.0",
-                "squizlabs/php_codesniffer": " ^3.0"
-            },
-            "bin": [
-                "bin/ece-patches",
-                "m2-apply-patches"
-            ],
-            "type": "library",
-            "extra": {
-                "enable-patching": true,
-                "ece-patches": {
-                    "colinmollenhour/credis": {
-                        "Fix Redis issue": {
-                            "1.6": "patches/redis-pipeline.patch"
-                        }
-                    },
-                    "magento/framework": {
-                        "Fix locker process": {
-                            "101.0.*": "patches/locker-process.patch"
-                        },
-                        "Remove permissions check": {
-                            "101.0.*": "patches/remove-permission-checks.patch"
-                        },
-                        "Fix redis session locking for 2.2.0 and 2.2.1": {
-                            "101.0.0||101.0.1": "patches/fix-redis-session-manager-locking.patch"
-                        }
-                    },
-                    "magento/module-customer-import-export": {
-                        "Fix out of memory during import of customers and addresses": {
-                            ">=100.2.0": "patches/fix-oom-during-import-customers-and-addresses.patch"
-                        }
-                    },
-                    "magento/module-config": {
-                        "Fix app:config:import for Magento 2.2.2": {
-                            "=101.0.2": "patches/fix-app-config-import.patch"
-                        }
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Magento\\CloudPatches\\": "src"
-                }
-            },
-            "license": [
-                "OSL-3.0",
-                "AFL-3.0"
-            ],
-            "description": "Provide patches for M2 on MECE instances"
-        },
-        {
             "name": "magento/ece-tools",
-            "version": "2002.0.8",
+            "version": "2002.0.9",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.8.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.9.0.zip",
                 "reference": null,
-                "shasum": "8cb3772753d1b7fd4731119bfb73ad4453b34df5"
+                "shasum": "fa5a9f5943763408deb744cc86381811cb5fe95f"
             },
             "require": {
                 "composer/composer": "@stable",
@@ -1131,12 +1059,16 @@
                 "illuminate/config": "^5.5",
                 "illuminate/container": "^5.5",
                 "illuminate/contracts": "^5.5",
-                "monolog/monolog": "^1.17",
+                "monolog/monolog": "^1.16",
                 "php": "^7.0",
                 "psr/container": "^1.0",
                 "psr/log": "^1.0",
                 "symfony/console": "^2.6",
-                "symfony/yaml": "^3.3"
+                "symfony/yaml": "^2.3||^3.3"
+            },
+            "replace": {
+                "magento/ece-patches": "*",
+                "magento/magento-cloud-configuration": "*"
             },
             "require-dev": {
                 "php-mock/php-mock-phpunit": "^2.0",
@@ -1501,16 +1433,15 @@
         },
         {
             "name": "magento/magento-cloud-metapackage",
-            "version": "2.2.1",
+            "version": "2.2.1-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-metapackage/magento-magento-cloud-metapackage-2.2.1.0.zip",
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-metapackage/magento-magento-cloud-metapackage-2.2.1.0-patch1.zip",
                 "reference": null,
-                "shasum": "19fc23857ae741a10a05424b28c557807d6e159e"
+                "shasum": "ac53015564a651a62395d39389664adad0f60377"
             },
             "require": {
-                "magento/ece-patches": "102.0.*",
-                "magento/ece-tools": "2002.0.*",
+                "magento/ece-tools": "~2002.0.8",
                 "magento/module-paypal-on-boarding": "100.2.*",
                 "magento/product-enterprise-edition": "2.2.1",
                 "php": "7.0.2|7.0.4|~7.0.6|~7.1.0"
@@ -9818,16 +9749,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.9",
+            "version": "2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "c9a3fe35e20eb6eeaca716d6a23cde03f52d1558"
+                "reference": "d305b780829ea4252ed9400b3f5937c2c99b51d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/c9a3fe35e20eb6eeaca716d6a23cde03f52d1558",
-                "reference": "c9a3fe35e20eb6eeaca716d6a23cde03f52d1558",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d305b780829ea4252ed9400b3f5937c2c99b51d4",
+                "reference": "d305b780829ea4252ed9400b3f5937c2c99b51d4",
                 "shasum": ""
             },
             "require": {
@@ -9835,7 +9766,7 @@
             },
             "require-dev": {
                 "phing/phing": "~2.7",
-                "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
                 "sami/sami": "~2.0",
                 "squizlabs/php_codesniffer": "~2.0"
             },
@@ -9906,7 +9837,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2017-11-29T06:38:08+00:00"
+            "time": "2018-02-19T04:29:13+00:00"
         },
         {
             "name": "psr/container",
@@ -12419,16 +12350,16 @@
         },
         {
             "name": "zendframework/zend-session",
-            "version": "2.8.4",
+            "version": "2.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-session.git",
-                "reference": "9338f1ae483bcc18cc3b6c0347c8ba4f448b3e2a"
+                "reference": "2cfd90e1a2f6b066b9f908599251d8f64f07021b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-session/zipball/9338f1ae483bcc18cc3b6c0347c8ba4f448b3e2a",
-                "reference": "9338f1ae483bcc18cc3b6c0347c8ba4f448b3e2a",
+                "url": "https://api.github.com/repos/zendframework/zend-session/zipball/2cfd90e1a2f6b066b9f908599251d8f64f07021b",
+                "reference": "2cfd90e1a2f6b066b9f908599251d8f64f07021b",
                 "shasum": ""
             },
             "require": {
@@ -12436,14 +12367,11 @@
                 "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
-            "conflict": {
-                "phpunit/phpunit": ">=6.5.0"
-            },
             "require-dev": {
                 "container-interop/container-interop": "^1.1",
                 "mongodb/mongodb": "^1.0.1",
                 "php-mock/php-mock-phpunit": "^1.1.2 || ^2.0",
-                "phpunit/phpunit": "^5.7.5 || ^6.0.13",
+                "phpunit/phpunit": "^5.7.5 || >=6.0.13 <6.5.0",
                 "zendframework/zend-cache": "^2.6.1",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-db": "^2.7",
@@ -12485,7 +12413,7 @@
                 "session",
                 "zf"
             ],
-            "time": "2018-01-31T17:38:47+00:00"
+            "time": "2018-02-22T16:33:54+00:00"
         },
         {
             "name": "zendframework/zend-soap",
