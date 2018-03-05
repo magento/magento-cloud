@@ -3,7 +3,6 @@ services:
   fpm:
     hostname: fpm.magento2.docker
     image: shiftedreality/cloud-docker-php:7.1-fpm
-#    build: ./../cloud-docker/7.1-fpm
     ports:
       - 9000
     links:
@@ -16,7 +15,6 @@ services:
   cli:
     hostname: cli.magento2.docker
     image: shiftedreality/cloud-docker-php:7.1-cli
-#    build: ./../cloud-docker/7.1-cli
     links:
       - db
     volumes_from:
@@ -55,7 +53,6 @@ services:
   web:
     image: shiftedreality/cloud-docker-nginx:1.9
     ports:
-#      - 80
       - "8080:80"
     links:
       - fpm
