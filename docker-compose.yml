@@ -11,16 +11,19 @@ services:
       - appdata
     env_file:
       - ./docker/global.env
+      - ./docker/config.env
 
   cli:
     hostname: cli.magento2.docker
-    image: shiftedreality/cloud-docker-php:7.1-cli
+#    image: shiftedreality/cloud-docker-php:7.1-cli
+    build: ./../cloud-docker/7.1-cli
     links:
       - db
     volumes_from:
       - appdata
     env_file:
       - ./docker/global.env
+      - ./docker/config.env
     environment:
       - M2SETUP_USE_SAMPLE_DATA=false
 
