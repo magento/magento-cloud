@@ -1,13 +1,13 @@
 # Magento 2.2.2 Magento Commerce (Cloud)
 
-This repository contains a sample Magento 2.2.2 Enterprise Edition (EE) instance for you to deploy in the cloud. You must have an active Magento Commerce (Cloud) user license to use the sample in this repository.
+This repository contains a sample Magento Commerce (on-premise) version 2.2.2 instance for you to deploy in the cloud. You must have an active Magento Commerce (Cloud) user license to use the sample in this repository.
 
 The following example requires the use of [Composer](https://getcomposer.org/doc/) to load and manage dependencies and Magento vendor folders.
 
 ## Create an authorization file
 You must have an `auth.json` file in your Project root directory before you can install and update the Magento software.
 
-The `auth.json` file contains your Magento EE [authorization credentials](http://devdocs.magento.com/guides/v2.2/install-gde/prereq/connect-auth.html). Do not create a new `auth.json` file if you already have a file with your valid, authentication credentials.
+The `auth.json` file contains your Magento Commerce (on-premise) [authorization credentials](http://devdocs.magento.com/guides/v2.2/install-gde/prereq/connect-auth.html). Do not create a new `auth.json` file if you already have a file with your valid, authentication credentials.
 
 #### To create a new `auth.json` file:
 
