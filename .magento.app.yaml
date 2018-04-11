@@ -44,7 +44,9 @@ web:
                 \.(css|js|map|hbs|gif|jpe?g|png|tiff|wbmp|ico|jng|bmp|svgz|midi?|mp?ga|mp2|mp3|m4a|ra|weba|3gpp?|mp4|mpe?g|mpe|ogv|mov|webm|flv|mng|asx|asf|wmv|avi|ogx|swf|jar|ttf|eot|woff|otf|html?)$:
                     allow: true
                 /robots\.txt$:
-                    allow: true
+                    passthru: "/media/robots.txt"
+                ^/sitemap(.*)\.xml$:
+                    passthru: "/media/sitemap$1.xml"
         "/media":
             root: "pub/media"
             allow: true
