@@ -79,7 +79,7 @@ hooks:
         php ./vendor/bin/ece-tools deploy
     # We run post deploy hook to clean and warm the cache.
     post_deploy: |
-        php ./vendor/bin/ece-tools post_deploy
+        php ./vendor/bin/ece-tools post-deploy
 
 # Default Magento 2 cron jobs
 crons:
