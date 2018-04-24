@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "b3623bbd141cfb7298c9587ec97b37bb",
@@ -1283,12 +1283,12 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.10",
+            "version": "2002.0.11",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.10.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.11.0.zip",
                 "reference": null,
-                "shasum": "d07feddcd48c24dfa9637a0e76080fd15cd82d2c"
+                "shasum": "5191e0956408d857a4edb5609656fb233f463450"
             },
             "require": {
                 "composer/composer": "@stable",
@@ -1302,7 +1302,7 @@
                 "php": "^7.0",
                 "psr/container": "^1.0",
                 "psr/log": "^1.0",
-                "symfony/console": "^2.6",
+                "symfony/console": "^2.6||^4.0",
                 "symfony/yaml": "^2.3||^3.3"
             },
             "replace": {
@@ -1313,7 +1313,7 @@
                 "php-mock/php-mock-phpunit": "^2.0",
                 "phpmd/phpmd": "@stable",
                 "phpunit/php-code-coverage": "^5.2",
-                "phpunit/phpunit": "~6.2.0",
+                "phpunit/phpunit": "^6.2",
                 "squizlabs/php_codesniffer": " ^3.0"
             },
             "bin": [
