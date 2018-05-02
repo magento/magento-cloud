@@ -1,6 +1,6 @@
-# Magento 2.1.11 Magento Commerce (Cloud)
+# Magento 2.1.13 Magento Commerce (Cloud)
 
-This sample repository helps you deploy a Magento 2.1.11 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Magento Commerce (Cloud) to use the example in this repository.
+This sample repository helps you deploy a Magento 2.1.13 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Magento Commerce (Cloud) to use the example in this repository.
 
 This example is based on using the Composer to load dependencies and get the Magento vendor folders.
 
