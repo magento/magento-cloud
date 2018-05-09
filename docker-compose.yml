@@ -1,0 +1,72 @@
+version: '2'
+services:
+  fpm:
+    hostname: fpm.magento2.docker
+    image: magento/magento-cloud-docker-php:7.1-fpm
+    ports:
+      - 9000
+    links:
+      - db
+    volumes_from:
+      - appdata
+    env_file:
+      - ./docker/global.env
+      - ./docker/config.env
+
+  cli:
+    hostname: cli.magento2.docker
+    image: magento/magento-cloud-docker-php:7.1-cli
+    links:
+      - db
+    volumes:
+      - ~/.composer/cache:/root/.composer/cache
+    volumes_from:
+      - appdata
+    env_file:
+      - ./docker/global.env
+      - ./docker/config.env
+    environment:
+      - M2_SAMPLE_DATA=false
+
+  db:
+    image: mariadb:10
+    ports:
+      - 3306
+    volumes_from:
+      - dbdata
+    environment:
+      - MYSQL_ROOT_PASSWORD=magento2
+      - MYSQL_DATABASE=magento2
+      - MYSQL_USER=magento2
+      - MYSQL_PASSWORD=magento2
+
+  web:
+    image: magento/magento-cloud-docker-nginx:1.9
+    ports:
+      - "8080:80"
+    links:
+      - fpm
+      - db
+    volumes_from:
+      - appdata
+    env_file:
+      - ./docker/global.env
+      - ./docker/config.env
+#    environment:
+#      - VIRTUAL_HOST=magento2.docker
+#      - VIRTUAL_PORT=8080
+#      - HTTPS_METHOD=noredirect
+
+  appdata:
+    image: tianon/true
+    volumes:
+      - .:/var/www/magento
+      - /var/www/magento/vendor
+      - /var/www/magento/generated
+      - /var/www/magento/pub
+      - /var/www/magento/var
+
+  dbdata:
+    image: tianon/true
+    volumes:
+      - /var/lib/mysql
