@@ -2,7 +2,7 @@ version: '2'
 services:
   fpm:
     hostname: fpm.magento2.docker
-    image: shiftedreality/magento-cloud-docker-php:7.1-fpm
+    image: magento/magento-cloud-docker-php:7.1-fpm
     ports:
       - 9000
     links:
@@ -15,7 +15,7 @@ services:
 
   cli:
     hostname: cli.magento2.docker
-    image: shiftedreality/magento-cloud-docker-php:7.1-cli
+    image: magento/magento-cloud-docker-php:7.1-cli
     links:
       - db
     volumes:
@@ -26,7 +26,6 @@ services:
       - ./docker/global.env
       - ./docker/config.env
     environment:
-      - M2_CLEAN_COMPOSER=true
       - M2_SAMPLE_DATA=false
 
   db:
@@ -42,7 +41,7 @@ services:
       - MYSQL_PASSWORD=magento2
 
   web:
-    image: shiftedreality/magento-cloud-docker-nginx:1.9
+    image: magento/magento-cloud-docker-nginx:1.9
     ports:
       - "8080:80"
     links:
@@ -62,6 +61,10 @@ services:
     image: tianon/true
     volumes:
       - .:/var/www/magento
+      - /var/www/magento/vendor
+      - /var/www/magento/generated
+      - /var/www/magento/pub
+      - /var/www/magento/var
 
   dbdata:
     image: tianon/true
