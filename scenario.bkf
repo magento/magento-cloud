@@ -1,0 +1,44 @@
+scenario
+    name "Add simple product to cart"
+
+    visit url('/rest/default/V1/products-render-info/?store_id=1&currency_code=USD&search_criteria[filter_groups][0][filters][0][field]=type_id&search_criteria[filter_groups][0][filters][0][value]=simple&search_criteria[pageSize]=1&search_criteria[currentPage]=1')
+        name "Find Simple Product using API"
+        set simple_product_url json('items[0].url', body())
+        set simple_product_sku json('items[0].sku', body())
+
+    visit url(simple_product_url)
+        name "Open product"
+        expect body() matches "/Add to Cart/"
+        set add_to_cart_url css("form#product_addtocart_form").attr("action")
+        set formkey css('[name="form_key"]').attr("value")
+
+    visit url(add_to_cart_url)
+        name "Add Product to Cart"
+        method 'POST'
+        param form_key formkey
+        param qty 1
+        header "Cookie: form_key=" ~ formkey
+
+    visit url('/checkout/cart/')
+        name "Verify that product exists in Cart"
+        expect body() matches '/' ~ simple_product_sku ~ '/'
+
+    visit url('/checkout/')
+        name "Verify that product exists on Checkout Page"
+        expect body() matches '/' ~ simple_product_sku ~ '/'
+
+scenario
+    name "Search"
+
+    visit url('/rest/default/V1/products-render-info/?store_id=1&currency_code=USD&search_criteria[filter_groups][0][filters][0][field]=type_id&search_criteria[filter_groups][0][filters][0][value]=simple&search_criteria[pageSize]=1&search_criteria[currentPage]=1')
+        name "Find Simple Product using API"
+        set simple_product_name json('items[0].name', body())
+
+    visit url('/index.php/')
+        expect status_code() == 200
+
+    click css("a[href*='catalogsearch/advanced']:contains('Advanced Search')")
+
+    visit url('/catalogsearch/advanced/result/?name=' ~ simple_product_name)
+        name "Advanced Search of product by SKU"
+        expect body() matches '/' ~ simple_product_name ~ '/'
