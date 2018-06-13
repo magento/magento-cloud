@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "9fd9e36fc3564caa7f5f183e8ab841a0",
@@ -1194,12 +1194,12 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.11",
+            "version": "2002.0.12",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.11.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.12.0.zip",
                 "reference": null,
-                "shasum": "5191e0956408d857a4edb5609656fb233f463450"
+                "shasum": "a7fbf587a84c88fde87a87d08a74cd7b845d7c83"
             },
             "require": {
                 "composer/composer": "@stable",
@@ -1233,15 +1233,30 @@
                 "m2-ece-deploy",
                 "m2-ece-scd-dump"
             ],
-            "type": "library",
+            "type": "magento2-component",
+            "extra": {
+                "map": [
+                    [
+                        "dist/.magento.env.yaml",
+                        ".magento.env.yaml.dist"
+                    ],
+                    [
+                        "dist/config.env",
+                        "docker/config.env.dist"
+                    ],
+                    [
+                        "dist/global.env",
+                        "docker/global.env.dist"
+                    ]
+                ]
+            },
             "autoload": {
                 "psr-4": {
                     "Magento\\MagentoCloud\\": "src/"
                 }
             },
             "license": [
-                "OSL-3.0",
-                "AFL-3.0"
+                "proprietary"
             ],
             "description": "Provides tools to build and deploy Magento 2 Enterprise Edition"
         },
