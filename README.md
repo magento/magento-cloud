@@ -1,4 +1,4 @@
-# Magento 2.2.0 Magento Commerce (Cloud)
+# Magento 2.2.3 Magento Commerce (Cloud)
 
 This sample repository helps you deploy a Magento 2.2.0 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Magento Commerce (Cloud) to use the example in this repository.
 
