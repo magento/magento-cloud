@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "db68710c8499fb5f5c9bc2b7c1851cfa",
@@ -1194,18 +1194,18 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.12",
+            "version": "2002.0.13",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.12.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.13.0.zip",
                 "reference": null,
-                "shasum": "a7fbf587a84c88fde87a87d08a74cd7b845d7c83"
+                "shasum": "e90d5fac522a1253a29ee62ae1f124a278e56cb8"
             },
             "require": {
                 "composer/composer": "@stable",
                 "composer/semver": "^1.4",
                 "graylog2/gelf-php": "^1.4.2",
-                "guzzlehttp/guzzle": "^6.3",
+                "guzzlehttp/guzzle": "^6.2",
                 "illuminate/config": "^5.5",
                 "illuminate/container": "^5.5",
                 "illuminate/contracts": "^5.5",
@@ -1241,12 +1241,12 @@
                         ".magento.env.yaml.dist"
                     ],
                     [
-                        "dist/config.env",
-                        "docker/config.env.dist"
+                        "dist/docker/config.php",
+                        "docker/config.php.dist"
                     ],
                     [
-                        "dist/global.env",
-                        "docker/global.env.dist"
+                        "dist/docker/global.php",
+                        "docker/global.php.dist"
                     ]
                 ]
             },
@@ -1531,12 +1531,6 @@
         {
             "name": "magento/magento-cloud-metapackage",
             "version": "2.1.4-p1",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-metapackage/magento-magento-cloud-metapackage-2.1.4.0-patch1.zip",
-                "reference": null,
-                "shasum": "432e10459bf1ca3bf6861c5b6cce05bfcb109221"
-            },
             "require": {
                 "magento/ece-tools": "~2002.0.9",
                 "magento/product-enterprise-edition": "2.1.4"
@@ -8627,12 +8621,6 @@
         {
             "name": "magento/product-community-edition",
             "version": "2.1.4",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/product-community-edition/magento-product-community-edition-2.1.4.0.zip",
-                "reference": null,
-                "shasum": "165bb890c3f671fd4f60df15878549b21ef4c5ef"
-            },
             "require": {
                 "braintree/braintree_php": "3.7.0",
                 "colinmollenhour/cache-backend-file": "1.4",
@@ -8817,12 +8805,6 @@
         {
             "name": "magento/product-enterprise-edition",
             "version": "2.1.4",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/product-enterprise-edition/magento-product-enterprise-edition-2.1.4.0.zip",
-                "reference": null,
-                "shasum": "bdbcc01aa652134bd28c40268ef75565c443f822"
-            },
             "require": {
                 "braintree/braintree_php": "3.7.0",
                 "colinmollenhour/cache-backend-file": "1.4",
