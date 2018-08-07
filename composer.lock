@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "148747caae4645033b5f34adea8eaf12",
@@ -1194,18 +1194,18 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.12",
+            "version": "2002.0.13",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.12.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.13.0.zip",
                 "reference": null,
-                "shasum": "a7fbf587a84c88fde87a87d08a74cd7b845d7c83"
+                "shasum": "e90d5fac522a1253a29ee62ae1f124a278e56cb8"
             },
             "require": {
                 "composer/composer": "@stable",
                 "composer/semver": "^1.4",
                 "graylog2/gelf-php": "^1.4.2",
-                "guzzlehttp/guzzle": "^6.3",
+                "guzzlehttp/guzzle": "^6.2",
                 "illuminate/config": "^5.5",
                 "illuminate/container": "^5.5",
                 "illuminate/contracts": "^5.5",
@@ -1241,12 +1241,12 @@
                         ".magento.env.yaml.dist"
                     ],
                     [
-                        "dist/config.env",
-                        "docker/config.env.dist"
+                        "dist/docker/config.php",
+                        "docker/config.php.dist"
                     ],
                     [
-                        "dist/global.env",
-                        "docker/global.env.dist"
+                        "dist/docker/global.php",
+                        "docker/global.php.dist"
                     ]
                 ]
             },
