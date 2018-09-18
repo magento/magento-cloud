@@ -1,4 +1,4 @@
-# Magento 2.1.14 Magento Commerce (Cloud)
+# Magento 2.1.15 Magento Commerce (Cloud)
 
 This sample repository helps you deploy a Magento 2.1.14 Enterprise Edition (EE) instance in the cloud. You must be a licensed user of Magento Magento Commerce (Cloud) to use the example in this repository.
 
