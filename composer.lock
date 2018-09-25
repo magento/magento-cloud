@@ -1232,16 +1232,17 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.13",
+            "version": "2002.0.14",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.13.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.14.0.zip",
                 "reference": null,
-                "shasum": "e90d5fac522a1253a29ee62ae1f124a278e56cb8"
+                "shasum": "2d5f9dd9a85ca63d850657c66177eab82f675306"
             },
             "require": {
                 "composer/composer": "@stable",
                 "composer/semver": "^1.4",
+                "ext-json": "*",
                 "graylog2/gelf-php": "^1.4.2",
                 "guzzlehttp/guzzle": "^6.2",
                 "illuminate/config": "^5.5",
@@ -1569,6 +1570,12 @@
         {
             "name": "magento/magento-cloud-metapackage",
             "version": "2.1.5-p2",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-metapackage/magento-magento-cloud-metapackage-2.1.5.0-patch2.zip",
+                "reference": null,
+                "shasum": "f1a354b93da87c92aa3b10454c377e0950e42b29"
+            },
             "require": {
                 "fastly/magento2": "^1.2.34",
                 "magento/ece-tools": "~2002.0.9",
@@ -8660,6 +8667,12 @@
         {
             "name": "magento/product-community-edition",
             "version": "2.1.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/product-community-edition/magento-product-community-edition-2.1.5.0.zip",
+                "reference": null,
+                "shasum": "90fffc5c853ea481a425d814da580de915e9efd0"
+            },
             "require": {
                 "braintree/braintree_php": "3.7.0",
                 "colinmollenhour/cache-backend-file": "1.4",
@@ -8844,6 +8857,12 @@
         {
             "name": "magento/product-enterprise-edition",
             "version": "2.1.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/product-enterprise-edition/magento-product-enterprise-edition-2.1.5.0.zip",
+                "reference": null,
+                "shasum": "db36b5b9bd7d9d704b1aa8503c4a4da8b2f022a7"
+            },
             "require": {
                 "braintree/braintree_php": "3.7.0",
                 "colinmollenhour/cache-backend-file": "1.4",
