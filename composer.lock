@@ -8,70 +8,111 @@
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
-            "version": "2.0.12",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/amzn/amazon-pay-and-login-magento-2-module/amzn-amazon-pay-and-login-magento-2-module-2.0.12.0.zip",
-                "reference": null,
-                "shasum": "0fd50d162bf057068880114b756d33f27f5f8fcc"
-            },
+            "version": "2.1.1",
             "require": {
-                "amzn/amazon-pay-sdk-php": "^3.2.0",
-                "magento/framework": "^100.1.0|^101.0.4",
-                "magento/module-backend": "^100.1.0|100.2.4",
-                "magento/module-checkout": "^100.1.0|^100.2.4",
-                "magento/module-config": "^100.1.0|^101.0.4",
-                "magento/module-customer": "^100.1.0|^101.0.4",
-                "magento/module-developer": "^100.1.0|^100.2.2",
-                "magento/module-eav": "^100.1.0|^101.0.3",
-                "magento/module-payment": "^100.1.0|^100.2.2",
-                "magento/module-quote": "^100.1.0|^101.0.3",
-                "magento/module-sales": "^100.1.0|^101.0.3",
-                "magento/module-store": "^100.1.0|^100.2.3",
-                "php": "~7.0.13|~7.1.0"
+                "amzn/amazon-pay-and-login-with-amazon-core-module": "2.1.1",
+                "amzn/amazon-pay-module": "2.1.1",
+                "amzn/login-with-amazon-module": "2.1.1"
             },
-            "require-dev": {
-                "behat/behat": "^3.1.0",
-                "behat/mink": "^1.7.1",
-                "behat/mink-extension": "^2.2",
-                "behat/mink-goutte-driver": "^1.2.1",
-                "behat/mink-selenium2-driver": "^1.3.1",
-                "bex/behat-magento2-init": "dev-master",
-                "ciaranmcnulty/behat-stepthroughextension": "dev-master",
-                "guzzlehttp/guzzle": "^6.2.0",
-                "phpunit/phpunit": "4.1.0",
-                "sensiolabs/behat-page-object-extension": "^2.0.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "src/Core/registration.php",
-                    "src/Login/registration.php",
-                    "src/Payment/registration.php"
-                ],
-                "psr-4": {
-                    "Amazon\\Core\\": "src/Core",
-                    "Amazon\\Login\\": "src/Login",
-                    "Amazon\\Payment\\": "src/Payment"
-                }
-            },
+            "type": "metapackage",
             "license": [
                 "Apache-2.0"
             ],
             "description": "Official Magento2 Plugin to integrate with Amazon Pay and Login with Amazon"
         },
         {
+            "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
+            "version": "2.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/amzn/amazon-pay-and-login-with-amazon-core-module/amzn-amazon-pay-and-login-with-amazon-core-module-2.1.1.0.zip",
+                "reference": null,
+                "shasum": "2490a8488ea3d84de00446dae8ee8c8bf61147c5"
+            },
+            "require": {
+                "amzn/amazon-pay-sdk-php": "^3.2.0",
+                "magento/framework": "*",
+                "magento/module-backend": "*",
+                "magento/module-catalog": "*",
+                "magento/module-checkout": "*",
+                "magento/module-config": "*",
+                "magento/module-customer": "*",
+                "magento/module-developer": "*",
+                "magento/module-payment": "*",
+                "magento/module-paypal": "*",
+                "magento/module-quote": "*",
+                "magento/module-store": "*",
+                "php": "~7.1.3||~7.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amazon\\Core\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Shared functionality for Amazon Pay and Login with Amazon modules"
+        },
+        {
+            "name": "amzn/amazon-pay-module",
+            "version": "2.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/amzn/amazon-pay-module/amzn-amazon-pay-module-2.1.1.0.zip",
+                "reference": null,
+                "shasum": "99fa81838faecf11d565d045599651dcf76b2a49"
+            },
+            "require": {
+                "amzn/amazon-pay-and-login-with-amazon-core-module": "^2.1.0",
+                "amzn/login-with-amazon-module": "^2.1.0",
+                "magento/module-backend": "*",
+                "magento/module-catalog": "*",
+                "magento/module-checkout": "*",
+                "magento/module-directory": "*",
+                "magento/module-eav": "*",
+                "magento/module-payment": "*",
+                "magento/module-paypal": "*",
+                "magento/module-quote": "*",
+                "magento/module-sales": "*",
+                "magento/module-store": "*",
+                "php": "~7.1.3||~7.2.0"
+            },
+            "suggest": {
+                "magento/module-customer": "*",
+                "magento/module-scalable-checkout": "*",
+                "magento/module-scalable-oms": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amazon\\Payment\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Amazon Pay module"
+        },
+        {
             "name": "amzn/amazon-pay-sdk-php",
-            "version": "3.3.1",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amzn/amazon-pay-sdk-php.git",
-                "reference": "5dfe16a4756af1d9f69862e79fae91f42b105869"
+                "reference": "77f494f164be8d5b189fe01ba08c503e89cc5e86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amzn/amazon-pay-sdk-php/zipball/5dfe16a4756af1d9f69862e79fae91f42b105869",
-                "reference": "5dfe16a4756af1d9f69862e79fae91f42b105869",
+                "url": "https://api.github.com/repos/amzn/amazon-pay-sdk-php/zipball/77f494f164be8d5b189fe01ba08c503e89cc5e86",
+                "reference": "77f494f164be8d5b189fe01ba08c503e89cc5e86",
                 "shasum": ""
             },
             "require": {
@@ -108,7 +149,42 @@
                 "payment",
                 "payments"
             ],
-            "time": "2018-05-03T18:01:33+00:00"
+            "time": "2018-08-31T15:51:31+00:00"
+        },
+        {
+            "name": "amzn/login-with-amazon-module",
+            "version": "2.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/amzn/login-with-amazon-module/amzn-login-with-amazon-module-2.1.1.0.zip",
+                "reference": null,
+                "shasum": "ff551d088381f3876fe29e23c82eb412d2f5ac47"
+            },
+            "require": {
+                "amzn/amazon-pay-and-login-with-amazon-core-module": "^2.1.0",
+                "magento/module-checkout": "*",
+                "magento/module-checkout-agreements": "*",
+                "magento/module-customer": "*",
+                "magento/module-eav": "*",
+                "magento/module-store": "*",
+                "php": "~7.1.3||~7.2.0"
+            },
+            "suggest": {
+                "magento/module-sales": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amazon\\Login\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Login with Amazon module"
         },
         {
             "name": "braintree/braintree_php",
@@ -308,16 +384,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169"
+                "reference": "46afded9720f40b9dc63542af4e3e43a1177acb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/d2c0a83b7533d6912e8d516756ebd34f893e9169",
-                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/46afded9720f40b9dc63542af4e3e43a1177acb0",
+                "reference": "46afded9720f40b9dc63542af4e3e43a1177acb0",
                 "shasum": ""
             },
             "require": {
@@ -360,7 +436,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2018-03-29T19:57:20+00:00"
+            "time": "2018-08-08T08:57:40+00:00"
         },
         {
             "name": "composer/composer",
@@ -662,12 +738,12 @@
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension/dotmailer-dotmailer-magento2-extension-2.5.0.0.zip",
+                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension/dotmailer-dotmailer-magento2-extension-2.6.0.0.zip",
                 "reference": null,
-                "shasum": "7a1c72694c12b2011faf02ef580e3026d6d0fda3"
+                "shasum": "1428684ac190869481716ec499796fffe4d75d9b"
             },
             "require": {
                 "magento/framework": ">=100 <102",
@@ -688,13 +764,11 @@
                 "magento/module-quote": ">=100 <102",
                 "magento/module-reports": "100.*",
                 "magento/module-review": "100.*",
-                "magento/module-rule": "100.*",
                 "magento/module-sales": ">=100 <102",
                 "magento/module-sales-rule": ">=100 <102",
                 "magento/module-send-friend": "100.*",
                 "magento/module-shipping": "100.*",
                 "magento/module-store": "100.*",
-                "magento/module-theme": "100.*",
                 "magento/module-ui": ">=100 <102",
                 "magento/module-user": ">=100 <102",
                 "magento/module-wishlist": ">=100 <102"
@@ -789,16 +863,16 @@
         },
         {
             "name": "fastly/magento2",
-            "version": "1.2.61",
+            "version": "1.2.68",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fastly/fastly-magento2.git",
-                "reference": "bfc4b544861b7bcffad77c40ae7b90a65802687d"
+                "reference": "b31771e800620333a4ad81e1d8da4ba3e2deb9cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/bfc4b544861b7bcffad77c40ae7b90a65802687d",
-                "reference": "bfc4b544861b7bcffad77c40ae7b90a65802687d",
+                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/b31771e800620333a4ad81e1d8da4ba3e2deb9cc",
+                "reference": "b31771e800620333a4ad81e1d8da4ba3e2deb9cc",
                 "shasum": ""
             },
             "require": {
@@ -823,7 +897,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Fastly CDN Module for Magento 2.x",
-            "time": "2018-07-19T15:47:23+00:00"
+            "time": "2018-09-20T18:09:16+00:00"
         },
         {
             "name": "graylog2/gelf-php",
@@ -1165,27 +1239,27 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v5.6.29",
+            "version": "v5.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
-                "reference": "e8158dff3189deed846c84c66c60fa68c21ee579"
+                "reference": "3cc6f07804b0a349c81b6479765a0bb58050fea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/config/zipball/e8158dff3189deed846c84c66c60fa68c21ee579",
-                "reference": "e8158dff3189deed846c84c66c60fa68c21ee579",
+                "url": "https://api.github.com/repos/illuminate/config/zipball/3cc6f07804b0a349c81b6479765a0bb58050fea0",
+                "reference": "3cc6f07804b0a349c81b6479765a0bb58050fea0",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "5.6.*",
-                "illuminate/support": "5.6.*",
+                "illuminate/contracts": "5.7.*",
+                "illuminate/support": "5.7.*",
                 "php": "^7.1.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.6-dev"
+                    "dev-master": "5.7-dev"
                 }
             },
             "autoload": {
@@ -1205,31 +1279,31 @@
             ],
             "description": "The Illuminate Config package.",
             "homepage": "https://laravel.com",
-            "time": "2017-11-07T20:23:51+00:00"
+            "time": "2018-01-04T20:39:14+00:00"
         },
         {
             "name": "illuminate/container",
-            "version": "v5.6.29",
+            "version": "v5.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "1f0757cae8749400aeda730f6438a081fc3c082d"
+                "reference": "0fc33b14ae6cf9a1e694fd43f2a274e590a824b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/1f0757cae8749400aeda730f6438a081fc3c082d",
-                "reference": "1f0757cae8749400aeda730f6438a081fc3c082d",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/0fc33b14ae6cf9a1e694fd43f2a274e590a824b2",
+                "reference": "0fc33b14ae6cf9a1e694fd43f2a274e590a824b2",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "5.6.*",
+                "illuminate/contracts": "5.7.*",
                 "php": "^7.1.3",
-                "psr/container": "~1.0"
+                "psr/container": "^1.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.6-dev"
+                    "dev-master": "5.7-dev"
                 }
             },
             "autoload": {
@@ -1249,31 +1323,31 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "https://laravel.com",
-            "time": "2018-05-24T13:16:56+00:00"
+            "time": "2018-05-28T08:50:10+00:00"
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.6.29",
+            "version": "v5.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "3dc639feabe0f302f574157a782ede323881a944"
+                "reference": "2daf3c078610f744e2a4dc2f44fb5060cce9835b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/3dc639feabe0f302f574157a782ede323881a944",
-                "reference": "3dc639feabe0f302f574157a782ede323881a944",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/2daf3c078610f744e2a4dc2f44fb5060cce9835b",
+                "reference": "2daf3c078610f744e2a4dc2f44fb5060cce9835b",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
-                "psr/container": "~1.0",
-                "psr/simple-cache": "~1.0"
+                "psr/container": "^1.0",
+                "psr/simple-cache": "^1.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.6-dev"
+                    "dev-master": "5.7-dev"
                 }
             },
             "autoload": {
@@ -1293,42 +1367,43 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2018-05-11T23:38:58+00:00"
+            "time": "2018-09-18T12:50:05+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "v5.6.29",
+            "version": "v5.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "c684cb5e77e213020f7a4ed213d94b2b384c2951"
+                "reference": "f7c68e8c8aab200cc8ad84f974d5511cda58a742"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/c684cb5e77e213020f7a4ed213d94b2b384c2951",
-                "reference": "c684cb5e77e213020f7a4ed213d94b2b384c2951",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/f7c68e8c8aab200cc8ad84f974d5511cda58a742",
+                "reference": "f7c68e8c8aab200cc8ad84f974d5511cda58a742",
                 "shasum": ""
             },
             "require": {
-                "doctrine/inflector": "~1.1",
+                "doctrine/inflector": "^1.1",
                 "ext-mbstring": "*",
-                "illuminate/contracts": "5.6.*",
-                "nesbot/carbon": "^1.24.1",
+                "illuminate/contracts": "5.7.*",
+                "nesbot/carbon": "^1.26.3",
                 "php": "^7.1.3"
             },
             "conflict": {
                 "tightenco/collect": "<5.5.33"
             },
             "suggest": {
-                "illuminate/filesystem": "Required to use the composer class (5.6.*).",
+                "illuminate/filesystem": "Required to use the composer class (5.7.*).",
+                "moontoast/math": "Required to use ordered UUIDs (^1.1).",
                 "ramsey/uuid": "Required to use Str::uuid() (^3.7).",
-                "symfony/process": "Required to use the composer class (~4.0).",
-                "symfony/var-dumper": "Required to use the dd function (~4.0)."
+                "symfony/process": "Required to use the composer class (^4.1).",
+                "symfony/var-dumper": "Required to use the dd function (^4.1)."
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.6-dev"
+                    "dev-master": "5.7-dev"
                 }
             },
             "autoload": {
@@ -1351,7 +1426,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2018-07-26T15:32:11+00:00"
+            "time": "2018-09-19T18:36:57+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -1421,12 +1496,12 @@
         },
         {
             "name": "klarna/module-core",
-            "version": "4.2.3",
+            "version": "4.4.5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/klarna/module-core/klarna-module-core-4.2.3.0.zip",
+                "url": "https://repo.magento.com/archives/klarna/module-core/klarna-module-core-4.4.5.0.zip",
                 "reference": null,
-                "shasum": "df6b76c353c85e24be2374a51913736eb208e088"
+                "shasum": "8de97e8aded0fa3877dce75333062dc7e4bbe59c"
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.0",
@@ -1437,7 +1512,6 @@
                 "magento/module-customer": "^101.0",
                 "magento/module-directory": "^100.1",
                 "magento/module-payment": "^100.2",
-                "magento/module-paypal": "^100.2",
                 "magento/module-quote": "^101.0",
                 "magento/module-sales": "^101.0",
                 "magento/module-store": "^100.1",
@@ -1495,12 +1569,12 @@
         },
         {
             "name": "klarna/module-kp",
-            "version": "5.2.3",
+            "version": "5.4.4",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/klarna/module-kp/klarna-module-kp-5.2.3.0.zip",
+                "url": "https://repo.magento.com/archives/klarna/module-kp/klarna-module-kp-5.4.4.0.zip",
                 "reference": null,
-                "shasum": "1140b2c58ddf7915e54a808aff9bdf866192387d"
+                "shasum": "b051efe127ae6210925b2b9c82213c528cc0d900"
             },
             "require": {
                 "klarna/module-core": "^4.0",
@@ -1555,18 +1629,26 @@
                 {
                     "name": "Jason Grim",
                     "email": "jason.grim@klarna.com"
+                },
+                {
+                    "name": "Fei Chen",
+                    "email": "fei.chen@klarna.com"
+                },
+                {
+                    "name": "Dario Kassler",
+                    "email": "dario.kassler@klarna.com"
                 }
             ],
             "description": "Klarna Payments Magento 2 Extension"
         },
         {
             "name": "klarna/module-ordermanagement",
-            "version": "4.1.3",
+            "version": "4.3.4",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/klarna/module-ordermanagement/klarna-module-ordermanagement-4.1.3.0.zip",
+                "url": "https://repo.magento.com/archives/klarna/module-ordermanagement/klarna-module-ordermanagement-4.3.4.0.zip",
                 "reference": null,
-                "shasum": "7ddd04f8d505065e379a18790699a713aef5bf2a"
+                "shasum": "21338571a9a6658a164b00d4ace007d6b61eccc1"
             },
             "require": {
                 "klarna/module-core": "^4.0",
@@ -1576,9 +1658,6 @@
                 "magento/module-sales": "^100.1||^101.0",
                 "magento/module-store": "^100.1",
                 "php": "^5.6|~7.0.13|~7.1.0"
-            },
-            "replace": {
-                "klarna/module-om": "*"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "~2.1.1",
@@ -1617,6 +1696,14 @@
                 {
                     "name": "Jason Grim",
                     "email": "jason.grim@klarna.com"
+                },
+                {
+                    "name": "Fei Chen",
+                    "email": "fei.chen@klarna.com"
+                },
+                {
+                    "name": "Dario Kassler",
+                    "email": "dario.kassler@klarna.com"
                 }
             ],
             "description": "Klarna Order Management Magento 2 Extension"
@@ -1652,16 +1739,17 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.13",
+            "version": "2002.0.14",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.13.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.14.0.zip",
                 "reference": null,
-                "shasum": "e90d5fac522a1253a29ee62ae1f124a278e56cb8"
+                "shasum": "2d5f9dd9a85ca63d850657c66177eab82f675306"
             },
             "require": {
                 "composer/composer": "@stable",
                 "composer/semver": "^1.4",
+                "ext-json": "*",
                 "graylog2/gelf-php": "^1.4.2",
                 "guzzlehttp/guzzle": "^6.2",
                 "illuminate/config": "^5.5",
@@ -2059,12 +2147,6 @@
         {
             "name": "magento/magento-cloud-metapackage",
             "version": "2.2.5",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-metapackage/magento-magento-cloud-metapackage-2.2.5.0.zip",
-                "reference": null,
-                "shasum": "a8da27eedab25f88c572b92bb178163e94e6f912"
-            },
             "require": {
                 "fastly/magento2": "^1.2.34",
                 "magento/ece-tools": "~2002.0.11",
@@ -9791,12 +9873,6 @@
         {
             "name": "magento/product-community-edition",
             "version": "2.2.5",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/product-community-edition/magento-product-community-edition-2.2.5.0.zip",
-                "reference": null,
-                "shasum": "fc909c5310bf5c43719bb59ae2c73b06f4d92742"
-            },
             "require": {
                 "amzn/amazon-pay-and-login-magento-2-module": "^2.0.4",
                 "braintree/braintree_php": "3.28.0",
@@ -10007,12 +10083,6 @@
         {
             "name": "magento/product-enterprise-edition",
             "version": "2.2.5",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/product-enterprise-edition/magento-product-enterprise-edition-2.2.5.0.zip",
-                "reference": null,
-                "shasum": "85467f0f65bef4769f176d8ace65b351885153a0"
-            },
             "require": {
                 "amzn/amazon-pay-and-login-magento-2-module": "^2.0.4",
                 "braintree/braintree_php": "3.28.0",
@@ -10382,16 +10452,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.33.0",
+            "version": "1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "55667c1007a99e82030874b1bb14d24d07108413"
+                "reference": "1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/55667c1007a99e82030874b1bb14d24d07108413",
-                "reference": "55667c1007a99e82030874b1bb14d24d07108413",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33",
+                "reference": "1dbd3cb01c5645f3e7deda7aa46ef780d95fcc33",
                 "shasum": ""
             },
             "require": {
@@ -10433,7 +10503,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-08-07T08:39:47+00:00"
+            "time": "2018-09-20T19:36:25+00:00"
         },
         {
             "name": "oyejorge/less.php",
@@ -11306,7 +11376,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.44",
+            "version": "v2.8.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -11424,7 +11494,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.44",
+            "version": "v2.8.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -11484,16 +11554,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "a59f917e3c5d82332514cb4538387638f5bde2d6"
+                "reference": "285ce5005cb01a0aeaa5b0cf590bd0cc40bb631c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a59f917e3c5d82332514cb4538387638f5bde2d6",
-                "reference": "a59f917e3c5d82332514cb4538387638f5bde2d6",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/285ce5005cb01a0aeaa5b0cf590bd0cc40bb631c",
+                "reference": "285ce5005cb01a0aeaa5b0cf590bd0cc40bb631c",
                 "shasum": ""
             },
             "require": {
@@ -11530,11 +11600,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:19:56+00:00"
+            "time": "2018-08-10T07:29:05+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -11700,16 +11770,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.8.44",
+            "version": "v2.8.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "cc83afdb5ac99147806b3bb65a3ff1227664f596"
+                "reference": "4be278e19064c3492095de50c9e375caae569ae1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/cc83afdb5ac99147806b3bb65a3ff1227664f596",
-                "reference": "cc83afdb5ac99147806b3bb65a3ff1227664f596",
+                "url": "https://api.github.com/repos/symfony/process/zipball/4be278e19064c3492095de50c9e375caae569ae1",
+                "reference": "4be278e19064c3492095de50c9e375caae569ae1",
                 "shasum": ""
             },
             "require": {
@@ -11745,7 +11815,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:13:39+00:00"
+            "time": "2018-08-03T09:45:57+00:00"
         },
         {
             "name": "symfony/translation",
@@ -11869,16 +11939,16 @@
         },
         {
             "name": "tedivm/jshrink",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tedious/JShrink.git",
-                "reference": "68ce379b213741e86f02bf6053b0d26b9f833448"
+                "reference": "21254058dc3ce6aba6bef458cff4bfa25cf8b198"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tedious/JShrink/zipball/68ce379b213741e86f02bf6053b0d26b9f833448",
-                "reference": "68ce379b213741e86f02bf6053b0d26b9f833448",
+                "url": "https://api.github.com/repos/tedious/JShrink/zipball/21254058dc3ce6aba6bef458cff4bfa25cf8b198",
+                "reference": "21254058dc3ce6aba6bef458cff4bfa25cf8b198",
                 "shasum": ""
             },
             "require": {
@@ -11911,16 +11981,16 @@
                 "javascript",
                 "minifier"
             ],
-            "time": "2017-12-08T00:59:56+00:00"
+            "time": "2018-09-16T00:02:51+00:00"
         },
         {
             "name": "temando/module-shipping-m2",
-            "version": "1.2.7",
+            "version": "1.3.3",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/temando/module-shipping-m2/temando-module-shipping-m2-1.2.7.0.zip",
+                "url": "https://repo.magento.com/archives/temando/module-shipping-m2/temando-module-shipping-m2-1.3.3.0.zip",
                 "reference": null,
-                "shasum": "bb8fbe0cdca9498ac65bf91fa282e8a59e62fe74"
+                "shasum": "d5a32204f4384c79e02bc03f8a39886d009b15e8"
             },
             "require": {
                 "magento/framework": "^101.0.0",
@@ -12021,12 +12091,12 @@
         },
         {
             "name": "vertex/module-tax",
-            "version": "2.1.8",
+            "version": "2.1.10",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/vertex/module-tax/vertex-module-tax-2.1.8.0.zip",
+                "url": "https://repo.magento.com/archives/vertex/module-tax/vertex-module-tax-2.1.10.0.zip",
                 "reference": null,
-                "shasum": "8364f8157551026541e411dc024e16574765990c"
+                "shasum": "bfcc47f86bf85839d4f6e69027e9269db4912a78"
             },
             "require": {
                 "ext-simplexml": "*",
@@ -12042,11 +12112,11 @@
                 "magento/module-sales": "^100.0.2|^101.0.0",
                 "magento/module-shipping": "^100.0.2",
                 "magento/module-store": "^100.0.2",
-                "magento/module-tax": "<=100.2.5",
+                "magento/module-tax": "<100.3.0",
                 "php": "^5.5.22|^7.0"
             },
             "conflict": {
-                "magento/module-gift-wrapping": ">101.0.3",
+                "magento/module-gift-wrapping": ">=101.1.0",
                 "pixafy/tax": "*",
                 "pixafy/tax-ee": "*",
                 "vertex/tax": "*",
@@ -12460,16 +12530,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.8.4",
+            "version": "1.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "736ffa7c2bfa4a60e8a10acb316fa2ac456c5fba"
+                "reference": "20da13beba0dde8fb648be3cc19765732790f46e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/736ffa7c2bfa4a60e8a10acb316fa2ac456c5fba",
-                "reference": "736ffa7c2bfa4a60e8a10acb316fa2ac456c5fba",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/20da13beba0dde8fb648be3cc19765732790f46e",
+                "reference": "20da13beba0dde8fb648be3cc19765732790f46e",
                 "shasum": ""
             },
             "require": {
@@ -12482,6 +12552,7 @@
             "require-dev": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
+                "php-http/psr7-integration-tests": "dev-master",
                 "phpunit/phpunit": "^5.7.16 || ^6.0.8 || ^7.2.7",
                 "zendframework/zend-coding-standard": "~1.0"
             },
@@ -12519,7 +12590,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2018-08-01T13:47:49+00:00"
+            "time": "2018-09-05T19:29:37+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -12756,16 +12827,16 @@
         },
         {
             "name": "zendframework/zend-http",
-            "version": "2.8.1",
+            "version": "2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
-                "reference": "44197164a270259116162a442f639085ea24094a"
+                "reference": "2c8aed3d25522618573194e7cc51351f8cd4a45b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-http/zipball/44197164a270259116162a442f639085ea24094a",
-                "reference": "44197164a270259116162a442f639085ea24094a",
+                "url": "https://api.github.com/repos/zendframework/zend-http/zipball/2c8aed3d25522618573194e7cc51351f8cd4a45b",
+                "reference": "2c8aed3d25522618573194e7cc51351f8cd4a45b",
                 "shasum": ""
             },
             "require": {
@@ -12807,7 +12878,7 @@
                 "zend",
                 "zf"
             ],
-            "time": "2018-08-01T13:50:48+00:00"
+            "time": "2018-08-13T18:47:03+00:00"
         },
         {
             "name": "zendframework/zend-hydrator",
