@@ -51,11 +51,13 @@ web:
             root: "pub/media"
             allow: true
             scripts: false
+            expires: 1y
             passthru: "/get.php"
         "/static":
             root: "pub/static"
             allow: true
             scripts: false
+            expires: 1y
             passthru: "/front-static.php"
             rules:
                 ^/static/version\d+/(?<resource>.*)$:
