@@ -18,6 +18,7 @@ runtime:
         - xsl
         - json
         - blackfire
+        - newrelic
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -51,11 +52,13 @@ web:
             root: "pub/media"
             allow: true
             scripts: false
+            expires: 1y
             passthru: "/get.php"
         "/static":
             root: "pub/static"
             allow: true
             scripts: false
+            expires: 1y
             passthru: "/front-static.php"
             rules:
                 ^/static/version\d+/(?<resource>.*)$:
