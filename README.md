@@ -45,7 +45,6 @@ The following is a list of the specific files required for this example to work 
         /routes.yaml
         /services.yaml
 .magento.app.yaml
-auth.json
 composer.json
 magento-vars.php
 php.ini
