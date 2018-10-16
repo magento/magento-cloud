@@ -52,7 +52,7 @@ php.ini
 
 -  `.magento/routes.yaml`—redirects `www` to the naked domain and `php` application to serve HTTP.
 -  `.magento/services.yaml`—sets up a MySQL instance, including Redis and ElasticSearch. 
--  `composer.json`—fetches the Magento Enterprise Edition and configuration scripts to prepare your application.
+-  `composer.json`—fetches the Magento Commerce version and configuration scripts to prepare your application.
 
 ## Developer documentation
 See the [Magento Commerce Cloud Guide](http://devdocs.magento.com/guides/v2.2/cloud/bk-cloud.html).
