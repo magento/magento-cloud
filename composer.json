@@ -16,9 +16,6 @@
     "require": {
         "magento/magento-cloud-metapackage": ">=2.2.5 <2.2.6"
     },
-    "config": {
-        "use-include-path": true
-    },
     "autoload": {
         "psr-4": {
             "Magento\\Framework\\": "lib/internal/Magento/Framework/",
@@ -30,6 +27,11 @@
         },
         "files": [
             "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
         ]
     },
     "autoload-dev": {
