@@ -1232,17 +1232,18 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.14",
+            "version": "2002.0.15",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.14.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.15.0.zip",
                 "reference": null,
-                "shasum": "2d5f9dd9a85ca63d850657c66177eab82f675306"
+                "shasum": "5bc50df8ab5ac63a1e16319db9ec7246fe3307c3"
             },
             "require": {
                 "composer/composer": "@stable",
                 "composer/semver": "^1.4",
                 "ext-json": "*",
+                "ext-pdo": "*",
                 "graylog2/gelf-php": "^1.4.2",
                 "guzzlehttp/guzzle": "^6.2",
                 "illuminate/config": "^5.5",
@@ -1253,7 +1254,8 @@
                 "psr/container": "^1.0",
                 "psr/log": "^1.0",
                 "symfony/console": "^2.6||^4.0",
-                "symfony/yaml": "^2.3||^3.3"
+                "symfony/yaml": "^2.3||^3.3",
+                "twig/twig": "^1.0||^2.0"
             },
             "replace": {
                 "magento/ece-patches": "*",
@@ -1278,6 +1280,18 @@
                     [
                         "dist/.magento.env.yaml",
                         ".magento.env.yaml.dist"
+                    ],
+                    [
+                        "dist/Makefile",
+                        "Makefile"
+                    ],
+                    [
+                        "dist/docker/mnt",
+                        "docker/mnt"
+                    ],
+                    [
+                        "dist/docker/mysql",
+                        "docker/mysql"
                     ],
                     [
                         "dist/docker/config.php",
@@ -10658,6 +10672,73 @@
                 "yui"
             ],
             "time": "2014-09-22T08:08:50+00:00"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "6a5f676b77a90823c2d4eaf76137b771adf31323"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/6a5f676b77a90823c2d4eaf76137b771adf31323",
+                "reference": "6a5f676b77a90823c2d4eaf76137b771adf31323",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "symfony/polyfill-ctype": "^1.8",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "psr/container": "^1.0",
+                "symfony/debug": "^2.7",
+                "symfony/phpunit-bridge": "^3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "https://twig.symfony.com/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "https://twig.symfony.com",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2018-07-13T07:18:09+00:00"
         },
         {
             "name": "zendframework/zend-code",
