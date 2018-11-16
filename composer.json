@@ -18,12 +18,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\Setup\\": "setup/src/Magento/Setup/",
             "Magento\\": "app/code/Magento/"
         },
         "psr-0": {
-            "": "app/code/"
+            "": [
+                "app/code/",
+                "generated/code/"
+            ]
         },
         "files": [
             "app/etc/NonComposerComponentRegistration.php"
