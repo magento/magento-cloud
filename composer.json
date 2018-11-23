@@ -16,20 +16,24 @@
     "require": {
         "magento/magento-cloud-metapackage": ">=2.2.3 <2.2.4"
     },
-    "config": {
-        "use-include-path": true
-    },
     "autoload": {
         "psr-4": {
-            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\Setup\\": "setup/src/Magento/Setup/",
             "Magento\\": "app/code/Magento/"
         },
         "psr-0": {
-            "": "app/code/"
+            "": [
+                "app/code/",
+                "generated/code/"
+            ]
         },
         "files": [
             "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
         ]
     },
     "autoload-dev": {
