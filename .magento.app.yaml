@@ -6,14 +6,13 @@
 name: mymagento
 
 # The toolstack used to build the application.
-type: php:7.1
+type: php:7.2
 build:
     flavor: composer
 
 # Enable extensions required by Magento 2
 runtime:
     extensions:
-        - mcrypt
         - redis
         - xsl
         - json
