@@ -2,7 +2,7 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.2.6",
+    "version": "2.3.0",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
@@ -14,22 +14,27 @@
         }
     },
     "require": {
-        "magento/magento-cloud-metapackage": ">=2.2.6 <2.2.7"
-    },
-    "config": {
-        "use-include-path": true
+        "magento/magento-cloud-metapackage": ">=2.3.0 <2.3.1"
     },
     "autoload": {
         "psr-4": {
-            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\Setup\\": "setup/src/Magento/Setup/",
-            "Magento\\": "app/code/Magento/"
+            "Magento\\": "app/code/Magento/",
+            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
         },
         "psr-0": {
-            "": "app/code/"
+            "": [
+                "app/code/",
+                "generated/code/"
+            ]
         },
         "files": [
             "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
         ]
     },
     "autoload-dev": {
@@ -48,3 +53,4 @@
         "magento-deploystrategy": "copy"
     }
 }
+
