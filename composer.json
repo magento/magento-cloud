@@ -7,6 +7,10 @@
         "OSL-3.0",
         "AFL-3.0"
     ],
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
     "repositories": {
         "repo": {
             "type": "composer",
@@ -15,6 +19,12 @@
     },
     "require": {
         "magento/magento-cloud-metapackage": ">=2.3.0 <2.3.1"
+    },
+    "suggest": {
+        "ext-pcntl": "Need for run processes in parallel mode"
+    },
+    "conflict": {
+        "gene/bluefoot": "*"
     },
     "autoload": {
         "psr-4": {
@@ -49,6 +59,22 @@
     "minimum-stability": "alpha",
     "prefer-stable": true,
     "extra": {
+        "component_paths": {
+            "trentrichardson/jquery-timepicker-addon": "lib/web/jquery/jquery-ui-timepicker-addon.js",
+            "components/jquery": [
+                "lib/web/jquery.js",
+                "lib/web/jquery/jquery.min.js",
+                "lib/web/jquery/jquery-migrate.js"
+            ],
+            "blueimp/jquery-file-upload": "lib/web/jquery/fileUploader",
+            "components/jqueryui": [
+                "lib/web/jquery/jquery-ui.js"
+            ],
+            "twbs/bootstrap": [
+                "lib/web/jquery/jquery.tabs.js"
+            ],
+            "tinymce/tinymce": "lib/web/tiny_mce_4"
+        },
         "magento-force": true,
         "magento-deploystrategy": "copy"
     }
