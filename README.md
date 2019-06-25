@@ -1,6 +1,6 @@
-# Magento 2.3.1 Magento Commerce Cloud
+# Magento 2.3.2 Magento Commerce Cloud
 
-This repository contains a sample Magento Commerce (on-premise) version 2.3.1 instance for you to deploy in the cloud. You must have an active Magento Commerce Cloud user license to use the example in this repository.
+This repository contains a sample Magento Commerce (on-premise) version 2.3.2 instance for you to deploy in the cloud. You must have an active Magento Commerce Cloud user license to use the example in this repository.
 
 The example requires the use of [Composer](https://getcomposer.org/doc/) to load and manage dependencies and Magento vendor folders.
 
