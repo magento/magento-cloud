@@ -2,7 +2,7 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.2.8",
+    "version": "2.2.9",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
@@ -14,7 +14,10 @@
         }
     },
     "require": {
-        "magento/magento-cloud-metapackage": ">=2.2.8 <2.2.9"
+        "magento/magento-cloud-metapackage": ">=2.2.9 <2.2.10"
+    },
+    "conflict": {
+        "nesbot/carbon": ">=1.38 <2.0"
     },
     "autoload": {
         "psr-4": {
