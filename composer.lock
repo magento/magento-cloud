@@ -1341,30 +1341,36 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.19",
+            "version": "2002.0.20",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.19.0.zip",
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.20.0.zip",
                 "reference": null,
-                "shasum": "42c4f358eea4921ae823818561f2be262f1d9e07"
+                "shasum": "e60f391241abbe2d55497197da04b0544d83b44e"
             },
             "require": {
                 "composer/composer": "@stable",
                 "composer/semver": "^1.4",
                 "ext-json": "*",
                 "ext-pdo": "*",
+                "ext-sockets": "*",
                 "graylog2/gelf-php": "^1.4.2",
                 "guzzlehttp/guzzle": "^6.2",
                 "illuminate/config": "^5.5",
                 "illuminate/container": "^5.5",
                 "illuminate/contracts": "^5.5",
+                "magento/magento-cloud-components": "^1.0",
                 "monolog/monolog": "^1.16",
                 "php": "^7.0",
                 "psr/container": "^1.0",
                 "psr/log": "^1.0",
                 "symfony/console": "^2.6||^4.0",
-                "symfony/yaml": "^3.3",
+                "symfony/process": "~2.1||~4.1.0",
+                "symfony/yaml": "^3.3||^4.0",
                 "twig/twig": "^1.0||^2.0"
+            },
+            "conflict": {
+                "nesbot/carbon": ">=1.38 <2.0"
             },
             "replace": {
                 "magento/ece-patches": "*",
@@ -1377,8 +1383,7 @@
                 "phpmd/phpmd": "@stable",
                 "phpunit/php-code-coverage": "^5.2",
                 "phpunit/phpunit": "^6.2",
-                "squizlabs/php_codesniffer": " ^3.0",
-                "symfony/process": "^3.4"
+                "squizlabs/php_codesniffer": "^3.0"
             },
             "bin": [
                 "bin/ece-tools",
@@ -1394,29 +1399,35 @@
                         ".magento.env.yaml.dist"
                     ],
                     [
-                        "dist/Makefile",
-                        "Makefile"
+                        "dist/docker-sync.yml",
+                        "docker-sync.yml"
+                    ],
+                    [
+                        "dist/mutagen.sh",
+                        "mutagen.sh"
                     ],
                     [
                         "dist/docker/mnt",
-                        "docker/mnt"
+                        ".docker/mnt"
                     ],
                     [
                         "dist/docker/tmp",
-                        "docker/tmp"
+                        ".docker/tmp"
                     ],
                     [
                         "dist/docker/mysql",
-                        "docker/mysql"
+                        ".docker/mysql"
                     ],
                     [
-                        "dist/docker/README.md",
-                        "docker/README.md"
-                    ],
-                    [
-                        "dist/docker-sync.yml",
-                        "docker-sync.yml"
+                        "dist/docker/bin/docker",
+                        "bin/docker"
                     ]
+                ],
+                "chmod": [
+                    {
+                        "mask": "0755",
+                        "path": "bin/docker"
+                    }
                 ]
             },
             "autoload": {
@@ -1697,6 +1708,33 @@
                 "AFL-3.0"
             ],
             "description": "Chinese (China) language"
+        },
+        {
+            "name": "magento/magento-cloud-components",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.0.0.0.zip",
+                "reference": null,
+                "shasum": "46bff92612875bee0f2cd300c64d8cb81639fa77"
+            },
+            "require": {
+                "ext-json": "*",
+                "magento/framework": "*",
+                "magento/module-store": "*",
+                "magento/module-url-rewrite": "*",
+                "php": "^7.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\CloudComponents\\": ""
+                }
+            },
+            "description": "Cloud Components Module for Magento 2.x"
         },
         {
             "name": "magento/magento-cloud-metapackage",
@@ -10685,16 +10723,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.28",
+            "version": "v3.4.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "acf99758b1df8e9295e6b85aa69f294565c9fedb"
+                "reference": "70adda061ef83bb7def63a17953dc41f203308a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/acf99758b1df8e9295e6b85aa69f294565c9fedb",
-                "reference": "acf99758b1df8e9295e6b85aa69f294565c9fedb",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/70adda061ef83bb7def63a17953dc41f203308a7",
+                "reference": "70adda061ef83bb7def63a17953dc41f203308a7",
                 "shasum": ""
             },
             "require": {
@@ -10731,20 +10769,20 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-04T21:34:32+00:00"
+            "time": "2019-06-23T09:29:17+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.28",
+            "version": "v3.4.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "fa5d962a71f2169dfe1cbae217fa5a2799859f6c"
+                "reference": "5f80266a729e30bbcc37f8bf0e62c3d5a38c8208"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/fa5d962a71f2169dfe1cbae217fa5a2799859f6c",
-                "reference": "fa5d962a71f2169dfe1cbae217fa5a2799859f6c",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/5f80266a729e30bbcc37f8bf0e62c3d5a38c8208",
+                "reference": "5f80266a729e30bbcc37f8bf0e62c3d5a38c8208",
                 "shasum": ""
             },
             "require": {
@@ -10780,7 +10818,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-24T12:25:55+00:00"
+            "time": "2019-05-30T15:47:52+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
