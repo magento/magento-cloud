@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da9fedac1f8b9e68a7285e20bcef8592",
+    "content-hash": "446e0b2232ba472529a91149c57dd15b",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -868,20 +868,20 @@
         },
         {
             "name": "fastly/magento2",
-            "version": "1.2.107",
+            "version": "1.2.109",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fastly/fastly-magento2.git",
-                "reference": "4f21170e32cd7f0e6fb277ce303bf8b9369bb1ed"
+                "reference": "0ee12c6fad12bf450bffea63dc784d86398ac23d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/4f21170e32cd7f0e6fb277ce303bf8b9369bb1ed",
-                "reference": "4f21170e32cd7f0e6fb277ce303bf8b9369bb1ed",
+                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/0ee12c6fad12bf450bffea63dc784d86398ac23d",
+                "reference": "0ee12c6fad12bf450bffea63dc784d86398ac23d",
                 "shasum": ""
             },
             "require": {
-                "magento/framework": ">=100.0.0",
+                "magento/framework": ">=101.0.0",
                 "magento/module-cache-invalidate": ">=100.0.0",
                 "magento/module-config": ">=100.0.0",
                 "magento/module-page-cache": ">=100.0.0",
@@ -902,7 +902,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Fastly CDN Module for Magento 2.x",
-            "time": "2019-06-21T12:58:21+00:00"
+            "time": "2019-06-28T20:38:05+00:00"
         },
         {
             "name": "google/recaptcha",
@@ -1123,33 +1123,37 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.5.2",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115"
+                "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
+                "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
                 "psr/http-message": "~1.0",
-                "ralouphie/getallheaders": "^2.0.5"
+                "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
             },
             "provide": {
                 "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
+                "ext-zlib": "*",
                 "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+            },
+            "suggest": {
+                "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5-dev"
+                    "dev-master": "1.6-dev"
                 }
             },
             "autoload": {
@@ -1186,7 +1190,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-12-04T20:46:45+00:00"
+            "time": "2019-07-01T23:21:34+00:00"
         },
         {
             "name": "guzzlehttp/ringphp",
@@ -1291,7 +1295,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v5.8.24",
+            "version": "v5.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -1335,7 +1339,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v5.8.24",
+            "version": "v5.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -1380,16 +1384,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.8.24",
+            "version": "v5.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "33b4e0ffb89eb2216c764235c9e95fed1f3fab82"
+                "reference": "f6a2633c280b3f0efcd5a6d2d4a975dfa26033e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/33b4e0ffb89eb2216c764235c9e95fed1f3fab82",
-                "reference": "33b4e0ffb89eb2216c764235c9e95fed1f3fab82",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/f6a2633c280b3f0efcd5a6d2d4a975dfa26033e8",
+                "reference": "f6a2633c280b3f0efcd5a6d2d4a975dfa26033e8",
                 "shasum": ""
             },
             "require": {
@@ -1420,20 +1424,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2019-06-11T14:00:26+00:00"
+            "time": "2019-06-24T11:16:37+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "v5.8.24",
+            "version": "v5.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "b05653f5ecce996734d3facd06a81aff504b6a2f"
+                "reference": "5d32b3079433ee85db7b33825a1648553a09d410"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/b05653f5ecce996734d3facd06a81aff504b6a2f",
-                "reference": "b05653f5ecce996734d3facd06a81aff504b6a2f",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/5d32b3079433ee85db7b33825a1648553a09d410",
+                "reference": "5d32b3079433ee85db7b33825a1648553a09d410",
                 "shasum": ""
             },
             "require": {
@@ -1481,7 +1485,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-06-19T14:12:17+00:00"
+            "time": "2019-06-30T07:30:42+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -11294,24 +11298,24 @@
         },
         {
             "name": "ralouphie/getallheaders",
-            "version": "2.0.5",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ralouphie/getallheaders.git",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
+                "reference": "120b605dfeb996808c31b6477290a714d356e822"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7.0",
-                "satooshi/php-coveralls": ">=1.0"
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5 || ^6.5"
             },
             "type": "library",
             "autoload": {
@@ -11330,7 +11334,7 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "time": "2016-02-11T07:05:27+00:00"
+            "time": "2019-03-08T08:55:37+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -11720,7 +11724,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.3.1",
+            "version": "v4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -11890,16 +11894,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.28",
+            "version": "v3.4.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "acf99758b1df8e9295e6b85aa69f294565c9fedb"
+                "reference": "70adda061ef83bb7def63a17953dc41f203308a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/acf99758b1df8e9295e6b85aa69f294565c9fedb",
-                "reference": "acf99758b1df8e9295e6b85aa69f294565c9fedb",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/70adda061ef83bb7def63a17953dc41f203308a7",
+                "reference": "70adda061ef83bb7def63a17953dc41f203308a7",
                 "shasum": ""
             },
             "require": {
@@ -11936,20 +11940,20 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-04T21:34:32+00:00"
+            "time": "2019-06-23T09:29:17+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.28",
+            "version": "v3.4.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "fa5d962a71f2169dfe1cbae217fa5a2799859f6c"
+                "reference": "5f80266a729e30bbcc37f8bf0e62c3d5a38c8208"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/fa5d962a71f2169dfe1cbae217fa5a2799859f6c",
-                "reference": "fa5d962a71f2169dfe1cbae217fa5a2799859f6c",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/5f80266a729e30bbcc37f8bf0e62c3d5a38c8208",
+                "reference": "5f80266a729e30bbcc37f8bf0e62c3d5a38c8208",
                 "shasum": ""
             },
             "require": {
@@ -11985,7 +11989,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-24T12:25:55+00:00"
+            "time": "2019-05-30T15:47:52+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -12275,16 +12279,16 @@
         },
         {
             "name": "tedivm/jshrink",
-            "version": "v1.3.2",
+            "version": "v1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tedious/JShrink.git",
-                "reference": "d9b51729f3c6692c2da3e3fe6c5cd7c9d1d3fa8f"
+                "reference": "566e0c731ba4e372be2de429ef7d54f4faf4477a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tedious/JShrink/zipball/d9b51729f3c6692c2da3e3fe6c5cd7c9d1d3fa8f",
-                "reference": "d9b51729f3c6692c2da3e3fe6c5cd7c9d1d3fa8f",
+                "url": "https://api.github.com/repos/tedious/JShrink/zipball/566e0c731ba4e372be2de429ef7d54f4faf4477a",
+                "reference": "566e0c731ba4e372be2de429ef7d54f4faf4477a",
                 "shasum": ""
             },
             "require": {
@@ -12317,7 +12321,7 @@
                 "javascript",
                 "minifier"
             ],
-            "time": "2019-06-15T23:11:19+00:00"
+            "time": "2019-06-28T18:11:46+00:00"
         },
         {
             "name": "temando/module-shipping-m2",
