@@ -1592,18 +1592,20 @@
         },
         {
             "name": "magento/magento-cloud-components",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.0.0.0.zip",
-                "shasum": "46bff92612875bee0f2cd300c64d8cb81639fa77"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.0.1.0.zip",
+                "shasum": "2528c0bdef0452bf86eb2cdfd896f139f0062e70"
             },
             "require": {
                 "ext-json": "*",
+                "php": "^7.0"
+            },
+            "suggest": {
                 "magento/framework": "*",
                 "magento/module-store": "*",
-                "magento/module-url-rewrite": "*",
-                "php": "^7.0"
+                "magento/module-url-rewrite": "*"
             },
             "type": "magento2-module",
             "autoload": {
