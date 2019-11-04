@@ -13,7 +13,7 @@ There are rules about patches in this directory:
     ...
     ```
     
-To test applying all patches (your custom patches and cloud patches) which is made during the deployment, you can run next command locally:
+You can use the following command to test the patch process–applying all Magento patches and your custom patches  locally before you build and deploy to a Cloud environment.
 ``` 
 ./vendor/bin/ece-tools patch
 ```
