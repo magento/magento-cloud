@@ -1,6 +1,6 @@
 # Add custom patches
 
-You can add custom patch files to this directory. Each patch file must use the `.patch` extension, for example the `<patch_name>.patch`.
+You can add custom patch files to this directory. All custom patch filenames must have the `.patch` extension, for example `<patch_name>.patch`.
 There are rules about patches in this directory:
  - patch file should have extension `.patch`
  - patches are applied in alphabetical sequence
