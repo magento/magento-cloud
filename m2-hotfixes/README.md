@@ -1,11 +1,8 @@
 # Add custom patches
 
 You can add custom patch files to this directory. All custom patch filenames must have the `.patch` extension, for example `<patch_name>.patch`.
-There are rules about patches in this directory:
- - patch file should have extension `.patch`
- - patches are applied in alphabetical sequence
- - patches are applied from the root of Magento project. E.g.
- 
+After all Magento patches are applied, custom patches are applied in alphabetical order from the root of the Magento project as shown in the following example:
+
     ```
     diff -Naur a/vendor/package-name/ClassName.php b/vendor/package-name/ClassName.php
     --- a/vendor/package-name/ClassName.php
