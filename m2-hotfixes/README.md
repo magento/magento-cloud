@@ -12,6 +12,5 @@ After all Magento patches are applied, custom patches are applied in alphabetica
     
 You can use the following command to test the patch process–applying all Magento patches and your custom patches  locally before you build and deploy to a Cloud environment.
 ``` 
-./vendor/bin/ece-tools patch
+php ./vendor/bin/ece-patches apply
 ```
-
