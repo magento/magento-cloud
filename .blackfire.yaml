@@ -1,0 +1,60 @@
+tests:
+    Pages should not become slower:
+        path: /.*
+        assertions:
+            - "percent(main.wall_time) < 10%"
+            - "percent(main.memory) < 10%"
+    Pages should not consume too much memory:
+        path: /
+        assertions:
+            - main.memory < 50M
+            - main.peak_memory < 75M
+    Homepage should not do too many SQL queries:
+        path: /
+        assertions:
+            - metrics.sql.queries.count <= 12
+    Checkout pages:
+        path: /checkout/.*
+        assertions:
+            - metrics.output.network_out < 100KB
+
+scenarios: |
+    #!blackfire-player
+
+    scenario
+        name "Home"
+        visit url('/')
+            warmup true
+            expect status_code() == 200
+
+    scenario
+        name "Cart"
+        visit url('/checkout/cart/')
+            warmup true
+            expect status_code() == 200
+
+    scenario
+        name "Checkout"
+        visit url('/checkout/')
+            warmup true
+            expect status_code() == 200
+
+    # Define your own scenarios using Blackfire Player format
+    # https://blackfire.io/docs/cookbooks/scenarios
+
+    ### Scenarios below must be uncommented after "percent" assertions will be fixed
+    #scenario
+    #    name "Search"
+    #    visit url('/catalogsearch/result/index/?q=Simple&mycolor=14')
+    #        expect status_code() == 200
+    #
+    #    visit url('/catalogsearch/result/?q=Simple')
+    #        expect status_code() == 200
+    #
+    #scenario
+    #    name "Customer login/signup"
+    #    visit url('/customer/account/login/')
+    #        expect status_code() == 200
+    #
+    #    visit url('/customer/account/create/')
+    #        expect status_code() == 200
