@@ -1,0 +1,4 @@
+#!/bin/bash
+version="$1"
+shift
+docker run --rm -it -e "MAGENTO_ROOT=/app" -v "$(pwd)":/app -v ~/.composer/cache:/root/.composer/cache "magento/magento-cloud-docker-php:${version}-cli" "$@"
