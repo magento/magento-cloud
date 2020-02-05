@@ -10,5 +10,5 @@ function isHttpHost($host)
     if (!isset($_SERVER['HTTP_HOST'])) {
         return false;
     }
-    return strpos(str_replace('---', '.', $_SERVER['HTTP_HOST']), $host) === 0;
+    return $_SERVER['HTTP_HOST'] === $host;
 }
