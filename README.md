@@ -92,4 +92,4 @@ See the [Magento Commerce Cloud Guide](http://devdocs.magento.com/guides/v2.2/cl
 ## License
 Each Magento source file included in this distribution is licensed under the OSL-3.0 license.
 
-Please see [LICENSE.txt](https://github.com/magento/ece-tools/blob/develop/LICENSE.txt) for the full text of the [Open Software License v. 3.0 (OSL-3.0)](http://opensource.org/licenses/osl-3.0.php).
+Please see [LICENSE.txt](https://github.com/magento/magento-cloud/blob/develop/LICENSE.txt) for the full text of the [Open Software License v. 3.0 (OSL-3.0)](http://opensource.org/licenses/osl-3.0.php).
