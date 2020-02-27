@@ -1237,11 +1237,11 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.0.22",
+            "version": "2002.0.23",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.22.0.zip",
-                "shasum": "54820494982ac82366728268e1b896f886aa2fe9"
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.0.23.0.zip",
+                "shasum": "fc6af8e8fdd92441b66aca2d5afc5729f5df9095"
             },
             "require": {
                 "composer/composer": "@stable",
@@ -1277,7 +1277,7 @@
                 "consolidation/robo": "^1.2",
                 "php-mock/php-mock-phpunit": "^2.0",
                 "phpmd/phpmd": "@stable",
-                "phpstan/phpstan": "@stable",
+                "phpstan/phpstan": "<0.12",
                 "phpunit/php-code-coverage": "^5.2",
                 "phpunit/phpunit": "^6.2",
                 "squizlabs/php_codesniffer": "^3.0"
@@ -1597,11 +1597,11 @@
         },
         {
             "name": "magento/magento-cloud-components",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.0.2.0.zip",
-                "shasum": "fea7619a6d23bae0a6b562434aff4b4d0f0feacd"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.0.3.0.zip",
+                "shasum": "6453f3ee1cac29caa3be4318ee3fbe49ec91b5b1"
             },
             "require": {
                 "ext-json": "*",
@@ -1609,7 +1609,6 @@
             },
             "require-dev": {
                 "phpmd/phpmd": "@stable",
-                "phpstan/phpstan": "^0.11",
                 "phpunit/phpunit": "^6.2",
                 "squizlabs/php_codesniffer": "^3.0"
             },
@@ -1650,23 +1649,21 @@
         },
         {
             "name": "magento/magento-cloud-patches",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.0.0.0.zip",
-                "shasum": "34ac42a0246d2bf356ead36db523342121f77a10"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.0.2.0.zip",
+                "shasum": "30ff28deb83d724026f6aae2a5ef1d544127ecf9"
             },
             "require": {
                 "composer/composer": "@stable",
+                "composer/semver": "^1.5",
                 "ext-json": "*",
                 "php": "^7.0",
-                "symfony/config": "^3.3||^4.3",
+                "symfony/config": "^3.3||^4.4",
                 "symfony/console": "^2.6||^4.0",
                 "symfony/dependency-injection": "^3.3||^4.3",
                 "symfony/process": "^2.1||^4.1"
-            },
-            "conflict": {
-                "symfony/process": "^4.2"
             },
             "require-dev": {
                 "phpmd/phpmd": "@stable",
@@ -9418,16 +9415,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.23",
+            "version": "2.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "c78eb5058d5bb1a183133c36d4ba5b6675dfa099"
+                "reference": "c18159618ed7cd7ff721ac1a8fec7860a475d2f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/c78eb5058d5bb1a183133c36d4ba5b6675dfa099",
-                "reference": "c78eb5058d5bb1a183133c36d4ba5b6675dfa099",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/c18159618ed7cd7ff721ac1a8fec7860a475d2f0",
+                "reference": "c18159618ed7cd7ff721ac1a8fec7860a475d2f0",
                 "shasum": ""
             },
             "require": {
@@ -9506,7 +9503,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-09-17T03:41:22+00:00"
+            "time": "2020-02-25T04:16:50+00:00"
         },
         {
             "name": "psr/container",
