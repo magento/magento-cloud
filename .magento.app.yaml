@@ -1,6 +1,8 @@
+# Copyright © Magento, Inc. All rights reserved.
+# See COPYING.txt for license details.
+
 # This file describes an application. You can have multiple applications
 # in the same project.
-
 
 # The name of this app. Must be unique within a project.
 name: mymagento
@@ -62,7 +64,6 @@ web:
             rules:
                 ^/static/version\d+/(?<resource>.*)$:
                     passthru: "/static/$resource"
-
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
