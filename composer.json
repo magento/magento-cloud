@@ -9,13 +9,28 @@
         "sort-packages": true
     },
     "repositories": {
-        "repo": {
-            "type": "composer",
-            "url": "https://repo.magento.com"
+        "ece-tools": {
+            "type": "git",
+            "url": "git@github.com:magento/ece-tools.git"
+        },
+        "magento-cloud-components": {
+            "type": "git",
+            "url": "git@github.com:magento/magento-cloud-components.git"
+        },
+        "magento-cloud-patches": {
+            "type": "git",
+            "url": "git@github.com:magento/magento-cloud-patches.git"
+        },
+        "magento-cloud-docker": {
+            "type": "git",
+            "url": "git@github.com:magento/magento-cloud-docker.git"
         }
     },
     "require": {
-        "magento/magento-cloud-metapackage": ">=2.3.4 <2.3.5"
+        "magento/ece-tools": "^2002.1.0"
+    },
+    "replace": {
+        "magento/magento-cloud-components": "*"
     },
     "suggest": {
         "ext-pcntl": "Need for run processes in parallel mode"
