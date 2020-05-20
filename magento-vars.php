@@ -13,6 +13,10 @@
  *    $_SERVER["MAGE_RUN_CODE"] = "default";
  *    $_SERVER["MAGE_RUN_TYPE"] = "store";
  * }
+  * if (isHttpHost("exampleb.com")) {
+ *    $_SERVER["MAGE_RUN_CODE"] = "storeB";
+ *    $_SERVER["MAGE_RUN_TYPE"] = "store";
+ * }
  *
  * @param string $host
  * @return bool
@@ -22,5 +26,5 @@ function isHttpHost(string $host)
     if (!isset($_SERVER['HTTP_HOST'])) {
         return false;
     }
-    return $_SERVER['HTTP_HOST'] === $host;
+    return strpos($_SERVER['HTTP_HOST'], $host) > -1;
 }
