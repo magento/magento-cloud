@@ -77,5 +77,16 @@
         },
         "magento-force": true,
         "magento-deploystrategy": "copy"
+    },
+    "scripts": {
+        "generate-schema": [
+            "php ./vendor/bin/ece-tools schema:generate || true"
+        ],
+        "post-install-cmd": [
+            "@generate-schema"
+        ],
+        "post-update-cmd": [
+            "@generate-schema"
+        ]
     }
 }
