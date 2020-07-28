@@ -1,6 +1,6 @@
-# Magento 2.3.5 Magento Commerce Cloud
+# Magento 2.4.0 Magento Commerce Cloud
 
-This repository contains a sample Magento Commerce (on-premise) version 2.3.5 instance for you to deploy in the cloud. You must have an active Magento Commerce Cloud user license to use the example in this repository.
+This repository contains a sample Magento Commerce (on-premise) version 2.4.0 instance for you to deploy in the cloud. You must have an active Magento Commerce Cloud user license to use the example in this repository.
 
 The example requires the use of [Composer](https://getcomposer.org/doc/) to load and manage dependencies and Magento vendor folders.
 
@@ -41,7 +41,7 @@ To add authentication keys using an environment variable:
 
 1.  Click **Add Variable**.
 
-See [Adding Magento authentication keys](https://devdocs.magento.com/guides/v2.2/cloud/setup/first-time-setup-import-prepare.html#auth-json).
+See [Adding Magento authentication keys](https://devdocs.magento.com/cloud/setup/first-time-setup-import-prepare.html#auth-json).
 
 ### Authenticating in Docker
 
@@ -64,7 +64,7 @@ You must have an `auth.json` file that contains your Magento Commerce authorizat
 
 1.  Save your changes to `auth.json` file and exit the text editor.
 
-To use Docker for local development, see [Launching a Docker configuration](https://devdocs.magento.com/guides/v2.2/cloud/docker/docker-config.html).
+To use Docker for local development, see [Launching a Docker configuration](https://devdocs.magento.com/cloud/docker/docker-config.html).
 
 ## Repository structure
 
@@ -87,4 +87,4 @@ php.ini
 
 ## Developer documentation
 
-See the [Magento Commerce Cloud Guide](http://devdocs.magento.com/guides/v2.2/cloud/bk-cloud.html).
+See the [Magento Commerce Cloud Guide](https://devdocs.magento.com/cloud/bk-cloud.html).
