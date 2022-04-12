@@ -3,12 +3,12 @@
 # Each service listed will be deployed to power your project.
 
 mysql:
-    type: mysql:10.3
+    type: mysql:10.4
     disk: 5120
 
 redis:
-    type: redis:5.0
+    type: redis:6.2
 
-elasticsearch:
-    type: elasticsearch:7.7
+opensearch:
+    type: opensearch:1.2
     disk: 1024
