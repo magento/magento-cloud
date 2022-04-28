@@ -79,7 +79,12 @@
             "tinymce/tinymce": "lib/web/tiny_mce_5"
         },
         "magento-force": true,
-        "magento-deploystrategy": "copy"
+        "magento-deploystrategy": "copy",
+        "magento-deploy-ignore": {
+            "*": [
+                "/.gitignore"
+            ]
+        }
     },
     "scripts": {
         "generate-schema": [
