@@ -77,7 +77,7 @@ hooks:
     # We run build hooks before your application has been packaged.
     build: |
         set -e
-        composer install
+        composer --no-ansi --no-dev --no-interaction install --no-progress --prefer-dist --optimize-autoloader
         php ./vendor/bin/ece-tools run scenario/build/generate.xml
         php ./vendor/bin/ece-tools run scenario/build/transfer.xml
     # We run deploy hook after your application has been deployed and started.
