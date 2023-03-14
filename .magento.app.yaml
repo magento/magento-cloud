@@ -5,19 +5,18 @@
 name: mymagento
 
 # The toolstack used to build the application.
-type: php:8.1
+type: php:8.2
 build:
     flavor: none
 
 dependencies:
     php:
-        composer/composer: '2.2.4'
+        composer/composer: '2.2.21'
 
 # Enable extensions required by Magento 2
 runtime:
     extensions:
         - xsl
-        - newrelic
         - sodium
 
 # The relationships of the application with services or other applications.
