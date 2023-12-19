@@ -1,0 +1,63 @@
+name: application-server
+# The toolstack used to build the application.
+type: php:8.2
+build:
+    flavor: none
+
+source:
+    root: /
+dependencies:
+    php:
+        composer/composer: '2.5.5'
+
+# Enable extensions required by Magento 2
+runtime:
+    extensions:
+        - xsl
+        - sodium
+        - openswoole
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the environment variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "mysql:mysql"
+    redis: "redis:redis"
+    opensearch: "opensearch:opensearch"
+
+# The configuration of app when it is exposed to the web.
+web:
+    commands:
+        start: ./application-server/start.sh > var/log/application-server.log 2>&1
+    upstream:
+        socket_family: tcp
+        protocol: http
+    locations:
+        '/':
+            root: "pub"
+            passthru: true
+
+# The size of the persistent disk of the application (in MB).
+disk: 5120
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    "var": "shared:files/var"
+    "app/etc": "shared:files/etc"
+    "pub/media": "shared:files/media"
+    "pub/static": "shared:files/static"
+
+hooks:
+    # We run build hooks before your application has been packaged.
+    build: |
+        set -e
+        composer install
+        php ./vendor/bin/ece-tools run scenario/build/generate.xml
+        php ./vendor/bin/ece-tools run scenario/build/transfer.xml
+    # We run deploy hook after your application has been deployed and started.
+    deploy: |
+        php ./vendor/bin/ece-tools run scenario/deploy.xml
+    # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
+    post_deploy: |
+        php ./vendor/bin/ece-tools run scenario/post-deploy.xml

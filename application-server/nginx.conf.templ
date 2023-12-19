@@ -1,0 +1,273 @@
+# nginx custom proxy
+
+daemon off;
+worker_processes 2;
+pid /dev/shm/nginx.pid;
+error_log ${MAGENTO_CLOUD_APP_DIR}/var/log.nginx-error.log;
+
+
+events {
+  worker_connections 768;
+}
+
+http {
+  sendfile on;
+  tcp_nopush on;
+  tcp_nodelay on;
+  keepalive_timeout 65;
+  server_tokens off;
+
+  types_hash_max_size 2048;
+  variables_hash_max_size 1024;
+  variables_hash_bucket_size 64;
+  server_names_hash_bucket_size 256;
+  map_hash_bucket_size 256;
+  map_hash_max_size 8192;
+
+  port_in_redirect off;
+  absolute_redirect off;
+
+  include /etc/nginx/mime.types;
+
+
+  default_type application/octet-stream;
+
+  # Paths.
+  client_body_temp_path ${MAGENTO_CLOUD_APP_DIR}/var/body;
+  fastcgi_temp_path ${MAGENTO_CLOUD_APP_DIR}/var/fastcgi;
+  proxy_temp_path ${MAGENTO_CLOUD_APP_DIR}/var/proxy;
+  uwsgi_temp_path ${MAGENTO_CLOUD_APP_DIR}/var/uwsgi;
+  scgi_temp_path ${MAGENTO_CLOUD_APP_DIR}/var/scgi;
+
+  # Limits.
+  client_max_body_size        250M;
+  proxy_buffer_size           32k;
+  proxy_buffers               128 4k;
+  proxy_max_temp_file_size    64M;
+  fastcgi_buffer_size         128k;
+  fastcgi_buffers             128 4k;
+  fastcgi_max_temp_file_size  64M;
+  large_client_header_buffers 4 32k;
+
+  # Timeouts.
+  # We timeout if the application cannot start processing the request within this limit...
+  fastcgi_connect_timeout                 300s;
+  # ... but once the application started processing, we essentially never timeout.
+  fastcgi_read_timeout                    86400s;
+  fastcgi_send_timeout                    86400s;
+
+  access_log ${MAGENTO_CLOUD_APP_DIR}/var/log.nginx-access.log;
+
+  # XDebug Configuration
+  map "$cookie_xdebug_session$arg_xdebug_session_start$arg_xdebug_session_stop" $php_backend {
+      "GwLOk1FqDwcXrVW3"                                  "unix:////run/platform/XDEBUG_SOCKET_FOLDER/php5-xdebug.sock";
+      "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"                  "unix:////run/platform/XDEBUG_SOCKET_FOLDER/php5-xdebug.sock";
+      "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"  "unix:////run/platform/XDEBUG_SOCKET_FOLDER/php5-xdebug.sock";
+       default                                            "unix:////run/platform/XDEBUG_SOCKET_FOLDER/php5-xdebug.sock";
+#      default                                            "unix:/run/platform/XDEBUG_SOCKET_FOLDER/php5.sock";
+  }
+
+  upstream graphql_backend {
+    server 127.0.0.1:9501;
+  }
+
+  map $cookie_XDEBUG_SESSION $graphql_backend_name {
+      "" "graphql_backend";
+      default "graphql_backend";
+  }
+
+  # If the request has a Upgrade header, set Connection to "upgrade",
+  # else force it as "Connection: close" to force the upstream to close the
+  # connection.
+  map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+  }
+
+  # Common
+  map "$http_x_forwarded_proto" $is_https {
+      "https" "on";
+      default "";
+  }
+  map $is_https $external_server_port {
+      "on" "443";
+      default "80";
+  }
+
+  server {
+    listen $PORT;
+
+    # Set $remote_addr from the PROXY header.
+    real_ip_header X-Client-IP;
+
+    server_name localhost default;
+
+    set $MAGE_ROOT ${MAGENTO_CLOUD_APP_DIR};
+    set $MAGE_MODE production;
+
+    root $MAGE_ROOT/pub;
+
+    index index.php;
+    autoindex off;
+    charset off;
+
+    add_header 'X-Content-Type-Options' 'nosniff';
+
+
+    location /static/ {
+      expires max;
+
+      # remove signature of static files used to overcome browser cache
+      location ~ ^/static/version {
+        rewrite ^/static/(version\d*/)?(.*)$ /static/$2 last;
+      }
+
+      location ~* \.(ico|jpg|jpeg|png|gif|svg|js|css|swf|eot|ttf|otf|woff|woff2)$ {
+        add_header Cache-Control "public";
+        add_header X-Frame-Options "SAMEORIGIN";
+        expires +1y;
+
+        if (!-f $request_filename) {
+          rewrite ^/static/(version\d*/)?(.*)$ /static.php?resource=$2 last;
+        }
+      }
+
+      location ~* \.(zip|gz|gzip|bz2|csv|xml)$ {
+        add_header Cache-Control "no-store";
+        add_header X-Frame-Options "SAMEORIGIN";
+        expires off;
+
+        if (!-f $request_filename) {
+           rewrite ^/static/(version\d*/)?(.*)$ /static.php?resource=$2 last;
+        }
+      }
+
+      if (!-f $request_filename) {
+        rewrite ^/static/(version\d*/)?(.*)$ /static.php?resource=$2 last;
+      }
+
+      add_header X-Frame-Options "SAMEORIGIN";
+    }
+
+    location /media/ {
+      try_files $uri $uri/ /get.php?$args;
+
+      location ~ ^/media/theme_customization/.*\.xml {
+        deny all;
+      }
+
+      location ~* \.(ico|jpg|jpeg|png|gif|svg|js|css|swf|eot|ttf|otf|woff|woff2)$ {
+        add_header Cache-Control "public";
+        add_header X-Frame-Options "SAMEORIGIN";
+        expires +1y;
+        try_files $uri $uri/ /get.php?$args;
+      }
+
+      location ~* \.(zip|gz|gzip|bz2|csv|xml)$ {
+        add_header Cache-Control "no-store";
+        add_header X-Frame-Options "SAMEORIGIN";
+        expires off;
+        try_files $uri $uri/ /get.php?$args;
+      }
+
+      add_header X-Frame-Options "SAMEORIGIN";
+    }
+
+    location /media/customer/ {
+      deny all;
+    }
+
+    location /media/downloadable/ {
+      deny all;
+    }
+
+    location /media/import/ {
+      deny all;
+    }
+
+    location ~ /media/theme_customization/.*\.xml$ {
+      deny all;
+    }
+
+    location /errors/ {
+      try_files $uri =404;
+    }
+
+    location ~ ^/errors/.*\.(xml|phtml)$ {
+      deny all;
+    }
+
+    location ~ (index|get|static|report|404|503|health_check.php)\.php$ {
+
+           try_files       $fastcgi_script_name $uri/;
+           index           index.php;
+
+
+           fastcgi_request_buffering on;
+           client_max_body_size 262144000;
+
+           set $_document_root $document_root;
+
+           fastcgi_pass    $php_backend;
+
+           # Standard fastcgi headers.
+           fastcgi_param    QUERY_STRING           $query_string;
+           fastcgi_param    REQUEST_METHOD         $request_method;
+           fastcgi_param    CONTENT_TYPE           $content_type;
+           fastcgi_param    CONTENT_LENGTH         $content_length;
+
+           fastcgi_param    SCRIPT_FILENAME        $request_filename;
+           fastcgi_param    SCRIPT_NAME            $fastcgi_script_name;
+           fastcgi_param    PATH_INFO              $fastcgi_path_info;
+           fastcgi_param    REQUEST_URI            $request_uri;
+           fastcgi_param    DOCUMENT_URI           $document_uri;
+           fastcgi_param    DOCUMENT_ROOT          $document_root;
+           fastcgi_param    SERVER_PROTOCOL        $server_protocol;
+
+           fastcgi_param    GATEWAY_INTERFACE      CGI/1.1;
+           fastcgi_param    SERVER_SOFTWARE        nginx;
+
+           # Get the remote address directly from X-Client-IP, that avoids the need for
+           # the application to know about our architecture.
+           fastcgi_param    REMOTE_ADDR            $remote_addr;
+           # We drop REMOTE_PORT which is meaningless in our architecture.
+           fastcgi_param    SERVER_ADDR            $server_addr;
+           fastcgi_param    SERVER_PORT            $external_server_port;
+           fastcgi_param    SERVER_NAME            $http_host;
+
+           # Get the HTTPS flag from the X-Client-SSL header.
+           fastcgi_param    HTTPS                  $is_https;
+
+           # Required for some FastCGI applications (like PHP), that are trying to protect
+           # themselves around some old CGI attacks. See http://php.net/manual/en/security.cgi-bin.force-redirect.php
+           fastcgi_param    REDIRECT_STATUS        200;
+
+           # Some Symfony applications (e.g. Pagekit) stupidly leverage
+           # the HTTP_MOD_REWRITE header added by Apache mod_rewrite to chose
+           # the URL format.
+           fastcgi_param    HTTP_MOD_REWRITE       On;
+
+           # Split the script name from the path info, set it as a variable so
+           # that it persists after try_files has resolved the actual filename.
+           fastcgi_split_path_info ^(.+?\.php(?=$|/))((?:/.*)?)$;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location /graphql {
+      proxy_pass http://$graphql_backend_name;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+      add_header X-backend $graphql_backend_name always;
+      
+      proxy_request_buffering on;
+      client_max_body_size 262144000;
+
+      proxy_http_version 1.1;
+      proxy_set_header Host $host;
+
+    }
+  }
+}

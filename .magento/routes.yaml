@@ -9,3 +9,8 @@
 "http://{all}/":
     type: upstream
     upstream: "mymagento:http"
+
+# Following routes configuration is needed to enable Application Server on Starter and Integration environments
+#"http://{all}/graphql":
+#    type: upstream
+#    upstream: "application-server:http"

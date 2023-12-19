@@ -28,7 +28,7 @@ relationships:
     redis: "redis:redis"
     opensearch: "opensearch:opensearch"
 
-# The configuration of app when it is exposed to the web.
+# The configuration of app when it is exposed to the web. Application Server disabled.
 web:
     locations:
         "/":
@@ -61,6 +61,15 @@ web:
             rules:
                 ^/static/version\d+/(?<resource>.*)$:
                     passthru: "/static/$resource"
+
+# The WEB section configuration with Application Server enabled on Cloud PRO.
+# Comment previous 'web' section and uncomment the following to enable Application Server.
+#web:
+#    upstream:
+#        socket_family: tcp
+#        protocol: http
+#    commands:
+#        start: ./application-server/start.sh > var/log/application-server.log 2>&1
 
 # The size of the persistent disk of the application (in MB).
 disk: 5120
