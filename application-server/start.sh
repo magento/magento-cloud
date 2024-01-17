@@ -11,7 +11,6 @@ killall nginx
 envsubst '\$PORT \$MAGENTO_CLOUD_APP_DIR \$MAGENTO_CLOUD_PROJECT' < nginx.conf.templ > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
 
 # Populate the commands associative array
-# commands["PHP"]="php-fpm -y /etc/platform/5zxgymjhd2qt4/php-fpm.xdebug.conf"
 commands["ApplicationServer"]="php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run"
 commands["Nginx"]="/usr/sbin/nginx -c ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf"
 
