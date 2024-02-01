@@ -3,8 +3,7 @@
 daemon off;
 worker_processes 2;
 pid /dev/shm/nginx.pid;
-error_log ${MAGENTO_CLOUD_APP_DIR}/var/log.nginx-error.log;
-
+error_log ${MAGENTO_CLOUD_APP_DIR}/var/log/as-nginx-error.log;
 
 events {
   worker_connections 768;
@@ -28,7 +27,6 @@ http {
   absolute_redirect off;
 
   include /etc/nginx/mime.types;
-
 
   default_type application/octet-stream;
 
@@ -56,15 +54,15 @@ http {
   fastcgi_read_timeout                    86400s;
   fastcgi_send_timeout                    86400s;
 
-  access_log ${MAGENTO_CLOUD_APP_DIR}/var/log.nginx-access.log;
+  access_log ${MAGENTO_CLOUD_APP_DIR}/var/log/as-nginx-access.log;
 
   # XDebug Configuration
   map "$cookie_xdebug_session$arg_xdebug_session_start$arg_xdebug_session_stop" $php_backend {
-      "GwLOk1FqDwcXrVW3"                                  "unix:////run/platform/XDEBUG_SOCKET_FOLDER/php5-xdebug.sock";
-      "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"                  "unix:////run/platform/XDEBUG_SOCKET_FOLDER/php5-xdebug.sock";
-      "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"  "unix:////run/platform/XDEBUG_SOCKET_FOLDER/php5-xdebug.sock";
-       default                                            "unix:////run/platform/XDEBUG_SOCKET_FOLDER/php5-xdebug.sock";
-#      default                                            "unix:/run/platform/XDEBUG_SOCKET_FOLDER/php5.sock";
+      "GwLOk1FqDwcXrVW3"                                  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
+      "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"                  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
+      "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
+       default                                            "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
+#      default                                            "unix:/run/platform/${CLOUD_ENVIRONMENT}/php5.sock";
   }
 
   upstream graphql_backend {

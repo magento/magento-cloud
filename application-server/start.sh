@@ -7,8 +7,11 @@ declare -A pids
 killall php
 killall nginx
 
+# Create CLOUD_ENVIRONMENT variable from MAGENTO_CLOUD_APP_DIR
+export CLOUD_ENVIRONMENT=${MAGENTO_CLOUD_APP_DIR#/app/}
+
 # Prepare nginx configuration
-envsubst '\$PORT \$MAGENTO_CLOUD_APP_DIR \$MAGENTO_CLOUD_PROJECT' < nginx.conf.templ > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
+envsubst '\$PORT \$CLOUD_ENVIRONMENT \$MAGENTO_CLOUD_APP_DIR' < ${MAGENTO_CLOUD_APP_DIR}/application-server/nginx.conf.sample > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
 
 # Populate the commands associative array
 commands["ApplicationServer"]="php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run"
