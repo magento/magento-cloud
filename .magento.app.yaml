@@ -62,14 +62,17 @@ web:
                 ^/static/version\d+/(?<resource>.*)$:
                     passthru: "/static/$resource"
 
-# The WEB section configuration with Application Server enabled on Cloud PRO.
-# Comment previous 'web' section and uncomment the following to enable Application Server.
+# In order to enable the Application Server on Cloud Pro environments:
+# 1. Ensure that all your AC customizations and extensions are compatible with Application Server.
+# 2. If necessary, adjust settings in the 'application-server/nginx.conf.sample' file.
+# 3. Comment out the previous 'web' section entirely.
+# 4. Uncomment following 'web' section configuration that includes the Application Server start command.
 #web:
 #    upstream:
 #        socket_family: tcp
 #        protocol: http
 #    commands:
-#        start: ./application-server/start.sh > var/log/application-server.log 2>&1
+#        start: ./application-server/start.sh > var/log/application-server-status.log 2>&1
 
 # The size of the persistent disk of the application (in MB).
 disk: 5120

@@ -15,7 +15,7 @@ runtime:
     extensions:
         - xsl
         - sodium
-        - openswoole
+        - swoole
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -29,7 +29,7 @@ relationships:
 # The configuration of app when it is exposed to the web.
 web:
     commands:
-        start: ./application-server/start.sh > var/log/application-server.log 2>&1
+        start: php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run -vvv  --port=${PORT:-80} > ${MAGENTO_CLOUD_APP_DIR}/var/log/application-server-status.log 2>&1
     upstream:
         socket_family: tcp
         protocol: http
