@@ -14,12 +14,12 @@ export CLOUD_ENVIRONMENT=${MAGENTO_CLOUD_APP_DIR#/app/}
 envsubst '\$PORT \$CLOUD_ENVIRONMENT \$MAGENTO_CLOUD_APP_DIR' < ${MAGENTO_CLOUD_APP_DIR}/application-server/nginx.conf.sample > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
 
 # Populate the commands associative array
-commands["ApplicationServer"]="php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run"
-commands["Nginx"]="/usr/sbin/nginx -c ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf"
+commands["ApplicationServer"]="php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run -vvv > ${MAGENTO_CLOUD_APP_DIR}/var/log/application-server.log 2>&1"
+commands["Nginx"]="/usr/sbin/nginx -c ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf > ${MAGENTO_CLOUD_APP_DIR}/var/log/nginx.log 2>&1 &"
 
 # Start processes and store their PIDs
 for key in "${!commands[@]}"; do
-  ${commands[$key]} > ${MAGENTO_CLOUD_APP_DIR}/var/log/${key}.log 2>&1 &
+  ${commands[$key]}
   pids[$key]=$!
   echo $(date -u) "Started $key with PID ${pids[$key]}"
 done
