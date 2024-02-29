@@ -3,8 +3,14 @@
 declare -A commands
 declare -A pids
 
+# Check if the PLATFORM_FPM_WORKER is unset or empty, set default to "php-fpm8.2"
+if [ -z "$PLATFORM_FPM_WORKER" ]; then
+    PLATFORM_FPM_WORKER="php-fpm8.2"
+fi
+
 # Kill existing processes started from previous deployment
 killall php
+killall ${PLATFORM_FPM_WORKER}
 killall nginx
 
 # Create CLOUD_ENVIRONMENT variable from MAGENTO_CLOUD_APP_DIR
@@ -14,6 +20,7 @@ export CLOUD_ENVIRONMENT=${MAGENTO_CLOUD_APP_DIR#/app/}
 envsubst '\$PORT \$CLOUD_ENVIRONMENT \$MAGENTO_CLOUD_APP_DIR' < ${MAGENTO_CLOUD_APP_DIR}/application-server/nginx.conf.sample > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
 
 # Populate the commands associative array
+commands["PHP-FPM"]="/usr/sbin/${PLATFORM_FPM_WORKER} --fpm-config=/etc/platform/${CLOUD_ENVIRONMENT}/php-fpm.conf -c /etc/platform/${CLOUD_ENVIRONMENT}/php.ini --nodaemonize"
 commands["ApplicationServer"]="php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run -vvv"
 commands["Nginx"]="/usr/sbin/nginx -c ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf"
 
