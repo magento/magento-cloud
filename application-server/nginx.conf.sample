@@ -61,8 +61,7 @@ http {
       "GwLOk1FqDwcXrVW3"                                  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
       "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"                  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
       "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
-       default                                            "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
-#      default                                            "unix:/run/platform/${CLOUD_ENVIRONMENT}/php5.sock";
+      default                                            "unix:/run/platform/${CLOUD_ENVIRONMENT}/php5.sock";
   }
 
   upstream graphql_backend {
