@@ -9,9 +9,9 @@ if [ -z "$PLATFORM_FPM_WORKER" ]; then
 fi
 
 # Kill existing processes started from previous deployment
-killall php
-killall ${PLATFORM_FPM_WORKER}
-killall nginx
+killall --wait ${PLATFORM_FPM_WORKER}
+killall --wait php
+killall --wait nginx
 
 # Create CLOUD_ENVIRONMENT variable from MAGENTO_CLOUD_APP_DIR
 export CLOUD_ENVIRONMENT=${MAGENTO_CLOUD_APP_DIR#/app/}

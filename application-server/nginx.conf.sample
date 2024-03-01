@@ -27,6 +27,9 @@ http {
   absolute_redirect off;
 
   include /etc/nginx/mime.types;
+  types {
+    application/vnd.apple.pkpass pkpass;
+  }
 
   default_type application/octet-stream;
 
@@ -38,7 +41,7 @@ http {
   scgi_temp_path ${MAGENTO_CLOUD_APP_DIR}/var/scgi;
 
   # Limits.
-  client_max_body_size        250M;
+  client_max_body_size        0;
   proxy_buffer_size           32k;
   proxy_buffers               128 4k;
   proxy_max_temp_file_size    64M;
@@ -47,9 +50,25 @@ http {
   fastcgi_max_temp_file_size  64M;
   large_client_header_buffers 4 32k;
 
+  # Compression
+  gzip_static on;
+  gzip_http_version 1.0;
+  gzip_proxied any;
+  gzip_vary on;
+  gzip_comp_level 1;
+  gzip_types application/ecmascript application/javascript application/json;
+  gzip_types application/pdf application/postscript application/x-javascript;
+  gzip_types image/svg+xml text/css text/csv text/javascript text/plain text/xml;
+
+  brotli_static on;
+  brotli_comp_level 3;  # Equivalent to gzip level 1, but often with a higher compression ratio.
+  brotli_types application/ecmascript application/javascript application/json;
+  brotli_types application/pdf application/postscript application/x-javascript;
+  brotli_types image/svg+xml text/css text/csv text/javascript text/plain text/xml;
+
   # Timeouts.
   # We timeout if the application cannot start processing the request within this limit...
-  fastcgi_connect_timeout                 300s;
+  fastcgi_connect_timeout                 30s;
   # ... but once the application started processing, we essentially never timeout.
   fastcgi_read_timeout                    86400s;
   fastcgi_send_timeout                    86400s;
@@ -57,11 +76,9 @@ http {
   access_log ${MAGENTO_CLOUD_APP_DIR}/var/log/as-nginx-access.log;
 
   # XDebug Configuration
-  map "$cookie_xdebug_session$arg_xdebug_session_start$arg_xdebug_session_stop" $php_backend {
-      "GwLOk1FqDwcXrVW3"                                  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
-      "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"                  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
-      "GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3GwLOk1FqDwcXrVW3"  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
-      default                                            "unix:/run/platform/${CLOUD_ENVIRONMENT}/php5.sock";
+  map "$cookie_xdebug_session" $php_backend {
+      "${CLOUD_ENVIRONMENT}"  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
+      default                 "unix:/run/platform/${CLOUD_ENVIRONMENT}/php5.sock";
   }
 
   upstream graphql_backend {
