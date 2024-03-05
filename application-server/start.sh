@@ -8,13 +8,30 @@ if [ -z "$PLATFORM_FPM_WORKER" ]; then
     PLATFORM_FPM_WORKER="php-fpm8.2"
 fi
 
+# Check if the PORT is unset or empty, set default to "28080"
+if [ -z "$PORT" ]; then
+    PORT="28080"
+fi
+
+# Check if $MAGENTO_CLOUD_APP_DIR is already set and non-empty
+if [ -z "$MAGENTO_CLOUD_APP_DIR" ]; then
+    # $MAGENTO_CLOUD_APP_DIR is not set or is empty, proceed to determine its value based on other variables
+    if [ -n "$CLOUD_DIR" ]; then
+        MAGENTO_CLOUD_APP_DIR=$CLOUD_DIR
+    elif [ -n "$HOME" ]; then
+        MAGENTO_CLOUD_APP_DIR=$HOME
+    elif [ -n "$PWD" ]; then
+        MAGENTO_CLOUD_APP_DIR=$PWD
+    fi
+fi
+
+# Create CLOUD_ENVIRONMENT variable from MAGENTO_CLOUD_APP_DIR
+CLOUD_ENVIRONMENT=${MAGENTO_CLOUD_APP_DIR#/app/}
+
 # Kill existing processes started from previous deployment
 killall --wait ${PLATFORM_FPM_WORKER}
 killall --wait php
 killall --wait nginx
-
-# Create CLOUD_ENVIRONMENT variable from MAGENTO_CLOUD_APP_DIR
-export CLOUD_ENVIRONMENT=${MAGENTO_CLOUD_APP_DIR#/app/}
 
 # Prepare nginx configuration
 envsubst '\$PORT \$CLOUD_ENVIRONMENT \$MAGENTO_CLOUD_APP_DIR' < ${MAGENTO_CLOUD_APP_DIR}/application-server/nginx.conf.sample > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
