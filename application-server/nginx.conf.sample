@@ -77,8 +77,8 @@ http {
 
   # XDebug Configuration
   map "$cookie_xdebug_session" $php_backend {
-      "${CLOUD_ENVIRONMENT}"  "unix:////run/platform/${CLOUD_ENVIRONMENT}/php5-xdebug.sock";
-      default                 "unix:/run/platform/${CLOUD_ENVIRONMENT}/php5.sock";
+      "${USER}"  "unix:/run/platform/${USER}/php5-xdebug.sock";
+      default    "unix:/run/platform/${USER}/php5.sock";
   }
 
   upstream graphql_backend {
