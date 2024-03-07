@@ -5,31 +5,34 @@ declare -A pids
 
 # Check if the PLATFORM_FPM_WORKER is unset or empty, set default to "php-fpm8.2"
 if [ -z "$PLATFORM_FPM_WORKER" ]; then
-    export PLATFORM_FPM_WORKER="php-fpm8.2"
+    PLATFORM_FPM_WORKER="php-fpm8.2"
 fi
 
 # Check if the PORT is unset or empty, set default to "28080"
 if [ -z "$PORT" ]; then
-    export PORT="28080"
+    PORT="28080"
 fi
 
 # Check if $MAGENTO_CLOUD_APP_DIR is already set and non-empty
 if [ -z "$MAGENTO_CLOUD_APP_DIR" ]; then
     # $MAGENTO_CLOUD_APP_DIR is not set or is empty, proceed to determine its value based on other variables
     if [ -n "$CLOUD_DIR" ]; then
-        export MAGENTO_CLOUD_APP_DIR=$CLOUD_DIR
+        MAGENTO_CLOUD_APP_DIR=$CLOUD_DIR
     elif [ -n "$HOME" ]; then
-        export MAGENTO_CLOUD_APP_DIR=$HOME
+        MAGENTO_CLOUD_APP_DIR=$HOME
     elif [ -n "$PWD" ]; then
-        export MAGENTO_CLOUD_APP_DIR=$PWD
+        MAGENTO_CLOUD_APP_DIR=$PWD
     fi
 fi
 
 # Check if $USER is already set and non-empty
 if [ -z "$USER" ]; then
     # Create variable from MAGENTO_CLOUD_APP_DIR
-    export $USER=${MAGENTO_CLOUD_APP_DIR#/app/}
+    USER=${MAGENTO_CLOUD_APP_DIR#/app/}
 fi
+
+# Export variables so they could be used in child processes
+export PLATFORM_FPM_WORKER PORT MAGENTO_CLOUD_APP_DIR USER
 
 # Kill existing processes started from previous deployment
 killall --wait ${PLATFORM_FPM_WORKER}
