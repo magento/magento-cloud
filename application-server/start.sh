@@ -3,19 +3,49 @@
 declare -A commands
 declare -A pids
 
-# Kill existing processes started from previous deployment
-killall php
-killall nginx
+# Check if the PLATFORM_FPM_WORKER is unset or empty, set default to "php-fpm8.2"
+if [ -z "$PLATFORM_FPM_WORKER" ]; then
+    PLATFORM_FPM_WORKER="php-fpm8.2"
+fi
 
-# Create CLOUD_ENVIRONMENT variable from MAGENTO_CLOUD_APP_DIR
-export CLOUD_ENVIRONMENT=${MAGENTO_CLOUD_APP_DIR#/app/}
+# Check if the PORT is unset or empty, set default to "28080"
+if [ -z "$PORT" ]; then
+    PORT="28080"
+fi
+
+# Check if $MAGENTO_CLOUD_APP_DIR is already set and non-empty
+if [ -z "$MAGENTO_CLOUD_APP_DIR" ]; then
+    # $MAGENTO_CLOUD_APP_DIR is not set or is empty, proceed to determine its value based on other variables
+    if [ -n "$CLOUD_DIR" ]; then
+        MAGENTO_CLOUD_APP_DIR=$CLOUD_DIR
+    elif [ -n "$HOME" ]; then
+        MAGENTO_CLOUD_APP_DIR=$HOME
+    elif [ -n "$PWD" ]; then
+        MAGENTO_CLOUD_APP_DIR=$PWD
+    fi
+fi
+
+# Check if $USER is already set and non-empty
+if [ -z "$USER" ]; then
+    # Create variable from MAGENTO_CLOUD_APP_DIR
+    USER=${MAGENTO_CLOUD_APP_DIR#/app/}
+fi
+
+# Export variables so they could be used in child processes
+export PLATFORM_FPM_WORKER PORT MAGENTO_CLOUD_APP_DIR USER
+
+# Kill existing processes started from previous deployment
+killall --wait ${PLATFORM_FPM_WORKER}
+killall --wait php
+killall --wait nginx
 
 POST_DEPLOY_TIMESTAMP_FILE="${HOME}/app/etc/.post-deploy.timestamp"
 
 # Prepare nginx configuration
-envsubst '\$PORT \$CLOUD_ENVIRONMENT \$MAGENTO_CLOUD_APP_DIR' < ${MAGENTO_CLOUD_APP_DIR}/application-server/nginx.conf.sample > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
+envsubst '\$PORT \$USER \$MAGENTO_CLOUD_APP_DIR' < ${MAGENTO_CLOUD_APP_DIR}/application-server/nginx.conf.sample > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
 
 # Populate the commands associative array
+commands["PHP-FPM"]="/usr/sbin/${PLATFORM_FPM_WORKER} --fpm-config=/etc/platform/${USER}/php-fpm.conf -c /etc/platform/${USER}/php.ini --nodaemonize"
 commands["ApplicationServer"]="php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run -vvv"
 commands["Nginx"]="/usr/sbin/nginx -c ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf"
 
