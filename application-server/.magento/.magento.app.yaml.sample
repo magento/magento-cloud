@@ -29,7 +29,7 @@ relationships:
 # The configuration of app when it is exposed to the web.
 web:
     commands:
-        start: php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run -vvv  --port=${PORT:-80} > ${MAGENTO_CLOUD_APP_DIR}/var/log/application-server.log 2>&1
+        start: php -dopcache.enable_cli=1 -dopcache.validate_timestamps=0 bin/magento server:run -vvv --workerNum=2 --port=${PORT:-80} > ${MAGENTO_CLOUD_APP_DIR}/var/log/application-server.log 2>&1
     upstream:
         socket_family: tcp
         protocol: http
