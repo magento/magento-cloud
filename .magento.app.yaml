@@ -79,10 +79,60 @@ disk: 5120
 
 # The mounts that will be performed when the package is deployed.
 mounts:
+# DEFAULT MOUNTS START
     "var": "shared:files/var"
     "app/etc": "shared:files/etc"
     "pub/media": "shared:files/media"
     "pub/static": "shared:files/static"
+# DEFAULT MOUNTS END
+#
+## TEMPORARY SHARED MOUNTS START
+## Mounts are needed to sync data from local mounts to shared ones.
+#    "var_shared":
+#        source: "service"
+#        service: "files"
+#        source_path: "var"
+#    "app/etc_shared":
+#        source: "service"
+#        service: "files"
+#        source_path: "etc"
+#    "pub/media_shared":
+#        source: "service"
+#        service: "files"
+#        source_path: "media"
+#    "pub/static_shared":
+#        source: "service"
+#        service: "files"
+#        source_path: "static"
+## TEMPORARY SHARED MOUNTS END
+#
+## OLD LOCAL MOUNTS START
+## Mounts are used for cleaning up old local data to free the disk space.
+#    "var_old": "shared:files/var"
+#    "app/etc_old": "shared:files/etc"
+#    "pub/media_old": "shared:files/media"
+#    "pub/static_old": "shared:files/static"
+## OLD LOCAL MOUNTS END
+#
+## SHARED MOUNTS START
+## Mounts are required for sharing data between the main app and the application server app.
+#    "var":
+#        source: "service"
+#        service: "files"
+#        source_path: "var"
+#    "app/etc":
+#        source: "service"
+#        service: "files"
+#        source_path: "etc"
+#    "pub/media":
+#        source: "service"
+#        service: "files"
+#        source_path: "media"
+#    "pub/static":
+#        source: "service"
+#        service: "files"
+#        source_path: "static"
+## SHARED MOUNTS END
 
 hooks:
     # We run build hooks before your application has been packaged.
