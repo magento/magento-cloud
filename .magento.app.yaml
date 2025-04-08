@@ -24,8 +24,8 @@ runtime:
 # to the application in the environment variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: "mysql:mysql"
-    redis: "redis:redis"
+    database: "mariadb:mariadb"
+    valkey: "cache:valkey"
     opensearch: "opensearch:opensearch"
 
 # The configuration of app when it is exposed to the web. Application Server disabled.
@@ -88,7 +88,7 @@ hooks:
     # We run build hooks before your application has been packaged.
     build: |
         set -e
-        composer install --no-dev
+        composer install
         php ./vendor/bin/ece-tools run scenario/build/generate.xml
         php ./vendor/bin/ece-tools run scenario/build/transfer.xml
     # We run deploy hook after your application has been deployed and started.
