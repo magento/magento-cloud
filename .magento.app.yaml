@@ -5,7 +5,7 @@
 name: mymagento
 
 # The toolstack used to build the application.
-type: php:8.3
+type: php:8.4
 build:
     flavor: none
 
@@ -25,8 +25,9 @@ runtime:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
     database: "mysql:mysql"
-    redis: "redis:redis"
+#    redis: "redis:redis"
     opensearch: "opensearch:opensearch"
+    valkey: "cache:valkey"
 
 # The configuration of app when it is exposed to the web.
 web:
