@@ -71,11 +71,11 @@
         },
         {
             "name": "adobe-commerce/extensions-metapackage",
-            "version": "2.0.1",
+            "version": "2.0.1-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/adobe-commerce/extensions-metapackage/adobe-commerce-extensions-metapackage-2.0.1.0.zip",
-                "shasum": "396c63d29eb6c4d5a5589c81ef8bed75363d6cab"
+                "url": "https://repo.magento.com/archives/adobe-commerce/extensions-metapackage/adobe-commerce-extensions-metapackage-2.0.1.0-patch1.zip",
+                "shasum": "e95c7daaa1677323bee29e00b21a5bd2dfc21c82"
             },
             "require": {
                 "adobe-commerce/adobe-ims-metapackage": ">=2.2.3@beta <2.3.0",
@@ -83,25 +83,27 @@
                 "magento/commerce-backend-sdk": "^2.0",
                 "magento/commerce-eventing": "^1.8",
                 "magento/commerce-webhooks": "^1.5",
+                "magento/framework": "103.0.*",
                 "magento/payment-services": "^2.0",
-                "paypal/module-braintree": ">=4.7.0@beta <5.0.0"
+                "paypal/module-braintree": "~4.6.1"
             },
             "type": "metapackage",
             "description": "Metapackage contains references to Adobe Commerce Extensions"
         },
         {
             "name": "adobe-commerce/os-extensions-metapackage",
-            "version": "1.0.1",
+            "version": "1.0.1-p1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/adobe-commerce/os-extensions-metapackage/adobe-commerce-os-extensions-metapackage-1.0.1.0.zip",
-                "shasum": "99699dc5c45c295c0cd859066969c3f83746f161"
+                "url": "https://repo.magento.com/archives/adobe-commerce/os-extensions-metapackage/adobe-commerce-os-extensions-metapackage-1.0.1.0-patch1.zip",
+                "shasum": "6cb1b26ced10786a9936a27459373e1c060dad86"
             },
             "require": {
                 "adobe-commerce/adobe-ims-metapackage": ">=2.2.3@beta <3.0.0",
                 "magento/adobe-stock-integration": ">=2.1.7@beta <3.0.0",
+                "magento/framework": "103.0.*",
                 "magento/payment-services": "^2.0",
-                "paypal/module-braintree": ">=4.7.0@beta <5.0.0"
+                "paypal/module-braintree": "~4.6.1"
             },
             "type": "metapackage",
             "description": "Metapackage contains references to extensions bundled with Magento OS"
@@ -202,16 +204,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.342.23",
+            "version": "3.342.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a5e9ba23ffecf1f71d8cfb177ef5cb3fbe2ecf05"
+                "reference": "4c18299000c34ab4903100fe68721d6f26c7cdf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a5e9ba23ffecf1f71d8cfb177ef5cb3fbe2ecf05",
-                "reference": "a5e9ba23ffecf1f71d8cfb177ef5cb3fbe2ecf05",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4c18299000c34ab4903100fe68721d6f26c7cdf2",
+                "reference": "4c18299000c34ab4903100fe68721d6f26c7cdf2",
                 "shasum": ""
             },
             "require": {
@@ -293,9 +295,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.342.23"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.342.27"
             },
-            "time": "2025-04-08T18:35:41+00:00"
+            "time": "2025-04-14T18:08:09+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1862,16 +1864,16 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v6.11.0",
+            "version": "v6.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "8f718f4dfc9c5d5f0c994cdfd103921b43592712"
+                "reference": "d1e91ecf8c598d073d0995afa8cd5c75c6e19e66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/8f718f4dfc9c5d5f0c994cdfd103921b43592712",
-                "reference": "8f718f4dfc9c5d5f0c994cdfd103921b43592712",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/d1e91ecf8c598d073d0995afa8cd5c75c6e19e66",
+                "reference": "d1e91ecf8c598d073d0995afa8cd5c75c6e19e66",
                 "shasum": ""
             },
             "require": {
@@ -1919,9 +1921,9 @@
             ],
             "support": {
                 "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.11.0"
+                "source": "https://github.com/firebase/php-jwt/tree/v6.11.1"
             },
-            "time": "2025-01-23T05:11:06+00:00"
+            "time": "2025-04-09T20:32:01+00:00"
         },
         {
             "name": "friendsofphp/proxy-manager-lts",
@@ -3593,16 +3595,16 @@
         },
         {
             "name": "laminas/laminas-i18n",
-            "version": "2.29.0",
+            "version": "2.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-i18n.git",
-                "reference": "9aa7ef6073556e9b4cfd8d9a0cb8e41cd3883454"
+                "reference": "397907ee061e147939364df9d6c485ac1e0fed87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-i18n/zipball/9aa7ef6073556e9b4cfd8d9a0cb8e41cd3883454",
-                "reference": "9aa7ef6073556e9b4cfd8d9a0cb8e41cd3883454",
+                "url": "https://api.github.com/repos/laminas/laminas-i18n/zipball/397907ee061e147939364df9d6c485ac1e0fed87",
+                "reference": "397907ee061e147939364df9d6c485ac1e0fed87",
                 "shasum": ""
             },
             "require": {
@@ -3617,18 +3619,18 @@
                 "zendframework/zend-i18n": "*"
             },
             "require-dev": {
-                "laminas/laminas-cache": "^3.12.1",
-                "laminas/laminas-cache-storage-adapter-memory": "^2.3.0",
-                "laminas/laminas-cache-storage-deprecated-factory": "^1.2",
+                "laminas/laminas-cache": "^3.13.0",
+                "laminas/laminas-cache-storage-adapter-memory": "^2.4.0",
+                "laminas/laminas-cache-storage-deprecated-factory": "^1.3",
                 "laminas/laminas-coding-standard": "~2.5.0",
-                "laminas/laminas-config": "^3.9.0",
-                "laminas/laminas-eventmanager": "^3.13",
-                "laminas/laminas-filter": "^2.34",
-                "laminas/laminas-validator": "^2.49",
-                "laminas/laminas-view": "^2.34",
-                "phpunit/phpunit": "^10.5.11",
-                "psalm/plugin-phpunit": "^0.19.0",
-                "vimeo/psalm": "^5.22.2"
+                "laminas/laminas-config": "^3.10.1",
+                "laminas/laminas-eventmanager": "^3.14.0",
+                "laminas/laminas-filter": "^2.40",
+                "laminas/laminas-validator": "^2.64.2",
+                "laminas/laminas-view": "^2.36",
+                "phpunit/phpunit": "^10.5.45",
+                "psalm/plugin-phpunit": "^0.19.5",
+                "vimeo/psalm": "^6.10.0"
             },
             "suggest": {
                 "laminas/laminas-cache": "You should install this package to cache the translations",
@@ -3675,7 +3677,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2024-10-11T09:44:53+00:00"
+            "time": "2025-04-15T09:07:02+00:00"
         },
         {
             "name": "laminas/laminas-json",
@@ -6201,11 +6203,11 @@
         },
         {
             "name": "magento/magento-cloud-patches",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.1.4.0.zip",
-                "shasum": "1266507d9e8901f07d620b94ee5a55c9681199ba"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.1.5.0.zip",
+                "shasum": "fa30238bdacbc76d7a545b3f1c304090c30aa9d8"
             },
             "require": {
                 "composer/composer": "^1.9 || ^2.8 || !=2.2.16",
@@ -11510,11 +11512,11 @@
         },
         {
             "name": "magento/module-data-exporter",
-            "version": "103.4.0",
+            "version": "103.4.1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-data-exporter/magento-module-data-exporter-103.4.0.0.zip",
-                "shasum": "3c94cac845a82c3b8ff4a50535c308536fedebd7"
+                "url": "https://repo.magento.com/archives/magento/module-data-exporter/magento-module-data-exporter-103.4.1.0.zip",
+                "shasum": "54bdaa40c2e3e4bccdab041c00ef41a529a5925c"
             },
             "require": {
                 "magento/framework": ">=103.0.4",
@@ -18872,11 +18874,11 @@
         },
         {
             "name": "magento/module-query-xml",
-            "version": "103.4.0",
+            "version": "103.4.1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-query-xml/magento-module-query-xml-103.4.0.0.zip",
-                "shasum": "c351427a9b93d76c13ce7b9ea3067fd09225621b"
+                "url": "https://repo.magento.com/archives/magento/module-query-xml/magento-module-query-xml-103.4.1.0.zip",
+                "shasum": "11df2225b348bce84396db3cc733cade877c0170"
             },
             "require": {
                 "magento/framework": ">=103.0.4",
@@ -20739,11 +20741,11 @@
         },
         {
             "name": "magento/module-saas-common",
-            "version": "103.4.0",
+            "version": "103.4.1",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-saas-common/magento-module-saas-common-103.4.0.0.zip",
-                "shasum": "a210f306c0212ab92bb71e3c5f902d140dba1c68"
+                "url": "https://repo.magento.com/archives/magento/module-saas-common/magento-module-saas-common-103.4.1.0.zip",
+                "shasum": "7536e6055caa3db611d844a1c23c27c4578c22de"
             },
             "require": {
                 "magento/framework": ">=103.0.4",
@@ -25317,23 +25319,21 @@
         },
         {
             "name": "paypal/module-braintree",
-            "version": "4.7.0",
+            "version": "4.6.1-p5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/paypal/module-braintree/paypal-module-braintree-4.7.0.0.zip",
-                "shasum": "a88fb92b15b57dc46572159a2e41edf19486a1d2"
+                "url": "https://repo.magento.com/archives/paypal/module-braintree/paypal-module-braintree-4.6.1.0-patch5.zip",
+                "shasum": "9b85085f6dd3afbf37b89138930378da6963dd7b"
             },
             "require": {
                 "braintree/braintree_php": "6.21.0",
                 "magento/framework": "*",
-                "paypal/module-braintree-core": "4.7.0",
-                "paypal/module-braintree-customer-balance": "4.7.0",
-                "paypal/module-braintree-gift-card": "4.7.0",
-                "paypal/module-braintree-gift-card-account": "4.7.0",
-                "paypal/module-braintree-gift-wrapping": "4.7.0",
-                "paypal/module-braintree-graph-ql": "4.7.0",
-                "paypal/module-braintree-reward": "4.7.0",
-                "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0"
+                "paypal/module-braintree-core": "4.6.1-p5",
+                "paypal/module-braintree-customer-balance": "4.6.1-p5",
+                "paypal/module-braintree-gift-card-account": "4.6.1-p5",
+                "paypal/module-braintree-gift-wrapping": "4.6.1-p5",
+                "paypal/module-braintree-graph-ql": "4.6.1-p5",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
@@ -25346,17 +25346,18 @@
         },
         {
             "name": "paypal/module-braintree-core",
-            "version": "4.7.0",
+            "version": "4.6.1-p5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/paypal/module-braintree-core/paypal-module-braintree-core-4.7.0.0.zip",
-                "shasum": "5f78caac844b293d836dd4453286202dda72e463"
+                "url": "https://repo.magento.com/archives/paypal/module-braintree-core/paypal-module-braintree-core-4.6.1.0-patch5.zip",
+                "shasum": "830661fe693863af4cd20c38a948ebe97fd5728b"
             },
             "require": {
                 "braintree/braintree_php": "6.21.0",
                 "ext-json": "*",
                 "ext-simplexml": "*",
                 "magento/framework": "*",
+                "magento/module-authorization": "100.4.*",
                 "magento/module-backend": "100.2.*||101.0.*||^102.0.0",
                 "magento/module-catalog": "102.0.*||103.0.*||^104.0.0",
                 "magento/module-checkout": "100.2.*||100.3.*||^100.4.0",
@@ -25365,6 +25366,7 @@
                 "magento/module-configurable-product": "100.4.*",
                 "magento/module-customer": "101.0.*||102.0.*||^103.0.0",
                 "magento/module-directory": "100.2.*||100.3.*||^100.4.0",
+                "magento/module-downloadable": "100.4.*",
                 "magento/module-grouped-product": "100.4.*",
                 "magento/module-instant-purchase": "100.4.*",
                 "magento/module-multishipping": "100.4.*",
@@ -25372,16 +25374,22 @@
                 "magento/module-paypal": "100.2.*||100.3.*||^101.0.0",
                 "magento/module-quote": "101.0.*||101.1.*||^101.2.0",
                 "magento/module-quote-graph-ql": "^100",
+                "magento/module-re-captcha-admin-ui": "1.1.*",
+                "magento/module-re-captcha-frontend-ui": "1.1.*",
                 "magento/module-re-captcha-ui": "1.1.*",
                 "magento/module-re-captcha-validation-api": "1.1.*",
+                "magento/module-re-captcha-version-2-checkbox": "2.0.*",
+                "magento/module-re-captcha-version-2-invisible": "2.0.*",
+                "magento/module-re-captcha-version-3-invisible": "2.0.*",
                 "magento/module-re-captcha-webapi-api": "1.0.*",
+                "magento/module-re-captcha-webapi-ui": "1.0.*",
                 "magento/module-sales": "101.0.*||102.0.*||^102.1.0||^103",
                 "magento/module-store": "101.1.*",
-                "magento/module-tax": "100.4.*",
                 "magento/module-theme": "100.2.*||101.0.*||^101.1.0",
                 "magento/module-ui": "101.0.*||101.1.*||^101.2.0",
                 "magento/module-vault": "101.0.*||101.1.*||^101.2.0",
-                "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0"
+                "magento/module-webapi": "100.4.*",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
             },
             "conflict": {
                 "gene/module-braintree": "*",
@@ -25389,12 +25397,6 @@
             },
             "require-dev": {
                 "magento/magento-coding-standard": "^32.0"
-            },
-            "suggest": {
-                "magento/framework-foreign-key": "100.4.*",
-                "magento/module-re-captcha-admin-ui": "1.1.*",
-                "magento/module-re-captcha-checkout": "1.1.*",
-                "magento/module-re-captcha-webapi-ui": "1.0.*"
             },
             "type": "magento2-module",
             "autoload": {
@@ -25412,18 +25414,18 @@
         },
         {
             "name": "paypal/module-braintree-customer-balance",
-            "version": "4.7.0",
+            "version": "4.6.1-p5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/paypal/module-braintree-customer-balance/paypal-module-braintree-customer-balance-4.7.0.0.zip",
-                "shasum": "491c237b9a6991a4da84f4c00f949c0579e91446"
+                "url": "https://repo.magento.com/archives/paypal/module-braintree-customer-balance/paypal-module-braintree-customer-balance-4.6.1.0-patch5.zip",
+                "shasum": "92f281784141dec6cc997e0057e46e3faa76a695"
             },
             "require": {
                 "magento/framework": "*",
                 "magento/module-quote": "101.0.*||101.1.*||^101.2.0",
                 "magento/module-sales": "101.0.*||102.0.*||^102.1.0||^103",
-                "paypal/module-braintree-core": "4.7.0",
-                "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0"
+                "paypal/module-braintree-core": "4.6.1-p5",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
             },
             "suggest": {
                 "magento/module-customer-balance": "100.4.*"
@@ -25444,51 +25446,19 @@
             "description": "N/A"
         },
         {
-            "name": "paypal/module-braintree-gift-card",
-            "version": "4.7.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/paypal/module-braintree-gift-card/paypal-module-braintree-gift-card-4.7.0.0.zip",
-                "shasum": "a40c8e64b470ab4a30277baa44096212ef4996e3"
-            },
-            "require": {
-                "magento/framework": "*",
-                "magento/module-catalog": "^104.0.0",
-                "paypal/module-braintree-core": "4.7.0",
-                "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0"
-            },
-            "suggest": {
-                "magento/module-gift-card": "101.2.*"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "PayPal\\BraintreeGiftCard\\": ""
-                }
-            },
-            "license": [
-                "OSL-3.0",
-                "AFL-3.0"
-            ],
-            "description": "N/A"
-        },
-        {
             "name": "paypal/module-braintree-gift-card-account",
-            "version": "4.7.0",
+            "version": "4.6.1-p5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/paypal/module-braintree-gift-card-account/paypal-module-braintree-gift-card-account-4.7.0.0.zip",
-                "shasum": "af375a63147916669d2e06fe90804e34269b64f0"
+                "url": "https://repo.magento.com/archives/paypal/module-braintree-gift-card-account/paypal-module-braintree-gift-card-account-4.6.1.0-patch5.zip",
+                "shasum": "712be241dff7a85623b137dd8ab46c9df20bf602"
             },
             "require": {
                 "magento/framework": "*",
                 "magento/module-quote": "101.0.*||101.1.*||^101.2.0",
                 "magento/module-sales": "101.0.*||102.0.*||^102.1.0||^103",
-                "paypal/module-braintree-core": "4.7.0",
-                "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0"
+                "paypal/module-braintree-core": "4.6.1-p5",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
             },
             "suggest": {
                 "magento/module-gift-card-account": "101.2.*"
@@ -25510,17 +25480,18 @@
         },
         {
             "name": "paypal/module-braintree-gift-wrapping",
-            "version": "4.7.0",
+            "version": "4.6.1-p5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/paypal/module-braintree-gift-wrapping/paypal-module-braintree-gift-wrapping-4.7.0.0.zip",
-                "shasum": "963cc499b85e17fdcbaba11f0fc3b94289b02fb4"
+                "url": "https://repo.magento.com/archives/paypal/module-braintree-gift-wrapping/paypal-module-braintree-gift-wrapping-4.6.1.0-patch5.zip",
+                "shasum": "5a9365fab80ca7432d16485531b51a1064b2230c"
             },
             "require": {
                 "magento/framework": "*",
+                "magento/module-quote": "101.0.*||101.1.*||^101.2.0",
                 "magento/module-sales": "101.0.*||102.0.*||^102.1.0||^103",
-                "paypal/module-braintree-core": "4.7.0",
-                "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0"
+                "paypal/module-braintree-core": "4.6.1-p5",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
             },
             "suggest": {
                 "magento/module-gift-wrapping": "101.2.*"
@@ -25542,19 +25513,19 @@
         },
         {
             "name": "paypal/module-braintree-graph-ql",
-            "version": "4.7.0",
+            "version": "4.6.1-p5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/paypal/module-braintree-graph-ql/paypal-module-braintree-graph-ql-4.7.0.0.zip",
-                "shasum": "9364f25131d3506f4a4342bb24e3907aa399b0e2"
+                "url": "https://repo.magento.com/archives/paypal/module-braintree-graph-ql/paypal-module-braintree-graph-ql-4.6.1.0-patch5.zip",
+                "shasum": "fb1f92040a421db6b2da621f361194d5fb558c01"
             },
             "require": {
                 "magento/framework": "*",
                 "magento/module-quote": "^101",
                 "magento/module-quote-graph-ql": "^100",
-                "magento/module-vault": "101.0.*||101.1.*||^101.2.0",
-                "paypal/module-braintree-core": "4.7.0",
-                "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0"
+                "magento/module-store": "^101",
+                "paypal/module-braintree-core": "4.6.1-p5",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
@@ -25569,39 +25540,6 @@
                 ],
                 "psr-4": {
                     "PayPal\\BraintreeGraphQl\\": ""
-                }
-            },
-            "license": [
-                "OSL-3.0",
-                "AFL-3.0"
-            ],
-            "description": "N/A"
-        },
-        {
-            "name": "paypal/module-braintree-reward",
-            "version": "4.7.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/paypal/module-braintree-reward/paypal-module-braintree-reward-4.7.0.0.zip",
-                "shasum": "177144a2d25e50209dcbbcdff2ed71c7ff8b75ec"
-            },
-            "require": {
-                "magento/framework": "*",
-                "magento/module-quote": "101.0.*||101.1.*||^101.2.0",
-                "magento/module-sales": "101.0.*||102.0.*||^102.1.0||^103",
-                "paypal/module-braintree-core": "4.7.0",
-                "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0"
-            },
-            "suggest": {
-                "magento/module-reward": "101.2.*"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "PayPal\\BraintreeReward\\": ""
                 }
             },
             "license": [
@@ -30867,10 +30805,10 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "alpha",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
