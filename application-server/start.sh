@@ -67,7 +67,9 @@ for key in "${!commands[@]}"; do
   echo $(date -u) "Started $key with PID ${pids[$key]}"
 done
 
-touch "$POST_DEPLOY_TIMESTAMP_FILE"
+if [ ! -e "$POST_DEPLOY_TIMESTAMP_FILE" ]; then
+    touch "$POST_DEPLOY_TIMESTAMP_FILE"
+fi
 PREVIOUS_POST_DEPLOY_TIMESTAMP=$(stat -c %Z $POST_DEPLOY_TIMESTAMP_FILE 2> /dev/null || echo "0")
 
 # Infinite loop to keep all processes running
