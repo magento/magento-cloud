@@ -39,8 +39,6 @@ killall --wait ${PLATFORM_FPM_WORKER}
 killall --wait php
 killall --wait nginx
 
-POST_DEPLOY_TIMESTAMP_FILE="${HOME}/app/etc/.post-deploy.timestamp"
-
 # Prepare nginx configuration
 envsubst '\$PORT \$USER \$MAGENTO_CLOUD_APP_DIR' < ${MAGENTO_CLOUD_APP_DIR}/application-server/nginx.conf.sample > ${MAGENTO_CLOUD_APP_DIR}/app/etc/nginx.conf
 
@@ -67,8 +65,7 @@ for key in "${!commands[@]}"; do
   echo $(date -u) "Started $key with PID ${pids[$key]}"
 done
 
-touch "$POST_DEPLOY_TIMESTAMP_FILE"
-PREVIOUS_POST_DEPLOY_TIMESTAMP=$(stat -c %Z $POST_DEPLOY_TIMESTAMP_FILE 2> /dev/null || echo "0")
+PREVIOUS_MAGENTO_CLOUD_TREE_ID=${MAGENTO_CLOUD_TREE_ID}
 
 # Infinite loop to keep all processes running
 while true; do
@@ -80,11 +77,11 @@ while true; do
       echo $(date -u) "Restarted $key with PID ${pids[$key]}"
     fi
   done
-  # Check if new post-deployment has happened. Kill server if so. (It will restart in previous part of this loop.)
-  CURRENT_POST_DEPLOY_TIMESTAMP=$(stat -c %Z $POST_DEPLOY_TIMESTAMP_FILE 2> /dev/null || echo "0")
-  if [[ $CURRENT_POST_DEPLOY_TIMESTAMP -gt $PREVIOUS_POST_DEPLOY_TIMESTAMP ]]; then
+  # Check if a new deployment has happened. Kill the server if so. (It will restart in the previous part of this loop.)
+  CURRENT_MAGENTO_CLOUD_TREE_ID=${MAGENTO_CLOUD_TREE_ID}
+  if [[ $CURRENT_MAGENTO_CLOUD_TREE_ID != $PREVIOUS_MAGENTO_CLOUD_TREE_ID ]]; then
     kill ${pids[ApplicationServer]}
-    PREVIOUS_POST_DEPLOY_TIMESTAMP=$CURRENT_POST_DEPLOY_TIMESTAMP
+    PREVIOUS_MAGENTO_CLOUD_TREE_ID=$CURRENT_MAGENTO_CLOUD_TREE_ID
   fi
   sleep 1
 done
