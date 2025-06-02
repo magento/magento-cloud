@@ -79,7 +79,7 @@ while true; do
   done
   # Check if a new deployment has happened. Kill the server if so. (It will restart in the previous part of this loop.)
   CURRENT_MAGENTO_CLOUD_TREE_ID=${MAGENTO_CLOUD_TREE_ID}
-  if [[ $CURRENT_MAGENTO_CLOUD_TREE_ID -gt $PREVIOUS_MAGENTO_CLOUD_TREE_ID ]]; then
+  if [[ $CURRENT_MAGENTO_CLOUD_TREE_ID != $PREVIOUS_MAGENTO_CLOUD_TREE_ID ]]; then
     kill ${pids[ApplicationServer]}
     PREVIOUS_MAGENTO_CLOUD_TREE_ID=$CURRENT_MAGENTO_CLOUD_TREE_ID
   fi
