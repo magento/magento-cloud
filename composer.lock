@@ -1823,16 +1823,16 @@
         },
         {
             "name": "fastly/magento2",
-            "version": "1.2.228",
+            "version": "1.2.229",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fastly/fastly-magento2.git",
-                "reference": "0ab7c9252a5afff9a20ed72515f5202c20bf6797"
+                "reference": "8ac56fcfc7df115c5686a613da29aaf810d680e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/0ab7c9252a5afff9a20ed72515f5202c20bf6797",
-                "reference": "0ab7c9252a5afff9a20ed72515f5202c20bf6797",
+                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/8ac56fcfc7df115c5686a613da29aaf810d680e4",
+                "reference": "8ac56fcfc7df115c5686a613da29aaf810d680e4",
                 "shasum": ""
             },
             "require": {
@@ -1861,9 +1861,9 @@
             "description": "Fastly CDN Module for Magento 2.4.x",
             "support": {
                 "issues": "https://github.com/fastly/fastly-magento2/issues",
-                "source": "https://github.com/fastly/fastly-magento2/tree/1.2.228"
+                "source": "https://github.com/fastly/fastly-magento2/tree/1.2.229"
             },
-            "time": "2025-04-11T08:55:56+00:00"
+            "time": "2025-05-30T08:54:23+00:00"
         },
         {
             "name": "fgrosse/phpasn1",
@@ -5056,11 +5056,11 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.2.5",
+            "version": "2002.2.6",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.2.5.0.zip",
-                "shasum": "5799e873ea4acf0491ff22ee80e56cda600e39ec"
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.2.6.0.zip",
+                "shasum": "6d3abd4f0ead27189ceb84d3a121e70777e77361"
             },
             "require": {
                 "colinmollenhour/credis": "^1.6.0 || ^1.13",
@@ -5071,7 +5071,7 @@
                 "ext-sockets": "*",
                 "graylog2/gelf-php": "^2.0.1",
                 "guzzlehttp/guzzle": "^7.3 || ^7.5",
-                "illuminate/config": "^10.0 || ^11.0",
+                "illuminate/config": "^10.0 || ^11.0 || ^12.16",
                 "magento/magento-cloud-components": "^1.0.8",
                 "magento/magento-cloud-docker": "^1.4.0",
                 "magento/magento-cloud-patches": "^1.0.20",
@@ -5079,14 +5079,14 @@
                 "monolog/monolog": "^2.3 || ^2.7 || ^3.6",
                 "nesbot/carbon": "^1.0 || ^2.0 || ^3.8",
                 "php": "^8.0",
-                "psr/container": "^1.0",
+                "psr/container": "^1.0 || ^2.0",
                 "psr/log": "^1.0 || ^2.0 || ^3.0",
-                "symfony/config": "^4.4 || ^5.1 || ^5.4 || ^6.4",
-                "symfony/console": "^4.4 || ^5.1 || ^5.4 || ^6.4",
-                "symfony/dependency-injection": "^4.4 || ^5.1 || ^5.4 || ^6.4",
-                "symfony/process": "^4.4 || ^5.1 || ^5.4 || ^6.4",
-                "symfony/serializer": "^4.4 || ^5.4 || ^6.4",
-                "symfony/yaml": "^4.4 || ^5.1 || ^5.4 || ^6.4"
+                "symfony/config": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/console": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/dependency-injection": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/process": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/serializer": "^4.4 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/yaml": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2"
             },
             "conflict": {
                 "nesbot/carbon": ">=1.38 <2.0",
@@ -5102,7 +5102,7 @@
                 "codeception/module-db": "^3.0",
                 "codeception/module-phpbrowser": "^3.0",
                 "codeception/module-rest": "^3.0",
-                "consolidation/robo": "^3.0",
+                "consolidation/robo": "^3.0 || ^4.0 || ^5.0",
                 "funkjedi/composer-include-files": "^1.0",
                 "php-mock/php-mock-phpunit": "^2.0",
                 "phpmd/phpmd": "@stable",
@@ -5601,15 +5601,15 @@
         },
         {
             "name": "magento/magento-cloud-components",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.1.1.0.zip",
-                "shasum": "4c16532a9f0ed41f066cbc74dd79275d0f4133cd"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-components/magento-magento-cloud-components-1.1.2.0.zip",
+                "shasum": "2f74d62bc3d0ff91c3e20778d031c2ed77882d10"
             },
             "require": {
                 "colinmollenhour/cache-backend-redis": "^1.14.2",
-                "colinmollenhour/credis": "^1.6",
+                "colinmollenhour/credis": "^1.6.0 || ^1.13",
                 "ext-json": "*",
                 "php": "^8.0"
             },
@@ -5619,7 +5619,7 @@
                 "codeception/module-db": "^3.0",
                 "codeception/module-phpbrowser": "^3.0",
                 "codeception/module-rest": "^3.0",
-                "consolidation/robo": "^3.0",
+                "consolidation/robo": "^3.0 || ^4.0 || ^5.0",
                 "phpmd/phpmd": "@stable",
                 "phpstan/phpstan": "~1.2.0 || ^2.0",
                 "phpunit/phpunit": "^10.0",
@@ -5644,22 +5644,22 @@
         },
         {
             "name": "magento/magento-cloud-docker",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-docker/magento-magento-cloud-docker-1.4.2.0.zip",
-                "shasum": "427ecdcb08e387530a365878db316a727a7f29be"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-docker/magento-magento-cloud-docker-1.4.3.0.zip",
+                "shasum": "7e5c0bd2e4aec9632c036fab625d43939a1e1e50"
             },
             "require": {
                 "composer/composer": "^1.9 || ^2.8 || !=2.2.16",
                 "composer/semver": "@stable",
                 "ext-json": "*",
-                "illuminate/config": "^8.77 || ^10.0 || ^11.0",
+                "illuminate/config": "^8.77 || ^10.0 || ^11.0 || ^12.16",
                 "php": "^8.0",
-                "symfony/config": "^4.4 || ^5.1|| ^5.4 || ^6.4",
-                "symfony/console": "^4.4 || ^5.1 || ^5.4 || ^6.4",
-                "symfony/dependency-injection": "^4.4 || ^5.1|| ^5.4 || ^6.4",
-                "symfony/yaml": "^4.4 || ^5.1 || ^5.4|| ^6.4"
+                "symfony/config": "^4.4 || ^5.1|| ^5.4 || ^6.4 || ^7.2",
+                "symfony/console": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/dependency-injection": "^4.4 || ^5.1|| ^5.4 || ^6.4 || ^7.2",
+                "symfony/yaml": "^4.4 || ^5.1 || ^5.4|| ^6.4 || ^7.2"
             },
             "require-dev": {
                 "codeception/codeception": "^4.1 || ^5.1",
@@ -5667,7 +5667,7 @@
                 "codeception/module-db": "^1.0 || ^3.0",
                 "codeception/module-phpbrowser": "^1.0 || ^3.0",
                 "codeception/module-rest": "^1.2 || ^3.0",
-                "consolidation/robo": "^2.0 || ^3.0",
+                "consolidation/robo": "^2.0 || ^3.0 || ^4.0 || ^5.0",
                 "phpmd/phpmd": "@stable",
                 "phpstan/phpstan": "^1.8 || ^2.0",
                 "phpunit/phpunit": "^10.0",
@@ -5762,11 +5762,11 @@
         },
         {
             "name": "magento/magento-cloud-patches",
-            "version": "1.1.7",
+            "version": "1.1.8",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.1.7.0.zip",
-                "shasum": "d7dbf785b3f7749c2820f076669284acf606b4a7"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.1.8.0.zip",
+                "shasum": "2917979f9a1ca2ea681f7b9ef38eba8da8d82731"
             },
             "require": {
                 "composer/composer": "^1.9 || ^2.8 || !=2.2.16",
@@ -5775,12 +5775,12 @@
                 "magento/quality-patches": "^1.1.0",
                 "monolog/monolog": "^2.3 || ^2.7 || ^3.6",
                 "php": "^8.0",
-                "symfony/config": "^4.4 || ^5.1 || ^5.4 || ^6.4",
-                "symfony/console": "^4.4 || ^5.1 || ^5.4 || ^6.4",
-                "symfony/dependency-injection": "^4.4 || ^5.1 || ^5.4 || ^6.4",
-                "symfony/process": "^4.4 || ^5.1 || ^5.4 || ^6.4",
+                "symfony/config": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/console": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/dependency-injection": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
+                "symfony/process": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2",
                 "symfony/proxy-manager-bridge": "^3.3||^4.3||^5.0||^6.0",
-                "symfony/yaml": "^4.4 || ^5.1 || ^5.4 || ^6.4"
+                "symfony/yaml": "^4.4 || ^5.1 || ^5.4 || ^6.4 || ^7.2"
             },
             "require-dev": {
                 "codeception/codeception": "^4.1 || ^5.1",
@@ -5788,7 +5788,7 @@
                 "codeception/module-db": "^1.0 || ^3.0",
                 "codeception/module-phpbrowser": "^1.0 || ^3.0",
                 "codeception/module-rest": "^1.2 || ^3.0",
-                "consolidation/robo": "^1.2 || ^3.0 || ^5.0",
+                "consolidation/robo": "^1.2 || ^3.0 || ^4.0 || ^5.0",
                 "phpmd/phpmd": "@stable",
                 "phpunit/phpunit": "^10.0",
                 "squizlabs/php_codesniffer": "^3.0"
@@ -21665,11 +21665,11 @@
         },
         {
             "name": "magento/quality-patches",
-            "version": "1.1.64",
+            "version": "1.1.65",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/quality-patches/magento-quality-patches-1.1.64.0.zip",
-                "shasum": "e63c9682cb1cac0496ada94151142bab96e6c6b9"
+                "url": "https://repo.magento.com/archives/magento/quality-patches/magento-quality-patches-1.1.65.0.zip",
+                "shasum": "9e74203ff640be8e072e5ad09c7866f5b5527c4a"
             },
             "require": {
                 "ext-json": "*",
@@ -22214,16 +22214,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v5.4.0",
+            "version": "v5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "447a020a1f875a434d62f2a401f53b82a396e494"
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/447a020a1f875a434d62f2a401f53b82a396e494",
-                "reference": "447a020a1f875a434d62f2a401f53b82a396e494",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ae59794362fe85e051a58ad36b289443f57be7a9",
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9",
                 "shasum": ""
             },
             "require": {
@@ -22266,9 +22266,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.4.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.5.0"
             },
-            "time": "2024-12-30T11:07:19+00:00"
+            "time": "2025-05-31T08:24:38+00:00"
         },
         {
             "name": "opensearch-project/opensearch-php",
@@ -25039,16 +25039,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v6.4.21",
+            "version": "v6.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "3f0c7ea41db479383b81d436b836d37168fd5b99"
+                "reference": "6b7c97fe1ddac8df3cc9ba6410c8abc683e148ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/3f0c7ea41db479383b81d436b836d37168fd5b99",
-                "reference": "3f0c7ea41db479383b81d436b836d37168fd5b99",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/6b7c97fe1ddac8df3cc9ba6410c8abc683e148ae",
+                "reference": "6b7c97fe1ddac8df3cc9ba6410c8abc683e148ae",
                 "shasum": ""
             },
             "require": {
@@ -25096,7 +25096,7 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v6.4.21"
+                "source": "https://github.com/symfony/http-foundation/tree/v6.4.22"
             },
             "funding": [
                 {
@@ -25112,7 +25112,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-27T13:27:38+00:00"
+            "time": "2025-05-11T15:36:20+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -26067,16 +26067,16 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v6.4.21",
+            "version": "v6.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "c45f8f7763afb11e85772c0c1debb8f272c17f51"
+                "reference": "b836df93e9ea07d1d3ada58a679ef205d54b64d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/c45f8f7763afb11e85772c0c1debb8f272c17f51",
-                "reference": "c45f8f7763afb11e85772c0c1debb8f272c17f51",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/b836df93e9ea07d1d3ada58a679ef205d54b64d1",
+                "reference": "b836df93e9ea07d1d3ada58a679ef205d54b64d1",
                 "shasum": ""
             },
             "require": {
@@ -26145,7 +26145,7 @@
             "description": "Handles serializing and deserializing data structures, including object graphs, into array structures or other formats like XML and JSON.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/serializer/tree/v6.4.21"
+                "source": "https://github.com/symfony/serializer/tree/v6.4.22"
             },
             "funding": [
                 {
@@ -26161,7 +26161,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-27T13:27:38+00:00"
+            "time": "2025-05-12T08:02:50+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -26334,16 +26334,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v6.4.21",
+            "version": "v6.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "bb92ea5588396b319ba43283a5a3087a034cb29c"
+                "reference": "7e3b3b7146c6fab36ddff304a8041174bf6e17ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/bb92ea5588396b319ba43283a5a3087a034cb29c",
-                "reference": "bb92ea5588396b319ba43283a5a3087a034cb29c",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/7e3b3b7146c6fab36ddff304a8041174bf6e17ad",
+                "reference": "7e3b3b7146c6fab36ddff304a8041174bf6e17ad",
                 "shasum": ""
             },
             "require": {
@@ -26409,7 +26409,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v6.4.21"
+                "source": "https://github.com/symfony/translation/tree/v6.4.22"
             },
             "funding": [
                 {
@@ -26425,7 +26425,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-07T19:02:30+00:00"
+            "time": "2025-05-29T07:06:44+00:00"
         },
         {
             "name": "symfony/translation-contracts",
