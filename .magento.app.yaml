@@ -11,7 +11,7 @@ build:
 
 dependencies:
     php:
-        composer/composer: '2.7.0'
+        composer/composer: '2.8.4'
 
 # Enable extensions required by Magento 2
 runtime:
@@ -146,7 +146,6 @@ hooks:
         php ./vendor/bin/ece-tools run scenario/deploy.xml
     # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
     post_deploy: |
-        touch ~/app/etc/.post-deploy.timestamp
         php ./vendor/bin/ece-tools run scenario/post-deploy.xml
 
 # Default Magento 2 cron jobs
