@@ -43,10 +43,22 @@ disk: 5120
 
 # The mounts that will be performed when the package is deployed.
 mounts:
-    "var": "shared:files/var"
-    "app/etc": "shared:files/etc"
-    "pub/media": "shared:files/media"
-    "pub/static": "shared:files/static"
+    "var":
+        source: "service"
+        service: "files"
+        source_path: "var"
+    "app/etc":
+        source: "service"
+        service: "files"
+        source_path: "etc"
+    "pub/media":
+        source: "service"
+        service: "files"
+        source_path: "media"
+    "pub/static":
+        source: "service"
+        service: "files"
+        source_path: "static"
 
 hooks:
     # We run build hooks before your application has been packaged.
