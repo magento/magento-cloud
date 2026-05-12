@@ -3,12 +3,15 @@
 # Each service listed will be deployed to power your project.
 
 mysql:
-    type: mysql:10.11
+    type: mysql:11.8
     disk: 5120
 
-redis:
-    type: redis:7.2
+# redis:
+#     type: redis:7.2
+
+cache:
+    type: valkey:8.1
 
 opensearch:
-    type: opensearch:2
+    type: opensearch:3
     disk: 1024
