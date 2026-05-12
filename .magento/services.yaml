@@ -6,8 +6,11 @@ mysql:
     type: mysql:10.11
     disk: 5120
 
-redis:
-    type: redis:7.2
+# redis:
+#     type: redis:7.2
+
+cache:
+    type: valkey:8.1
 
 opensearch:
     type: opensearch:2
