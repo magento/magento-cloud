@@ -11,7 +11,7 @@ build:
 
 dependencies:
     php:
-        composer/composer: '2.9.3'
+        composer/composer: '2.9.7'
 
 # Enable extensions required by Magento 2
 runtime:
@@ -25,7 +25,8 @@ runtime:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
     database: "mysql:mysql"
-    redis: "redis:redis"
+    # redis: "redis:redis"
+    valkey: "cache:valkey"
     opensearch: "opensearch:opensearch"
 
 # The configuration of app when it is exposed to the web. Application Server disabled.

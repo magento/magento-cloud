@@ -1,6 +1,6 @@
 name: application-server
 # The toolstack used to build the application.
-type: php:8.2
+type: php:8.3
 build:
     flavor: none
 
@@ -8,7 +8,7 @@ source:
     root: /
 dependencies:
     php:
-        composer/composer: '2.5.5'
+        composer/composer: '2.9.7'
 
 # Enable extensions required by Magento 2
 runtime:
@@ -23,7 +23,7 @@ runtime:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
     database: "mysql:mysql"
-    redis: "redis:redis"
+    valkey: "cache:valkey"
     opensearch: "opensearch:opensearch"
 
 # The configuration of app when it is exposed to the web.
