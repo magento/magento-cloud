@@ -70,6 +70,17 @@ while true; do
   for key in "${!commands[@]}"; do
     if ! kill -0 ${pids[$key]} 2>/dev/null; then
       echo $(date -u) "$key process is not running. Restarting..."
+      case "$key" in
+        "PHP-FPM")
+          timeout 30 killall --wait "${PLATFORM_FPM_WORKER}" 2>/dev/null || killall -9 "${PLATFORM_FPM_WORKER}" 2>/dev/null
+          ;;
+        "ApplicationServer")
+          timeout 30 killall --wait php 2>/dev/null || killall -9 php 2>/dev/null
+          ;;
+        "Nginx")
+          timeout 30 killall --wait nginx 2>/dev/null || killall -9 nginx 2>/dev/null
+          ;;
+      esac
       ${commands[$key]} &
       pids[$key]=$!
       echo $(date -u) "Restarted $key with PID ${pids[$key]}"
