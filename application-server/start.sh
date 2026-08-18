@@ -1,7 +1,8 @@
 #!/bin/bash
-# Declare associative arrays for commands and PIDs
+# Declare associative arrays for commands, PIDs, and process group IDs
 declare -A commands
 declare -A pids
+declare -A pgids
 
 # Check if the PLATFORM_FPM_WORKER is unset or empty, set default to "php-fpm8.2"
 if [ -z "$PLATFORM_FPM_WORKER" ]; then
@@ -53,16 +54,38 @@ camel_case_to_kebab_case() {
     echo "$str" | sed -r 's/([A-Z])/-\L\1/g' | cut -c 2-
 }
 
+# Gracefully (SIGTERM), then forcefully (SIGKILL) after a bounded wait, stop
+# only the process group of a crashed command's own instance. Each managed
+# command is started via setsid and its actual process group ID is read back
+# from the OS (not assumed from the PID), so signalling that group reaches
+# only its own orphaned children and never unrelated processes such as cron
+# jobs, deploy hooks, or other independent php/php-fpm/nginx invocations
+# sharing the same binary name.
+stop_process_group() {
+    local pgid="$1"
+    [ -n "$pgid" ] || return 0
+    kill -0 -- "-${pgid}" 2>/dev/null || return 0
+    kill -TERM -- "-${pgid}" 2>/dev/null
+    local waited=0
+    while kill -0 -- "-${pgid}" 2>/dev/null && [ "$waited" -lt 30 ]; do
+        sleep 1
+        waited=$((waited + 1))
+    done
+    kill -KILL -- "-${pgid}" 2>/dev/null
+}
+
 # Start processes and store their PIDs
 for key in "${!commands[@]}"; do
   # Convert command key to kebab-case for the log file name
   log_name=$(camel_case_to_kebab_case "$key")
 
-  # Execute command with the output sent to the log file name
-  ${commands[$key]} > ${MAGENTO_CLOUD_APP_DIR}/var/log/${log_name}.log 2>&1 &
+  # Execute command in its own process group (via setsid) with output sent
+  # to the log file name
+  setsid ${commands[$key]} > ${MAGENTO_CLOUD_APP_DIR}/var/log/${log_name}.log 2>&1 &
   pids[$key]=$!
+  pgids[$key]=$(ps -o pgid= -p "${pids[$key]}" | tr -d ' ')
 
-  echo $(date -u) "Started $key with PID ${pids[$key]}"
+  echo $(date -u) "Started $key with PID ${pids[$key]} and PGID ${pgids[$key]}"
 done
 
 # Infinite loop to keep all processes running
@@ -70,20 +93,11 @@ while true; do
   for key in "${!commands[@]}"; do
     if ! kill -0 ${pids[$key]} 2>/dev/null; then
       echo $(date -u) "$key process is not running. Restarting..."
-      case "$key" in
-        "PHP-FPM")
-          timeout 30 killall --wait "${PLATFORM_FPM_WORKER}" 2>/dev/null || killall -9 "${PLATFORM_FPM_WORKER}" 2>/dev/null
-          ;;
-        "ApplicationServer")
-          timeout 30 killall --wait php 2>/dev/null || killall -9 php 2>/dev/null
-          ;;
-        "Nginx")
-          timeout 30 killall --wait nginx 2>/dev/null || killall -9 nginx 2>/dev/null
-          ;;
-      esac
-      ${commands[$key]} &
+      stop_process_group "${pgids[$key]}"
+      setsid ${commands[$key]} &
       pids[$key]=$!
-      echo $(date -u) "Restarted $key with PID ${pids[$key]}"
+      pgids[$key]=$(ps -o pgid= -p "${pids[$key]}" | tr -d ' ')
+      echo $(date -u) "Restarted $key with PID ${pids[$key]} and PGID ${pgids[$key]}"
     fi
   done
   sleep 1
