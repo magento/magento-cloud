@@ -1,0 +1,11 @@
+{
+  "name": "magento-cloud-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix storefront",
+    "build": "npm run build --prefix storefront",
+    "start": "npm run start --prefix storefront",
+    "deploy:vercel": "vercel --prod --cwd storefront"
+  }
+}
