@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0 --port 3000",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "generate:icons": "node scripts/generate-icons.js",
-    "mobile:export": "next build",
+    "mobile:export": "next build --webpack",
     "mobile:sync": "next build && npx cap sync",
     "mobile:ios": "next build && npx cap sync ios && npx cap open ios",
     "mobile:android": "next build && npx cap sync android && npx cap open android"
