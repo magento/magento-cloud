@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { CartItem, DiscountCoupon, Product, ProductVariant } from '../lib/types/commerce';
 import { calculateUaeVat } from '../lib/integrations/uaeTax';
+import { triggerLightHaptic, triggerMediumHaptic } from '../lib/native/haptics';
 import { useStore } from './StoreContext';
 
 interface CartContextType {
@@ -113,6 +114,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
 
     setIsCartOpen(true);
+    triggerLightHaptic();
   };
 
   const updateQuantity = (itemId: string, quantity: number) => {
@@ -144,6 +146,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const toggleWishlist = (productId: string) => {
+    triggerLightHaptic();
     setWishlist((prev) => {
       const exists = prev.includes(productId);
       const updated = exists ? prev.filter((id) => id !== productId) : [...prev, productId];

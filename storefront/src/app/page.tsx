@@ -55,35 +55,36 @@ export default function HomePage() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', paddingBottom: '4rem' }}>
       {/* Hero Section */}
       <section style={{ position: 'relative', overflow: 'hidden', padding: '3.5rem 0 4.5rem', background: 'radial-gradient(ellipse at 70% 20%, rgba(14, 165, 233, 0.15), transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(245, 158, 11, 0.12), transparent 50%), #070a12', borderBottom: '1px solid var(--border-subtle)' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'center' }}>
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem', alignItems: 'center' }}>
           {/* Left Hero Content */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.06)', border: '1px solid var(--border-subtle)', borderRadius: '999px', padding: '0.35rem 0.85rem', width: 'fit-content' }}>
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></span>
               <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#e2e8f0' }}>
-                Dubai Central Warehouse • Same-Day Dispatch
+                {storeIdentity.heroBadgeText || 'Dubai Central Warehouse • Same-Day Dispatch'}
               </span>
             </div>
 
             <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', lineHeight: '1.1', fontWeight: 800, letterSpacing: '-0.03em' }}>
-              Next-Gen Tech & Luxury Essentials <br />
+              {storeIdentity.heroTitle || 'Next-Gen Tech & Luxury Essentials'} <br />
               <span style={{ background: 'linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, #f59e0b 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                Delivered Across UAE
+                {storeIdentity.heroHighlight || 'Delivered Across UAE'}
               </span>
             </h1>
 
             <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '520px' }}>
-              Official TRA-approved devices with manufacturer warranties. Enjoy <strong>Amazon Logistics</strong> delivery, <strong>5% UAE VAT Invoices</strong>, and split your bill in 4 with <strong>Tabby</strong>.
+              {storeIdentity.heroDescription ||
+                'Official TRA-approved devices with manufacturer warranties. Enjoy Amazon Logistics delivery, 5% UAE VAT Invoices, and split your bill in 4 with Tabby.'}
             </p>
 
             {/* CTAs */}
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
-              <Link href="/shop" className="btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem' }}>
-                <span>Explore Catalog</span>
+              <Link href={storeIdentity.heroCtaPrimaryLink || '/shop'} className="btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '1rem' }}>
+                <span>{storeIdentity.heroCtaPrimaryText || 'Explore Catalog'}</span>
                 <ArrowRight size={18} />
               </Link>
-              <Link href="/admin" className="btn-secondary" style={{ padding: '0.85rem 1.5rem', fontSize: '0.95rem' }}>
-                <span>Admin Control Center</span>
+              <Link href={storeIdentity.heroCtaSecondaryLink || '/admin'} className="btn-secondary" style={{ padding: '0.85rem 1.5rem', fontSize: '0.95rem' }}>
+                <span>{storeIdentity.heroCtaSecondaryText || 'Admin Control Center'}</span>
               </Link>
             </div>
 

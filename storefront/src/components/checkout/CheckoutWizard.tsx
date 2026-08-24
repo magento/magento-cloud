@@ -19,6 +19,7 @@ import {
   Check,
   Lock,
 } from 'lucide-react';
+import { triggerSuccessHaptic } from '../../lib/native/haptics';
 import { useCart } from '../../context/CartContext';
 import { useStore } from '../../context/StoreContext';
 import { useCurrency } from '../../context/CurrencyContext';
@@ -183,6 +184,7 @@ export const CheckoutWizard: React.FC = () => {
     setIsProcessing(false);
     setCurrentStep(4);
     clearCart();
+    triggerSuccessHaptic();
 
     // Trigger celebratory confetti
     try {

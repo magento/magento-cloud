@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm run dev --prefix storefront",
-    "build": "npm run build --prefix storefront",
-    "start": "npm run start --prefix storefront",
+    "dev": "npm --prefix storefront run dev",
+    "build": "npm --prefix storefront run build",
+    "start": "npm --prefix storefront run start",
+    "mobile:sync": "npm --prefix storefront run mobile:sync",
+    "mobile:ios": "npm --prefix storefront run mobile:ios",
+    "mobile:android": "npm --prefix storefront run mobile:android",
     "deploy:vercel": "vercel --prod --cwd storefront"
   }
 }

@@ -21,7 +21,7 @@ export const MobileNav: React.FC = () => {
         background: 'rgba(11, 15, 25, 0.95)',
         backdropFilter: 'blur(16px)',
         borderTop: '1px solid var(--border-subtle)',
-        padding: '0.5rem 1rem 0.75rem',
+        padding: '0.5rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px))',
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',

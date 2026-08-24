@@ -15,6 +15,18 @@ export const metadata: Metadata = {
     'Premier Headless Magento eCommerce Store in Dubai & UAE. Fast Same-Day Dubai Delivery, Amazon Logistics MCF, 5% UAE VAT Invoices, Tabby & Tamara Installments, and Multi-Currency Pricing (AED, USD, INR).',
   keywords: 'Magento UAE, Dubai online shopping, Tabby, Tamara, Amazon.ae MCF, Odoo ERP, AED, Electronics Dubai',
   manifest: '/manifest.json',
+  icons: {
+    icon: '/favicon.png',
+    apple: '/apple-touch-icon.png',
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Al-Madina',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({

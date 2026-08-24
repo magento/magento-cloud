@@ -206,6 +206,15 @@ export interface StoreIdentity {
   address: string;
   freeShippingThresholdAed: number;
   defaultCurrency: CurrencyCode;
+  // Hero Section Write-Up & CMS Customization
+  heroBadgeText?: string;
+  heroTitle?: string;
+  heroHighlight?: string;
+  heroDescription?: string;
+  heroCtaPrimaryText?: string;
+  heroCtaPrimaryLink?: string;
+  heroCtaSecondaryText?: string;
+  heroCtaSecondaryLink?: string;
 }
 
 export interface PaymentGatewaySettings {

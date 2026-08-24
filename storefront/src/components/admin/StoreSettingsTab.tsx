@@ -83,6 +83,125 @@ export const StoreSettingsTab: React.FC = () => {
         </div>
       </div>
 
+      {/* Homepage Hero Section Write-Up & CMS */}
+      <div style={{ background: '#111827', border: '1px solid var(--border-subtle)', borderRadius: '14px', padding: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+          <h4 style={{ fontSize: '1rem', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Palette size={18} /> Homepage Hero Section Write-Up & CMS
+          </h4>
+          <span style={{ fontSize: '0.72rem', color: '#10b981', background: 'rgba(16,185,129,0.15)', padding: '0.2rem 0.6rem', borderRadius: '6px', fontWeight: 600 }}>
+            Live on Storefront
+          </span>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
+              Top Announcement Pill / Badge
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. Dubai Central Warehouse • Same-Day Dispatch"
+              value={formData.heroBadgeText || ''}
+              onChange={(e) => setFormData({ ...formData, heroBadgeText: e.target.value })}
+              className="input-field"
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
+              Main Heading Title (Line 1)
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. Next-Gen Tech & Luxury Essentials"
+              value={formData.heroTitle || ''}
+              onChange={(e) => setFormData({ ...formData, heroTitle: e.target.value })}
+              className="input-field"
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
+              Gradient Highlight Text (Line 2)
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. Delivered Across UAE"
+              value={formData.heroHighlight || ''}
+              onChange={(e) => setFormData({ ...formData, heroHighlight: e.target.value })}
+              className="input-field"
+            />
+          </div>
+
+          <div style={{ gridColumn: '1 / -1' }}>
+            <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
+              Hero Subtitle / Write-Up Description
+            </label>
+            <textarea
+              rows={3}
+              placeholder="Detailed promotional description or value proposition..."
+              value={formData.heroDescription || ''}
+              onChange={(e) => setFormData({ ...formData, heroDescription: e.target.value })}
+              className="input-field"
+              style={{ resize: 'vertical' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
+              Primary Button Label
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. Explore Catalog"
+              value={formData.heroCtaPrimaryText || ''}
+              onChange={(e) => setFormData({ ...formData, heroCtaPrimaryText: e.target.value })}
+              className="input-field"
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
+              Primary Button Link URL
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. /shop"
+              value={formData.heroCtaPrimaryLink || ''}
+              onChange={(e) => setFormData({ ...formData, heroCtaPrimaryLink: e.target.value })}
+              className="input-field"
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
+              Secondary Button Label
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. Admin Control Center"
+              value={formData.heroCtaSecondaryText || ''}
+              onChange={(e) => setFormData({ ...formData, heroCtaSecondaryText: e.target.value })}
+              className="input-field"
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.35rem' }}>
+              Secondary Button Link URL
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. /admin"
+              value={formData.heroCtaSecondaryLink || ''}
+              onChange={(e) => setFormData({ ...formData, heroCtaSecondaryLink: e.target.value })}
+              className="input-field"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Logos & Branding */}
       <div style={{ background: '#111827', border: '1px solid var(--border-subtle)', borderRadius: '14px', padding: '1.5rem' }}>
         <h4 style={{ fontSize: '1rem', color: 'var(--accent-gold)', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

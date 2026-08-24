@@ -165,7 +165,7 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Main Navbar */}
-      <div className="container" style={{ padding: '0.85rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
+      <div className="container" style={{ padding: '0.85rem 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
         {/* Brand Logo & Name */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'inherit' }}>
           <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'linear-gradient(135deg, #0284c7, #0ea5e9)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-glow)', overflow: 'hidden' }}>

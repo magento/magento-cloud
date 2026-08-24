@@ -17,6 +17,15 @@ export const DEFAULT_STORE_IDENTITY: StoreIdentity = {
   address: 'Level 14, Boulevard Plaza Tower 1, Sheikh Mohammed Bin Rashid Blvd, Downtown Dubai, UAE',
   freeShippingThresholdAed: 250,
   defaultCurrency: 'AED',
+  heroBadgeText: 'Dubai Central Warehouse • Same-Day Dispatch',
+  heroTitle: 'Next-Gen Tech & Luxury Essentials',
+  heroHighlight: 'Delivered Across UAE',
+  heroDescription:
+    'Official TRA-approved devices with manufacturer warranties. Enjoy Amazon Logistics delivery, 5% UAE VAT Invoices, and split your bill in 4 with Tabby.',
+  heroCtaPrimaryText: 'Explore Catalog',
+  heroCtaPrimaryLink: '/shop',
+  heroCtaSecondaryText: 'Admin Control Center',
+  heroCtaSecondaryLink: '/admin',
 };
 
 export const INITIAL_PRODUCTS: Product[] = [
