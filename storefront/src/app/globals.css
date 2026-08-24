@@ -9,7 +9,10 @@
   --bg-primary: #0b0f19;
   --bg-surface: #111827;
   --bg-surface-elevated: #1f2937;
-  --bg-surface-glass: rgba(17, 24, 39, 0.75);
+  --bg-surface-glass: rgba(17, 24, 39, 0.65);
+  --bg-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
   --text-primary: #f9fafb;
   --text-secondary: #9ca3af;
@@ -103,10 +106,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .glass-panel {
   background: var(--bg-surface-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: var(--glass-border);
   border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-magnetic {
+  background: var(--bg-glass-gradient);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  will-change: transform;
 }
 
 .glow-hover {
@@ -245,16 +258,16 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.25);
 }
 
-/* Responsive grid */
+/* Responsive grid - Fluid adaptability */
 .grid-products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(clamp(160px, 30vw, 260px), 1fr));
   gap: 1.5rem;
+  will-change: transform, opacity;
 }
 
 @media (max-width: 640px) {
   .grid-products {
-    grid-template-columns: repeat(2, 1fr);
     gap: 0.85rem;
   }
 }
