@@ -8,6 +8,7 @@ import { Footer } from '../components/layout/Footer';
 import { MobileNav } from '../components/layout/MobileNav';
 import { CartDrawer } from '../components/cart/CartDrawer';
 import { StoreAssistant } from '../components/assistant/StoreAssistant';
+import { RegisterSW } from '../components/pwa/RegisterSW';
 
 export const metadata: Metadata = {
   title: 'Al-Madina Luxury & Tech Hub • UAE Magento Commerce',
@@ -47,6 +48,7 @@ export default function RootLayout({
                 <CartDrawer />
                 <StoreAssistant />
                 <MobileNav />
+                <RegisterSW />
               </div>
             </CartProvider>
           </CurrencyProvider>
