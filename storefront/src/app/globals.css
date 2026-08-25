@@ -271,3 +271,70 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.85rem;
   }
 }
+
+/* ============================================
+   Responsive utility classes
+   This project uses plain CSS (no Tailwind build),
+   so these back the utility classNames used across
+   the JSX for showing/hiding elements per breakpoint.
+   Breakpoints: sm 640px, md 768px, lg 1024px.
+   ============================================ */
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none !important;
+}
+
+@media (min-width: 640px) {
+  .sm\:block {
+    display: block !important;
+  }
+  .sm\:flex {
+    display: flex !important;
+  }
+  .sm\:inline {
+    display: inline !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:block {
+    display: block !important;
+  }
+  .md\:hidden {
+    display: none !important;
+  }
+  .md\:bottom-6 {
+    bottom: 1.5rem !important;
+  }
+  .md\:bottom-20 {
+    bottom: 5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid {
+    display: grid !important;
+  }
+}
+
+/* Shop catalog layout: filters stack above the product grid on
+   mobile/tablet, and sit as a sidebar on desktop (lg and up). */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+@media (min-width: 1024px) {
+  .shop-layout {
+    grid-template-columns: 260px 1fr;
+  }
+}

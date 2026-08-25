@@ -86,8 +86,8 @@ function ShopContent() {
         </div>
       </div>
 
-      {/* Main Grid: Sidebar + Product Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '2rem', alignItems: 'flex-start' }} className="flex flex-col lg:grid">
+      {/* Main Grid: Sidebar + Product Grid (stacks on mobile/tablet, sidebar on desktop) */}
+      <div className="shop-layout">
         {/* Sidebar Filters */}
         <aside style={{ background: '#111827', border: '1px solid var(--border-subtle)', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
