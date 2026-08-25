@@ -28,6 +28,8 @@ export const session = pgTable('session', {
 export const account = pgTable('account', {
   id: text('id').primaryKey(),
   accountId: text('accountId').notNull(),
+  // Required by Better Auth 1.7 (account identity is scoped by issuer).
+  issuer: text('issuer').notNull().default(''),
   providerId: text('providerId').notNull(),
   userId: text('userId')
     .notNull()
