@@ -1,12 +1,27 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
+/**
+ * The native iOS/Android apps run in "remote server" mode: instead of bundling
+ * a static export, the WebView loads the deployed Next.js server. This keeps
+ * all server-side features (API routes, database, admin auth) working inside
+ * the native shell.
+ *
+ * Set CAP_SERVER_URL to your deployed Vercel URL before running the mobile
+ * build scripts, e.g.:
+ *   CAP_SERVER_URL="https://your-app.vercel.app" npm run mobile:sync
+ */
+const serverUrl = process.env.CAP_SERVER_URL;
+
 const config: CapacitorConfig = {
   appId: 'com.almadina.storefront',
   appName: 'Al-Madina Hub',
-  webDir: 'out',
+  // A lightweight offline fallback shell shipped inside the app bundle. When
+  // CAP_SERVER_URL is set, the WebView loads the live server instead.
+  webDir: 'mobile-shell',
   server: {
     androidScheme: 'https',
     cleartext: true,
+    ...(serverUrl ? { url: serverUrl } : {}),
   },
   plugins: {
     SplashScreen: {

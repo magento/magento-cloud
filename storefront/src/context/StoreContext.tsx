@@ -7,7 +7,6 @@ import {
   Order,
   PaymentGatewaySettings,
   Product,
-  ProductVariant,
   StoreIdentity,
   WarehouseSettings,
 } from '../lib/types/commerce';
@@ -17,6 +16,9 @@ import { DEFAULT_ODOO_SETTINGS, OdooSyncLog } from '../lib/integrations/odooConn
 import { DEFAULT_AMAZON_SETTINGS } from '../lib/integrations/amazonConnector';
 
 interface StoreContextType {
+  // Hydration state
+  isLoading: boolean;
+
   // Store Identity & Branding
   storeIdentity: StoreIdentity;
   updateStoreIdentity: (updates: Partial<StoreIdentity>) => void;
@@ -75,7 +77,42 @@ const DEFAULT_WAREHOUSE_SETTINGS: WarehouseSettings = {
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
 
+// ---- persistence helpers (fire-and-forget; local state is optimistic) ----
+
+async function persistSettings(patch: Record<string, unknown>) {
+  try {
+    await fetch('/api/settings', {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(patch),
+    });
+  } catch (e) {
+    console.error('[v0] persist settings failed', e);
+  }
+}
+
+async function persistProducts(products: Product[]) {
+  try {
+    await fetch('/api/products', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ products }),
+    });
+  } catch (e) {
+    console.error('[v0] persist products failed', e);
+  }
+}
+
+async function deleteProductRemote(id: string) {
+  try {
+    await fetch(`/api/products?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+  } catch (e) {
+    console.error('[v0] delete product failed', e);
+  }
+}
+
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [storeIdentity, setStoreIdentity] = useState<StoreIdentity>(DEFAULT_STORE_IDENTITY);
   const [products, setProducts] = useState<Product[]>(INITIAL_PRODUCTS);
   const [warehouseSettings, setWarehouseSettings] = useState<WarehouseSettings>(DEFAULT_WAREHOUSE_SETTINGS);
@@ -87,35 +124,39 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All Products');
 
-  // Hydrate state from localStorage
+  // Hydrate all store state from the database via the bootstrap endpoint.
   useEffect(() => {
-    try {
-      const savedStore = localStorage.getItem('magento_store_identity');
-      if (savedStore) setStoreIdentity(JSON.parse(savedStore));
-
-      const savedProducts = localStorage.getItem('magento_products');
-      if (savedProducts) setProducts(JSON.parse(savedProducts));
-
-      const savedPayments = localStorage.getItem('magento_payment_settings');
-      if (savedPayments) setPaymentSettings(JSON.parse(savedPayments));
-
-      const savedOdoo = localStorage.getItem('magento_odoo_settings');
-      if (savedOdoo) setOdooSettings(JSON.parse(savedOdoo));
-
-      const savedAmazon = localStorage.getItem('magento_amazon_settings');
-      if (savedAmazon) setAmazonSettings(JSON.parse(savedAmazon));
-
-      const savedOrders = localStorage.getItem('magento_orders');
-      if (savedOrders) setOrders(JSON.parse(savedOrders));
-    } catch (e) {}
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/bootstrap', { cache: 'no-store' });
+        if (!res.ok) throw new Error(`bootstrap ${res.status}`);
+        const data = await res.json();
+        if (cancelled) return;
+        if (data.settings) {
+          if (data.settings.storeIdentity) setStoreIdentity(data.settings.storeIdentity);
+          if (data.settings.warehouseSettings) setWarehouseSettings(data.settings.warehouseSettings);
+          if (data.settings.paymentSettings) setPaymentSettings(data.settings.paymentSettings);
+          if (data.settings.odooSettings) setOdooSettings(data.settings.odooSettings);
+          if (data.settings.amazonSettings) setAmazonSettings(data.settings.amazonSettings);
+        }
+        if (Array.isArray(data.products)) setProducts(data.products);
+        if (Array.isArray(data.orders)) setOrders(data.orders);
+      } catch (e) {
+        console.error('[v0] store hydration failed, using defaults', e);
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const updateStoreIdentity = (updates: Partial<StoreIdentity>) => {
     setStoreIdentity((prev) => {
       const updated = { ...prev, ...updates };
-      try {
-        localStorage.setItem('magento_store_identity', JSON.stringify(updated));
-      } catch (e) {}
+      void persistSettings({ storeIdentity: updated });
       return updated;
     });
   };
@@ -128,34 +169,23 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
-    setProducts((prev) => {
-      const updated = [newProduct, ...prev];
-      try {
-        localStorage.setItem('magento_products', JSON.stringify(updated));
-      } catch (e) {}
-      return updated;
-    });
+    setProducts((prev) => [newProduct, ...prev]);
+    void persistProducts([newProduct]);
     return newProduct;
   };
 
   const updateProduct = (id: string, updates: Partial<Product>) => {
     setProducts((prev) => {
       const updated = prev.map((p) => (p.id === id ? { ...p, ...updates, updatedAt: new Date().toISOString() } : p));
-      try {
-        localStorage.setItem('magento_products', JSON.stringify(updated));
-      } catch (e) {}
+      const changed = updated.find((p) => p.id === id);
+      if (changed) void persistProducts([changed]);
       return updated;
     });
   };
 
   const deleteProduct = (id: string) => {
-    setProducts((prev) => {
-      const updated = prev.filter((p) => p.id !== id);
-      try {
-        localStorage.setItem('magento_products', JSON.stringify(updated));
-      } catch (e) {}
-      return updated;
-    });
+    setProducts((prev) => prev.filter((p) => p.id !== id));
+    void deleteProductRemote(id);
   };
 
   const updateStock = (productId: string, newStock: number, variantId?: string) => {
@@ -169,9 +199,8 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         }
         return { ...p, stock: newStock, updatedAt: new Date().toISOString() };
       });
-      try {
-        localStorage.setItem('magento_products', JSON.stringify(updated));
-      } catch (e) {}
+      const changed = updated.find((p) => p.id === productId);
+      if (changed) void persistProducts([changed]);
       return updated;
     });
   };
@@ -217,13 +246,8 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
 
     if (toAdd.length > 0) {
-      setProducts((prev) => {
-        const updated = [...toAdd, ...prev];
-        try {
-          localStorage.setItem('magento_products', JSON.stringify(updated));
-        } catch (e) {}
-        return updated;
-      });
+      setProducts((prev) => [...toAdd, ...prev]);
+      void persistProducts(toAdd);
     }
 
     return { successCount, errors };
@@ -246,15 +270,17 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const updateWarehouseSettings = (updates: Partial<WarehouseSettings>) => {
-    setWarehouseSettings((prev) => ({ ...prev, ...updates }));
+    setWarehouseSettings((prev) => {
+      const updated = { ...prev, ...updates };
+      void persistSettings({ warehouseSettings: updated });
+      return updated;
+    });
   };
 
   const updatePaymentSettings = (updates: Partial<PaymentGatewaySettings>) => {
     setPaymentSettings((prev) => {
       const updated = { ...prev, ...updates };
-      try {
-        localStorage.setItem('magento_payment_settings', JSON.stringify(updated));
-      } catch (e) {}
+      void persistSettings({ paymentSettings: updated });
       return updated;
     });
   };
@@ -262,9 +288,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const updateOdooSettings = (updates: Partial<OdooSettings>) => {
     setOdooSettings((prev) => {
       const updated = { ...prev, ...updates };
-      try {
-        localStorage.setItem('magento_odoo_settings', JSON.stringify(updated));
-      } catch (e) {}
+      void persistSettings({ odooSettings: updated });
       return updated;
     });
   };
@@ -276,33 +300,54 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const updateAmazonSettings = (updates: Partial<AmazonSettings>) => {
     setAmazonSettings((prev) => {
       const updated = { ...prev, ...updates };
-      try {
-        localStorage.setItem('magento_amazon_settings', JSON.stringify(updated));
-      } catch (e) {}
+      void persistSettings({ amazonSettings: updated });
       return updated;
     });
   };
 
   const createOrder = (order: Order) => {
-    setOrders((prev) => {
-      const updated = [order, ...prev];
+    setOrders((prev) => [order, ...prev]);
+    // Optimistically deduct stock locally; the server recomputes authoritatively.
+    setProducts((prev) =>
+      prev.map((p) => {
+        const item = order.items.find((i) => i.productId === p.id);
+        if (!item) return p;
+        return { ...p, stock: Math.max(0, (p.stock || 0) - item.quantity) };
+      }),
+    );
+    // Server persists the order and decrements stock in the database.
+    (async () => {
       try {
-        localStorage.setItem('magento_orders', JSON.stringify(updated));
-      } catch (e) {}
-      return updated;
-    });
-    // Deduct stock
-    order.items.forEach((item) => {
-      updateStock(item.productId, Math.max(0, (products.find((p) => p.id === item.productId)?.stock || 0) - item.quantity));
-    });
+        await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ order }),
+        });
+      } catch (e) {
+        console.error('[v0] create order failed', e);
+      }
+    })();
   };
 
   const updateOrderStatus = (orderId: string, status: Order['orderStatus'], trackingNumber?: string) => {
     setOrders((prev) => {
-      const updated = prev.map((o) => (o.id === orderId ? { ...o, orderStatus: status, trackingNumber: trackingNumber || o.trackingNumber } : o));
-      try {
-        localStorage.setItem('magento_orders', JSON.stringify(updated));
-      } catch (e) {}
+      const updated = prev.map((o) =>
+        o.id === orderId ? { ...o, orderStatus: status, trackingNumber: trackingNumber || o.trackingNumber } : o,
+      );
+      const changed = updated.find((o) => o.id === orderId);
+      if (changed) {
+        (async () => {
+          try {
+            await fetch('/api/orders', {
+              method: 'PATCH',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ order: changed }),
+            });
+          } catch (e) {
+            console.error('[v0] update order status failed', e);
+          }
+        })();
+      }
       return updated;
     });
   };
@@ -314,6 +359,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   return (
     <StoreContext.Provider
       value={{
+        isLoading,
         storeIdentity,
         updateStoreIdentity,
         products,
