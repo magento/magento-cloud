@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap');
+
+:root {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', sans-serif;
+
+  /* Theme Tokens */
+  --bg-primary: #0b0f19;
+  --bg-surface: #111827;
+  --bg-surface-elevated: #1f2937;
+  --bg-surface-glass: rgba(17, 24, 39, 0.65);
+  --bg-glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  --accent-cyan: #0ea5e9;
+  --accent-cyan-hover: #38bdf8;
+  --accent-gold: #f59e0b;
+  --accent-gold-glow: rgba(245, 158, 11, 0.25);
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
+  --border-active: rgba(14, 165, 233, 0.5);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 25px rgba(14, 165, 233, 0.2);
+  --shadow-gold-glow: 0 0 25px rgba(245, 158, 11, 0.2);
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Safe Area Insets for iOS Notch / Dynamic Island / Android Navigation */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding-left: var(--sal);
+  padding-right: var(--sar);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+.glass-panel {
+  background: var(--bg-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-magnetic {
+  background: var(--bg-glass-gradient);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  will-change: transform;
+}
+
+.glow-hover {
+  transition: var(--transition-normal);
+}
+.glow-hover:hover {
+  border-color: var(--border-active);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.gold-badge {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(217, 119, 6, 0.25));
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+.tabby-badge {
+  background: linear-gradient(135deg, #3bfc87 0%, #2bd971 100%);
+  color: #0b1a10;
+  font-weight: 700;
+}
+
+.tamara-badge {
+  background: linear-gradient(135deg, #fce0c6 0%, #f69371 100%);
+  color: #2c1006;
+  font-weight: 700;
+}
+
+.amazon-badge {
+  background: #232f3e;
+  color: #ff9900;
+  border: 1px solid rgba(255, 153, 0, 0.4);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--accent-cyan), #0284c7);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--accent-cyan-hover), #0369a1);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  background: #374151;
+  border-color: var(--border-hover);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0b0f19;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  text-decoration: none;
+}
+.btn-gold:hover {
+  background: linear-gradient(135deg, #fbbf24, #b45309);
+  box-shadow: var(--shadow-gold-glow);
+  transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.pulse-animation {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Form Controls */
+.input-field {
+  width: 100%;
+  background: #1f2937;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition-fast);
+  font-family: inherit;
+}
+.input-field:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.25);
+}
+
+/* Responsive grid - Fluid adaptability */
+.grid-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(160px, 30vw, 260px), 1fr));
+  gap: 1.5rem;
+  will-change: transform, opacity;
+}
+
+@media (max-width: 640px) {
+  .grid-products {
+    gap: 0.85rem;
+  }
+}
+
+/* ============================================
+   Responsive utility classes
+   This project uses plain CSS (no Tailwind build),
+   so these back the utility classNames used across
+   the JSX for showing/hiding elements per breakpoint.
+   Breakpoints: sm 640px, md 768px, lg 1024px.
+   ============================================ */
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none !important;
+}
+
+@media (min-width: 640px) {
+  .sm\:block {
+    display: block !important;
+  }
+  .sm\:flex {
+    display: flex !important;
+  }
+  .sm\:inline {
+    display: inline !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:block {
+    display: block !important;
+  }
+  .md\:hidden {
+    display: none !important;
+  }
+  .md\:bottom-6 {
+    bottom: 1.5rem !important;
+  }
+  .md\:bottom-20 {
+    bottom: 5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid {
+    display: grid !important;
+  }
+}
+
+/* Shop catalog layout: filters stack above the product grid on
+   mobile/tablet, and sit as a sidebar on desktop (lg and up). */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+@media (min-width: 1024px) {
+  .shop-layout {
+    grid-template-columns: 260px 1fr;
+  }
+}
