@@ -1,0 +1,76 @@
+# Runs the Antigravity agent for this repository, so you can code from your
+# phone without a computer. The Antigravity app starts it; compute comes from
+# this repository's GitHub Actions minutes, the model from your Google account.
+name: Antigravity Agent
+
+on:
+  workflow_dispatch:
+    # Only older app versions send these; the current app hands the agent its
+    # connection as the ANTIGRAVITY_RELAY secret instead, which GitHub masks
+    # (inputs are printed in the run log, public for public repositories).
+    inputs:
+      pair:
+        description: Pairing id created by the Antigravity app
+        required: false
+      token:
+        description: One-time pairing token
+        required: false
+      expires:
+        description: Invitation expiry (unix seconds)
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: antigravity-agent
+  cancel-in-progress: true
+
+jobs:
+  agent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      # Pinned to commits: a tag can be moved, a commit can't.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+
+      - name: Install agent
+        run: |
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 2 https://antigravity.google/cli/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          mkdir -p "$RUNNER_TEMP/agent" && cd "$RUNNER_TEMP/agent"
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 2 -o bridge.mjs https://antigravity.luch.dev/cloud/bridge-bfed143a5729.mjs
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 2 -o start-cloud-bridge.mjs https://antigravity.luch.dev/cloud/start-cloud-bridge-e9189556a93e.mjs
+          printf '%s  %s\n' bfed143a5729b2fb96120d2af9c9dd8b02c97bd7751a78d828f77899a6afaa49 bridge.mjs e9189556a93e717078e9927b126b9b74b2c12763d883ac38c39d4f8e978d8eaf start-cloud-bridge.mjs | sha256sum -c -
+          npm install --no-audit --no-fund --silent node-pty@1.1.0
+
+      - name: Configure git author
+        run: |
+          git config user.name "Antigravity Agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # The app keeps your Google sign-in on your phone and hands it to this
+      # repository as a secret, so the agent doesn't ask you to sign in again.
+      - name: Restore Google sign-in
+        env:
+          GOOGLE_SIGN_IN: ${{ secrets.ANTIGRAVITY_GOOGLE_SIGN_IN }}
+        run: |
+          if [ -n "$GOOGLE_SIGN_IN" ]; then
+            umask 077
+            mkdir -p "$HOME/.gemini/antigravity-cli"
+            printf '%s' "$GOOGLE_SIGN_IN" | base64 -d > "$HOME/.gemini/antigravity-cli/antigravity-oauth-token"
+          fi
+
+      - name: Run agent
+        env:
+          ANTIGRAVITY_RELAY: ${{ secrets.ANTIGRAVITY_RELAY }}
+          ANTIGRAVITY_PAIR_ID: ${{ inputs.pair }}
+          ANTIGRAVITY_PAIR_TOKEN: ${{ inputs.token }}
+          ANTIGRAVITY_PAIR_EXPIRES: ${{ inputs.expires }}
+        run: node "$RUNNER_TEMP/agent/start-cloud-bridge.mjs"
